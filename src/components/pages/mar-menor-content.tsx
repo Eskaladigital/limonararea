@@ -188,7 +188,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
             <div className="order-1 lg:order-2">
               <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
                 <MapPin className="h-4 w-4" />
-                Geografía
+                {t("Geografía")}
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
                 {t("Ubicación y geografía")}
@@ -209,9 +209,9 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
               </ul>
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { value: "~135 km²", label: "Superficie" },
-                  { value: "4-7 m", label: "Profundidad" },
-                  { value: "42 PSU", label: "Salinidad" },
+                  { value: "~135 km²", label: t("Superficie") },
+                  { value: "4-7 m", label: t("Profundidad") },
+                  { value: "42 PSU", label: t("Salinidad") },
                 ].map((stat, i) => (
                   <div key={i} className="text-center p-4 rounded-xl bg-white border border-earth/10">
                     <div className="text-2xl font-heading font-extrabold text-clay mb-1">{stat.value}</div>
@@ -231,7 +231,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
             <div>
               <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
                 <Droplets className="h-4 w-4" />
-                Hidrología
+                {t("Hidrología")}
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
                 {t("Hidrología y química del agua: eutrofización crónica")}
@@ -562,9 +562,9 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { year: "2020", title: "Ley 3/2020", desc: "Recuperación y protección del Mar Menor", color: "bg-blue-500" },
-              { year: "2022", title: "Personalidad jurídica", desc: "Primera laguna de Europa con derechos propios", color: "bg-green-500" },
-              { year: "2024", title: "Interés general", desc: "Real Decreto del Consejo de Ministros", color: "bg-orange-500" },
+              { year: "2020", title: t("Ley 3/2020"), desc: t("Recuperación y protección del Mar Menor"), color: "bg-blue-500" },
+              { year: "2022", title: t("Personalidad jurídica"), desc: t("Primera laguna de Europa con derechos propios"), color: "bg-green-500" },
+              { year: "2024", title: t("Interés general"), desc: t("Real Decreto del Consejo de Ministros"), color: "bg-orange-500" },
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-xl bg-white border-2 border-earth/10 hover:border-clay/30 transition-all shadow-sm hover:shadow-lg text-center">
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${item.color} text-white font-heading font-extrabold text-xl mb-4 shadow-lg`}>
