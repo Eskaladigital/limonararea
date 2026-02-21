@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay } from "date-fns";
-import { es } from "date-fns/locale";
+import { es, enUS, fr, de, nl } from "date-fns/locale";
 import { useLanguage } from "@/contexts/language-context";
+import type { Locale } from "@/lib/i18n/config";
 
 interface Season {
   id: string;
@@ -21,10 +22,22 @@ interface Season {
   is_active: boolean;
 }
 
-const monthNames = [
-  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-];
+const dateFnsLocales: Record<Locale, typeof es> = {
+  es,
+  en: enUS,
+  fr,
+  de,
+  nl,
+};
+
+// Lunes a domingo (calendario empieza en lunes)
+const weekdayLabels: Record<Locale, string[]> = {
+  es: ["L", "M", "X", "J", "V", "S", "D"],
+  en: ["M", "T", "W", "T", "F", "S", "S"],
+  fr: ["L", "M", "M", "J", "V", "S", "D"],
+  de: ["M", "D", "M", "D", "F", "S", "S"],
+  nl: ["M", "D", "W", "D", "V", "Z", "Z"],
+};
 
 // Precios base de temporada BAJA
 const PRECIO_BAJA = {
@@ -42,10 +55,10 @@ const getTipoTemporada = (season: Season) => {
   return { tipo: 'BAJA', color: '#3B82F6' }; // Azul (por si acaso)
 };
 
-const seasonNames = {
-  BAJA: { es: "Temporada Baja", en: "Low Season" },
-  MEDIA: { es: "Temporada Media", en: "Mid Season" },
-  ALTA: { es: "Temporada Alta", en: "High Season" },
+const seasonNames: Record<string, Record<Locale, string>> = {
+  BAJA: { es: "Temporada Baja", en: "Low Season", fr: "Basse saison", de: "Nebensaison", nl: "Laagseizoen" },
+  MEDIA: { es: "Temporada Media", en: "Mid Season", fr: "Moyenne saison", de: "Mittelsaison", nl: "Middenseizoen" },
+  ALTA: { es: "Temporada Alta", en: "High Season", fr: "Haute saison", de: "Hochsaison", nl: "Hoogseizoen" },
 };
 
 export function SeasonsCalendar({ year, hidePassedMonths = false }: { year: number; hidePassedMonths?: boolean }) {
@@ -93,7 +106,7 @@ export function SeasonsCalendar({ year, hidePassedMonths = false }: { year: numb
     return {
       tipo: 'BAJA' as const,
       color: '#E5E7EB', // Gris claro para días normales (BAJA)
-      name: 'Temporada Baja'
+      name: seasonNames.BAJA[language]
     };
   };
 
@@ -130,15 +143,15 @@ export function SeasonsCalendar({ year, hidePassedMonths = false }: { year: numb
     return (
       <div key={monthIndex} className={`bg-white rounded-xl shadow-md overflow-hidden ${isPastMonth ? 'opacity-50' : ''}`}>
         <div className={`bg-gradient-to-r ${isPastMonth ? 'from-gray-400 to-gray-500' : 'from-furgocasa-blue to-blue-700'} text-white p-4`}>
-          <h3 className="text-lg font-bold text-center">
-            {monthNames[monthIndex]}
+          <h3 className="text-lg font-bold text-center capitalize">
+            {format(monthDate, 'MMMM', { locale: dateFnsLocales[language] })}
           </h3>
         </div>
         
         <div className="p-4">
           {/* Días de la semana */}
           <div className="grid grid-cols-7 gap-1 mb-2">
-            {['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((day, i) => (
+            {weekdayLabels[language].map((day, i) => (
               <div key={i} className="text-center text-xs font-semibold text-gray-600 py-1">
                 {day}
               </div>
@@ -171,7 +184,7 @@ export function SeasonsCalendar({ year, hidePassedMonths = false }: { year: numb
                   ? '#6B7280'
                   : '#000000';
               
-              const tooltipText = seasonInfo.name || seasonNames[seasonInfo.tipo][language];
+              const tooltipText = seasonInfo.name ?? seasonNames[seasonInfo.tipo]?.[language] ?? seasonInfo.tipo;
               
               return (
                 <div

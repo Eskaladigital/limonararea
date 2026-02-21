@@ -45,7 +45,7 @@ export async function handleCalendarRequest(request: NextRequest): Promise<NextR
         dropoff_time,
         status,
         customer_id,
-        vehicle_id,
+        parcel_id,
         pickup_location_id,
         dropoff_location_id
       `)
@@ -74,22 +74,22 @@ export async function handleCalendarRequest(request: NextRequest): Promise<NextR
     
     // 3. Enriquecer bookings con datos relacionados
     const customerIds = [...new Set(bookings.map(b => b.customer_id).filter(Boolean))];
-    const vehicleIds = [...new Set(bookings.map(b => b.vehicle_id).filter(Boolean))];
+    const parcelIds = [...new Set(bookings.map(b => b.parcel_id).filter(Boolean))];
     const locationIds = [...new Set([
       ...bookings.map(b => b.pickup_location_id),
       ...bookings.map(b => b.dropoff_location_id)
     ].filter(Boolean))];
     
     // Cargar datos relacionados en paralelo
-    const [customersResult, vehiclesResult, locationsResult] = await Promise.all([
+    const [customersResult, parcelsResult, locationsResult] = await Promise.all([
       supabase.from('customers').select('id, name, phone').in('id', customerIds),
-      supabase.from('vehicles').select('id, name, internal_code').in('id', vehicleIds).or('sale_status.neq.sold,sale_status.is.null'),
+      supabase.from('parcels').select('id, name, internal_code').in('id', parcelIds),
       supabase.from('locations').select('id, name, address').in('id', locationIds),
     ]);
     
     // Crear mapas para acceso rápido
     const customersMap = new Map(customersResult.data?.map(c => [c.id, c]) || []);
-    const vehiclesMap = new Map(vehiclesResult.data?.map(v => [v.id, v]) || []);
+    const parcelsMap = new Map(parcelsResult.data?.map(p => [p.id, p]) || []);
     const locationsMap = new Map(locationsResult.data?.map(l => [l.id, l]) || []);
     
     // 4. Mapear a formato BookingEventData
@@ -102,7 +102,7 @@ export async function handleCalendarRequest(request: NextRequest): Promise<NextR
       dropoff_time: booking.dropoff_time,
       status: booking.status || 'pending',
       customer: booking.customer_id ? (customersMap.get(booking.customer_id) || null) : null,
-      vehicle: vehiclesMap.get(booking.vehicle_id) || null,
+      vehicle: parcelsMap.get(booking.parcel_id) || null,
       pickup_location: locationsMap.get(booking.pickup_location_id) || null,
       dropoff_location: locationsMap.get(booking.dropoff_location_id) || null,
     }));

@@ -9,22 +9,22 @@ export const metadata: Metadata = {
 async function getInformesData() {
   const supabase = await createClient();
   
-  // Obtener vehículos (incluidos vendidos para histórico)
-  const { data: vehicles, error: vehiclesError } = await supabase
-    .from('vehicles')
-    .select('id, name, slug, internal_code, is_for_rent, status, sale_status')
+  // Obtener parcelas
+  const { data: parcels, error: parcelsError } = await supabase
+    .from('parcels')
+    .select('id, name, slug, internal_code, is_for_rent, status')
     .order('internal_code', { ascending: true, nullsFirst: false });
 
-  if (vehiclesError) {
-    console.error('Error fetching vehicles:', vehiclesError);
+  if (parcelsError) {
+    console.error('Error fetching parcels:', parcelsError);
   }
 
-  // Obtener todas las reservas con datos del vehículo
+  // Obtener todas las reservas con datos de la parcela
   const { data: bookings, error: bookingsError } = await supabase
     .from('bookings')
     .select(`
       id,
-      vehicle_id,
+      parcel_id,
       customer_id,
       pickup_date,
       dropoff_date,
@@ -34,7 +34,7 @@ async function getInformesData() {
       customer_name,
       customer_email,
       days,
-      vehicle:vehicles(id, name, internal_code)
+      parcel:parcels(id, name, internal_code)
     `)
     .order('pickup_date', { ascending: false });
 
@@ -53,7 +53,7 @@ async function getInformesData() {
   }
 
   return { 
-    vehicles: vehicles || [], 
+    vehicles: parcels || [], 
     bookings: bookings || [], 
     seasons: seasons || [] 
   };

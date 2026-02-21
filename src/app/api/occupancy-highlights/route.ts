@@ -78,27 +78,26 @@ export async function GET() {
   try {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // 1. Obtener vehículos alquilables activos
-    const { data: vehicles, error: vehiclesError } = await supabase
-      .from("vehicles")
+    // 1. Obtener parcelas alquilables activas
+    const { data: parcels, error: parcelsError } = await supabase
+      .from("parcels")
       .select("id")
       .eq("is_for_rent", true)
-      .eq("status", "available")
-      .or('sale_status.neq.sold,sale_status.is.null');
+      .eq("status", "available");
 
-    if (vehiclesError) {
-      console.error("Error fetching vehicles:", vehiclesError);
+    if (parcelsError) {
+      console.error("Error fetching parcels:", parcelsError);
       return NextResponse.json(
-        { error: "Error al obtener vehículos" },
+        { error: "Error al obtener parcelas" },
         { status: 500 }
       );
     }
 
-    const totalVehicles = vehicles?.length || 0;
+    const totalParcels = parcels?.length || 0;
 
-    if (totalVehicles === 0) {
+    if (totalParcels === 0) {
       return NextResponse.json(
-        { error: "No hay vehículos disponibles" },
+        { error: "No hay parcelas disponibles" },
         { status: 404 }
       );
     }
@@ -106,7 +105,7 @@ export async function GET() {
     // 2. Obtener todas las reservas confirmadas/activas/completadas
     const { data: bookings, error: bookingsError } = await supabase
       .from("bookings")
-      .select("vehicle_id, pickup_date, dropoff_date, status")
+      .select("parcel_id, pickup_date, dropoff_date, status")
       .in("status", ["confirmed", "in_progress", "completed"]);
 
     if (bookingsError) {
@@ -122,20 +121,20 @@ export async function GET() {
       const periodStart = parseISO(period.start);
       const periodEnd = parseISO(period.end);
       const totalDays = differenceInDays(periodEnd, periodStart) + 1;
-      const totalAvailableDays = totalDays * totalVehicles;
+      const totalAvailableDays = totalDays * totalParcels;
 
       // Calcular días ocupados
       let totalBookedDays = 0;
 
-      vehicles?.forEach((vehicle) => {
-        const vehicleBookings = bookings?.filter(
-          (b) => b.vehicle_id === vehicle.id
+      parcels?.forEach((parcel) => {
+        const parcelBookings = bookings?.filter(
+          (b) => b.parcel_id === parcel.id
         ) || [];
 
         // Set para evitar contar el mismo día dos veces
         const bookedDates = new Set<string>();
 
-        vehicleBookings.forEach((booking) => {
+        parcelBookings.forEach((booking) => {
           const bookingStart = parseISO(booking.pickup_date);
           const bookingEnd = parseISO(booking.dropoff_date);
 
@@ -201,7 +200,7 @@ export async function GET() {
         success: true,
         periods: limitedResults,
         metadata: {
-          total_vehicles: totalVehicles,
+          total_parcels: totalParcels,
           total_periods: limitedResults.length,
           generated_at: new Date().toISOString(),
         },

@@ -17,8 +17,10 @@ function LoadingState() {
   );
 }
 
-async function fetchAvailability(params: URLSearchParams) {
-  const response = await fetch(`/api/availability?${params.toString()}`, {
+async function fetchAvailability(params: URLSearchParams, locale: string) {
+  const p = new URLSearchParams(params);
+  if (locale && locale !== "es") p.set("locale", locale);
+  const response = await fetch(`/api/availability?${p.toString()}`, {
     cache: "no-store",
   });
   if (!response.ok) {
@@ -31,13 +33,13 @@ type SortOption = "recommended" | "price_asc" | "price_desc" | "surface";
 
 function SearchResultsContent() {
   const searchParams = useSearchParams();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const [sortBy, setSortBy] = useState<SortOption>("recommended");
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["availability", searchParams.toString()],
-    queryFn: () => fetchAvailability(searchParams),
+    queryKey: ["availability", searchParams.toString(), language],
+    queryFn: () => fetchAvailability(searchParams, language),
     enabled: !!searchParams.get("pickup_date") && !!searchParams.get("dropoff_date"),
   });
 

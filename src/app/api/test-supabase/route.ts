@@ -8,9 +8,9 @@ import { supabase } from '@/lib/supabase/client';
 
 export async function GET() {
   try {
-    // Test 1: Verificar categorías de vehículos
+    // Test 1: Verificar categorías de parcelas
     const { data: categories, error: categoriesError } = await supabase
-      .from('vehicle_categories')
+      .from('parcel_categories')
       .select('*')
       .limit(5);
 
@@ -38,13 +38,13 @@ export async function GET() {
       throw new Error(`Error al obtener extras: ${extrasError.message}`);
     }
 
-    // Test 4: Contar vehículos
-    const { count: vehiclesCount, error: vehiclesError } = await supabase
-      .from('vehicles')
+    // Test 4: Contar parcelas
+    const { count: parcelsCount, error: parcelsError } = await supabase
+      .from('parcels')
       .select('*', { count: 'exact', head: true });
 
-    if (vehiclesError) {
-      throw new Error(`Error al contar vehículos: ${vehiclesError.message}`);
+    if (parcelsError) {
+      throw new Error(`Error al contar parcelas: ${parcelsError.message}`);
     }
 
     return NextResponse.json({
@@ -63,8 +63,8 @@ export async function GET() {
           count: extras?.length || 0,
           items: extras,
         },
-        vehicles: {
-          count: vehiclesCount || 0,
+        parcels: {
+          count: parcelsCount || 0,
         },
       },
       timestamp: new Date().toISOString(),

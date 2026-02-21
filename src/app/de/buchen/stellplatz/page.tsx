@@ -43,7 +43,7 @@ interface SelectedExtra {
   quantity: number;
 }
 
-function ReservarVehiculoContent() {
+function ReservarParcelaContent() {
   const { t, language } = useLanguage();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -57,7 +57,7 @@ function ReservarVehiculoContent() {
   const pickupLocation = searchParams.get('pickup_location');
   const dropoffLocation = searchParams.get('dropoff_location');
 
-  const [vehicle, setVehicle] = useState<any | null>(null);
+  const [parcel, setParcel] = useState<any | null>(null);
   const [extras, setExtras] = useState<Extra[]>([]);
   const [selectedExtras, setSelectedExtras] = useState<SelectedExtra[]>([]);
   const [loading, setLoading] = useState(true);
@@ -113,10 +113,10 @@ function ReservarVehiculoContent() {
         setError(null);
       }
       
-      console.log(`[ReservarVehiculo] ${isRetry ? 'Retry' : 'Loading'} vehicle: ${parcelId} (attempt ${retryCount + 1}/4)`);
+      console.log(`[ReservarParcela] ${isRetry ? 'Retry' : 'Loading'} parcel: ${parcelId} (attempt ${retryCount + 1}/4)`);
       
-      // Load vehicle
-      const { data: vehicleData, error: vehicleError } = await supabase
+      // Load parcel
+      const { data: parcelData, error: parcelError } = await supabase
         .from('parcels')
         .select(`
           *,
@@ -133,27 +133,27 @@ function ReservarVehiculoContent() {
         .neq('status', 'inactive')
         .single();
 
-      if (vehicleError) {
-        console.error('[ReservarVehiculo] Vehicle error:', vehicleError);
-        throw vehicleError;
+      if (parcelError) {
+        console.error('[ReservarParcela] Parcel error:', parcelError);
+        throw parcelError;
       }
       
-      if (!vehicleData) {
-        throw new Error('Vehículo no encontrado o no disponible');
+      if (!parcelData) {
+        throw new Error('Parcela no encontrada o no disponible');
       }
       
-      console.log('[ReservarVehiculo] Vehicle loaded successfully');
+      console.log('[ReservarParcela] Parcel loaded successfully');
       
       // Sort images by is_primary first, then sort_order
-      if (vehicleData.images) {
-        vehicleData.images.sort((a: any, b: any) => {
+      if (parcelData.images) {
+        parcelData.images.sort((a: any, b: any) => {
           if (a.is_primary) return -1;
           if (b.is_primary) return 1;
           return (a.sort_order || 999) - (b.sort_order || 999);
         });
       }
       
-      setVehicle(vehicleData as any);
+      setParcel(parcelData as any);
 
       // Load available extras
       const { data: extrasData, error: extrasError } = await supabase
@@ -164,11 +164,11 @@ function ReservarVehiculoContent() {
         .order('name', { ascending: true });
 
       if (extrasError) {
-        console.error('[ReservarVehiculo] Extras error:', extrasError);
+        console.error('[ReservarParcela] Extras error:', extrasError);
         throw extrasError;
       }
       
-      console.log('[ReservarVehiculo] Extras loaded successfully:', extrasData?.length || 0);
+      console.log('[ReservarParcela] Extras loaded successfully:', extrasData?.length || 0);
       setExtras((extrasData || []) as Extra[]);
 
       // Load locations to get extra_fee
@@ -184,7 +184,7 @@ function ReservarVehiculoContent() {
           const dropoffLoc = locationsData.find(l => l.slug === dropoffLocation);
           const calculatedFee = (pickupLoc?.extra_fee || 0) + (dropoffLoc?.extra_fee || 0);
           setLocationFee(calculatedFee);
-          console.log('[ReservarVehiculo] Location fee calculated:', calculatedFee);
+          console.log('[ReservarParcela] Location fee calculated:', calculatedFee);
         }
       }
       
@@ -198,9 +198,9 @@ function ReservarVehiculoContent() {
                           error.message?.includes('signal is aborted');
       
       if (isAbortError) {
-        console.warn('[ReservarVehiculo] AbortError detected - request was cancelled, will retry...');
+        console.warn('[ReservarParcela] AbortError detected - request was cancelled, will retry...');
       } else {
-        console.error('[ReservarVehiculo] Error loading data:', error);
+        console.error('[ReservarParcela] Error loading data:', error);
       }
       
       const errorMsg = error.message || error.toString() || 'Error al cargar los datos';
@@ -208,14 +208,14 @@ function ReservarVehiculoContent() {
       // Retry automático (máximo 3 intentos) - SÍ reintentar AbortError
       if (retryCount < 3) {
         const delay = isAbortError ? 1500 : 1000 * (retryCount + 1); // Más delay para AbortError
-        console.log(`[ReservarVehiculo] Retrying in ${delay}ms... (attempt ${retryCount + 1}/3, ${isAbortError ? 'AbortError' : 'normal error'})`);
+        console.log(`[ReservarParcela] Retrying in ${delay}ms... (attempt ${retryCount + 1}/3, ${isAbortError ? 'AbortError' : 'normal error'})`);
         setRetryCount(prev => prev + 1);
         
         setTimeout(() => {
           loadData(true);
         }, delay);
       } else {
-        console.error('[ReservarVehiculo] Max retry attempts reached (3/3)');
+        console.error('[ReservarParcela] Max retry attempts reached (3/3)');
         setError(errorMsg);
         setLoading(false);
       }
@@ -282,8 +282,8 @@ function ReservarVehiculoContent() {
       params.append(`extra_${index}_quantity`, item.quantity.toString());
     });
 
-    // Ruta funcional sin prefijo de idioma
-    router.push(`/de/buchen/neu?${params.toString()}`);
+    const nextPath = getTranslatedRoute('/reservar/nueva', language);
+    router.push(`${nextPath}?${params.toString()}`);
   };
 
   if (loading) {
@@ -292,21 +292,21 @@ function ReservarVehiculoContent() {
 <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
             <Loader2 className="h-12 w-12 text-furgocasa-orange mx-auto mb-4 animate-spin" />
-            <p className="text-gray-600">{t("Cargando vehículo...")}</p>
+            <p className="text-gray-600">{t("Cargando parcela...")}</p>
           </div>
         </div>
 </>
     );
   }
 
-  if (error || !vehicle) {
+  if (error || !parcel) {
     return (
       <>
 <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center max-w-md mx-auto px-4">
             <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">{t("Error")}</h2>
-            <p className="text-gray-600 mb-4">{error || t("Vehículo no encontrado")}</p>
+            <p className="text-gray-600 mb-4">{error || t("Parcela no encontrada")}</p>
             <LocalizedLink 
               href="/reservar"
               className="inline-block bg-furgocasa-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors"
@@ -345,32 +345,32 @@ function ReservarVehiculoContent() {
 
               {/* Vehicle Info */}
               <div className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-6">
-                {vehicle.category && (
+                {parcel.category && (
                   <span className="px-2 md:px-3 py-1 bg-furgocasa-orange/10 text-furgocasa-orange rounded-full text-xs md:text-sm font-medium">
-                    {vehicle.category.name}
+                    {parcel.category.name}
                   </span>
                 )}
-                <h1 className="text-xl md:text-3xl font-bold text-gray-900 mt-3 md:mt-4 mb-1 md:mb-2">{vehicle.name}</h1>
-                {(vehicle.length_m || vehicle.width_m) && (
+                <h1 className="text-xl md:text-3xl font-bold text-gray-900 mt-3 md:mt-4 mb-1 md:mb-2">{parcel.name}</h1>
+                {(parcel.length_m || parcel.width_m) && (
                   <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6">
-                    {vehicle.length_m}×{vehicle.width_m} m
+                    {parcel.length_m}×{parcel.width_m} m
                   </p>
                 )}
 
                 {/* Dimensiones parcela */}
-                {(vehicle.length_m || vehicle.width_m) && (
+                {(parcel.length_m || parcel.width_m) && (
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 py-4 md:py-6 border-y border-gray-100">
-                  {vehicle.length_m && (
+                  {parcel.length_m && (
                     <div className="text-center">
                       <Ruler className="h-5 w-5 md:h-6 md:w-6 mx-auto text-gray-400 mb-1 md:mb-2" />
-                      <p className="font-bold text-sm md:text-base">{vehicle.length_m} m</p>
+                      <p className="font-bold text-sm md:text-base">{parcel.length_m} m</p>
                       <p className="text-xs md:text-sm text-gray-500">{t("Largo")}</p>
                     </div>
                   )}
-                  {vehicle.width_m && (
+                  {parcel.width_m && (
                     <div className="text-center">
                       <Ruler className="h-5 w-5 md:h-6 md:w-6 mx-auto text-gray-400 mb-1 md:mb-2" />
-                      <p className="font-bold text-sm md:text-base">{vehicle.width_m} m</p>
+                      <p className="font-bold text-sm md:text-base">{parcel.width_m} m</p>
                       <p className="text-xs md:text-sm text-gray-500">{t("Ancho")}</p>
                     </div>
                   )}
@@ -378,12 +378,12 @@ function ReservarVehiculoContent() {
                 )}
 
                 {/* Description */}
-                {vehicle.description && (
+                {parcel.description && (
                   <div className="mt-4 md:mt-6">
                     <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3 md:mb-4">{t("Descripción")}</h2>
                     <div 
                       className="prose prose-sm md:prose-base prose-gray max-w-none" 
-                      dangerouslySetInnerHTML={{ __html: vehicle.description }} 
+                      dangerouslySetInnerHTML={{ __html: parcel.description }} 
                     />
                   </div>
                 )}
@@ -392,7 +392,7 @@ function ReservarVehiculoContent() {
               {/* Equipment - Dynamic display */}
               <div className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-6">
                 <ParcelEquipmentDisplay
-                  equipment={(vehicle as any).parcel_equipment?.map((ve: any) => ve.equipment || ve) || []}
+                  equipment={(parcel as any).parcel_equipment?.map((ve: any) => ve.equipment || ve) || []}
                   variant="grid"
                   groupByCategory={true}
                   title={t("Equipamiento")}
@@ -400,21 +400,21 @@ function ReservarVehiculoContent() {
               </div>
 
               {/* Dimensiones */}
-              {(vehicle.length_m || vehicle.width_m) && (
+              {(parcel.length_m || parcel.width_m) && (
                 <div className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-6">
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6">{t("Dimensiones")}</h2>
                   <div className="grid grid-cols-3 gap-2 md:gap-4">
-                    {vehicle.length_m && (
+                    {parcel.length_m && (
                       <div className="text-center p-3 md:p-4 bg-gray-50 rounded-lg">
                         <Ruler className="h-5 w-5 md:h-6 md:w-6 mx-auto text-gray-400 mb-1 md:mb-2" />
-                        <p className="font-bold text-sm md:text-base">{vehicle.length_m} m</p>
+                        <p className="font-bold text-sm md:text-base">{parcel.length_m} m</p>
                         <p className="text-xs md:text-sm text-gray-500">{t("Largo")}</p>
                       </div>
                     )}
-                    {vehicle.width_m && (
+                    {parcel.width_m && (
                       <div className="text-center p-3 md:p-4 bg-gray-50 rounded-lg">
                         <Ruler className="h-5 w-5 md:h-6 md:w-6 mx-auto text-gray-400 mb-1 md:mb-2 rotate-90" />
-                        <p className="font-bold text-sm md:text-base">{vehicle.width_m} m</p>
+                        <p className="font-bold text-sm md:text-base">{parcel.width_m} m</p>
                         <p className="text-xs md:text-sm text-gray-500">{t("Ancho")}</p>
                       </div>
                     )}
@@ -720,10 +720,10 @@ function ReservarVehiculoContent() {
   );
 }
 
-export default function ReservarVehiculoPage() {
+export default function ReservarParcelaPage() {
   return (
     <Suspense fallback={<LoadingState />}>
-      <ReservarVehiculoContent />
+      <ReservarParcelaContent />
     </Suspense>
   );
 }

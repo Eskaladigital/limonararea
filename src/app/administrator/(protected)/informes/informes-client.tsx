@@ -52,12 +52,12 @@ interface Vehicle {
   internal_code: string | null;
   is_for_rent: boolean | null;
   status: string | null;
-  sale_status: string | null;
+  status?: string | null;
 }
 
 interface Booking {
   id: string;
-  vehicle_id: string;
+  parcel_id: string;
   customer_id: string | null;
   pickup_date: string;
   dropoff_date: string;
@@ -67,7 +67,7 @@ interface Booking {
   customer_name: string;
   customer_email: string;
   days: number;
-  vehicle?: {
+  parcel?: {
     id: string;
     name: string;
     internal_code?: string | null;
@@ -202,7 +202,7 @@ export default function InformesClient({
       if (!VALID_STATUSES.includes(booking.status)) return false;
       
       // Filtro por vehículos
-      if (selectedVehicles.length > 0 && !selectedVehicles.includes(booking.vehicle_id)) {
+      if (selectedVehicles.length > 0 && !selectedVehicles.includes(booking.parcel_id)) {
         return false;
       }
 
@@ -260,7 +260,7 @@ export default function InformesClient({
     let totalBookedDays = 0;
     
     vehiclesToCalculate.forEach(vehicle => {
-      const vehicleBookings = filteredBookings.filter(b => b.vehicle_id === vehicle.id);
+      const vehicleBookings = filteredBookings.filter(b => b.parcel_id === vehicle.id);
       
       // Crear un set de fechas reservadas para evitar solapamientos
       const bookedDates = new Set<string>();
@@ -381,9 +381,9 @@ export default function InformesClient({
       
       vehiclesToCalculate.forEach(vehicle => {
         const vehicleBookings = bookings.filter(b => 
-          b.vehicle_id === vehicle.id && 
+          b.parcel_id === vehicle.id && 
           VALID_STATUSES.includes(b.status) &&
-          (selectedVehicles.length === 0 || selectedVehicles.includes(b.vehicle_id))
+          (selectedVehicles.length === 0 || selectedVehicles.includes(b.parcel_id))
         );
         
         const bookedDates = new Set<string>();
@@ -424,7 +424,7 @@ export default function InformesClient({
       : allVehiclesForReports;
 
     return vehiclesToShow.map(vehicle => {
-      const vehicleBookings = filteredBookings.filter(b => b.vehicle_id === vehicle.id);
+      const vehicleBookings = filteredBookings.filter(b => b.parcel_id === vehicle.id);
       const revenue = vehicleBookings.reduce((sum, b) => sum + (b.total_price || 0), 0);
       
       // Calcular ocupación del vehículo
@@ -454,7 +454,7 @@ export default function InformesClient({
         reservas: vehicleBookings.length,
         ocupacion: Math.round(occupancy * 10) / 10,
         diasReservados: bookedDates.size,
-        isSold: vehicle.sale_status === 'sold',
+        isSold: vehicle.status === 'inactive',
       };
     }).sort((a, b) => b.ingresos - a.ingresos);
   }, [allVehiclesForReports, selectedVehicles, filteredBookings, getDateRange]);
@@ -512,7 +512,7 @@ export default function InformesClient({
         // Filtrar reservas que caen en esta temporada
         const seasonBookings = bookings.filter(b => {
           if (!VALID_STATUSES.includes(b.status)) return false;
-          if (selectedVehicles.length > 0 && !selectedVehicles.includes(b.vehicle_id)) return false;
+          if (selectedVehicles.length > 0 && !selectedVehicles.includes(b.parcel_id)) return false;
           
           const pickupDate = parseISO(b.pickup_date);
           const dropoffDate = parseISO(b.dropoff_date);
@@ -546,7 +546,7 @@ export default function InformesClient({
         totalAvailableDays += daysInSeason * vehiclesToCalculate.length;
         
         vehiclesToCalculate.forEach(vehicle => {
-          const vehicleBookings = seasonBookings.filter(b => b.vehicle_id === vehicle.id);
+          const vehicleBookings = seasonBookings.filter(b => b.parcel_id === vehicle.id);
           const bookedDates = new Set<string>();
           
           vehicleBookings.forEach(booking => {
@@ -625,7 +625,7 @@ export default function InformesClient({
           id: vehicle.id,
           name: vehicle.name,
           internalCode: vehicle.internal_code || vehicle.name,
-          isSold: vehicle.sale_status === 'sold',
+          isSold: vehicle.status === 'inactive',
           months: Array(12).fill(0),
           total: 0,
         })),
@@ -645,7 +645,7 @@ export default function InformesClient({
         if (bookingYear !== year) return;
         
         // Encontrar vehículo
-        const vehicleIndex = yearData.vehicles.findIndex(v => v.id === booking.vehicle_id);
+        const vehicleIndex = yearData.vehicles.findIndex(v => v.id === booking.parcel_id);
         if (vehicleIndex === -1) return;
         
         if (revenueMode === 'creation') {
@@ -942,13 +942,13 @@ export default function InformesClient({
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     selectedVehicles.includes(vehicle.id)
                       ? 'bg-clay text-white'
-                      : vehicle.sale_status === 'sold'
+                      : vehicle.status === 'inactive'
                       ? 'bg-red-100 text-red-700 hover:bg-red-200'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
                   {vehicle.internal_code || vehicle.name}
-                  {vehicle.sale_status === 'sold' && (
+                  {vehicle.status === 'inactive' && (
                     <span className="ml-1.5 text-xs">🔴</span>
                   )}
                 </button>

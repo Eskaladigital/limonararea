@@ -208,7 +208,7 @@ export function ParcelCard({ parcel, pricing, searchParams, searchQueryId }: Par
               <p className="text-sm text-gray-500">
                 {pricing.hasTwoDayPricing ? (
                   <>
-                    {pricing.days} {t("días")} (cobra {pricing.pricingDays}) × {formatPrice(pricing.pricePerDay)}{t("/día")}
+                    {pricing.days} {t("días")} ({t("cobra")} {pricing.pricingDays}) × {formatPrice(pricing.pricePerDay)}{t("/día")}
                   </>
                 ) : (
                   <>

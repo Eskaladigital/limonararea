@@ -116,12 +116,12 @@ function ReservarParcelaContent() {
       
       console.log(`[ReservarParcela] ${isRetry ? 'Retry' : 'Loading'} parcel: ${parcelId} (attempt ${retryCount + 1}/4)`);
       
-      // Load vehicle
-      const { data: vehicleData, error: vehicleError } = await supabase
+      // Load parcel
+      const { data: parcelData, error: parcelError } = await supabase
         .from('parcels')
         .select(`
           *,
-          category:category:parcel_categories(*),
+          category:parcel_categories(*),
           images:parcel_images(*),
           parcel_equipment(
             id,
@@ -134,27 +134,27 @@ function ReservarParcelaContent() {
         .neq('status', 'inactive')
         .single();
 
-      if (vehicleError) {
-        console.error('[ReservarVehiculo] Vehicle error:', vehicleError);
-        throw vehicleError;
+      if (parcelError) {
+        console.error('[ReservarParcela] Parcel error:', parcelError);
+        throw parcelError;
       }
       
-      if (!vehicleData) {
+      if (!parcelData) {
         throw new Error('Parcela no encontrada o no disponible');
       }
       
-      console.log('[ReservarVehiculo] Vehicle loaded successfully');
+      console.log('[ReservarParcela] Parcel loaded successfully');
       
       // Sort images by is_primary first, then sort_order
-      if (vehicleData.images) {
-        vehicleData.images.sort((a: any, b: any) => {
+      if (parcelData.images) {
+        parcelData.images.sort((a: any, b: any) => {
           if (a.is_primary) return -1;
           if (b.is_primary) return 1;
           return (a.sort_order || 999) - (b.sort_order || 999);
         });
       }
       
-      setParcel(vehicleData as any);
+      setParcel(parcelData as any);
 
       // Load available extras
       const { data: extrasData, error: extrasError } = await supabase
@@ -165,11 +165,11 @@ function ReservarParcelaContent() {
         .order('name', { ascending: true });
 
       if (extrasError) {
-        console.error('[ReservarVehiculo] Extras error:', extrasError);
+        console.error('[ReservarParcela] Extras error:', extrasError);
         throw extrasError;
       }
       
-      console.log('[ReservarVehiculo] Extras loaded successfully:', extrasData?.length || 0);
+      console.log('[ReservarParcela] Extras loaded successfully:', extrasData?.length || 0);
       setExtras((extrasData || []) as Extra[]);
 
       // Load locations to get extra_fee
@@ -185,7 +185,7 @@ function ReservarParcelaContent() {
           const dropoffLoc = locationsData.find(l => l.slug === dropoffLocation);
           const calculatedFee = (pickupLoc?.extra_fee || 0) + (dropoffLoc?.extra_fee || 0);
           setLocationFee(calculatedFee);
-          console.log('[ReservarVehiculo] Location fee calculated:', calculatedFee);
+          console.log('[ReservarParcela] Location fee calculated:', calculatedFee);
         }
       }
       
@@ -199,9 +199,9 @@ function ReservarParcelaContent() {
                           error.message?.includes('signal is aborted');
       
       if (isAbortError) {
-        console.warn('[ReservarVehiculo] AbortError detected - request was cancelled, will retry...');
+        console.warn('[ReservarParcela] AbortError detected - request was cancelled, will retry...');
       } else {
-        console.error('[ReservarVehiculo] Error loading data:', error);
+        console.error('[ReservarParcela] Error loading data:', error);
       }
       
       const errorMsg = error.message || error.toString() || 'Error al cargar los datos';
@@ -209,14 +209,14 @@ function ReservarParcelaContent() {
       // Retry automático (máximo 3 intentos) - SÍ reintentar AbortError
       if (retryCount < 3) {
         const delay = isAbortError ? 1500 : 1000 * (retryCount + 1); // Más delay para AbortError
-        console.log(`[ReservarVehiculo] Retrying in ${delay}ms... (attempt ${retryCount + 1}/3, ${isAbortError ? 'AbortError' : 'normal error'})`);
+        console.log(`[ReservarParcela] Retrying in ${delay}ms... (attempt ${retryCount + 1}/3, ${isAbortError ? 'AbortError' : 'normal error'})`);
         setRetryCount(prev => prev + 1);
         
         setTimeout(() => {
           loadData(true);
         }, delay);
       } else {
-        console.error('[ReservarVehiculo] Max retry attempts reached (3/3)');
+        console.error('[ReservarParcela] Max retry attempts reached (3/3)');
         setError(errorMsg);
         setLoading(false);
       }
@@ -285,8 +285,9 @@ function ReservarParcelaContent() {
       params.append(`extra_${index}_quantity`, item.quantity.toString());
     });
 
-    // Ruta funcional sin prefijo de idioma
-    router.push(`/es/reservar/nueva?${params.toString()}`);
+    // Ruta localizada según idioma actual
+    const nextPath = getTranslatedRoute('/reservar/nueva', language);
+    router.push(`${nextPath}?${params.toString()}`);
   };
 
   if (loading) {
@@ -295,7 +296,7 @@ function ReservarParcelaContent() {
 <div className="min-h-screen bg-sand-lt flex items-center justify-center">
           <div className="text-center">
             <Loader2 className="h-12 w-12 text-clay mx-auto mb-4 animate-spin" />
-            <p className="text-gray-600">{t("Cargando vehículo...")}</p>
+            <p className="text-gray-600">{t("Cargando parcela...")}</p>
           </div>
         </div>
 </>
@@ -309,7 +310,7 @@ function ReservarParcelaContent() {
           <div className="text-center max-w-md mx-auto px-4">
             <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">{t("Error")}</h2>
-            <p className="text-gray-600 mb-4">{error || t("Vehículo no encontrado")}</p>
+            <p className="text-gray-600 mb-4">{error || t("Parcela no encontrada")}</p>
             <LocalizedLink 
               href="/reservar"
               className="inline-block bg-clay text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors"
@@ -730,7 +731,7 @@ function ReservarParcelaContent() {
   );
 }
 
-export default function ReservarVehiculoPage() {
+export default function ReservarParcelaPage() {
   return (
     <Suspense fallback={<LoadingState />}>
       <ReservarParcelaContent />

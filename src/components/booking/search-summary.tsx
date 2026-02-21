@@ -1,11 +1,29 @@
 "use client";
 
 import { format } from "date-fns";
-import { es } from "date-fns/locale";
+import { es, enUS, fr, de, nl } from "date-fns/locale";
 import { Calendar, Clock, Edit2 } from "lucide-react";
-import Link from "next/link";
+import { LocalizedLink } from "@/components/localized-link";
 import { useLanguage } from "@/contexts/language-context";
 import { calculateRentalDays } from "@/lib/utils";
+import type { Locale } from "@/lib/i18n/config";
+
+const dateFnsLocales: Record<Locale, typeof es> = {
+  es,
+  en: enUS,
+  fr,
+  de,
+  nl,
+};
+
+// Formato corto de fecha según idioma (evita "de" en no-español)
+const dateFormatByLocale: Record<Locale, string> = {
+  es: "EEE, d 'de' MMM",
+  en: "EEE, MMM d",
+  fr: "EEE d MMM",
+  de: "EEE, d. MMM",
+  nl: "EEE d MMM",
+};
 
 interface SearchSummaryProps {
   pickupDate: string;
@@ -28,10 +46,13 @@ export function SearchSummary({
   adults = "2",
   children = "0",
 }: SearchSummaryProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const locale = dateFnsLocales[language];
+  const dateFormat = dateFormatByLocale[language];
+
   const formatDateDisplay = (dateStr: string) => {
     const date = new Date(dateStr);
-    return format(date, "EEE, d 'de' MMM", { locale: es });
+    return format(date, dateFormat, { locale });
   };
 
   // IMPORTANTE: Usar calculateRentalDays que considera las horas
@@ -83,13 +104,13 @@ export function SearchSummary({
         </div>
 
         {/* Edit button */}
-        <Link
+        <LocalizedLink
           href="/"
           className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
         >
           <Edit2 className="h-4 w-4" />
           <span className="text-sm">{t("Modificar")}</span>
-        </Link>
+        </LocalizedLink>
       </div>
     </div>
   );

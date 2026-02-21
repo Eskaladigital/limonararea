@@ -146,18 +146,18 @@ function NuevaReservaContent() {
     try {
       setLoading(true);
       
-      // Load vehicle
-      const { data: vehicleData, error: vehicleError } = await supabase
-        .from('vehicles')
+      // Load parcel
+      const { data: parcelData, error: parcelError } = await supabase
+        .from('parcels')
         .select(`
           *,
-          images:vehicle_images(*)
+          images:parcel_images(*)
         `)
         .eq('id', vehicleId)
         .single();
 
-      if (vehicleError) throw vehicleError;
-      setVehicle(vehicleData as any);
+      if (parcelError) throw parcelError;
+      setVehicle(parcelData as any);
 
       // Load locations
       if (pickupLocationSlug) {

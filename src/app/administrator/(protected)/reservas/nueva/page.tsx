@@ -15,11 +15,11 @@ interface Location {
   city: string | null;
 }
 
-interface Vehicle {
+interface Parcel {
   id: string;
   name: string;
-  brand: string | null;
   internal_code: string | null;
+  status?: string | null;
 }
 
 interface Extra {
@@ -46,8 +46,8 @@ interface FormData {
   // Cliente
   customer_id: string;
   
-  // Vehículo y ubicaciones
-  vehicle_id: string;
+  // Parcela y ubicaciones
+  parcel_id: string;
   pickup_location_id: string;
   dropoff_location_id: string;
   
@@ -87,13 +87,13 @@ export default function NuevaReservaPage() {
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
   
   const [locations, setLocations] = useState<Location[]>([]);
-  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [parcels, setParcels] = useState<Parcel[]>([]);
   const [extras, setExtras] = useState<Extra[]>([]);
   const [bookingExtras, setBookingExtras] = useState<Record<string, number>>({});
   
   const [formData, setFormData] = useState<FormData>({
     customer_id: '',
-    vehicle_id: '',
+    parcel_id: '',
     pickup_location_id: '',
     dropoff_location_id: '',
     pickup_date: '',
@@ -171,12 +171,13 @@ export default function NuevaReservaPage() {
       setLocations(locationsData || []);
 
       // Cargar parcelas ordenados por código interno
-      const { data: vehiclesData } = await supabase
-        .from('vehicles')
-        .select('id, name, brand, internal_code, sale_status')
-        .or('sale_status.neq.sold,sale_status.is.null')
+      const { data: parcelsData } = await supabase
+        .from('parcels')
+        .select('id, name, internal_code, status')
+        .eq('is_for_rent', true)
+        .neq('status', 'inactive')
         .order('internal_code', { ascending: true });
-      setVehicles(vehiclesData || []);
+      setParcels(parcelsData || []);
 
       // Cargar extras
       const { data: extrasData } = await supabase
@@ -246,7 +247,7 @@ export default function NuevaReservaPage() {
       return;
     }
 
-    if (!formData.vehicle_id || !formData.pickup_location_id || !formData.dropoff_location_id) {
+    if (!formData.parcel_id || !formData.pickup_location_id || !formData.dropoff_location_id) {
       setMessage({ type: 'error', text: 'Por favor, completa todos los campos obligatorios' });
       return;
     }
@@ -255,17 +256,17 @@ export default function NuevaReservaPage() {
       setSaving(true);
       setMessage(null);
 
-      // Obtener nombre del parcela para mensajes
-      const selectedVehicle = vehicles.find(v => v.id === formData.vehicle_id);
-      const vehicleName = selectedVehicle 
-        ? `${selectedVehicle.internal_code ? `[${selectedVehicle.internal_code}] ` : ''}${selectedVehicle.name} - ${selectedVehicle.brand}`
-        : 'Vehículo seleccionado';
+      // Obtener nombre de la parcela para mensajes
+      const selectedParcel = parcels.find(p => p.id === formData.parcel_id);
+      const parcelName = selectedParcel 
+        ? `${selectedParcel.internal_code ? `[${selectedParcel.internal_code}] ` : ''}${selectedParcel.name}`
+        : 'Parcela seleccionada';
 
       // VALIDACIÓN: Verificar BLOQUEOS del parcela
       const { data: blockedDates, error: blockedError } = await supabase
         .from('blocked_dates')
         .select('id, start_date, end_date, reason')
-        .eq('vehicle_id', formData.vehicle_id)
+        .eq('parcel_id', formData.parcel_id)
         .or(`and(start_date.lte.${formData.dropoff_date},end_date.gte.${formData.pickup_date})`);
 
       if (blockedError) {
@@ -282,7 +283,7 @@ export default function NuevaReservaPage() {
         
         setMessage({ 
           type: 'error', 
-          text: `🚫 NO SE PUEDE RESERVAR — ${vehicleName} tiene BLOQUEO activo:\n\n${blockInfo}\n\nSelecciona otras fechas o elige un parcela diferente.`
+          text: `🚫 NO SE PUEDE RESERVAR — ${parcelName} tiene BLOQUEO activo:\n\n${blockInfo}\n\nSelecciona otras fechas o elige una parcela diferente.`
         });
         setSaving(false);
         return;
@@ -292,7 +293,7 @@ export default function NuevaReservaPage() {
       const { data: potentialConflicts, error: checkError } = await supabase
         .from('bookings')
         .select('id, booking_number, customer_name, pickup_date, dropoff_date, pickup_time, dropoff_time')
-        .eq('vehicle_id', formData.vehicle_id)
+        .eq('parcel_id', formData.parcel_id)
         .neq('status', 'cancelled')
         .or(`and(pickup_date.lte.${formData.dropoff_date},dropoff_date.gte.${formData.pickup_date})`);
 
@@ -318,7 +319,7 @@ export default function NuevaReservaPage() {
         
         setMessage({ 
           type: 'error', 
-          text: `🚫 NO SE PUEDE RESERVAR — ${vehicleName} ya tiene ${conflictingBookings.length} reserva(s) en esas fechas:\n\n${conflictInfo}\n\nSelecciona otras fechas o elige un parcela diferente.`
+          text: `🚫 NO SE PUEDE RESERVAR — ${parcelName} ya tiene ${conflictingBookings.length} reserva(s) en esas fechas:\n\n${conflictInfo}\n\nSelecciona otras fechas o elige una parcela diferente.`
         });
         setSaving(false);
         return;
@@ -334,7 +335,7 @@ export default function NuevaReservaPage() {
           customer_id: formData.customer_id,
           customer_name: customer?.name || '',
           customer_email: customer?.email || '',
-          vehicle_id: formData.vehicle_id,
+          parcel_id: formData.parcel_id,
           pickup_location_id: formData.pickup_location_id,
           dropoff_location_id: formData.dropoff_location_id,
           pickup_date: formData.pickup_date,
@@ -519,26 +520,26 @@ export default function NuevaReservaPage() {
               </div>
             </div>
 
-            {/* Vehículo */}
+            {/* Parcela */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <Car className="h-6 w-6 text-earth" />
-                Vehículo
+                Parcela
               </h2>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Seleccionar parcela *
                 </label>
                 <select
-                  value={formData.vehicle_id}
-                  onChange={(e) => handleInputChange('vehicle_id', e.target.value)}
+                  value={formData.parcel_id}
+                  onChange={(e) => handleInputChange('parcel_id', e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clay focus:border-transparent"
                   required
                 >
                   <option value="">Selecciona una parcela</option>
-                  {vehicles.map(vehicle => (
-                    <option key={vehicle.id} value={vehicle.id}>
-                      {vehicle.internal_code ? `[${vehicle.internal_code}] ` : ''}{vehicle.name} - {vehicle.brand}
+                  {parcels.map(parcel => (
+                    <option key={parcel.id} value={parcel.id}>
+                      {parcel.internal_code ? `[${parcel.internal_code}] ` : ''}{parcel.name}
                     </option>
                   ))}
                 </select>

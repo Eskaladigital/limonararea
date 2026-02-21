@@ -1099,6 +1099,127 @@ export const homeTranslations = {
     de: "Laden...",
     nl: "Laden..."
   },
+  "Cargando calendario...": {
+    es: "Cargando calendario...",
+    en: "Loading calendar...",
+    fr: "Chargement du calendrier...",
+    de: "Kalender wird geladen...",
+    nl: "Kalender laden..."
+  },
+  "No hay meses disponibles para mostrar en este año": {
+    es: "No hay meses disponibles para mostrar en este año",
+    en: "No months available to display for this year",
+    fr: "Aucun mois disponible à afficher pour cette année",
+    de: "Keine Monate für dieses Jahr verfügbar",
+    nl: "Geen maanden beschikbaar voor dit jaar"
+  },
+
+  // Búsqueda / Search results
+  "Buscando parcelas disponibles...": {
+    es: "Buscando parcelas disponibles...",
+    en: "Searching for available pitches...",
+    fr: "Recherche d'emplacements disponibles...",
+    de: "Suche nach verfügbaren Stellplätzen...",
+    nl: "Zoeken naar beschikbare standplaatsen..."
+  },
+  "Resultados de búsqueda": {
+    es: "Resultados de búsqueda",
+    en: "Search results",
+    fr: "Résultats de recherche",
+    de: "Suchergebnisse",
+    nl: "Zoekresultaten"
+  },
+  "Modificar": {
+    es: "Modificar",
+    en: "Modify",
+    fr: "Modifier",
+    de: "Ändern",
+    nl: "Wijzigen"
+  },
+  "parcela": {
+    es: "parcela",
+    en: "pitch",
+    fr: "emplacement",
+    de: "Stellplatz",
+    nl: "standplaats"
+  },
+  "disponible": {
+    es: "disponible",
+    en: "available",
+    fr: "disponible",
+    de: "verfügbar",
+    nl: "beschikbaar"
+  },
+  "Entrada": {
+    es: "Entrada",
+    en: "Arrival",
+    fr: "Arrivée",
+    de: "Anreise",
+    nl: "Aankomst"
+  },
+  "Salida": {
+    es: "Salida",
+    en: "Departure",
+    fr: "Départ",
+    de: "Abreise",
+    nl: "Vertrek"
+  },
+  "huéspedes": {
+    es: "huéspedes",
+    en: "guests",
+    fr: "voyageurs",
+    de: "Gäste",
+    nl: "gasten"
+  },
+  "adultos": {
+    es: "adultos",
+    en: "adults",
+    fr: "adultes",
+    de: "Erwachsene",
+    nl: "volwassenen"
+  },
+  "niños": {
+    es: "niños",
+    en: "children",
+    fr: "enfants",
+    de: "Kinder",
+    nl: "kinderen"
+  },
+  "No hay parcelas disponibles": {
+    es: "No hay parcelas disponibles",
+    en: "No pitches available",
+    fr: "Aucun emplacement disponible",
+    de: "Keine Stellplätze verfügbar",
+    nl: "Geen standplaatsen beschikbaar"
+  },
+  "Prueba con otras fechas": {
+    es: "Prueba con otras fechas",
+    en: "Try different dates",
+    fr: "Essayez d'autres dates",
+    de: "Versuchen Sie andere Daten",
+    nl: "Probeer andere datums"
+  },
+  "Error al buscar disponibilidad": {
+    es: "Error al buscar disponibilidad",
+    en: "Error searching availability",
+    fr: "Erreur lors de la recherche de disponibilité",
+    de: "Fehler bei der Verfügbarkeitssuche",
+    nl: "Fout bij zoeken beschikbaarheid"
+  },
+  "Estándar": {
+    es: "Estándar",
+    en: "Standard",
+    fr: "Standard",
+    de: "Standard",
+    nl: "Standaard"
+  },
+  "cobra": {
+    es: "cobra",
+    en: "charged",
+    fr: "facturé",
+    de: "berechnet",
+    nl: "gerekend"
+  },
   "Artículos Destacados": {
     es: "Artículos Destacados",
     en: "Featured Articles",
@@ -1508,6 +1629,41 @@ export const homeTranslations = {
     fr: "Vérifier le prix pour mes dates",
     de: "Preis für meine Daten prüfen",
     nl: "Prijs voor mijn datums controleren"
+  },
+  "¿Qué incluye tu parcela?": {
+    es: "¿Qué incluye tu parcela?",
+    en: "What does your pitch include?",
+    fr: "Qu'est-ce qui est inclus dans votre emplacement ?",
+    de: "Was ist in Ihrem Stellplatz enthalten?",
+    nl: "Wat is inbegrepen bij uw standplaats?"
+  },
+  "hasta -10%": {
+    es: "hasta -10%",
+    en: "up to -10%",
+    fr: "jusqu'à -10%",
+    de: "bis -10%",
+    nl: "tot -10%"
+  },
+  "hasta -20%": {
+    es: "hasta -20%",
+    en: "up to -20%",
+    fr: "jusqu'à -20%",
+    de: "bis -20%",
+    nl: "tot -20%"
+  },
+  "hasta -30%": {
+    es: "hasta -30%",
+    en: "up to -30%",
+    fr: "jusqu'à -30%",
+    de: "bis -30%",
+    nl: "tot -30%"
+  },
+  "Electricidad": {
+    es: "Electricidad",
+    en: "Electricity",
+    fr: "Électricité",
+    de: "Strom",
+    nl: "Elektriciteit"
   },
   "Todo lo esencial está incluido. Añade extras si los necesitas.": {
     es: "Todo lo esencial está incluido. Añade extras si los necesitas.",

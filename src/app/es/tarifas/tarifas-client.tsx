@@ -176,7 +176,7 @@ export function TarifasClient() {
                 className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 text-center hover:bg-white/20 hover:scale-105 transition-all duration-300 shadow-xl"
               >
                 <div className="text-4xl mb-4">{discount.icon}</div>
-                <div className="text-6xl font-heading font-bold text-white mb-4 tracking-tight drop-shadow-lg">{discount.percentage}</div>
+                <div className="text-6xl font-heading font-bold text-white mb-4 tracking-tight drop-shadow-lg">{t(discount.percentage)}</div>
                 <p className="text-white font-medium text-lg px-4 py-2 bg-white/10 rounded-full inline-block">{t(discount.description)}</p>
               </div>
             ))}

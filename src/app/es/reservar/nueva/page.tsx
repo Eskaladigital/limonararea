@@ -161,20 +161,8 @@ function NuevaReservaContent() {
         .eq('id', parcelId)
         .single();
 
-      if (parcelData) {
-        vehicleData = { ...parcelData, images: parcelData.images };
-      } else {
-        const { data: vehicleDataFromVehicles, error: vehicleError } = await supabase
-          .from('vehicles')
-          .select(`*, images:vehicle_images(*)`)
-          .eq('id', parcelId)
-          .single();
-        if (vehicleDataFromVehicles) vehicleData = vehicleDataFromVehicles;
-        loadError = vehicleError;
-      }
-
-      if (!vehicleData) throw loadError || parcelError || new Error('No encontrado');
-      setVehicle(vehicleData as any);
+      if (!parcelData) throw parcelError || new Error('Parcela no encontrada');
+      setVehicle({ ...parcelData, images: parcelData.images || [] } as any);
 
       // Load locations
       if (pickupLocationSlug) {

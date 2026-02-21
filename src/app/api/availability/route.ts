@@ -10,6 +10,8 @@ import {
 } from "@/lib/utils";
 import { detectDeviceType } from "@/lib/search-tracking/session";
 import { getVehicleTypeBySlug } from "@/lib/vehicle-types";
+import { getTranslatedField } from "@/lib/translations/get-translations";
+import type { Locale } from "@/lib/translations/get-translations";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -44,6 +46,9 @@ export async function GET(request: NextRequest) {
     const vehicleTypeSlug = searchParams.get("vehicle_type");
     const adults = parseInt(searchParams.get("adults") || "2", 10);
     const children = parseInt(searchParams.get("children") || "0", 10);
+    const localeParam = searchParams.get("locale") as Locale | null;
+    const validLocales: Locale[] = ["es", "en", "fr", "de", "nl"];
+    const locale = localeParam && validLocales.includes(localeParam) ? localeParam : null;
 
     // Validaciones
     if (!pickupDate || !dropoffDate) {
@@ -232,6 +237,28 @@ export async function GET(request: NextRequest) {
         },
       };
     });
+
+    // Traducir nombre y descripción de parcelas (y categoría) si locale no es español
+    if (locale && locale !== "es" && vehiclesWithPrices && vehiclesWithPrices.length > 0) {
+      for (const v of vehiclesWithPrices) {
+        const [nameTranslated, shortDescTranslated] = await Promise.all([
+          getTranslatedField("vehicles", v.id, "name", locale, v.name),
+          getTranslatedField("vehicles", v.id, "short_description", locale, v.short_description ?? null),
+        ]);
+        if (nameTranslated != null) v.name = nameTranslated;
+        if (shortDescTranslated != null) v.short_description = shortDescTranslated;
+        if (v.category?.id) {
+          const categoryName = await getTranslatedField(
+            "content_categories",
+            v.category.id,
+            "name",
+            locale,
+            v.category.name ?? null
+          );
+          if (categoryName != null && v.category) v.category.name = categoryName;
+        }
+      }
+    }
 
     // Información de las temporadas aplicables al período
     const seasonsInfo = priceResult.seasonBreakdown.map(s => ({
