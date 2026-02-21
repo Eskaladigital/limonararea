@@ -1034,4 +1034,146 @@ export const homeTranslations = {
     de: "Den Mar Menor entdecken",
     nl: "Ontdek de Mar Menor"
   },
+
+  // Blog (listado y página)
+  "Blog de Viajes": {
+    es: "Blog de Viajes",
+    en: "Travel Blog",
+    fr: "Blog Voyage",
+    de: "Reiseblog",
+    nl: "Reisblog"
+  },
+  "Consejos, rutas y experiencias para tu próxima aventura en autocaravana": {
+    es: "Consejos, rutas y experiencias para tu próxima aventura en autocaravana",
+    en: "Tips, routes and experiences for your next motorhome adventure",
+    fr: "Conseils, itinéraires et expériences pour votre prochaine aventure en camping-car",
+    de: "Tipps, Routen und Erlebnisse für dein nächstes Wohnmobil-Abenteuer",
+    nl: "Tips, routes en ervaringen voor je volgende avontuur met de camper"
+  },
+  "¿Quieres más inspiración?": {
+    es: "¿Quieres más inspiración?",
+    en: "Want more inspiration?",
+    fr: "Vous voulez plus d'inspiration ?",
+    de: "Brauchst du mehr Inspiration?",
+    nl: "Wil je meer inspiratie?"
+  },
+  "Síguenos en redes sociales para no perderte ninguna aventura": {
+    es: "Síguenos en redes sociales para no perderte ninguna aventura",
+    en: "Follow us on social media so you don't miss any adventure",
+    fr: "Suivez-nous sur les réseaux sociaux pour ne manquer aucune aventure",
+    de: "Folge uns in den sozialen Medien, um kein Abenteuer zu verpassen",
+    nl: "Volg ons op sociale media om geen avontuur te missen"
+  },
+  "Categorías": {
+    es: "Categorías",
+    en: "Categories",
+    fr: "Catégories",
+    de: "Kategorien",
+    nl: "Categorieën"
+  },
+  "Todos los artículos": {
+    es: "Todos los artículos",
+    en: "All articles",
+    fr: "Tous les articles",
+    de: "Alle Artikel",
+    nl: "Alle artikelen"
+  },
+  "Buscar artículos...": {
+    es: "Buscar artículos...",
+    en: "Search articles...",
+    fr: "Rechercher des articles...",
+    de: "Artikel suchen...",
+    nl: "Artikelen zoeken..."
+  },
+  "Todos": {
+    es: "Todos",
+    en: "All",
+    fr: "Tous",
+    de: "Alle",
+    nl: "Alle"
+  },
+  "Cargando...": {
+    es: "Cargando...",
+    en: "Loading...",
+    fr: "Chargement...",
+    de: "Laden...",
+    nl: "Laden..."
+  },
+  "Artículos Destacados": {
+    es: "Artículos Destacados",
+    en: "Featured Articles",
+    fr: "Articles à la une",
+    de: "Empfohlene Artikel",
+    nl: "Uitgelichte artikelen"
+  },
+  "Los mejores artículos seleccionados para ti": {
+    es: "Los mejores artículos seleccionados para ti",
+    en: "The best articles selected for you",
+    fr: "Les meilleurs articles sélectionnés pour vous",
+    de: "Die besten ausgewählten Artikel für dich",
+    nl: "De beste artikelen geselecteerd voor jou"
+  },
+  "Destacado": {
+    es: "Destacado",
+    en: "Featured",
+    fr: "À la une",
+    de: "Empfohlen",
+    nl: "Uitgelicht"
+  },
+  "No se encontraron artículos": {
+    es: "No se encontraron artículos",
+    en: "No articles found",
+    fr: "Aucun article trouvé",
+    de: "Keine Artikel gefunden",
+    nl: "Geen artikelen gevonden"
+  },
+  "Intenta con otros términos de búsqueda": {
+    es: "Intenta con otros términos de búsqueda",
+    en: "Try different search terms",
+    fr: "Essayez d'autres termes de recherche",
+    de: "Probiere andere Suchbegriffe",
+    nl: "Probeer andere zoektermen"
+  },
+  "No hay artículos en esta categoría": {
+    es: "No hay artículos en esta categoría",
+    en: "No articles in this category",
+    fr: "Aucun article dans cette catégorie",
+    de: "Keine Artikel in dieser Kategorie",
+    nl: "Geen artikelen in deze categorie"
+  },
+  "No hay artículos disponibles": {
+    es: "No hay artículos disponibles",
+    en: "No articles available",
+    fr: "Aucun article disponible",
+    de: "Keine Artikel verfügbar",
+    nl: "Geen artikelen beschikbaar"
+  },
+  "Limpiar filtros": {
+    es: "Limpiar filtros",
+    en: "Clear filters",
+    fr: "Effacer les filtres",
+    de: "Filter zurücksetzen",
+    nl: "Filters wissen"
+  },
+  "Mostrando": {
+    es: "Mostrando",
+    en: "Showing",
+    fr: "Affichage",
+    de: "Anzeige",
+    nl: "Toont"
+  },
+  "de": {
+    es: "de",
+    en: "of",
+    fr: "de",
+    de: "von",
+    nl: "van"
+  },
+  "artículos": {
+    es: "artículos",
+    en: "articles",
+    fr: "articles",
+    de: "Artikel",
+    nl: "artikelen"
+  },
 };
