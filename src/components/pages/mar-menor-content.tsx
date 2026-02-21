@@ -259,16 +259,16 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
               <div className="p-6 rounded-2xl bg-red-50 border-2 border-red-200">
                 <div className="flex items-center gap-3 mb-3">
                   <AlertTriangle className="h-6 w-6 text-red-600" />
-                  <h3 className="font-heading font-bold text-red-900">Crisis</h3>
+                  <h3 className="font-heading font-bold text-red-900">{t("mar_menor_card_crisis_title")}</h3>
                 </div>
-                <p className="text-sm text-red-800 leading-relaxed">Nitratos: de 0,06 mg/L (años 80) a 0,37 mg/L (2017). Acuífero: 200-250 mg/L</p>
+                <p className="text-sm text-red-800 leading-relaxed">{t("mar_menor_card_crisis_desc")}</p>
               </div>
               <div className="p-6 rounded-2xl bg-blue-50 border-2 border-blue-200">
                 <div className="flex items-center gap-3 mb-3">
                   <Droplets className="h-6 w-6 text-blue-600" />
-                  <h3 className="font-heading font-bold text-blue-900">Oxígeno</h3>
+                  <h3 className="font-heading font-bold text-blue-900">{t("mar_menor_card_oxigeno_title")}</h3>
                 </div>
-                <p className="text-sm text-blue-800 leading-relaxed">Hipoxia en zona profunda ({'>'}4-6 m) en verano. Bolsas anóxicas tras blooms</p>
+                <p className="text-sm text-blue-800 leading-relaxed">{t("mar_menor_card_oxigeno_desc")}</p>
               </div>
             </div>
           </div>
@@ -326,7 +326,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
               {t("Historia ambiental y cronología de la crisis")}
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto">
-              Desde aguas limpias hasta la crisis actual: 50 años de cambios
+              {t("mar_menor_cronologia_title")}
             </p>
           </div>
           <div className="relative">
@@ -335,11 +335,11 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
             
             <div className="space-y-8">
               {[
-                { period: "Años 70", text: t("mar_menor_cronologia_1"), status: "ok" },
+                { period: t("Años 70"), text: t("mar_menor_cronologia_1"), status: "ok" },
                 { period: "1972-73", text: t("mar_menor_cronologia_2"), status: "neutral" },
                 { period: "1979", text: t("mar_menor_cronologia_3"), status: "warning" },
                 { period: "1980-90", text: t("mar_menor_cronologia_4"), status: "warning" },
-                { period: "Años 90", text: t("mar_menor_cronologia_5"), status: "warning" },
+                { period: t("Años 90"), text: t("mar_menor_cronologia_5"), status: "warning" },
                 { period: "2015-16", text: t("mar_menor_cronologia_6"), status: "alert" },
                 { period: "2019", text: t("mar_menor_cronologia_7"), status: "alert" },
                 { period: "2021", text: t("mar_menor_cronologia_8"), status: "alert" },
@@ -393,7 +393,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
             <div className="order-1 lg:order-2">
               <div className="inline-flex items-center gap-2 text-red-600 text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
                 <AlertTriangle className="h-4 w-4" />
-                Contaminación
+                {t("Contaminación")}
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
                 {t("Causas y fuentes de contaminación")}
@@ -414,7 +414,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
                 </li>
               </ul>
               <div className="p-6 rounded-xl bg-red-50 border-2 border-red-200">
-                <p className="text-sm text-red-900 font-bold">⚠️ 3.300 t/año de nitratos por la rambla del Albujón | 160-180 kg N/ha de superávit</p>
+                <p className="text-sm text-red-900 font-bold">⚠️ {t("mar_menor_card_alerta_desc")}</p>
               </div>
             </div>
           </div>
@@ -427,7 +427,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <TrendingUp className="h-4 w-4" />
-              Impactos
+              {t("Impactos")}
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
               {t("Impactos ecológicos y socioeconómicos")}
@@ -439,7 +439,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
                 <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
                   <Leaf className="h-6 w-6 text-green-600" />
                 </div>
-                <h3 className="font-heading font-extrabold text-earth text-xl">Ecológicos</h3>
+                <h3 className="font-heading font-extrabold text-earth text-xl">{t("Ecológicos")}</h3>
               </div>
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li className="flex items-start gap-2">
@@ -465,7 +465,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
                 <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
                   <BarChart3 className="h-6 w-6 text-blue-600" />
                 </div>
-                <h3 className="font-heading font-extrabold text-earth text-xl">Socioeconómicos</h3>
+                <h3 className="font-heading font-extrabold text-earth text-xl">{t("Socioeconómicos")}</h3>
               </div>
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li className="flex items-start gap-2">
@@ -496,7 +496,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <Shield className="h-4 w-4" />
-              Soluciones
+              {t("Soluciones")}
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
               {t("Medidas de gestión y restauración")}
@@ -554,7 +554,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <Shield className="h-4 w-4" />
-              Legislación
+              {t("Legislación")}
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-4 leading-tight">
               {t("Marco legal y responsabilidades")}
@@ -584,7 +584,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <BarChart3 className="h-4 w-4" />
-              Ciencia y datos
+              {t("Ciencia y datos")}
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-4 leading-tight">
               {t("Datos y monitoreo")}
@@ -593,9 +593,9 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: Droplets, label: "Parámetros", items: ["Temperatura", "Salinidad", "Oxígeno", "Clorofila-a", "Nutrientes"] },
-              { icon: Bird, label: "Programas", items: ["IEO-CSIC BELICH", "Boyas oceanográficas", "Sentinel-2", "MODIS"] },
-              { icon: BarChart3, label: "Datos abiertos", items: ["Canal Mar Menor", "Informes técnicos", "Series temporales", "Copernicus"] },
+              { icon: Droplets, label: t("Parámetros"), items: [t("Temperatura"), t("Salinidad"), t("Oxígeno"), t("Clorofila-a"), t("Nutrientes")] },
+              { icon: Bird, label: t("Programas"), items: ["IEO-CSIC BELICH", t("Boyas oceanográficas"), "Sentinel-2", "MODIS"] },
+              { icon: BarChart3, label: t("Datos abiertos"), items: ["Canal Mar Menor", t("Informes técnicos"), t("Series temporales"), "Copernicus"] },
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-2xl bg-sand-lt border-2 border-earth/10">
                 <div className="flex items-center gap-3 mb-4">
@@ -624,7 +624,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-clay-lt text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <TrendingUp className="h-4 w-4" />
-              Futuro
+              {t("Futuro")}
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mb-4 leading-tight">
               {t("Escenarios futuros y alternativas de restauración")}
@@ -633,9 +633,9 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { title: "Optimista", color: "from-green-500 to-emerald-600", icon: "✓", desc: t("mar_menor_escenarios_optimista") },
-              { title: "Intermedio", color: "from-yellow-500 to-orange-500", icon: "~", desc: t("mar_menor_escenarios_intermedio") },
-              { title: "Pesimista", color: "from-red-500 to-rose-600", icon: "✕", desc: t("mar_menor_escenarios_pesimista") },
+              { title: t("Optimista"), color: "from-green-500 to-emerald-600", icon: "✓", desc: t("mar_menor_escenarios_optimista") },
+              { title: t("Intermedio"), color: "from-yellow-500 to-orange-500", icon: "~", desc: t("mar_menor_escenarios_intermedio") },
+              { title: t("Pesimista"), color: "from-red-500 to-rose-600", icon: "✕", desc: t("mar_menor_escenarios_pesimista") },
             ].map((esc, i) => (
               <div key={i} className="group relative">
                 <div className={`absolute inset-0 bg-gradient-to-br ${esc.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity`} />
@@ -660,7 +660,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <Shield className="h-4 w-4" />
-              Acción prioritaria
+              {t("Acción prioritaria")}
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-4 leading-tight">
               {t("Recomendaciones prácticas prioritarias")}
@@ -669,12 +669,12 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { num: "1", priority: "Alta", text: t("mar_menor_recom_breve_1"), icon: AlertTriangle },
-              { num: "2", priority: "Alta", text: t("mar_menor_recom_breve_2"), icon: Droplets },
-              { num: "3", priority: "Media-Alta", text: t("mar_menor_recom_breve_3"), icon: Leaf },
-              { num: "4", priority: "Alta", text: t("mar_menor_recom_breve_4"), icon: Shield },
-              { num: "5", priority: "Media", text: t("mar_menor_recom_breve_5"), icon: TrendingUp },
-              { num: "6", priority: "Media", text: t("mar_menor_recom_breve_6"), icon: Heart },
+              { num: "1", priority: t("Alta"), text: t("mar_menor_recom_breve_1"), icon: AlertTriangle },
+              { num: "2", priority: t("Alta"), text: t("mar_menor_recom_breve_2"), icon: Droplets },
+              { num: "3", priority: t("Media-Alta"), text: t("mar_menor_recom_breve_3"), icon: Leaf },
+              { num: "4", priority: t("Alta"), text: t("mar_menor_recom_breve_4"), icon: Shield },
+              { num: "5", priority: t("Media"), text: t("mar_menor_recom_breve_5"), icon: TrendingUp },
+              { num: "6", priority: t("Media"), text: t("mar_menor_recom_breve_6"), icon: Heart },
             ].map((item, i) => (
               <div key={i} className="group relative p-6 rounded-xl bg-sand-lt border-2 border-earth/10 hover:border-clay/30 transition-all shadow-sm hover:shadow-lg">
                 <div className="flex items-start gap-4">
@@ -683,7 +683,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
                   </div>
                   <div className="flex-1">
                     <div className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full mb-2 ${
-                      item.priority === "Alta" ? "bg-red-100 text-red-700" : "bg-yellow-100 text-yellow-700"
+                      item.priority === t("Alta") ? "bg-red-100 text-red-700" : "bg-yellow-100 text-yellow-700"
                     }`}>
                       {item.priority}
                     </div>
@@ -716,7 +716,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 text-clay-lt text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <Waves className="h-4 w-4" />
-              Turismo responsable
+              {t("Turismo responsable")}
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6">
               {t("Turismo y qué hacer en el Mar Menor")}
