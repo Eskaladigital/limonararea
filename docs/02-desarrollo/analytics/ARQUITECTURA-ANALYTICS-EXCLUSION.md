@@ -1,0 +1,270 @@
+# 🏗️ Arquitectura de 4 Capas - Exclusión de Analytics en Admin
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     USUARIO NAVEGA A PÁGINA                      │
+└────────────────────────┬────────────────────────────────────────┘
+                         │
+                         ▼
+┌────────────────────────────────────────────────────────────────┐
+│  CAPA 0: MIDDLEWARE (Primera Línea)                            │
+│  ═══════════════════════════════════                           │
+│  src/middleware.ts                                              │
+│  ─────────────────────                                         │
+│  • Detecta /es/administrator, /en/administrator                │
+│  • Redirect 301 → /administrator (sin idioma)                  │
+│  • Excluye /administrator y /administrator/* de i18n           │
+│  • Previene loop infinito en /administrator                    │
+│                                                                 │
+│  ✅ GARANTÍA: pathname siempre sin idioma                       │
+└────────────────────────┬───────────────────────────────────────┘
+                         │
+                         ▼
+          ┌──────────────────────────────┐
+          │   ¿Es /administrator o       │
+          │      /admin ?                │
+          └──────────┬──────────┬────────┘
+                     │          │
+          ┌──────────┘          └──────────┐
+          │ SÍ                          NO │
+          ▼                                ▼
+┌─────────────────────┐         ┌───────────────────────┐
+│   PÁGINA ADMIN      │         │   PÁGINA PÚBLICA      │
+│   /administrator/*  │         │   /, /vehiculos, etc. │
+└─────────┬───────────┘         └──────────┬────────────┘
+          │                                │
+          ▼                                ▼
+┌─────────────────────────────┐  ┌─────────────────────────────┐
+│  CAPA 1: PREVENCIÓN         │  │  CAPA 1: CARGA NORMAL       │
+│  ========================   │  │  =======================    │
+│  AnalyticsScripts           │  │  AnalyticsScripts           │
+│  ────────────────────       │  │  ────────────────────       │
+│  • Detecta ruta admin       │  │  • Detecta ruta pública     │
+│  • useMemo (inmediato)      │  │  • useState(true)           │
+│  • return null ⛔           │  │  • Renderiza <Script>       │
+│                             │  │  • Carga gtag.js ✅         │
+│  ✅ Scripts NO se cargan    │  │                             │
+└─────────┬───────────────────┘  └──────────┬──────────────────┘
+          │                                  │
+          ▼                                  ▼
+┌─────────────────────────────┐  ┌─────────────────────────────┐
+│  CAPA 2: FIREWALL           │  │  CAPA 2: SIN BLOQUEO        │
+│  ========================   │  │  =======================    │
+│  AnalyticsBlocker           │  │                             │
+│  ────────────────────       │  │  • window.gtag = function   │
+│  • Montado en layout        │  │  • window.dataLayer = []    │
+│  • Detecta window.gtag      │  │  • Scripts activos          │
+│  • Sobrescribe con fn vacía │  │                             │
+│  • Bloquea dataLayer.push() │  │  ✅ Analytics activo        │
+│                             │  │                             │
+│  ✅ Tracking bloqueado       │  └──────────┬──────────────────┘
+└─────────┬───────────────────┘              │
+          │                                  │
+          ▼                                  ▼
+┌─────────────────────────────┐  ┌─────────────────────────────┐
+│  CAPA 3: ÚLTIMA DEFENSA     │  │  CAPA 3: TRACKING ACTIVO    │
+│  ========================   │  │  =======================    │
+│  GoogleAnalytics            │  │  GoogleAnalytics            │
+│  ────────────────────       │  │  ────────────────────       │
+│  • usePathname()            │  │  • usePathname()            │
+│  • Detecta /administrator   │  │  • NO es admin              │
+│  • NO llama gtag('config')  │  │  • Llama gtag('config')     │
+│  • NO envía pageviews       │  │  • Envía pageviews ✅       │
+│                             │  │                             │
+│  useAnalyticsEvent          │  │  useAnalyticsEvent          │
+│  ────────────────────       │  │  ────────────────────       │
+│  • Verifica pathname        │  │  • Envía eventos ✅         │
+│  • NO envía eventos         │  │                             │
+│                             │  │                             │
+│  ✅ Eventos bloqueados       │  └──────────┬──────────────────┘
+└─────────┬───────────────────┘              │
+          │                                  │
+          ▼                                  ▼
+┌─────────────────────────────┐  ┌─────────────────────────────┐
+│     RESULTADO FINAL         │  │     RESULTADO FINAL         │
+│  ========================   │  │  =======================    │
+│                             │  │                             │
+│  ⛔ NO hay gtag.js          │  │  ✅ gtag.js cargado         │
+│  ⛔ NO hay window.gtag      │  │  ✅ window.gtag disponible  │
+│  ⛔ NO hay window.dataLayer │  │  ✅ window.dataLayer activo │
+│  ⛔ NO hay requests a GA    │  │  ✅ Requests a GA enviadas  │
+│  ⛔ NO hay tracking         │  │  ✅ Tracking funcional      │
+│                             │  │                             │
+│  🎯 ADMIN NO TRACKEADO      │  │  🎯 USUARIOS TRACKEADOS     │
+│  📊 DATOS LIMPIOS           │  │  📊 MÉTRICAS REALES         │
+│                             │  │                             │
+└─────────────────────────────┘  └─────────────────────────────┘
+```
+
+---
+
+## 📂 Ubicación de Componentes
+
+### Capa 0: Middleware (Normalización)
+```
+📁 src/middleware.ts
+   └─ Ejecutado: En cada request (antes de routing)
+   └─ Tipo: Edge Function
+   └─ Acción: Redirect 301 + Exclusión i18n
+   └─ Prioridad: CRÍTICA (primera línea)
+```
+
+### Capa 1: Prevención de Carga
+```
+📁 src/components/analytics-scripts.tsx
+   └─ Montado en: src/app/layout.tsx (dentro de <body>)
+   └─ Tipo: Client Component ('use client')
+   └─ Renderizado: Condicional (null en admin)
+```
+
+### Capa 2: Firewall
+```
+📁 src/components/admin/analytics-blocker.tsx
+   └─ Montado en: src/app/administrator/layout.tsx
+   └─ Tipo: Client Component ('use client')
+   └─ Acción: useEffect que sobrescribe window.gtag
+```
+
+### Capa 3: Última Defensa
+```
+📁 src/components/analytics.tsx
+   └─ Montado en: src/app/layout.tsx (dentro de <body>)
+   └─ Tipo: Client Component ('use client')
+   └─ Acción: Verifica pathname antes de trackear
+```
+
+---
+
+## 🛠️ Flujo de Decisión
+
+```
+INICIO: Usuario navega
+  ↓
+CAPA 0: MIDDLEWARE (src/middleware.ts)
+  ↓
+  ¿pathname tiene prefijo de idioma + admin?
+  ├─ SÍ (/es/administrator, /en/admin, etc.)
+  │   ↓
+  │   Redirect 301: /es/administrator → /administrator
+  │   ↓
+  │   pathname se normaliza (sin idioma)
+  │   ↓
+  └─ NO → Continuar
+  
+  ¿pathname === '/administrator' o startsWith('/administrator/')?
+  ├─ SÍ
+  │   ↓
+  │   shouldSkip = true → Excluir de i18n
+  │   ↓
+  │   NO hay redirects adicionales (evita loop)
+  │   ↓
+  └─ NO → Procesamiento i18n normal
+
+pathname detectado (ya normalizado)
+  ↓
+  ¿pathname.startsWith('/administrator') || pathname.startsWith('/admin')?
+  ├─ SÍ → Es Admin
+  │   ↓
+  │   CAPA 1: AnalyticsScripts.render()
+  │   ↓
+  │   return null → NO renderiza <Script>
+  │   ↓
+  │   CAPA 2: AnalyticsBlocker monta
+  │   ↓
+  │   useEffect() ejecuta
+  │   ↓
+  │   if (window.gtag) → window.gtag = () => { console.warn('bloqueado') }
+  │   if (window.dataLayer) → dataLayer.push = () => { console.warn('bloqueado') }
+  │   ↓
+  │   CAPA 3: GoogleAnalytics.useEffect()
+  │   ↓
+  │   if (isAdminPath) → return (no envía pageview)
+  │   ↓
+  │   RESULTADO: ⛔ NO TRACKING
+  │
+  └─ NO → Es Público
+      ↓
+      CAPA 1: AnalyticsScripts.render()
+      ↓
+      return <Script src="gtag.js"> → SÍ renderiza
+      ↓
+      Scripts se descargan y ejecutan
+      ↓
+      window.gtag creado
+      window.dataLayer creado
+      ↓
+      CAPA 2: AnalyticsBlocker NO monta (no está en layout público)
+      ↓
+      CAPA 3: GoogleAnalytics.useEffect()
+      ↓
+      if (!isAdminPath) → gtag('config', ...) → envía pageview
+      ↓
+      RESULTADO: ✅ TRACKING ACTIVO
+```
+
+---
+
+## 🔍 Puntos de Verificación
+
+### Test Middleware (Capa 0)
+
+| Check | Input | Output | Verificar con |
+|-------|-------|--------|---------------|
+| Redirect i18n | `/es/administrator` | `301 → /administrator` | DevTools Network tab |
+| Redirect i18n | `/en/administrator/reservas` | `301 → /administrator/reservas` | URL en barra |
+| Sin loop | `/administrator` | `200 OK` (sin redirects) | DevTools Network tab |
+| Exclusión i18n | `/administrator/login` | Sin añadir idioma | URL permanece igual |
+
+### En Admin (`/administrator/*`)
+
+| Check | Debe ser | Verificar con |
+|-------|----------|---------------|
+| `window.gtag` | `undefined` o fn vacía | `typeof window.gtag` en consola |
+| `window.dataLayer` | `undefined` o bloqueado | `window.dataLayer` en consola |
+| Scripts gtag.js | NO cargados | DevTools Network tab |
+| Console logs | `[AnalyticsBlocker] 🛡️` | DevTools Console |
+| GA Real-Time | NO aparece | Google Analytics |
+
+### En Público (`/`, `/vehiculos`, etc.)
+
+| Check | Debe ser | Verificar con |
+|-------|----------|---------------|
+| `window.gtag` | `function` | `typeof window.gtag` en consola |
+| `window.dataLayer` | `array` | `Array.isArray(window.dataLayer)` |
+| Scripts gtag.js | Cargados | DevTools Network tab |
+| Console logs | `[Analytics] ✅` | DevTools Console |
+| GA Real-Time | Aparece | Google Analytics |
+
+---
+
+## 🎯 Ventajas de la Arquitectura
+
+1. **Capa 0 (Middleware)**: Normaliza URLs antes de routing, evita loops y garantiza consistencia
+2. **Redundancia**: Si una capa falla, las otras protegen
+3. **Performance**: Capa 1 evita descargar scripts innecesarios
+4. **Seguridad**: Capa 2 bloquea tracking aunque scripts se carguen
+5. **Fiabilidad**: Capa 3 previene pageviews aunque gtag exista
+6. **Debugging**: Cada capa emite logs claros en consola
+7. **Escalabilidad**: Fácil añadir más capas si es necesario
+8. **SEO-friendly**: Redirects 301 permanentes
+9. **URLs limpias**: Admin siempre sin prefijo de idioma
+10. **Sin loops**: Protección contra redirects infinitos
+
+---
+
+## 📚 Documentos Relacionados
+
+- `FIX-ANALYTICS-ADMIN-EXCLUSION.md` - Documentación técnica completa
+- `FIX-CRITICO-ADMIN-I18N-ANALYTICS.md` - Problema de URLs con idioma
+- `FIX-LOOP-ADMINISTRATOR.md` - Problema de loop infinito
+- `RESUMEN-FIX-ANALYTICS-ADMIN.md` - Resumen ejecutivo
+- `GUIA-TESTING-ANALYTICS-EXCLUSION.md` - Guía de testing
+- `scripts/verify-analytics-exclusion.js` - Script de verificación
+
+---
+
+**Diseño**: Arquitectura de 4 Capas (Defense in Depth + Fail-Safe + Normalization)  
+**Patrón**: Middleware-First + Defense in Depth  
+**Implementado**: 22 de enero de 2026  
+**Commits**: `1f82115`, `d1e6096`, `e33c27a`  
+**Versión**: 3.0

@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CamperPark Murcia — Área Premium de Autocaravanas</title>
+    <meta name="description" content="Área de autocaravanas premium en Murcia. Parcelas amplias, servicios completos, WiFi, electricidad y seguridad 24h. Reserva tu plaza online.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════════
+           VARIABLES & RESET
+           ══════════════════════════════════════════ */
+        :root {
+            --pine: #1b3a2d;
+            --pine-deep: #0f2519;
+            --pine-mid: #265a42;
+            --sage: #6b9e7e;
+            --sage-soft: #9ec5ad;
+            --sage-mist: #dceee3;
+            --sand: #f4ece0;
+            --sand-warm: #ebe0ce;
+            --cream: #faf7f2;
+            --ivory: #fffdf9;
+            --terracotta: #c4704b;
+            --terracotta-dark: #a85a38;
+            --terracotta-glow: #e08a5e;
+            --gold: #c9a84c;
+            --gold-soft: #ddc77a;
+            --charcoal: #2a2a28;
+            --text: #3d3d3b;
+            --text-mid: #6a6a66;
+            --text-light: #9a9a95;
+            --white: #ffffff;
+            --border: rgba(0,0,0,0.06);
+            --shadow-xs: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 50px rgba(0,0,0,0.1);
+            --shadow-xl: 0 24px 70px rgba(0,0,0,0.14);
+            --radius-sm: 8px;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: cubic-bezier(0.22, 1, 0.36, 1);
+            --header-font: 'Cormorant Garamond', Georgia, serif;
+            --body-font: 'Manrope', system-ui, sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+        ul, ol { list-style: none; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.2rem, 4vw, 3rem); }
+
+        /* ══════════════════════════════════════════
+           TOPBAR
+           ══════════════════════════════════════════ */
+        .topbar {
+            background: var(--pine-deep);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.78rem;
+            padding: 0.45rem 0;
+            letter-spacing: 0.02em;
+        }
+
+        .topbar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .topbar-left { display: flex; gap: 1.5rem; align-items: center; }
+        .topbar-left span { display: flex; align-items: center; gap: 0.35rem; }
+        .topbar-right { display: flex; gap: 1rem; align-items: center; }
+        .topbar a { transition: color 0.2s; }
+        .topbar a:hover { color: var(--gold-soft); }
+
+        .lang-select {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.8);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: var(--body-font);
+        }
+
+        /* ══════════════════════════════════════════
+           NAVBAR
+           ══════════════════════════════════════════ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(250, 247, 242, 0.0);
+            transition: all 0.4s var(--transition);
+            padding: 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            transition: padding 0.3s;
+        }
+
+        .navbar.scrolled .nav-inner { padding: 0.6rem 0; }
+
+        .logo { display: flex; align-items: center; gap: 0.7rem; }
+
+        .logo-mark {
+            width: 46px; height: 46px;
+            background: var(--pine);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-mark::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--sage) 0%, transparent 60%);
+            opacity: 0.3;
+        }
+
+        .logo-mark svg { position: relative; z-index: 1; }
+        .logo:hover .logo-mark { transform: rotate(-5deg) scale(1.05); border-radius: 14px; }
+
+        .logo-type {
+            font-family: var(--header-font);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--pine);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        .logo-sub {
+            font-family: var(--body-font);
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--terracotta);
+        }
+
+        .nav-menu { display: flex; align-items: center; gap: 0.3rem; }
+
+        .nav-link {
+            padding: 0.55rem 1rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text);
+            border-radius: var(--radius-sm);
+            transition: all 0.25s;
+            position: relative;
+        }
+
+        .nav-link:hover { color: var(--pine); background: rgba(27, 58, 45, 0.05); }
+
+        .nav-cta {
+            margin-left: 0.8rem;
+            padding: 0.65rem 1.6rem;
+            background: var(--terracotta);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.88rem;
+            border-radius: 50px;
+            transition: all 0.3s var(--transition);
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+
+        .nav-cta:hover {
+            background: var(--terracotta-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(196, 112, 75, 0.3);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            width: 32px; height: 24px;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 1010;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%; height: 2.5px;
+            background: var(--pine);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(10.75px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-10.75px) rotate(-45deg); }
+
+        /* Mobile menu */
+        .mobile-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(15, 37, 25, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-overlay.show { display: block; opacity: 1; }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0; right: -320px;
+            width: 300px; height: 100vh;
+            background: var(--ivory);
+            z-index: 1001;
+            padding: 5rem 2rem 2rem;
+            transition: right 0.4s var(--transition);
+            overflow-y: auto;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu.open { right: 0; }
+
+        .mobile-menu .nav-link {
+            display: block;
+            padding: 0.9rem 0;
+            font-size: 1.05rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-menu .nav-cta {
+            margin: 1.5rem 0 0;
+            justify-content: center;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+
+        /* ══════════════════════════════════════════
+           HERO — Fullscreen immersive (Sangulí style)
+           ══════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            margin-top: -80px;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background:
+                linear-gradient(180deg, 
+                    rgba(15, 37, 25, 0.15) 0%, 
+                    rgba(15, 37, 25, 0.02) 30%, 
+                    rgba(15, 37, 25, 0.45) 70%, 
+                    rgba(15, 37, 25, 0.88) 100%),
+                linear-gradient(135deg, #2d5a42 0%, #1b4a3a 25%, #3a7a5a 50%, #1b3a2d 75%, #0f2519 100%);
+            background-size: cover;
+        }
+
+        /* Fake nature texture overlay */
+        .hero-texture {
+            position: absolute; inset: 0; z-index: 1;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(107, 158, 126, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 90%, rgba(255,255,255,0.03) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        /* Animated floating elements */
+        .hero-float {
+            position: absolute; z-index: 1; pointer-events: none;
+            border-radius: 50%;
+            opacity: 0.04;
+            background: var(--white);
+        }
+
+        .hero-float:nth-child(1) { width: 500px; height: 500px; top: -10%; left: -5%; animation: heroFloat 20s ease-in-out infinite; }
+        .hero-float:nth-child(2) { width: 350px; height: 350px; bottom: 10%; right: -8%; animation: heroFloat 16s ease-in-out infinite reverse; }
+        .hero-float:nth-child(3) { width: 200px; height: 200px; top: 40%; left: 60%; animation: heroFloat 12s ease-in-out infinite 3s; }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(20px, -30px); }
+            50% { transform: translate(-15px, 20px); }
+            75% { transform: translate(25px, 15px); }
+        }
+
+        .hero-content {
+            position: relative; z-index: 5;
+            width: 100%;
+            padding: 0 0 4rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: end;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-size: 0.78rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.14em;
+            color: var(--gold-soft);
+            margin-bottom: 1.2rem;
+            animation: fadeUp 0.8s var(--transition) both;
+        }
+
+        .hero-eyebrow-line { width: 32px; height: 1.5px; background: var(--gold); opacity: 0.5; }
+
+        .hero h1 {
+            font-family: var(--header-font);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.4rem;
+            animation: fadeUp 0.8s var(--transition) 0.15s both;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--sage-soft);
+        }
+
+        .hero-desc {
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            color: rgba(255,255,255,0.65);
+            line-height: 1.75;
+            max-width: 540px;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: fadeUp 0.8s var(--transition) 0.3s both;
+        }
+
+        .hero-btns {
+            display: flex; gap: 1rem; flex-wrap: wrap;
+            animation: fadeUp 0.8s var(--transition) 0.45s both;
+        }
+
+        .btn-hero-primary {
+            padding: 1rem 2.4rem;
+            background: var(--terracotta);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 60px;
+            transition: all 0.35s var(--transition);
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-hero-primary:hover {
+            background: var(--terracotta-glow);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(196, 112, 75, 0.35);
+        }
+
+        .btn-hero-secondary {
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.08);
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: 60px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255,255,255,0.14);
+            border-color: rgba(255,255,255,0.35);
+        }
+
+        /* Hero right — feature cards */
+        .hero-features {
+            display: flex; flex-direction: column; gap: 0.8rem;
+            animation: fadeUp 0.8s var(--transition) 0.55s both;
+        }
+
+        .hero-feat {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius);
+            padding: 1.3rem 1.5rem;
+            display: flex; align-items: center; gap: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .hero-feat:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(6px);
+        }
+
+        .hero-feat-icon {
+            width: 50px; height: 50px;
+            border-radius: 13px;
+            background: rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .hero-feat h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.15rem;
+        }
+
+        .hero-feat p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ══════════════════════════════════════════
+           BOOKING WIDGET — Roadsurfer style
+           ══════════════════════════════════════════ */
+        .booking-bar {
+            position: relative; z-index: 10;
+            margin-top: -3.5rem;
+        }
+
+        .booking-inner {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            padding: 1.8rem 2rem;
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .booking-field { flex: 1; min-width: 160px; }
+
+        .booking-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            margin-bottom: 0.45rem;
+        }
+
+        .booking-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--body-font);
+            font-size: 0.92rem;
+            color: var(--text);
+            background: var(--cream);
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .booking-input:focus {
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(107, 158, 126, 0.15);
+        }
+
+        .booking-input::placeholder { color: var(--text-light); }
+
+        .booking-btn {
+            padding: 0.75rem 2.2rem;
+            background: var(--terracotta);
+            color: var(--white);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: all 0.3s var(--transition);
+            white-space: nowrap;
+            display: flex; align-items: center; gap: 0.4rem;
+            height: 48px;
+        }
+
+        .booking-btn:hover {
+            background: var(--terracotta-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 112, 75, 0.3);
+        }
+
+        /* ══════════════════════════════════════════
+           TRUST STRIP
+           ══════════════════════════════════════════ */
+        .trust {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trust-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(1.5rem, 4vw, 4rem);
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex; align-items: center; gap: 0.7rem;
+            font-size: 0.88rem;
+            color: var(--text-mid);
+            font-weight: 500;
+        }
+
+        .trust-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: var(--sage-mist);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        /* ══════════════════════════════════════════
+           SECTION UTILS
+           ══════════════════════════════════════════ */
+        .section { padding: clamp(4rem, 8vw, 7rem) 0; }
+        .section--sand { background: var(--sand); }
+        .section--pine { background: var(--pine); color: var(--white); }
+        .section--ivory { background: var(--ivory); }
+
+        .section-eyebrow {
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.14em;
+            color: var(--terracotta);
+            margin-bottom: 0.8rem;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            width: 28px; height: 2px;
+            background: var(--terracotta);
+            border-radius: 2px;
+        }
+
+        .section--pine .section-eyebrow { color: var(--gold-soft); }
+        .section--pine .section-eyebrow::before { background: var(--gold-soft); }
+
+        .section-title {
+            font-family: var(--header-font);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--pine);
+            line-height: 1.12;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.8rem;
+        }
+
+        .section--pine .section-title { color: var(--white); }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            line-height: 1.75;
+            max-width: 560px;
+            font-weight: 300;
+        }
+
+        .section--pine .section-desc { color: rgba(255,255,255,0.55); }
+
+        .section-header { margin-bottom: 3.5rem; }
+        .section-header--center { text-align: center; margin-left: auto; margin-right: auto; }
+        .section-header--center .section-eyebrow { justify-content: center; }
+        .section-header--center .section-desc { margin-left: auto; margin-right: auto; }
+
+        /* ══════════════════════════════════════════
+           SERVICIOS — Grid cards
+           ══════════════════════════════════════════ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.4s var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sage), var(--terracotta));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--transition);
+        }
+
+        .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .service-card:hover::after { transform: scaleX(1); }
+
+        .service-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-icon--water { background: #e3f2fd; }
+        .service-icon--power { background: #fff8e1; }
+        .service-icon--wifi { background: #ede7f6; }
+        .service-icon--shower { background: #e0f7fa; }
+        .service-icon--waste { background: #fbe9e7; }
+        .service-icon--security { background: #e8f5e9; }
+        .service-icon--laundry { background: #f3e5f5; }
+        .service-icon--bbq { background: #fff3e0; }
+
+        .service-card h3 {
+            font-family: var(--header-font);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            font-size: 0.88rem;
+            color: var(--text-mid);
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        .service-badge {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--sage);
+            padding: 0.25rem 0.7rem;
+            background: rgba(107, 158, 126, 0.1);
+            border-radius: 50px;
+        }
+
+        /* ══════════════════════════════════════════
+           GALERIA / EXPERIENCIA — Split layout (Ballena Alegre)
+           ══════════════════════════════════════════ */
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+        .split--reverse .split-media { order: 2; }
+        .split--reverse .split-content { order: 1; }
+
+        .split-media {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 0.8rem;
+        }
+
+        .split-img {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem;
+            transition: transform 0.5s var(--transition);
+        }
+
+        .split-img:hover { transform: scale(1.03); }
+        .split-img--wide { grid-column: span 2; }
+
+        .split-img--tall {
+            aspect-ratio: 3/4;
+            background: linear-gradient(160deg, #2a5a40, #4a8a60);
+        }
+
+        .split-img--landscape {
+            aspect-ratio: 4/3;
+            background: linear-gradient(160deg, #4a6a8a, #7aaaba);
+        }
+
+        .split-img--wide {
+            aspect-ratio: 16/7;
+            background: linear-gradient(160deg, #3a6a4a, #6a9a6a);
+        }
+
+        .split-img--warm {
+            aspect-ratio: 4/3;
+            background: linear-gradient(160deg, #8a6a4a, #ba9a6a);
+        }
+
+        .feature-list { margin: 1.5rem 0 2rem; display: flex; flex-direction: column; gap: 0.85rem; }
+
+        .feature-list li {
+            display: flex; align-items: center; gap: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        .feature-check {
+            width: 26px; height: 26px;
+            border-radius: 7px;
+            background: var(--sage-mist);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-check svg { width: 14px; height: 14px; color: var(--sage); stroke: var(--sage); }
+
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 1.8rem;
+            border: 1.5px solid var(--pine);
+            color: var(--pine);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 50px;
+            transition: all 0.3s var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--pine);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* ══════════════════════════════════════════
+           TARIFAS
+           ══════════════════════════════════════════ */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s var(--transition);
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            background: var(--white);
+            border: 2px solid var(--terracotta);
+            color: var(--text);
+            box-shadow: var(--shadow-lg);
+            transform: scale(1.03);
+        }
+
+        .pricing-card:not(.featured):hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -14px; left: 50%; transform: translateX(-50%);
+            background: var(--terracotta);
+            color: var(--white);
+            padding: 0.3rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .pricing-name {
+            font-family: var(--header-font);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .pricing-card:not(.featured) .pricing-name { color: var(--white); }
+        .pricing-card.featured .pricing-name { color: var(--pine); }
+
+        .pricing-sub {
+            font-size: 0.82rem;
+            opacity: 0.5;
+            margin-bottom: 1.8rem;
+        }
+
+        .pricing-amount {
+            font-family: var(--header-font);
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .pricing-card:not(.featured) .pricing-amount { color: var(--white); }
+        .pricing-card.featured .pricing-amount { color: var(--terracotta); }
+
+        .pricing-amount span {
+            font-family: var(--body-font);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .pricing-period {
+            font-size: 0.82rem;
+            opacity: 0.45;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 2rem;
+            display: flex; flex-direction: column; gap: 0.65rem;
+        }
+
+        .pricing-features li {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.88rem;
+        }
+
+        .pricing-features .pf-check { color: var(--sage-soft); font-weight: 700; flex-shrink: 0; }
+        .pricing-card.featured .pf-check { color: var(--sage); }
+
+        .btn-price {
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: all 0.3s var(--transition);
+            display: block;
+            text-align: center;
+        }
+
+        .btn-price--ghost {
+            background: rgba(255,255,255,0.08);
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-price--ghost:hover { background: rgba(255,255,255,0.15); }
+
+        .btn-price--solid {
+            background: var(--terracotta);
+            color: var(--white);
+        }
+
+        .btn-price--solid:hover {
+            background: var(--terracotta-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 112, 75, 0.3);
+        }
+
+        /* ══════════════════════════════════════════
+           TESTIMONIALS
+           ══════════════════════════════════════════ */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.3s var(--transition);
+        }
+
+        .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+        .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1rem; }
+
+        .review-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .review-author { display: flex; align-items: center; gap: 0.8rem; }
+
+        .review-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sage-mist), var(--sand-warm));
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--pine);
+        }
+
+        .review-name { font-weight: 600; font-size: 0.9rem; color: var(--charcoal); }
+        .review-origin { font-size: 0.78rem; color: var(--text-light); }
+
+        /* ══════════════════════════════════════════
+           MAPA / UBICACION
+           ══════════════════════════════════════════ */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .location-map {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, var(--pine), var(--pine-mid));
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .map-placeholder .map-pin {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            animation: mapBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes mapBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .location-info-cards { display: flex; flex-direction: column; gap: 0.8rem; }
+
+        .loc-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.3rem 1.5rem;
+            display: flex; align-items: center; gap: 1rem;
+            transition: all 0.3s var(--transition);
+        }
+
+        .loc-card:hover { transform: translateX(6px); box-shadow: var(--shadow-sm); }
+
+        .loc-card-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: var(--sage-mist);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .loc-card strong { display: block; font-size: 0.92rem; color: var(--charcoal); margin-bottom: 0.1rem; }
+        .loc-card span { font-size: 0.84rem; color: var(--text-mid); font-weight: 300; }
+
+        /* ══════════════════════════════════════════
+           CTA FINAL
+           ══════════════════════════════════════════ */
+        .cta-final {
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+            padding: clamp(4rem, 8vw, 6rem) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.08), transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(0,0,0,0.08), transparent 50%);
+        }
+
+        .cta-final-inner { position: relative; z-index: 1; max-width: 650px; margin: 0 auto; }
+
+        .cta-final h2 {
+            font-family: var(--header-font);
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .cta-final p {
+            color: rgba(255,255,255,0.75);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .cta-final-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+        .btn-cta-white {
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--terracotta-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.3s var(--transition);
+            display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+
+        .btn-cta-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .btn-cta-outline {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            border: 1.5px solid rgba(255,255,255,0.35);
+            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+
+        .btn-cta-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+
+        /* ══════════════════════════════════════════
+           FOOTER
+           ══════════════════════════════════════════ */
+        .footer {
+            background: var(--pine-deep);
+            color: rgba(255,255,255,0.45);
+            padding: 4rem 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .footer-brand p { font-size: 0.88rem; line-height: 1.7; margin-top: 1rem; font-weight: 300; }
+
+        .footer-social {
+            display: flex; gap: 0.6rem; margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover { background: var(--terracotta); color: var(--white); transform: translateY(-2px); }
+
+        .footer-col h5 {
+            font-family: var(--header-font);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul { display: flex; flex-direction: column; gap: 0.55rem; }
+        .footer-col a { font-size: 0.85rem; transition: color 0.2s; font-weight: 300; }
+        .footer-col a:hover { color: var(--gold-soft); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .footer-bottom a { transition: color 0.2s; }
+        .footer-bottom a:hover { color: var(--gold-soft); }
+
+        .footer .logo-type { color: var(--white); font-size: 1.4rem; }
+        .footer .logo-sub { color: var(--terracotta-glow); }
+
+        /* ══════════════════════════════════════════
+           SCROLL ANIMATIONS
+           ══════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed; bottom: 2rem; right: 2rem;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: var(--pine);
+            color: var(--white);
+            font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transform: translateY(20px);
+            transition: all 0.3s var(--transition);
+            z-index: 100;
+            box-shadow: var(--shadow-md);
+        }
+
+        .scroll-top.visible { opacity: 1; transform: translateY(0); }
+        .scroll-top:hover { background: var(--terracotta); transform: translateY(-3px); }
+
+        /* ══════════════════════════════════════════
+           RESPONSIVE
+           ══════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .hero-features { flex-direction: row; flex-wrap: wrap; }
+            .hero-feat { flex: 1 1 calc(50% - 0.4rem); }
+            .split { grid-template-columns: 1fr; gap: 2.5rem; }
+            .split--reverse .split-media { order: 0; }
+            .split--reverse .split-content { order: 0; }
+            .pricing-grid { grid-template-columns: 1fr 1fr; }
+            .pricing-card.featured { grid-column: span 2; max-width: 400px; justify-self: center; }
+            .reviews-grid { grid-template-columns: 1fr 1fr; }
+            .location-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .topbar-left { display: none; }
+            .hamburger { display: flex; }
+            .nav-menu { display: none; }
+
+            .hero { min-height: 90vh; }
+            .hero-features { flex-direction: column; }
+            .hero-feat { flex: 1 1 100%; }
+
+            .booking-inner { flex-direction: column; }
+            .booking-field { min-width: 100%; }
+            .booking-btn { width: 100%; justify-content: center; }
+
+            .services-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { grid-column: 1; max-width: none; transform: none; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero-btns { flex-direction: column; }
+            .hero-btns a { width: 100%; text-align: center; justify-content: center; }
+            .split-media { grid-template-columns: 1fr; }
+            .split-img--wide { grid-column: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ TOPBAR ═══ -->
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div class="topbar-left">
+                <span>📞 <a href="tel:+34968000000">+34 968 000 000</a></span>
+                <span>✉️ <a href="mailto:info@camperpark.es">info@camperpark.es</a></span>
+                <span>📍 Murcia, España</span>
+            </div>
+            <div class="topbar-right">
+                <a href="#">Cómo llegar</a>
+                <a href="#">FAQs</a>
+                <select class="lang-select">
+                    <option>🇪🇸 ES</option>
+                    <option>🇬🇧 EN</option>
+                    <option>🇫🇷 FR</option>
+                    <option>🇩🇪 DE</option>
+                    <option>🇳🇱 NL</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-mark">
+                    <svg width="24" height="24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <rect x="1" y="3" width="15" height="13" rx="2"/>
+                        <path d="M16 8h4l3 5v4h-7V8z"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="logo-type">CamperPark</div>
+                    <div class="logo-sub">Murcia · Área Premium</div>
+                </div>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#instalaciones" class="nav-link">Instalaciones</a>
+                <a href="#tarifas" class="nav-link">Tarifas</a>
+                <a href="#opiniones" class="nav-link">Opiniones</a>
+                <a href="#ubicacion" class="nav-link">Ubicación</a>
+                <a href="#reservar" class="nav-cta">Reservar plaza →</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#instalaciones" class="nav-link">Instalaciones</a>
+        <a href="#tarifas" class="nav-link">Tarifas</a>
+        <a href="#opiniones" class="nav-link">Opiniones</a>
+        <a href="#ubicacion" class="nav-link">Ubicación</a>
+        <a href="#reservar" class="nav-cta">Reservar plaza →</a>
+    </div>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-texture"></div>
+        <div class="hero-float"></div>
+        <div class="hero-float"></div>
+        <div class="hero-float"></div>
+        <div class="hero-content container">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-eyebrow">
+                        <span class="hero-eyebrow-line"></span>
+                        Abierto todo el año · Murcia, España
+                    </div>
+                    <h1>Donde cada <em>viaje</em> encuentra su mejor parada</h1>
+                    <p class="hero-desc">Área de autocaravanas premium con 50 parcelas amplias, todos los servicios incluidos y la mejor ubicación para explorar el sureste español.</p>
+                    <div class="hero-btns">
+                        <a href="#reservar" class="btn-hero-primary">
+                            Reservar mi plaza
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <a href="#servicios" class="btn-hero-secondary">
+                            Explorar servicios ↓
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-features">
+                    <div class="hero-feat">
+                        <div class="hero-feat-icon">⚡</div>
+                        <div>
+                            <h4>Electricidad 16A en cada plaza</h4>
+                            <p>Conexión individual con protección diferencial</p>
+                        </div>
+                    </div>
+                    <div class="hero-feat">
+                        <div class="hero-feat-icon">📶</div>
+                        <div>
+                            <h4>WiFi fibra óptica gratuito</h4>
+                            <p>Trabaja en remoto o haz streaming sin cortes</p>
+                        </div>
+                    </div>
+                    <div class="hero-feat">
+                        <div class="hero-feat-icon">🛡️</div>
+                        <div>
+                            <h4>Seguridad y vigilancia 24h</h4>
+                            <p>Videovigilancia, barrera y acceso controlado</p>
+                        </div>
+                    </div>
+                    <div class="hero-feat">
+                        <div class="hero-feat-icon">🌟</div>
+                        <div>
+                            <h4>4.8 estrellas · +500 reseñas</h4>
+                            <p>Viajeros de toda Europa nos recomiendan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ BOOKING BAR (Roadsurfer style) ═══ -->
+    <div class="booking-bar container" id="reservar">
+        <form class="booking-inner reveal" onsubmit="return false;">
+            <div class="booking-field">
+                <label class="booking-label">Fecha de llegada</label>
+                <input type="date" class="booking-input" required>
+            </div>
+            <div class="booking-field">
+                <label class="booking-label">Fecha de salida</label>
+                <input type="date" class="booking-input" required>
+            </div>
+            <div class="booking-field">
+                <label class="booking-label">Tipo de vehículo</label>
+                <select class="booking-input">
+                    <option>Autocaravana</option>
+                    <option>Camper Van</option>
+                    <option>Caravana + coche</option>
+                    <option>Furgoneta camperizada</option>
+                </select>
+            </div>
+            <div class="booking-field">
+                <label class="booking-label">Viajeros</label>
+                <select class="booking-input">
+                    <option>1 persona</option>
+                    <option>2 personas</option>
+                    <option>3 personas</option>
+                    <option>4 personas</option>
+                    <option>5+ personas</option>
+                </select>
+            </div>
+            <button type="submit" class="booking-btn">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                Buscar
+            </button>
+        </form>
+    </div>
+
+    <!-- ═══ TRUST STRIP ═══ -->
+    <div class="trust container reveal">
+        <div class="trust-inner">
+            <div class="trust-item"><div class="trust-icon">✅</div> Reserva inmediata</div>
+            <div class="trust-item"><div class="trust-icon">🔒</div> Cancelación gratuita 48h</div>
+            <div class="trust-item"><div class="trust-icon">💳</div> Pago seguro</div>
+            <div class="trust-item"><div class="trust-icon">🏆</div> +500 reseñas verificadas</div>
+            <div class="trust-item"><div class="trust-icon">🐾</div> Pet-friendly</div>
+        </div>
+    </div>
+
+    <!-- ═══ SERVICIOS ═══ -->
+    <section class="section" id="servicios">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <div class="section-eyebrow">Servicios incluidos</div>
+                <h2 class="section-title">Todo lo que necesitas,<br>ya incluido en tu plaza</h2>
+                <p class="section-desc">Instalaciones modernas pensadas para viajeros exigentes. Sin extras ocultos: todo está incluido en la tarifa.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon service-icon--water">💧</div>
+                    <h3>Agua potable</h3>
+                    <p>Puntos de llenado en cada parcela con conexión directa para tu depósito. Agua analizada y certificada.</p>
+                    <span class="service-badge">Incluido</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon service-icon--power">⚡</div>
+                    <h3>Electricidad 16A</h3>
+                    <p>Tomas de corriente individuales con protección diferencial y magnetotérmico en cada parcela.</p>
+                    <span class="service-badge">Incluido</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon service-icon--wifi">📶</div>
+                    <h3>WiFi fibra óptica</h3>
+                    <p>Cobertura total con fibra óptica. Ideal para trabajo remoto, videollamadas o streaming.</p>
+                    <span class="service-badge">Incluido</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon service-icon--shower">🚿</div>
+                    <h3>Duchas y aseos</h3>
+                    <p>Bloques sanitarios con agua caliente las 24h, adaptados y con limpieza continua.</p>
+                    <span class="service-badge">Incluido</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon service-icon--waste">🔄</div>
+                    <h3>Vaciado de aguas</h3>
+                    <p>Estación completa para aguas grises y negras con limpieza a presión disponible.</p>
+                    <span class="service-badge">Incluido</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon service-icon--security">🛡️</div>
+                    <h3>Seguridad 24h</h3>
+                    <p>Videovigilancia perimetral, iluminación LED, barrera automática y acceso controlado.</p>
+                    <span class="service-badge">Incluido</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon service-icon--laundry">👕</div>
+                    <h3>Lavandería</h3>
+                    <p>Servicio autoservicio con lavadoras y secadoras industriales. Tendedero exterior disponible.</p>
+                    <span class="service-badge">Incluido</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon service-icon--bbq">🔥</div>
+                    <h3>Zona barbacoa</h3>
+                    <p>Área comunitaria equipada con barbacoas, mesas de picnic y zona de sombra.</p>
+                    <span class="service-badge">Incluido</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ INSTALACIONES (Ballena Alegre split) ═══ -->
+    <section class="section section--sand" id="instalaciones">
+        <div class="container">
+            <div class="split reveal">
+                <div class="split-media">
+                    <div class="split-img split-img--wide">🏕️</div>
+                    <div class="split-img split-img--tall">🌲</div>
+                    <div class="split-img split-img--warm">🌅</div>
+                </div>
+                <div class="split-content">
+                    <div class="section-eyebrow">Instalaciones</div>
+                    <h2 class="section-title">Más que un área de pernocta, un destino</h2>
+                    <p class="section-desc">Parcelas de hasta 80m² con sombra natural, zonas verdes cuidadas y un entorno que invita a quedarse un día más.</p>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            50 parcelas amplias con suelo nivelado
+                        </li>
+                        <li>
+                            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Zona de juegos infantil
+                        </li>
+                        <li>
+                            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Área de paseo para mascotas
+                        </li>
+                        <li>
+                            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Punto de información turística
+                        </li>
+                        <li>
+                            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Pequeña tienda de básicos y souvenirs
+                        </li>
+                        <li>
+                            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Acceso 24h con tarjeta personalizada
+                        </li>
+                    </ul>
+                    <a href="#reservar" class="btn-outline">Ver disponibilidad →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TARIFAS ═══ -->
+    <section class="section section--pine" id="tarifas">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <div class="section-eyebrow">Tarifas</div>
+                <h2 class="section-title">Precios transparentes,<br>sin sorpresas</h2>
+                <p class="section-desc">Todos los servicios incluidos en cada tarifa. Sin extras ocultos ni recargos inesperados.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">Noche</div>
+                    <div class="pricing-sub">Ideal para una parada</div>
+                    <div class="pricing-amount">18<span>€</span></div>
+                    <div class="pricing-period">por noche / vehículo</div>
+                    <ul class="pricing-features">
+                        <li><span class="pf-check">✓</span> Parcela con electricidad 16A</li>
+                        <li><span class="pf-check">✓</span> Agua potable ilimitada</li>
+                        <li><span class="pf-check">✓</span> WiFi fibra óptica</li>
+                        <li><span class="pf-check">✓</span> Duchas y sanitarios</li>
+                        <li><span class="pf-check">✓</span> Vaciado de aguas</li>
+                    </ul>
+                    <a href="#reservar" class="btn-price btn-price--ghost">Reservar noche</a>
+                </div>
+                <div class="pricing-card featured reveal">
+                    <div class="pricing-badge">Más popular</div>
+                    <div class="pricing-name">Semanal</div>
+                    <div class="pricing-sub">Mejor relación calidad-precio</div>
+                    <div class="pricing-amount">99<span>€</span></div>
+                    <div class="pricing-period">por semana / vehículo</div>
+                    <ul class="pricing-features">
+                        <li><span class="pf-check">✓</span> Todo lo del plan Noche</li>
+                        <li><span class="pf-check">✓</span> Ahorra un 21% vs noche</li>
+                        <li><span class="pf-check">✓</span> Lavandería gratuita</li>
+                        <li><span class="pf-check">✓</span> Plaza preferente reservada</li>
+                        <li><span class="pf-check">✓</span> Late check-out incluido</li>
+                    </ul>
+                    <a href="#reservar" class="btn-price btn-price--solid">Reservar semana</a>
+                </div>
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">Mensual</div>
+                    <div class="pricing-sub">Para largas estancias</div>
+                    <div class="pricing-amount">299<span>€</span></div>
+                    <div class="pricing-period">por mes / vehículo</div>
+                    <ul class="pricing-features">
+                        <li><span class="pf-check">✓</span> Todo lo del plan Semanal</li>
+                        <li><span class="pf-check">✓</span> Ahorra un 45% vs noche</li>
+                        <li><span class="pf-check">✓</span> Buzón de correos propio</li>
+                        <li><span class="pf-check">✓</span> Descuentos en comercios</li>
+                        <li><span class="pf-check">✓</span> Mantenimiento de parcela</li>
+                    </ul>
+                    <a href="#reservar" class="btn-price btn-price--ghost">Reservar mes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ OPINIONES ═══ -->
+    <section class="section" id="opiniones">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <div class="section-eyebrow">Opiniones verificadas</div>
+                <h2 class="section-title">Lo que dicen quienes<br>ya nos han visitado</h2>
+                <p class="section-desc">Más de 500 reseñas con una media de 4.8 sobre 5. Viajeros de toda Europa confían en nosotros.</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"El mejor área de autocaravanas en la que hemos estado. Instalaciones impecables, parcelas enormes y un trato inmejorable. Repetiremos seguro en nuestra próxima ruta por el sur."</p>
+                    <div class="review-author">
+                        <div class="review-avatar">MR</div>
+                        <div>
+                            <div class="review-name">María y Roberto</div>
+                            <div class="review-origin">Valencia, España</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Incredible value for money. Strong WiFi for remote work, always clean showers and a perfect location to explore the region. We stayed two weeks and didn't want to leave."</p>
+                    <div class="review-author">
+                        <div class="review-avatar">KH</div>
+                        <div>
+                            <div class="review-name">Klaus &amp; Hannah</div>
+                            <div class="review-origin">Berlin, Germany</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Nous venons ici chaque hiver depuis trois ans et chaque année c'est meilleur. La sécurité est excellente et le personnel toujours attentionné. C'est notre deuxième maison."</p>
+                    <div class="review-author">
+                        <div class="review-avatar">JP</div>
+                        <div>
+                            <div class="review-name">Jean-Pierre &amp; Monique</div>
+                            <div class="review-origin">Marseille, France</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ UBICACIÓN ═══ -->
+    <section class="section section--sand" id="ubicacion">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-eyebrow">Cómo llegar</div>
+                <h2 class="section-title">Fácil de encontrar,<br>difícil de olvidar</h2>
+            </div>
+            <div class="location-grid">
+                <div class="location-map reveal">
+                    <div class="map-placeholder">
+                        <div class="map-pin">📍</div>
+                        <p style="font-size:1.1rem; color:rgba(255,255,255,0.8); margin-bottom:0.3rem;">Mapa interactivo</p>
+                        <p style="font-size:0.85rem;">Clic para abrir en Google Maps</p>
+                    </div>
+                </div>
+                <div class="location-info-cards reveal">
+                    <div class="loc-card">
+                        <div class="loc-card-icon">📍</div>
+                        <div>
+                            <strong>Dirección</strong>
+                            <span>Camino de la Ribera s/n, 30001 Murcia, España</span>
+                        </div>
+                    </div>
+                    <div class="loc-card">
+                        <div class="loc-card-icon">🚗</div>
+                        <div>
+                            <strong>Acceso por carretera</strong>
+                            <span>Salida 5 de la A-30, a 2 minutos de la autovía</span>
+                        </div>
+                    </div>
+                    <div class="loc-card">
+                        <div class="loc-card-icon">✈️</div>
+                        <div>
+                            <strong>Aeropuerto más cercano</strong>
+                            <span>Aeropuerto de Murcia-San Javier — 35 min</span>
+                        </div>
+                    </div>
+                    <div class="loc-card">
+                        <div class="loc-card-icon">🏖️</div>
+                        <div>
+                            <strong>Playas</strong>
+                            <span>Costa Cálida a 30 min · La Manga a 45 min</span>
+                        </div>
+                    </div>
+                    <div class="loc-card">
+                        <div class="loc-card-icon">📞</div>
+                        <div>
+                            <strong>Contacto directo</strong>
+                            <span>+34 968 000 000 · info@camperpark.es</span>
+                        </div>
+                    </div>
+                    <div class="loc-card">
+                        <div class="loc-card-icon">🕐</div>
+                        <div>
+                            <strong>Horario de recepción</strong>
+                            <span>Lunes a Domingo · 8:00h — 22:00h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA FINAL ═══ -->
+    <section class="cta-final">
+        <div class="container cta-final-inner reveal">
+            <h2>¿Preparado para tu<br>próxima aventura?</h2>
+            <p>Reserva tu plaza ahora y asegúrate el mejor spot. Cancelación gratuita hasta 48 horas antes de la llegada.</p>
+            <div class="cta-final-btns">
+                <a href="tel:+34968000000" class="btn-cta-white">📞 Llamar y reservar</a>
+                <a href="mailto:info@camperpark.es" class="btn-cta-outline">✉️ Enviar email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-mark">
+                            <svg width="22" height="22" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <rect x="1" y="3" width="15" height="13" rx="2"/>
+                                <path d="M16 8h4l3 5v4h-7V8z"/>
+                                <circle cx="5.5" cy="18.5" r="2.5"/>
+                                <circle cx="18.5" cy="18.5" r="2.5"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="logo-type">CamperPark</div>
+                            <div class="logo-sub">Murcia · Área Premium</div>
+                        </div>
+                    </a>
+                    <p>Tu destino para descansar, recargar energía y seguir explorando el sureste español. Instalaciones de primera para viajeros exigentes.</p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="YouTube">▶️</a>
+                        <a href="#" title="TripAdvisor">🏆</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Servicios</h5>
+                    <ul>
+                        <li><a href="#servicios">Agua y electricidad</a></li>
+                        <li><a href="#servicios">WiFi fibra óptica</a></li>
+                        <li><a href="#servicios">Duchas y sanitarios</a></li>
+                        <li><a href="#servicios">Vaciado de aguas</a></li>
+                        <li><a href="#servicios">Seguridad 24h</a></li>
+                        <li><a href="#servicios">Lavandería</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Información</h5>
+                    <ul>
+                        <li><a href="#tarifas">Tarifas y precios</a></li>
+                        <li><a href="#">Normas del área</a></li>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="#">Cancelación y reembolsos</a></li>
+                        <li><a href="#">Blog de viaje</a></li>
+                        <li><a href="#">Galería de fotos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contacto</h5>
+                    <ul>
+                        <li><a href="tel:+34968000000">+34 968 000 000</a></li>
+                        <li><a href="mailto:info@camperpark.es">info@camperpark.es</a></li>
+                        <li><a href="#ubicacion">Cómo llegar</a></li>
+                        <li><a href="#">Formulario de contacto</a></li>
+                        <li><a href="#">WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 CamperPark Murcia — Todos los derechos reservados</span>
+                <div>
+                    <a href="#">Aviso legal</a> · <a href="#">Privacidad</a> · <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+    <!-- ═══ JAVASCRIPT ═══ -->
+    <script>
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            mobileOverlay.classList.toggle('show');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        mobileOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            mobileOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                mobileOverlay.classList.remove('show');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,795 @@
+"use client";
+
+import { useState, useMemo, useEffect } from "react";
+import Link from "next/link";
+import { Plus, Search, Eye, Edit, Calendar, Download, Mail, CheckCircle, Clock, XCircle, AlertCircle, Trash2, ArrowUpDown, ArrowUp, ArrowDown, Loader2, RefreshCw, Link2, Check } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
+import { useAllDataCached } from "@/hooks/use-all-data-cached";
+import { formatPrice } from "@/lib/utils";
+
+interface Booking {
+  id: string;
+  booking_number: string;
+  pickup_date: string;
+  pickup_time: string;
+  dropoff_date: string;
+  dropoff_time: string;
+  days: number;
+  status: string | null;
+  payment_status: string | null;
+  total_price: number;
+  amount_paid: number | null;
+  created_at: string | null;
+  parcel: {
+    id: string;
+    name: string;
+    slug: string;
+    internal_code: string | null;
+  } | null;
+  customer: {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+  } | null;
+  pickup_location: {
+    id: string;
+    name: string;
+  } | null;
+  dropoff_location: {
+    id: string;
+    name: string;
+  } | null;
+}
+
+const statusConfig: Record<string, { icon: typeof CheckCircle; bg: string; text: string; label: string }> = {
+  pending: { icon: Clock, bg: "bg-yellow-100", text: "text-yellow-700", label: "Pendiente" },
+  confirmed: { icon: CheckCircle, bg: "bg-green-100", text: "text-green-700", label: "Confirmada" },
+  in_progress: { icon: AlertCircle, bg: "bg-blue-100", text: "text-blue-700", label: "En curso" },
+  completed: { icon: CheckCircle, bg: "bg-gray-100", text: "text-gray-700", label: "Completada" },
+  cancelled: { icon: XCircle, bg: "bg-red-100", text: "text-red-700", label: "Cancelada" },
+};
+
+function formatDate(date: string): string {
+  return new Date(date).toLocaleDateString("es-ES", { 
+    day: "2-digit", 
+    month: "2-digit",
+    year: "numeric"
+  });
+}
+
+function formatDateTime(date: string): string {
+  return new Date(date).toLocaleString("es-ES", { 
+    day: "2-digit", 
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
+function formatTime(time: string): string {
+  if (!time) return '10:00';
+  // Si el tiempo viene en formato HH:MM:SS, extraer solo HH:MM
+  const parts = time.split(':');
+  return `${parts[0]}:${parts[1]}`;
+}
+
+type SortField = 'booking_number' | 'customer' | 'internal_code' | 'parcel' | 'pickup_date' | 'dropoff_date' | 'pickup_location' | 'dropoff_location' | 'total_price' | 'amount_paid' | 'status' | 'payment_status' | 'created_at';
+
+// Claves para localStorage
+const SORT_FIELD_KEY = 'bookings_sort_field';
+const SORT_DIRECTION_KEY = 'bookings_sort_direction';
+
+export default function BookingsPage() {
+  // Establecer título de la página
+  useEffect(() => {
+    document.title = "Admin - Reservas | Eco Area Limonar";
+  }, []);
+
+  // Estados para búsqueda y filtros
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  
+  // Estado para feedback visual al copiar URL
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  // Paginación frontend
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Estados para ordenamiento - cargar desde localStorage o usar default
+  const [sortField, setSortField] = useState<SortField>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(SORT_FIELD_KEY);
+      return (saved as SortField) || 'created_at';
+    }
+    return 'created_at';
+  });
+  
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(SORT_DIRECTION_KEY);
+      return (saved as 'asc' | 'desc') || 'desc';
+    }
+    return 'desc';
+  });
+
+  // Guardar preferencia de ordenación en localStorage
+  useEffect(() => {
+    localStorage.setItem(SORT_FIELD_KEY, sortField);
+    localStorage.setItem(SORT_DIRECTION_KEY, sortDirection);
+  }, [sortField, sortDirection]);
+
+  // Cargar TODAS las reservas con caché de 2 minutos
+  const { 
+    data: bookings, 
+    loading, 
+    error,
+    totalCount,
+    refetch: refetchBookings,
+    isRefetching,
+  } = useAllDataCached<Booking>({
+    queryKey: ['bookings'],
+    table: 'bookings',
+    select: `
+      *,
+      parcel:parcels(id, name, slug, internal_code),
+      customer:customers(id, name, email, phone),
+      pickup_location:locations!pickup_location_id(id, name),
+      dropoff_location:locations!dropoff_location_id(id, name)
+    `,
+    orderBy: { column: 'created_at', ascending: false },
+    // Caché de 2 minutos para reservas (críticas)
+    staleTime: 1000 * 60 * 2,
+  });
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
+
+  const renderSortIcon = (field: SortField) => {
+    if (sortField !== field) {
+      return <ArrowUpDown className="h-4 w-4 text-gray-400" />;
+    }
+    return sortDirection === 'asc' ? (
+      <ArrowUp className="h-4 w-4 text-blue-600" />
+    ) : (
+      <ArrowDown className="h-4 w-4 text-blue-600" />
+    );
+  };
+
+  const handleStatusChange = async (bookingId: string, newStatus: string) => {
+    try {
+      const supabase = createClient();
+      const { error } = await supabase
+        .from('bookings')
+        .update({ status: newStatus })
+        .eq('id', bookingId);
+
+      if (error) throw error;
+      
+      // Refrescar datos
+      refetchBookings();
+    } catch (err: any) {
+      console.error('Error updating status:', err);
+      alert('Error al actualizar el estado');
+    }
+  };
+
+  const handleDelete = async (bookingId: string, bookingNumber: string) => {
+    if (!confirm(`¿Estás seguro de que quieres eliminar la reserva ${bookingNumber}?\n\nEsta acción no se puede deshacer.`)) {
+      return;
+    }
+
+    try {
+      const supabase = createClient();
+      // Primero eliminar los extras de la reserva
+      await supabase.from('booking_extras').delete().eq('booking_id', bookingId);
+      
+      // Luego eliminar la reserva
+      const { error } = await supabase
+        .from('bookings')
+        .delete()
+        .eq('id', bookingId);
+
+      if (error) throw error;
+
+      // Refrescar datos automáticamente
+      refetchBookings();
+      
+      alert('Reserva eliminada correctamente');
+    } catch (err: any) {
+      console.error('Error deleting booking:', err);
+      alert('Error al eliminar la reserva: ' + err.message);
+    }
+  };
+
+  // Copiar ID de la reserva al clipboard
+  const copyBookingId = async (bookingId: string) => {
+    try {
+      await navigator.clipboard.writeText(bookingId);
+      setCopiedId(bookingId);
+      // Resetear el estado después de 2 segundos
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error('Error al copiar ID:', err);
+      // Fallback para navegadores que no soportan clipboard API
+      const textArea = document.createElement('textarea');
+      textArea.value = bookingId;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setCopiedId(bookingId);
+      setTimeout(() => setCopiedId(null), 2000);
+    }
+  };
+
+  // Ordenar TODAS las reservas
+  const sortedBookings = useMemo(() => {
+    if (!bookings) return [];
+    return [...bookings].sort((a, b) => {
+      let aValue: any;
+      let bValue: any;
+
+      switch (sortField) {
+        case 'booking_number':
+          aValue = a.booking_number;
+          bValue = b.booking_number;
+          break;
+        case 'customer':
+          aValue = a.customer?.name || '';
+          bValue = b.customer?.name || '';
+          break;
+        case 'internal_code':
+          aValue = a.parcel?.internal_code || '';
+          bValue = b.parcel?.internal_code || '';
+          break;
+        case 'parcel':
+          aValue = a.parcel?.name || '';
+          bValue = b.parcel?.name || '';
+          break;
+        case 'pickup_date':
+          aValue = new Date(a.pickup_date).getTime();
+          bValue = new Date(b.pickup_date).getTime();
+          break;
+        case 'dropoff_date':
+          aValue = new Date(a.dropoff_date).getTime();
+          bValue = new Date(b.dropoff_date).getTime();
+          break;
+        case 'pickup_location':
+          aValue = a.pickup_location?.name || '';
+          bValue = b.pickup_location?.name || '';
+          break;
+        case 'dropoff_location':
+          aValue = a.dropoff_location?.name || '';
+          bValue = b.dropoff_location?.name || '';
+          break;
+        case 'total_price':
+          aValue = a.total_price || 0;
+          bValue = b.total_price || 0;
+          break;
+        case 'amount_paid':
+          aValue = a.amount_paid || 0;
+          bValue = b.amount_paid || 0;
+          break;
+        case 'status':
+          aValue = a.status;
+          bValue = b.status;
+          break;
+        case 'payment_status':
+          aValue = a.payment_status;
+          bValue = b.payment_status;
+          break;
+        case 'created_at':
+          aValue = new Date(a.created_at || 0).getTime();
+          bValue = new Date(b.created_at || 0).getTime();
+          break;
+        default:
+          aValue = a.created_at || '';
+          bValue = b.created_at || '';
+      }
+
+      if (typeof aValue === 'string') {
+        aValue = aValue.toLowerCase();
+        bValue = bValue.toLowerCase();
+      }
+
+      if (sortDirection === 'asc') {
+        return aValue > bValue ? 1 : -1;
+      } else {
+        return aValue < bValue ? 1 : -1;
+      }
+    });
+  }, [bookings, sortField, sortDirection]);
+
+  // Filtrar reservas con búsqueda en tiempo real (sobre TODAS las reservas)
+  const filteredBookings = useMemo(() => {
+    let filtered = [...sortedBookings];
+
+    // Búsqueda en tiempo real
+    if (searchTerm) {
+      const search = searchTerm.toLowerCase();
+      filtered = filtered.filter(booking => 
+        booking.booking_number.toLowerCase().includes(search) ||
+        booking.customer?.name?.toLowerCase().includes(search) ||
+        booking.customer?.email?.toLowerCase().includes(search) ||
+        booking.customer?.phone?.toLowerCase().includes(search) ||
+        booking.parcel?.name?.toLowerCase().includes(search) ||
+        booking.parcel?.internal_code?.toLowerCase().includes(search) ||
+        booking.pickup_location?.name?.toLowerCase().includes(search) ||
+        booking.dropoff_location?.name?.toLowerCase().includes(search)
+      );
+    }
+
+    // Filtro por estado
+    if (statusFilter) {
+      filtered = filtered.filter(booking => booking.status === statusFilter);
+    }
+
+    return filtered;
+  }, [sortedBookings, searchTerm, statusFilter]);
+
+  // Paginación frontend sobre datos filtrados
+  const totalItems = filteredBookings.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+  const paginatedBookings = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return filteredBookings.slice(start, end);
+  }, [filteredBookings, currentPage, itemsPerPage]);
+
+  // Resetear página al cambiar filtros
+  useMemo(() => {
+    setCurrentPage(1);
+  }, [searchTerm, statusFilter, itemsPerPage]);
+
+  const allBookings = bookings || [];
+  const pendingCount = allBookings.filter(b => b.status === 'pending').length;
+  const confirmedCount = allBookings.filter(b => b.status === 'confirmed').length;
+  const inProgressCount = allBookings.filter(b => b.status === 'in_progress').length;
+  
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
+  const monthCount = allBookings.filter(b => {
+    const bookingDate = new Date(b.created_at || 0);
+    return bookingDate.getMonth() === currentMonth && bookingDate.getFullYear() === currentYear;
+  }).length;
+
+  if (loading && allBookings.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto text-clay mb-4" />
+          <p className="text-gray-500">Cargando reservas...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+          <h2 className="text-red-800 font-semibold">Error al cargar reservas</h2>
+          <p className="text-red-600 text-sm mt-2">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Reservas</h1>
+          <p className="text-gray-600 mt-1">Gestiona todas las reservas de tu flota</p>
+        </div>
+        <div className="flex gap-3">
+          {/* Botón Actualizar */}
+          <button 
+            onClick={() => refetchBookings()}
+            disabled={isRefetching}
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors"
+            title="Actualizar reservas"
+          >
+            <RefreshCw className={`h-5 w-5 ${isRefetching ? 'animate-spin' : ''}`} />
+            <span className="hidden sm:inline">{isRefetching ? 'Actualizando...' : 'Actualizar'}</span>
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+            <Download className="h-5 w-5" />
+            <span className="hidden sm:inline">Exportar</span>
+          </button>
+          <Link href="/administrator/reservas/nueva" className="btn-primary flex items-center gap-2">
+            <Plus className="h-5 w-5" />
+            <span className="hidden sm:inline">Nueva reserva</span>
+          </Link>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { label: "Pendientes", value: pendingCount.toString(), color: "text-yellow-600" }, 
+          { label: "Confirmadas", value: confirmedCount.toString(), color: "text-green-600" }, 
+          { label: "En curso", value: inProgressCount.toString(), color: "text-blue-600" }, 
+          { label: "Este mes", value: monthCount.toString(), color: "text-gray-600" }
+        ].map((stat) => (
+          <div key={stat.label} className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+            <p className="text-sm text-gray-500">{stat.label}</p>
+            <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <input 
+              type="text" 
+              placeholder="Buscar por cliente, nº reserva, parcela..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clay focus:border-transparent" 
+            />
+          </div>
+          <select 
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="w-full md:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clay"
+          >
+            <option value="">Todos los estados</option>
+            <option value="pending">Pendiente</option>
+            <option value="confirmed">Confirmada</option>
+            <option value="in_progress">En curso</option>
+            <option value="completed">Completada</option>
+            <option value="cancelled">Cancelada</option>
+          </select>
+          <select 
+            value={itemsPerPage}
+            onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            className="w-full md:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clay"
+          >
+            <option value="10">10 por página</option>
+            <option value="20">20 por página</option>
+            <option value="50">50 por página</option>
+            <option value="100">100 por página</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 border-b border-gray-100">
+              <tr>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('booking_number')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Reserva</span>
+                    {renderSortIcon('booking_number')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('created_at')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Creada</span>
+                    {renderSortIcon('created_at')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('customer')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Cliente</span>
+                    {renderSortIcon('customer')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('internal_code')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Cód.</span>
+                    {renderSortIcon('internal_code')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('parcel')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Parcela</span>
+                    {renderSortIcon('parcel')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('pickup_date')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Inicio</span>
+                    {renderSortIcon('pickup_date')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('dropoff_date')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Fin</span>
+                    {renderSortIcon('dropoff_date')}
+                  </div>
+                </th>
+                <th className="px-2 py-3 text-center text-xs font-semibold text-gray-900 whitespace-nowrap">
+                  Días
+                </th>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('pickup_location')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Recogida</span>
+                    {renderSortIcon('pickup_location')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-left text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('dropoff_location')}
+                >
+                  <div className="flex items-center gap-1">
+                    <span>Devolución</span>
+                    {renderSortIcon('dropoff_location')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-right text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('total_price')}
+                >
+                  <div className="flex items-center justify-end gap-1">
+                    <span>Total</span>
+                    {renderSortIcon('total_price')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-right text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('amount_paid')}
+                >
+                  <div className="flex items-center justify-end gap-1">
+                    <span>Pagado</span>
+                    {renderSortIcon('amount_paid')}
+                  </div>
+                </th>
+                <th 
+                  className="px-2 py-3 text-center text-xs font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  onClick={() => handleSort('status')}
+                >
+                  <div className="flex items-center justify-center gap-1">
+                    <span>Estado</span>
+                    {renderSortIcon('status')}
+                  </div>
+                </th>
+                <th className="px-2 py-3 text-right text-xs font-semibold text-gray-900 whitespace-nowrap">Acciones</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {paginatedBookings.length === 0 ? (
+                <tr>
+                  <td colSpan={14} className="px-6 py-12 text-center text-gray-500">
+                    <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                    <p className="text-lg font-medium">
+                      {searchTerm || statusFilter ? 'No se encontraron reservas' : 'No hay reservas registradas'}
+                    </p>
+                    <p className="text-sm mt-1">
+                      {searchTerm || statusFilter ? 'Intenta ajustar los filtros de búsqueda' : 'Las reservas aparecerán aquí cuando se creen'}
+                    </p>
+                  </td>
+                </tr>
+              ) : (
+                paginatedBookings.map((booking) => {
+                  const bookingStatus = booking.status || 'pending';
+                  const StatusIcon = statusConfig[bookingStatus]?.icon || Clock;
+                  const statusStyle = statusConfig[bookingStatus] || statusConfig.pending;
+                  
+                  // Usar días de la reserva guardados en BD (ya calculados con horas)
+                  const days = booking.days || 0;
+                  
+                  const totalPrice = booking.total_price || 0;
+                  const amountPaid = booking.amount_paid || 0;
+                  const pendingAmount = totalPrice - amountPaid;
+                  
+                  return (
+                    <tr key={booking.id} className="hover:bg-gray-50">
+                      {/* Código de Reserva */}
+                      <td className="px-2 py-3">
+                        <p className="font-medium text-gray-900 text-xs">{booking.booking_number}</p>
+                      </td>
+                      
+                      {/* Fecha de Creación */}
+                      <td className="px-2 py-3">
+                        <p className="text-xs text-gray-600">{formatDate(booking.created_at || '')}</p>
+                        <p className="text-[10px] text-gray-400">{new Date(booking.created_at || '').toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</p>
+                      </td>
+                      
+                      {/* Cliente */}
+                      <td className="px-2 py-3">
+                        <p className="font-medium text-gray-900 text-xs truncate max-w-[120px]" title={booking.customer?.name || 'Sin nombre'}>{booking.customer?.name || 'Sin nombre'}</p>
+                        <p className="text-[10px] text-gray-500">{booking.customer?.phone || '—'}</p>
+                      </td>
+                      
+                      {/* Código interno */}
+                      <td className="px-2 py-3">
+                        <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-gray-100 text-gray-800 text-[10px] font-mono font-semibold">
+                          {booking.parcel?.internal_code || '—'}
+                        </span>
+                      </td>
+                      
+                      {/* Vehículo */}
+                      <td className="px-2 py-3">
+                        <p className="text-gray-900 text-xs truncate max-w-[100px]" title={booking.parcel?.name || 'Sin parcela'}>{booking.parcel?.name || 'Sin parcela'}</p>
+                      </td>
+                      
+                      {/* Fecha inicio */}
+                      <td className="px-2 py-3">
+                        <p className="text-gray-900 text-xs font-medium">{formatDate(booking.pickup_date)}</p>
+                        <p className="text-[10px] text-gray-500">{formatTime(booking.pickup_time)}</p>
+                      </td>
+                      
+                      {/* Fecha fin */}
+                      <td className="px-2 py-3">
+                        <p className="text-gray-900 text-xs font-medium">{formatDate(booking.dropoff_date)}</p>
+                        <p className="text-[10px] text-gray-500">{formatTime(booking.dropoff_time)}</p>
+                      </td>
+                      
+                      {/* Duración */}
+                      <td className="px-2 py-3 text-center">
+                        <p className="text-gray-900 text-xs font-semibold">{days}</p>
+                      </td>
+                      
+                      {/* Ubicación recogida */}
+                      <td className="px-2 py-3">
+                        <p className="text-gray-900 text-xs truncate max-w-[80px]" title={booking.pickup_location?.name || '—'}>{booking.pickup_location?.name || '—'}</p>
+                      </td>
+                      
+                      {/* Ubicación devolución */}
+                      <td className="px-2 py-3">
+                        <p className="text-gray-900 text-xs truncate max-w-[80px]" title={booking.dropoff_location?.name || '—'}>{booking.dropoff_location?.name || '—'}</p>
+                      </td>
+                      
+                      {/* Total */}
+                      <td className="px-2 py-3 text-right">
+                        <p className="font-bold text-gray-900 text-xs">{formatPrice(totalPrice)}</p>
+                        {pendingAmount > 0 && (
+                          <p className="text-[10px] text-red-600">Pdte: {formatPrice(pendingAmount)}</p>
+                        )}
+                      </td>
+                      
+                      {/* Pagado */}
+                      <td className="px-2 py-3 text-right">
+                        <p className={`font-semibold text-xs ${
+                          amountPaid === 0 ? 'text-gray-400' : 
+                          amountPaid >= totalPrice ? 'text-green-600' : 
+                          'text-orange-600'
+                        }`}>
+                          {formatPrice(amountPaid)}
+                        </p>
+                        <p className="text-[10px] text-gray-500">
+                          {amountPaid === 0 ? 'Sin pagos' : 
+                           amountPaid >= totalPrice ? 'Pagado' : 
+                           `${((amountPaid / totalPrice) * 100).toFixed(0)}%`}
+                        </p>
+                      </td>
+                      
+                      {/* Estado (desplegable) */}
+                      <td className="px-2 py-3 text-center">
+                        <select
+                          value={booking.status || 'pending'}
+                          onChange={(e) => handleStatusChange(booking.id, e.target.value)}
+                          className={`text-[10px] font-medium px-2 py-1 rounded-full border-0 cursor-pointer focus:ring-2 focus:ring-blue-500 ${statusStyle.bg} ${statusStyle.text}`}
+                        >
+                          <option value="pending">⏱ Pdte</option>
+                          <option value="confirmed">✓ Conf</option>
+                          <option value="in_progress">▶ Curso</option>
+                          <option value="completed">✓ Comp</option>
+                          <option value="cancelled">✗ Canc</option>
+                        </select>
+                      </td>
+                      
+                      {/* Acciones */}
+                      <td className="px-2 py-3">
+                        <div className="flex items-center justify-end gap-0.5">
+                          <Link 
+                            href={`/administrator/reservas/${booking.id}`} 
+                            className="p-1.5 text-gray-400 hover:text-clay hover:bg-clay/10 rounded transition-colors" 
+                            title="Ver detalles"
+                          >
+                            <Eye className="h-3.5 w-3.5" />
+                          </Link>
+                          <button 
+                            onClick={() => copyBookingId(booking.id)}
+                            className={`p-1.5 rounded transition-colors ${
+                              copiedId === booking.id 
+                                ? 'text-green-600 bg-green-50' 
+                                : 'text-gray-400 hover:text-purple-600 hover:bg-purple-50'
+                            }`}
+                            title="Copiar ID de reserva"
+                          >
+                            {copiedId === booking.id ? (
+                              <Check className="h-3.5 w-3.5" />
+                            ) : (
+                              <Link2 className="h-3.5 w-3.5" />
+                            )}
+                          </button>
+                          <button 
+                            className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-earth/10 rounded transition-colors" 
+                            title="Enviar email"
+                          >
+                            <Mail className="h-3.5 w-3.5" />
+                          </button>
+                          <Link 
+                            href={`/administrator/reservas/${booking.id}/editar`} 
+                            className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors" 
+                            title="Editar"
+                          >
+                            <Edit className="h-3.5 w-3.5" />
+                          </Link>
+                          <button
+                            onClick={() => handleDelete(booking.id, booking.booking_number)}
+                            className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                            title="Eliminar"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
+        
+        {/* Paginación Frontend */}
+        <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+          <p className="text-sm text-gray-600">
+            Mostrando {paginatedBookings.length === 0 ? 0 : ((currentPage - 1) * itemsPerPage) + 1}-{Math.min(currentPage * itemsPerPage, totalItems)} de {totalItems} reservas
+            {searchTerm || statusFilter ? ' (filtradas)' : ''}
+            {isRefetching && ' • Actualizando...'}
+          </p>
+          <div className="flex gap-2">
+            <button 
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              className="px-3 py-1 border border-gray-300 rounded text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" 
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </button>
+            <span className="px-3 py-1 text-sm text-gray-600">
+              Página {currentPage} de {totalPages}
+            </span>
+            <button 
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              className="px-3 py-1 border border-gray-300 rounded text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" 
+              disabled={currentPage === totalPages}
+            >
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

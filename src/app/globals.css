@@ -1,0 +1,488 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevenir scroll horizontal en móvil */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ajuste de escala visual para desktop - equivalente a zoom 80% */
+@media (min-width: 1024px) {
+  html {
+    font-size: 12.8px; /* 80% de 16px = 12.8px */
+  }
+}
+
+/* Mantener tamaño normal en móvil y tablet */
+@media (max-width: 1023px) {
+  html {
+    font-size: 16px; /* Tamaño estándar */
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 199 86% 33%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 199 86% 33%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 86% 33%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 199 86% 33%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-cream text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+/* =========================================
+   SISTEMA DE DISEÑO - Eco Area Limonar
+   Mar Menor: Azul mediterráneo + Amarillo sol + Arena
+   ========================================= */
+@layer components {
+  /* Botones estilo mediterráneo */
+  .btn-primary {
+    @apply bg-clay hover:bg-clay-dk text-white font-bold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+  }
+
+  .btn-earth {
+    @apply bg-earth hover:bg-clay text-white font-bold py-3 px-6 rounded-full transition-all duration-300;
+  }
+
+  .btn-earth-outline {
+    @apply border-2 border-earth text-earth hover:bg-earth hover:text-white font-bold py-3 px-6 rounded-full transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-earth hover:bg-earth-deep text-white font-bold py-3 px-6 rounded-full transition-colors;
+  }
+
+  .card-vehicle {
+    @apply bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
+  /* Cards estilo V5: border sutil, hover lift */
+  .card-section {
+    @apply bg-white rounded-2xl p-6 border border-gray-100 hover:border-earth/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+  }
+
+  /* Card de ubicación/contacto estilo lc */
+  .card-location {
+    @apply bg-white rounded-xl p-4 border border-gray-100 flex items-center gap-3 hover:border-earth hover:translate-x-1 transition-all duration-300;
+  }
+
+  .search-widget {
+    @apply bg-white rounded-2xl shadow-2xl p-6 lg:p-8 border border-gray-100;
+  }
+
+  /* Section padding estilo V5 */
+  .section-padding-v5 {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .admin-sidebar {
+    @apply bg-earth-deep text-white min-h-screen w-64;
+  }
+
+  .admin-content {
+    @apply flex-1 bg-gray-50 min-h-screen;
+  }
+
+  /* Container responsive: padding reducido en mobile/tablet */
+  .container-responsive {
+    @apply px-4 lg:px-8;
+  }
+
+  /* Grid responsive: 1 col mobile/tablet, múltiples en desktop */
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+  }
+
+  .grid-responsive-3 {
+    @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
+  }
+
+  .grid-responsive-4 {
+    @apply grid grid-cols-1 lg:grid-cols-4 gap-6;
+  }
+
+  /* Text responsive: más pequeño en mobile/tablet */
+  .text-responsive-xl {
+    @apply text-2xl lg:text-4xl;
+  }
+
+  .text-responsive-lg {
+    @apply text-xl lg:text-3xl;
+  }
+
+  .text-responsive-md {
+    @apply text-lg lg:text-2xl;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Calendar custom styles */
+.rdp {
+  --rdp-cell-size: 32px;
+  --rdp-accent-color: #0C6E9C;
+  --rdp-background-color: rgba(12, 110, 156, 0.1);
+}
+
+@media (min-width: 768px) {
+  .rdp {
+    --rdp-cell-size: 40px;
+  }
+}
+
+/* =========================================
+   UTILIDADES RESPONSIVE
+   Mobile + Tablet (hasta 1023px): diseño apilado y táctil
+   Desktop (1024px+): diseño horizontal y espacioso
+   ========================================= */
+
+/* Espaciado de secciones */
+.section-padding {
+  @apply py-12 lg:py-24;
+}
+
+/* Ocultar en mobile/tablet, mostrar en desktop */
+.hidden-mobile {
+  @apply hidden lg:block;
+}
+
+/* Ocultar en desktop, mostrar en mobile/tablet */
+.hidden-desktop {
+  @apply block lg:hidden;
+}
+
+/* Elementos táctiles más grandes en mobile/tablet */
+@media (max-width: 1023px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Botones más grandes para táctil */
+  .btn-primary,
+  .btn-secondary {
+    @apply py-4 px-8 text-base;
+  }
+
+  /* Inputs más grandes para táctil */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    @apply py-3 px-4 text-base;
+  }
+}
+
+/* Desktop: elementos más compactos */
+@media (min-width: 1024px) {
+  /* Aprovechar espacio horizontal */
+  .desktop-horizontal {
+    @apply flex flex-row items-center gap-6;
+  }
+
+  /* Hover effects solo en desktop */
+  .hover-desktop:hover {
+    @apply transform scale-105 shadow-xl;
+  }
+}
+
+.rdp-day_selected:not([disabled]) {
+  background-color: #0C6E9C;
+}
+
+.rdp-day_selected:hover:not([disabled]) {
+  background-color: #064A6E;
+}
+
+/* =========================================
+   ESTRATEGIA RESPONSIVE: MOBILE+TABLET vs DESKTOP
+   Mobile + Tablet: hasta 1023px (diseño táctil)
+   Desktop: 1024px+ (diseño mouse/teclado)
+   ========================================= */
+
+/* Asegurar que el calendario ocupe todo el ancho en móvil/tablet */
+@media (max-width: 1023px) {
+  .rdp-months {
+    width: 100%;
+  }
+  
+  .rdp-month {
+    width: 100%;
+  }
+  
+  .rdp-table {
+    width: 100%;
+  }
+}
+
+/* Tiptap Editor Styles */
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror p {
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+}
+
+.ProseMirror li {
+  margin-bottom: 0.25rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid #e5e7eb;
+  padding-left: 1rem;
+  margin-left: 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.ProseMirror a {
+  color: #0C6E9C;
+  text-decoration: underline;
+}
+
+.ProseMirror a:hover {
+  color: #064A6E;
+}
+
+.ProseMirror strong {
+  font-weight: 700;
+}
+
+.ProseMirror em {
+  font-style: italic;
+}
+
+/* =========================================
+   UTILIDADES DE ACCESIBILIDAD
+   ========================================= */
+
+/* Clase sr-only para contenido solo para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link para accesibilidad con teclado */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #064A6E;
+  color: white;
+  padding: 8px 16px;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* =========================================
+   BLOG CONTENT - RESPONSIVE MÓVIL
+   Asegurar que todo el contenido del blog
+   respete el ancho de pantalla en móvil
+   ========================================= */
+
+/* Contenido del blog - prevenir desbordamiento */
+.prose {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Imágenes dentro del contenido del blog */
+.prose img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* Iframes (videos embebidos, mapas, etc.) */
+.prose iframe {
+  max-width: 100% !important;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* Videos embebidos */
+.prose video {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Tablas - scroll horizontal si son muy anchas */
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Código - scroll horizontal */
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Código inline - permitir ruptura */
+.prose code {
+  word-break: break-word;
+}
+
+/* URLs largas */
+.prose a {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Figuras/captions */
+.prose figure {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Bloques de cita */
+.prose blockquote {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Listas - ajustar indentación en móvil */
+@media (max-width: 640px) {
+  .prose ul,
+  .prose ol {
+    padding-left: 1.25rem;
+  }
+
+  /* Reducir márgenes de headings en móvil */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Párrafos más compactos en móvil */
+  .prose p {
+    margin-bottom: 1rem;
+  }
+}
+

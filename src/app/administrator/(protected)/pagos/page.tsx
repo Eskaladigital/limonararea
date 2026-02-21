@@ -1,0 +1,358 @@
+"use client";
+
+import { useState, useMemo, useEffect } from "react";
+import Link from "next/link";
+import { Search, Download, Eye, CreditCard, CheckCircle, Clock, XCircle, AlertCircle, Loader2 } from "lucide-react";
+import { usePaginatedData } from "@/hooks/use-paginated-data";
+import { formatPrice } from "@/lib/utils";
+
+interface Payment {
+  id: string;
+  booking_id: string;
+  amount: number | null;
+  payment_method: string | null;
+  status: string | null;
+  order_number: string | null;
+  created_at: string | null;
+  booking: {
+    id: string;
+    booking_number: string;
+    customer: {
+      name: string;
+      email: string;
+    } | null;
+  } | null;
+}
+
+const statusConfig: Record<string, { icon: typeof CheckCircle; bg: string; text: string; label: string }> = {
+  pending: { icon: Clock, bg: "bg-yellow-100", text: "text-yellow-700", label: "Pendiente" },
+  completed: { icon: CheckCircle, bg: "bg-green-100", text: "text-green-700", label: "Completado" },
+  authorized: { icon: CheckCircle, bg: "bg-green-100", text: "text-green-700", label: "Completado" }, // Alias para pagos antiguos
+  failed: { icon: XCircle, bg: "bg-red-100", text: "text-red-700", label: "Fallido" },
+  error: { icon: XCircle, bg: "bg-red-100", text: "text-red-700", label: "Fallido" }, // Alias
+  cancelled: { icon: XCircle, bg: "bg-orange-100", text: "text-orange-700", label: "Cancelado" },
+  refunded: { icon: AlertCircle, bg: "bg-gray-100", text: "text-gray-700", label: "Reembolsado" },
+};
+
+const methodConfig: Record<string, { label: string; color: string }> = {
+  card: { label: "Tarjeta", color: "text-blue-600" },
+  redsys: { label: "Redsys", color: "text-purple-600" },
+  transfer: { label: "Transferencia", color: "text-green-600" },
+  cash: { label: "Efectivo", color: "text-gray-600" },
+  paypal: { label: "PayPal", color: "text-blue-500" },
+};
+
+function formatDateTime(date: string): string {
+  return new Date(date).toLocaleString("es-ES", { 
+    day: "2-digit", 
+    month: "short", 
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
+export default function PagosPage() {
+  // Establecer título de la página
+  useEffect(() => {
+    document.title = "Admin - Pagos | Eco Area Limonar";
+  }, []);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [methodFilter, setMethodFilter] = useState("");
+
+  // Cargar pagos con paginación del lado del servidor
+  const { 
+    data: payments, 
+    loading, 
+    error,
+    totalCount,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = usePaginatedData<Payment>({
+    queryKey: ['payments'],
+    table: 'payments',
+    select: `
+      *,
+      booking:bookings(
+        id,
+        booking_number,
+        customer:customers(name, email)
+      )
+    `,
+    orderBy: { column: 'created_at', ascending: false },
+    pageSize: 20, // Cargar 20 pagos por página
+  });
+
+  // Filtrar pagos con búsqueda en tiempo real
+  const filteredPayments = useMemo(() => {
+    if (!payments) return [];
+    
+    let filtered = [...payments];
+
+    // Búsqueda en tiempo real
+    if (searchTerm) {
+      const search = searchTerm.toLowerCase();
+      filtered = filtered.filter(payment => 
+        (payment.order_number?.toLowerCase().includes(search)) ||
+        (payment.id.toLowerCase().includes(search)) ||
+        (payment.booking?.booking_number?.toLowerCase().includes(search)) ||
+        (payment.booking?.customer?.name?.toLowerCase().includes(search)) ||
+        (payment.booking?.customer?.email?.toLowerCase().includes(search))
+      );
+    }
+
+    // Filtro por estado
+    if (statusFilter) {
+      filtered = filtered.filter(payment => payment.status === statusFilter);
+    }
+
+    // Filtro por método de pago
+    if (methodFilter) {
+      filtered = filtered.filter(payment => payment.payment_method === methodFilter);
+    }
+
+    return filtered;
+  }, [payments, searchTerm, statusFilter, methodFilter]);
+
+  const paymentsList = filteredPayments;
+  const allPayments = payments || [];
+  
+  // Considerar "authorized" como "completed" para compatibilidad con pagos antiguos
+  const isCompleted = (status: string | null) => status === 'completed' || status === 'authorized';
+  const isFailed = (status: string | null) => status === 'failed' || status === 'error';
+  
+  const totalAmount = allPayments
+    .filter(p => isCompleted(p.status))
+    .reduce((sum, p) => sum + (p.amount || 0), 0);
+  
+  const pendingAmount = allPayments
+    .filter(p => p.status === 'pending')
+    .reduce((sum, p) => sum + (p.amount || 0), 0);
+
+  const completedCount = allPayments.filter(p => isCompleted(p.status)).length;
+  const pendingCount = allPayments.filter(p => p.status === 'pending').length;
+  const failedCount = allPayments.filter(p => isFailed(p.status)).length;
+
+  if (loading && paymentsList.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto text-clay mb-4" />
+          <p className="text-gray-500">Cargando pagos...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+          <h2 className="text-red-800 font-semibold">Error al cargar pagos</h2>
+          <p className="text-red-600 text-sm mt-2">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Pagos</h1>
+          <p className="text-gray-600 mt-1">Gestiona todas las transacciones y pagos</p>
+        </div>
+        <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <Download className="h-5 w-5" />
+          Exportar
+        </button>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <p className="text-sm text-gray-500">Total cobrado</p>
+          <p className="text-2xl font-bold text-green-600">{formatPrice(totalAmount)}</p>
+        </div>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <p className="text-sm text-gray-500">Pendiente</p>
+          <p className="text-2xl font-bold text-yellow-600">{formatPrice(pendingAmount)}</p>
+        </div>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <p className="text-sm text-gray-500">Completados</p>
+          <p className="text-2xl font-bold text-gray-900">{completedCount}</p>
+        </div>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <p className="text-sm text-gray-500">Fallidos</p>
+          <p className="text-2xl font-bold text-red-600">{failedCount}</p>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <input 
+              type="text" 
+              placeholder="Buscar por nº reserva, cliente, referencia..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clay focus:border-transparent" 
+            />
+          </div>
+          <select 
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clay"
+          >
+            <option value="">Todos los estados</option>
+            <option value="pending">Pendiente</option>
+            <option value="completed">Completado</option>
+            <option value="failed">Fallido</option>
+            <option value="refunded">Reembolsado</option>
+          </select>
+          <select 
+            value={methodFilter}
+            onChange={(e) => setMethodFilter(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clay"
+          >
+            <option value="">Todos los métodos</option>
+            <option value="card">Tarjeta</option>
+            <option value="redsys">Redsys</option>
+            <option value="transfer">Transferencia</option>
+            <option value="cash">Efectivo</option>
+            <option value="paypal">PayPal</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 border-b border-gray-100">
+              <tr>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Referencia</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Reserva</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Cliente</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Método</th>
+                <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">Importe</th>
+                <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900">Estado</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Fecha</th>
+                <th className="px-6 py-4 text-right text-sm font-semibold text-gray-900">Acciones</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {paymentsList.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
+                    <CreditCard className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                    <p className="text-lg font-medium">
+                      {searchTerm || statusFilter || methodFilter ? 'No se encontraron pagos' : 'No hay pagos registrados'}
+                    </p>
+                    <p className="text-sm mt-1">
+                      {searchTerm || statusFilter || methodFilter ? 'Intenta ajustar los filtros de búsqueda' : 'Los pagos aparecerán aquí cuando se procesen'}
+                    </p>
+                  </td>
+                </tr>
+              ) : (
+                paymentsList.map((payment) => {
+                  const paymentStatus = payment.status || 'pending';
+                  const paymentMethod = payment.payment_method || 'card';
+                  const StatusIcon = statusConfig[paymentStatus]?.icon || Clock;
+                  const statusStyle = statusConfig[paymentStatus] || statusConfig.pending;
+                  const methodStyle = methodConfig[paymentMethod] || methodConfig.card;
+
+                  return (
+                    <tr key={payment.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4">
+                        <p className="font-mono text-sm font-medium text-gray-900">
+                          {payment.order_number || payment.id.slice(0, 8)}
+                        </p>
+                      </td>
+                      <td className="px-6 py-4">
+                        <Link 
+                          href={`/administrator/reservas/${payment.booking_id}`}
+                          className="text-clay hover:underline font-medium"
+                        >
+                          {payment.booking?.booking_number || '—'}
+                        </Link>
+                      </td>
+                      <td className="px-6 py-4">
+                        <p className="text-gray-900">{payment.booking?.customer?.name || 'Sin cliente'}</p>
+                        <p className="text-sm text-gray-500">{payment.booking?.customer?.email || '—'}</p>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`font-medium ${methodStyle.color}`}>
+                          {methodStyle.label}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <span className="font-bold text-gray-900 text-lg">
+                          {formatPrice(payment.amount || 0)}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${statusStyle.bg} ${statusStyle.text}`}>
+                          <StatusIcon className="h-3 w-3" />
+                          {statusStyle.label}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <p className="text-sm text-gray-600">{formatDateTime(payment.created_at || '')}</p>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center justify-end gap-2">
+                          <Link 
+                            href={`/administrator/pagos/${payment.id}`}
+                            className="p-2 text-gray-400 hover:text-clay hover:bg-clay/10 rounded-lg transition-colors" 
+                            title="Ver detalles"
+                          >
+                            <Eye className="h-5 w-5" />
+                          </Link>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
+        
+        {/* Botón Cargar Más */}
+        {hasNextPage && (
+          <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-center">
+            <button
+              onClick={() => fetchNextPage()}
+              disabled={isFetchingNextPage}
+              className="btn-secondary flex items-center gap-2"
+            >
+              {isFetchingNextPage ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Cargando...
+                </>
+              ) : (
+                <>Cargar más pagos</>
+              )}
+            </button>
+          </div>
+        )}
+        
+        {/* Info de paginación */}
+        <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+          <p className="text-sm text-gray-600">
+            Mostrando {paymentsList.length} de {totalCount} pagos
+            {searchTerm || statusFilter || methodFilter ? ' (filtrados)' : ''}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
