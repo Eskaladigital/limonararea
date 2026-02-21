@@ -150,6 +150,13 @@ export const routeTranslations = {
   },
   
   // Páginas de información
+  "/mar-menor": {
+    es: "/mar-menor",
+    en: "/mar-menor",
+    fr: "/mar-menor",
+    de: "/mar-menor",
+    nl: "/mar-menor"
+  },
   "/quienes-somos": { 
     es: "/quienes-somos", 
     en: "/about-us", 

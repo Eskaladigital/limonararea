@@ -41,6 +41,7 @@ const staticPages: Array<{ path: string; label: string }> = [
   { path: "/ofertas", label: "Offers" },
   { path: "/publicaciones", label: "Publications" },
   { path: "/quienes-somos", label: "About Us" },
+  { path: "/mar-menor", label: "Le Mar Menor" },
   { path: "/faqs", label: "FAQs" },
   { path: "/video-tutoriales", label: "Video Tutorials" },
   { path: "/aviso-legal", label: "Legal Notice" },

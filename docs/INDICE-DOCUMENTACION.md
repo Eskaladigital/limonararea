@@ -23,6 +23,11 @@ Este documento es tu punto de partida para encontrar documentación del proyecto
 - **Solución**: Logo del Header en `src/components/layout/header.tsx` pasó a `<img>` nativo; mismo markup en SSR y cliente.
 - **Detalle**: [CHANGELOG.md](../CHANGELOG.md) → v4.4.4 | [README.md](../README.md) → Última actualización 21 Feb 2026
 
+### 📦 Repositorio GitHub (21 Feb 2026)
+
+- **Repo**: [github.com/Eskaladigital/limonararea](https://github.com/Eskaladigital/limonararea) — rama **main**. Primer push realizado.
+- **Git**: Ver README (Estado de Git) para comandos y troubleshooting (index.lock, permission denied).
+
 ---
 
 ## 🌍 VERSIÓN - BLOG MULTIIDIOMA

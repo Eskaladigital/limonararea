@@ -24,8 +24,8 @@ git init
 git add .
 git commit -m "Initial commit - Eco Area Limonar"
 git remote add origin "%REPO%"
-git branch -M master
-git push -u origin master
+git branch -M main
+git push -u origin main
 
 if errorlevel 1 (
   echo.

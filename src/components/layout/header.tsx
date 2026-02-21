@@ -16,7 +16,7 @@ export function Header() {
 
   const pathname = usePathname();
   const { language: currentLanguage, setLanguage, t } = useLanguage();
-  const isHomePage = pathname === "/" || /^\/(es|en|fr|de)\/?$/.test(pathname || "");
+  const isHomePage = pathname === "/" || /^\/(es|en|fr|de|nl)\/?$/.test(pathname || "");
   const showTransparent = isHomePage && !scrolled;
   
   useEffect(() => {
@@ -29,7 +29,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHomePage]);
 
-  const handleLanguageChange = (lang: 'es' | 'en' | 'fr' | 'de') => {
+  const handleLanguageChange = (lang: 'es' | 'en' | 'fr' | 'de' | 'nl') => {
     // setLanguage maneja toda la lógica de navegación incluyendo slugs traducidos del blog
     setLanguage(lang);
     setLanguageDropdownOpen(false);
@@ -39,12 +39,14 @@ export function Header() {
     es: { name: 'Español', flag: '🇪🇸' },
     en: { name: 'English', flag: '🇬🇧' },
     fr: { name: 'Français', flag: '🇫🇷' },
-    de: { name: 'Deutsch', flag: '🇩🇪' }
+    de: { name: 'Deutsch', flag: '🇩🇪' },
+    nl: { name: 'Nederlands', flag: '🇳🇱' },
   };
 
   // Solo enlaces a páginas que existen
   const infoDropdown = [
     { name: t("¿Quiénes somos?"), href: "/quienes-somos" },
+    { name: t("El Mar Menor"), href: "/mar-menor" },
     { name: t("Normas de conducta"), href: "/normas-conducta" },
     { name: t("Preguntas Frecuentes"), href: "/faqs" },
     { name: t("Galería"), href: "/galeria" },
@@ -60,7 +62,7 @@ export function Header() {
 
   // Función para verificar si una ruta está activa (pathname incluye prefijo de idioma: /es/parcelas)
   const isActiveRoute = (href: string) => {
-    const pathWithoutLocale = pathname.replace(/^\/(es|en|fr|de)/, "") || "/";
+    const pathWithoutLocale = pathname.replace(/^\/(es|en|fr|de|nl)/, "") || "/";
     if (href === "/") return pathWithoutLocale === "/" || pathWithoutLocale === "";
     return pathWithoutLocale === href || pathWithoutLocale.startsWith(href + "/");
   };
@@ -170,6 +172,17 @@ export function Header() {
                     >
                       <span className="text-xl">{languages.de.flag}</span>
                       <span className="font-medium">{languages.de.name}</span>
+                    </button>
+                    <button
+                      onClick={() => handleLanguageChange('nl')}
+                      className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200 touch-target ${
+                        currentLanguage === 'nl' 
+                          ? 'bg-earth text-white' 
+                          : 'text-gray-700 hover:bg-earth/10'
+                      }`}
+                    >
+                      <span className="text-xl">{languages.nl.flag}</span>
+                      <span className="font-medium">{languages.nl.name}</span>
                     </button>
                   </div>
                 </>

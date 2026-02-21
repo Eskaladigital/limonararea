@@ -60,6 +60,7 @@ const staticPages: Array<{ path: string; label: string }> = [
   { path:"/publicaciones", label:"Publicaciones" },
   { path:"/clientes-vip", label:"Clientes VIP" },
   { path:"/quienes-somos", label:"Quiénes somos" },
+  { path:"/mar-menor", label:"El Mar Menor" },
   { path:"/faqs", label:"FAQs" },
   { path:"/como-reservar-fin-semana", label:"Cómo reservar fin de semana" },
   { path:"/inteligencia-artificial", label:"Inteligencia artificial" },

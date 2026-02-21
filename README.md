@@ -28,10 +28,11 @@ Este proyecto es una **copia adaptada** de FURGOCASA (alquiler de campers). Se e
 
 - El historial heredado de Furgocasa **no aplica** a este proyecto.
 - Para eliminarlo: cierra Cursor y ejecuta `rmdir /s /q .git` en la carpeta del proyecto.
-- **Repositorio oficial (Eco Area Limonar)**: [https://github.com/Eskaladigital/limonararea](https://github.com/Eskaladigital/limonararea) — nombre del repo: **limonararea** (una palabra).  
-  Conectar y subir: `git init`, `git add .`, `git commit -m "Initial commit"`, `git remote add origin https://github.com/Eskaladigital/limonararea.git`, luego `git push -u origin master` (o `main` si en GitHub la rama por defecto es main).
+- **Repositorio oficial (Eco Area Limonar)**: [https://github.com/Eskaladigital/limonararea](https://github.com/Eskaladigital/limonararea) — nombre del repo: **limonararea** (una palabra). Rama por defecto: **main**.  
+  Conectar y subir: `git init`, `git add .`, `git commit -m "Initial commit - Eco Area Limonar"`, `git remote add origin https://github.com/Eskaladigital/limonararea.git`, `git push -u origin main`.
 - **Si `git add` falla con "Permission denied"**: ejecuta `scripts\git-push-outside-dropbox.cmd` o haz `git add` y `git commit` desde PowerShell/CMD fuera de Cursor.
-- **Si "src refspec master does not match any"**: significa que aún no hay ningún commit (falló el `git add`). Hay que conseguir que `git add .` y `git commit` terminen bien antes del push.
+- **Si "src refspec main does not match any"**: no hay ningún commit (falló el `git add`). Hay que completar `git add .` y `git commit` antes del push.
+- **Si "Unable to create index.lock"**: otro proceso Git está usando el repo o quedó bloqueado. Cierra Cursor/terminales, borra el archivo `.git\index.lock` y vuelve a intentar.
 
 ### Documentación para nuevos agentes
 

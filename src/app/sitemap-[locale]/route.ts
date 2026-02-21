@@ -163,6 +163,7 @@ export async function GET(
     { path: '/publicaciones', priority: 0.5, changeFrequency: 'weekly' },
     { path: '/clientes-vip', priority: 0.4, changeFrequency: 'monthly' },
     { path: '/quienes-somos', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/mar-menor', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/faqs', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/como-reservar-fin-semana', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/inteligencia-artificial', priority: 0.5, changeFrequency: 'monthly' },

@@ -62,6 +62,13 @@ export const commonTranslations = {
     de: "Preise",
     nl: "Rates"
   },
+  "El Mar Menor": {
+    es: "El Mar Menor",
+    en: "The Mar Menor",
+    fr: "Le Mar Menor",
+    de: "Der Mar Menor",
+    nl: "De Mar Menor"
+  },
   "Preguntas Frecuentes": {
     es: "Preguntas Frecuentes",
     en: "FAQs",

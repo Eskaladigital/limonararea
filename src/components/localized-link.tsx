@@ -23,7 +23,7 @@ export function LocalizedLink({ href, className, children, onClick, target, rel 
   const { language } = useLanguage();
   
   // Si es una URL externa o ya tiene el idioma, usarla tal cual
-  if (href.startsWith('http') || href.startsWith('//') || href.startsWith('#') || href.startsWith('/es/') || href.startsWith('/en/') || href.startsWith('/fr/') || href.startsWith('/de/')) {
+  if (href.startsWith('http') || href.startsWith('//') || href.startsWith('#') || href.startsWith('/es/') || href.startsWith('/en/') || href.startsWith('/fr/') || href.startsWith('/de/') || href.startsWith('/nl/')) {
     return (
       <Link href={href} className={className} onClick={onClick} target={target} rel={rel}>
         {children}

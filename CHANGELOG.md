@@ -23,6 +23,17 @@ Historial de cambios y versiones del proyecto.
 
 ---
 
+## ⚡ [4.4.5] - 21 de Febrero 2026 - **Repositorio GitHub y documentación Git**
+
+### Repo oficial y rama main
+
+- **Repositorio**: [https://github.com/Eskaladigital/limonararea](https://github.com/Eskaladigital/limonararea) — primer push realizado; rama por defecto **main**.
+- **README.md**: instrucciones Git actualizadas (rama main, index.lock, permission denied, src refspec).
+- **docs/00-PROYECTO-ECO-AREA-LIMONAR.md**: URL y comandos con `git push -u origin main`.
+- **scripts/git-push-outside-dropbox.cmd**: push con `main` en lugar de `master`.
+
+---
+
 ## ⚡ [4.4.3] - 18 de Febrero 2026 - **Botón Copiar detalles de reserva**
 
 ### Admin: Detalle de reserva

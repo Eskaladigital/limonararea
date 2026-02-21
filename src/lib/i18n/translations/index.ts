@@ -21,6 +21,7 @@ import { commonTranslations } from './common';
 import { homeTranslations } from './home';
 import { offersTranslations } from './offers';
 import { cookiesTranslations } from './cookies';
+import { marMenorTranslations } from './mar-menor';
 import { generatedTranslations } from './generated';
 // Importar legacy hasta que migremos todo
 import { staticTranslations as legacyTranslations } from '../../translations-preload';
@@ -35,6 +36,7 @@ export const staticTranslations = {
   ...homeTranslations,        // Override: home page
   ...offersTranslations,      // Override: ofertas
   ...cookiesTranslations,     // Override: cookies banner
+  ...marMenorTranslations,    // Override: página Mar Menor
   ...generatedTranslations,   // Override: generadas por script
 };
 
