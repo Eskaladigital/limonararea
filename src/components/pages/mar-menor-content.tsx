@@ -45,10 +45,10 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* Resumen ejecutivo — ecosistema y crisis */}
+      {/* Resumen ejecutivo condensado con bullets y stats */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-start">
             <div>
               <p className="text-xs md:text-sm font-extrabold text-earth uppercase tracking-[0.15em] mb-4">
                 {t("Referencia")}
@@ -56,12 +56,53 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
                 {t("Qué es el Mar Menor")}
               </h2>
-              <div className="space-y-5 text-gray-600 leading-relaxed text-base md:text-lg">
-                <p>{t("mar_menor_resumen_p1")}</p>
-                <p>{t("mar_menor_resumen_p2")}</p>
-                <p>{t("mar_menor_resumen_p3")}</p>
+              
+              {/* Stats destacadas */}
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                <div className="text-center p-4 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100">
+                  <div className="text-3xl font-heading font-extrabold text-blue-600">~135</div>
+                  <div className="text-xs text-gray-600 uppercase tracking-wider mt-1">km² laguna</div>
+                </div>
+                <div className="text-center p-4 rounded-xl bg-gradient-to-br from-red-50 to-orange-50 border border-red-100">
+                  <div className="text-3xl font-heading font-extrabold text-red-600">85%</div>
+                  <div className="text-xs text-gray-600 uppercase tracking-wider mt-1">praderas perdidas</div>
+                </div>
+                <div className="text-center p-4 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100">
+                  <div className="text-3xl font-heading font-extrabold text-green-600">675M€</div>
+                  <div className="text-xs text-gray-600 uppercase tracking-wider mt-1">plan recuperación</div>
+                </div>
+              </div>
+
+              {/* Bullets condensados */}
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                    <Waves className="h-3.5 w-3.5 text-blue-600" />
+                  </div>
+                  <p className="text-base"><strong>Mayor laguna salada de Europa.</strong> Sistema semi-cerrado de 135 km², separado del Mediterráneo por La Manga. Cinco golas regulan la renovación del agua (cada ~2 años).</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 flex items-center justify-center mt-1">
+                    <AlertTriangle className="h-3.5 w-3.5 text-red-600" />
+                  </div>
+                  <p className="text-base"><strong>Crisis ecológica grave.</strong> Eutrofización por nitratos agrícolas: "sopa verde" 2016, 85% praderas muertas, anoxia y mortandad masiva de peces (2019, 2021).</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <Shield className="h-3.5 w-3.5 text-green-600" />
+                  </div>
+                  <p className="text-base"><strong>Planes de restauración activos.</strong> 675M€ (MITECO) + 124M€ (Murcia): desnitrificación, saneamiento, restauración hábitats, personalidad jurídica (2022).</p>
+                </div>
+              </div>
+
+              {/* Quote destacado */}
+              <div className="mt-8 p-6 rounded-xl bg-clay/5 border-l-4 border-clay">
+                <p className="text-lg font-medium text-gray-800 italic">
+                  "No hay solución única: se requieren acciones simultáneas en toda la cuenca y un enfoque de turismo sostenible."
+                </p>
               </div>
             </div>
+            
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-3">
                 <div className="relative h-[180px] rounded-2xl overflow-hidden">
@@ -84,7 +125,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* ECO: Eco Area Limonar y el ecosistema - MOVIDO ARRIBA */}
+      {/* ECO: Condensado y más directo */}
       <section className="relative min-h-[420px] lg:min-h-[480px] flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
@@ -106,11 +147,9 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
               {t("Eco Area Limonar y el Mar Menor: ecosistema, ecología y turismo responsable")}
             </h2>
-            <div className="space-y-4 text-white/90 leading-relaxed text-base md:text-lg">
-              <p>{t("mar_menor_eco_p1")}</p>
-              <p>{t("mar_menor_eco_p2")}</p>
-              <p>{t("mar_menor_eco_p3")}</p>
-              <p>{t("mar_menor_eco_p4")}</p>
+            <div className="max-w-2xl mx-auto space-y-4 text-white/95 leading-relaxed text-base md:text-lg">
+              <p><strong className="text-clay-lt">Nuestro compromiso es claro:</strong> estamos a orillas del Mar Menor, y su salud es nuestro futuro. Un turismo sostenible no es opcional, es esencial.</p>
+              <p>Esta página reúne información rigurosa para que visitantes y viajeros entiendan la laguna, su crisis y cómo cuidarla. <strong>El turismo y la ecología pueden ir de la mano.</strong></p>
             </div>
             <div className="mt-8">
               <LocalizedLink
@@ -125,7 +164,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* Ubicación y geografía */}
+      {/* Ubicación condensada */}
       <section className="py-16 lg:py-24 bg-sand-lt">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
@@ -154,11 +193,21 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
                 {t("Ubicación y geografía")}
               </h2>
-              <div className="space-y-5 text-gray-600 leading-relaxed text-base md:text-lg">
-                <p>{t("mar_menor_ubicacion_p1")}</p>
-                <p>{t("mar_menor_ubicacion_p2")}</p>
-              </div>
-              <div className="mt-8 grid grid-cols-3 gap-4">
+              <ul className="space-y-3 text-gray-700 leading-relaxed mb-8">
+                <li className="flex items-start gap-3">
+                  <span className="text-clay font-bold mt-1">•</span>
+                  <span><strong>Laguna litoral</strong> en la costa mediterránea de Murcia, sureste de España</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-clay font-bold mt-1">•</span>
+                  <span><strong>Aguas hipersalinas</strong> ({'>'}42 PSU), más cálidas y calmadas que el Mediterráneo</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-clay font-bold mt-1">•</span>
+                  <span><strong>Semi-cerrada:</strong> sensible a aportes de nutrientes por su renovación lenta (~2 años)</span>
+                </li>
+              </ul>
+              <div className="grid grid-cols-3 gap-4">
                 {[
                   { value: "~135 km²", label: "Superficie" },
                   { value: "4-7 m", label: "Profundidad" },
@@ -175,7 +224,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* Hidrología y química — eutrofización */}
+      {/* Hidrología condensada */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-[1fr_400px] gap-12 items-start">
@@ -187,9 +236,23 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
                 {t("Hidrología y química del agua: eutrofización crónica")}
               </h2>
-              <div className="space-y-5 text-gray-600 leading-relaxed text-base md:text-lg">
-                <p>{t("mar_menor_hidrologia_p1")}</p>
-                <p>{t("mar_menor_hidrologia_p2")}</p>
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <p className="text-lg font-medium text-gray-800">Los niveles de nutrientes han crecido dramáticamente:</p>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 font-bold">→</span>
+                    <span><strong>Nitratos en laguna:</strong> de 0,06 mg/L (años 80) a 0,37 mg/L (2017)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-500 font-bold">→</span>
+                    <span><strong>Acuífero Campo de Cartagena:</strong> 200-250 mg/L de nitratos</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-500 font-bold">→</span>
+                    <span><strong>Oxígeno disuelto:</strong> "bolsas" anóxicas en verano bajo 4-6m de profundidad</span>
+                  </li>
+                </ul>
+                <p className="text-base text-gray-600 italic">Tras los blooms masivos (2016, 2019, 2021), la descomposición agotó el oxígeno y causó mortandades en zona profunda.</p>
               </div>
             </div>
             <div className="space-y-3">
@@ -212,7 +275,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* Biodiversidad en profundidad */}
+      {/* Biodiversidad condensada */}
       <section className="py-16 lg:py-24 bg-sand-lt">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
@@ -223,10 +286,13 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
               {t("Biodiversidad: especies clave y conservación")}
             </h2>
-            <div className="max-w-3xl mx-auto space-y-4 text-gray-600 leading-relaxed text-base md:text-lg">
-              <p>{t("mar_menor_biodiv_p1")}</p>
-              <p>{t("mar_menor_biodiv_p2")}</p>
-              <p>{t("mar_menor_biodiv_p3")}</p>
+            <div className="max-w-3xl mx-auto">
+              <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4"><strong>Comunidades marinas únicas,</strong> gravemente afectadas: el 85% de praderas sumergidas (Cymodocea, Caulerpa) desaparecieron tras 2016.</p>
+              <div className="inline-flex items-center gap-6 text-red-600 font-bold text-sm">
+                <span>Fartet: peligro crítico</span>
+                <span>Nacra: peligro</span>
+                <span>Caballito de mar: peligro crítico</span>
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -307,7 +373,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* Causas y fuentes de contaminación */}
+      {/* Causas condensadas */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-[400px_1fr] gap-12 items-start">
@@ -330,12 +396,22 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
                 {t("Causas y fuentes de contaminación")}
               </h2>
-              <div className="space-y-5 text-gray-600 leading-relaxed text-base md:text-lg">
-                <p>{t("mar_menor_causas_p1")}</p>
-                <p>{t("mar_menor_causas_p2")}</p>
-                <p>{t("mar_menor_causas_p3")}</p>
-              </div>
-              <div className="mt-8 p-6 rounded-xl bg-red-50 border-2 border-red-200">
+              <p className="text-lg font-medium text-gray-800 mb-4">La evidencia científica señala sin ambigüedad: <strong>fertilizantes y estiércoles agrícolas.</strong></p>
+              <ul className="space-y-3 text-gray-700 leading-relaxed mb-6">
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold mt-1">•</span>
+                  <span><strong>3.300 t/año de nitratos</strong> por rambla del Albujón (2014-2016)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold mt-1">•</span>
+                  <span><strong>400 granjas porcinas</strong> (~800.000 cerdos) generan 5.700 t N/año</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500 font-bold mt-1">•</span>
+                  <span><strong>Superávit: 160-180 kg N/ha</strong> en el Campo de Cartagena</span>
+                </li>
+              </ul>
+              <div className="p-6 rounded-xl bg-red-50 border-2 border-red-200">
                 <p className="text-sm text-red-900 font-bold">⚠️ 3.300 t/año de nitratos por la rambla del Albujón | 160-180 kg N/ha de superávit</p>
               </div>
             </div>
@@ -343,7 +419,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* Impactos ecológicos y socioeconómicos */}
+      {/* Impactos condensados */}
       <section className="py-16 lg:py-24 bg-sand-lt">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
@@ -363,9 +439,24 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
                 </div>
                 <h3 className="font-heading font-extrabold text-earth text-xl">Ecológicos</h3>
               </div>
-              <div className="space-y-3 text-gray-600 leading-relaxed">
-                <p>{t("mar_menor_impactos_p1")}</p>
-              </div>
+              <ul className="space-y-2 text-gray-700 text-sm">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">→</span>
+                  <span>85% praderas sumergidas muertas</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">→</span>
+                  <span>Colapso comunidades peces y crustáceos</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">→</span>
+                  <span>Especies invasoras y algas filamentosas</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">→</span>
+                  <span>4,5 t peces muertos (2021)</span>
+                </li>
+              </ul>
             </div>
             <div className="p-8 rounded-2xl bg-white border-2 border-earth/10 shadow-lg">
               <div className="flex items-center gap-3 mb-4">
@@ -374,16 +465,30 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
                 </div>
                 <h3 className="font-heading font-extrabold text-earth text-xl">Socioeconómicos</h3>
               </div>
-              <div className="space-y-3 text-gray-600 leading-relaxed">
-                <p>{t("mar_menor_impactos_p2")}</p>
-                <p>{t("mar_menor_impactos_p3")}</p>
-              </div>
+              <ul className="space-y-2 text-gray-700 text-sm">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold">→</span>
+                  <span>~50% oferta hotelera regional afectada</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold">→</span>
+                  <span>-45% revalorización viviendas (2015-2021)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold">→</span>
+                  <span>~4.150 M€ pérdida valor mercado</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold">→</span>
+                  <span>Pesca y acuicultura locales en declive</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Medidas de gestión y restauración */}
+      {/* Medidas condensadas - solo tabla con highlights */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
@@ -394,9 +499,8 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
               {t("Medidas de gestión y restauración")}
             </h2>
-            <div className="max-w-3xl mx-auto space-y-4 text-gray-600 leading-relaxed text-base md:text-lg">
-              <p>{t("mar_menor_medidas_p1")}</p>
-              <p>{t("mar_menor_medidas_p2")}</p>
+            <div className="max-w-3xl mx-auto">
+              <p className="text-gray-700 leading-relaxed text-base md:text-lg"><strong>Planes multianuales activos:</strong> MITECO (675M€ hasta 2026) + Plan Mar Menor 2025 (207 proyectos, 124,7M€).</p>
             </div>
           </div>
           
@@ -442,61 +546,48 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* Marco legal */}
+      {/* Marco legal - super condensado */}
       <section className="py-16 lg:py-24 bg-sand-lt">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
-                <Shield className="h-4 w-4" />
-                Legislación
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
-                {t("Marco legal y responsabilidades")}
-              </h2>
-              <div className="space-y-5 text-gray-600 leading-relaxed text-base md:text-lg">
-                <p>{t("mar_menor_marco_p1")}</p>
-                <p>{t("mar_menor_marco_p2")}</p>
-              </div>
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
+              <Shield className="h-4 w-4" />
+              Legislación
             </div>
-            <div className="space-y-4">
-              {[
-                { year: "2020", title: "Ley 3/2020", desc: "Recuperación y protección del Mar Menor" },
-                { year: "2022", title: "Personalidad jurídica", desc: "Primera laguna de Europa con derechos propios" },
-                { year: "2024", title: "Interés general", desc: "Real Decreto del Consejo de Ministros" },
-              ].map((item, i) => (
-                <div key={i} className="p-6 rounded-xl bg-white border-2 border-earth/10 hover:border-clay/30 transition-all shadow-sm hover:shadow-lg">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-clay/10 flex items-center justify-center">
-                      <span className="text-clay font-heading font-extrabold text-lg">{item.year}</span>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-heading font-extrabold text-earth mb-1">{item.title}</h3>
-                      <p className="text-sm text-gray-600">{item.desc}</p>
-                    </div>
-                  </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-4 leading-tight">
+              {t("Marco legal y responsabilidades")}
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              { year: "2020", title: "Ley 3/2020", desc: "Recuperación y protección del Mar Menor", color: "bg-blue-500" },
+              { year: "2022", title: "Personalidad jurídica", desc: "Primera laguna de Europa con derechos propios", color: "bg-green-500" },
+              { year: "2024", title: "Interés general", desc: "Real Decreto del Consejo de Ministros", color: "bg-orange-500" },
+            ].map((item, i) => (
+              <div key={i} className="p-6 rounded-xl bg-white border-2 border-earth/10 hover:border-clay/30 transition-all shadow-sm hover:shadow-lg text-center">
+                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${item.color} text-white font-heading font-extrabold text-xl mb-4 shadow-lg`}>
+                  {item.year}
                 </div>
-              ))}
-            </div>
+                <h3 className="font-heading font-extrabold text-earth mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Datos y monitoreo */}
+      {/* Datos - super condensado */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <BarChart3 className="h-4 w-4" />
               Ciencia y datos
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-4 leading-tight">
               {t("Datos y monitoreo")}
             </h2>
-            <div className="max-w-3xl mx-auto space-y-4 text-gray-600 leading-relaxed text-base md:text-lg">
-              <p>{t("mar_menor_datos_p1")}</p>
-              <p>{t("mar_menor_datos_p2")}</p>
-            </div>
+            <p className="text-gray-700 max-w-2xl mx-auto">Monitorización intensiva: IEO-CSIC (BELICH), boyas oceanográficas, Sentinel-2, datos abiertos en Canal Mar Menor.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -525,92 +616,89 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         </div>
       </section>
 
-      {/* Escenarios futuros */}
+      {/* Escenarios - más compacto */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-earth-deep to-earth text-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-clay-lt text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <TrendingUp className="h-4 w-4" />
               Futuro
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold mb-4 leading-tight">
               {t("Escenarios futuros y alternativas de restauración")}
             </h2>
+            <p className="text-white/70 max-w-2xl mx-auto">Tres posibles caminos según las acciones que tomemos hoy</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { title: "Optimista", color: "from-green-500 to-emerald-600", icon: "✓", text: t("mar_menor_escenarios_p1") },
-              { title: "Intermedio", color: "from-yellow-500 to-orange-500", icon: "~", text: t("mar_menor_escenarios_p2") },
-              { title: "Pesimista", color: "from-red-500 to-rose-600", icon: "✕", text: t("mar_menor_escenarios_p3") },
+              { title: "Optimista", color: "from-green-500 to-emerald-600", icon: "✓", desc: "Recuperación completa en 5-10 años con acciones integrales" },
+              { title: "Intermedio", color: "from-yellow-500 to-orange-500", icon: "~", desc: "Mejora parcial pero vulnerable a nuevos episodios" },
+              { title: "Pesimista", color: "from-red-500 to-rose-600", icon: "✕", desc: "Colapso irreversible: pantano eutrófico permanente" },
             ].map((esc, i) => (
               <div key={i} className="group relative">
                 <div className={`absolute inset-0 bg-gradient-to-br ${esc.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity`} />
                 <div className="relative p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3 mb-3">
                     <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${esc.color} flex items-center justify-center text-white font-bold text-xl shadow-lg`}>
                       {esc.icon}
                     </div>
                     <h3 className="font-heading font-extrabold text-xl">{esc.title}</h3>
                   </div>
-                  <p className="text-white/80 text-sm leading-relaxed">{esc.text}</p>
+                  <p className="text-white/80 text-sm leading-relaxed">{esc.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-10 p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-center">
-            <p className="text-white/90 leading-relaxed">{t("mar_menor_escenarios_p4")}</p>
-          </div>
         </div>
       </section>
 
-      {/* Recomendaciones prioritarias */}
+      {/* Recomendaciones - compactas */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-clay text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4">
               <Shield className="h-4 w-4" />
               Acción prioritaria
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-earth mb-4 leading-tight">
               {t("Recomendaciones prácticas prioritarias")}
             </h2>
+            <p className="text-gray-700 max-w-2xl mx-auto">Seis medidas clave para frenar la crisis</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { num: "1", priority: "Alta", text: t("mar_menor_recom_1") },
-              { num: "2", priority: "Alta", text: t("mar_menor_recom_2") },
-              { num: "3", priority: "Media-Alta", text: t("mar_menor_recom_3") },
-              { num: "4", priority: "Alta", text: t("mar_menor_recom_4") },
-              { num: "5", priority: "Media", text: t("mar_menor_recom_5") },
-              { num: "6", priority: "Media", text: t("mar_menor_recom_6") },
+              { num: "1", priority: "Alta", text: "Control estricto fertilizantes y filtros verdes", icon: AlertTriangle },
+              { num: "2", priority: "Alta", text: "Mejora depuración urbana y EDAR completas", icon: Droplets },
+              { num: "3", priority: "Media-Alta", text: "Restauración praderas marinas y dunas", icon: Leaf },
+              { num: "4", priority: "Alta", text: "Aplicar Ley 3/2020 con sanciones efectivas", icon: Shield },
+              { num: "5", priority: "Media", text: "Innovación: proyectos desnitrificación", icon: TrendingUp },
+              { num: "6", priority: "Media", text: "Apoyo transición prácticas sostenibles", icon: Heart },
             ].map((item, i) => (
-              <div key={i} className="group relative p-6 rounded-2xl bg-sand-lt border-2 border-earth/10 hover:border-clay/30 transition-all shadow-sm hover:shadow-lg">
+              <div key={i} className="group relative p-6 rounded-xl bg-sand-lt border-2 border-earth/10 hover:border-clay/30 transition-all shadow-sm hover:shadow-lg">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-clay text-white font-heading font-extrabold text-lg flex items-center justify-center shadow-lg">
                     {item.num}
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                        item.priority === "Alta" ? "bg-red-100 text-red-700" : "bg-yellow-100 text-yellow-700"
-                      }`}>
-                        {item.priority}
-                      </span>
+                    <div className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full mb-2 ${
+                      item.priority === "Alta" ? "bg-red-100 text-red-700" : "bg-yellow-100 text-yellow-700"
+                    }`}>
+                      {item.priority}
                     </div>
-                    <p className="text-gray-600 leading-relaxed">{item.text}</p>
+                    <p className="text-gray-700 font-medium text-sm leading-relaxed">{item.text}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-10 p-8 rounded-2xl bg-clay/5 border-2 border-clay/20 text-center">
-            <p className="text-gray-700 leading-relaxed text-lg font-medium">{t("mar_menor_recom_final")}</p>
+          <div className="mt-10 p-6 rounded-xl bg-clay/5 border-2 border-clay/20 text-center">
+            <p className="text-gray-800 font-medium italic">Se requieren acciones simultáneas en toda la cuenca. Cualquier retraso implica mayor coste o imposibilidad de recuperación.</p>
           </div>
         </div>
       </section>
 
-      {/* Turismo y qué hacer */}
-      <section className="relative min-h-[500px] lg:min-h-[600px] flex flex-col justify-center overflow-hidden">
+      {/* Turismo - condensado */}
+      <section className="relative min-h-[480px] lg:min-h-[560px] flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/slides/limonar_area_camper_mar_menor_6.webp"
@@ -631,11 +719,10 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6">
               {t("Turismo y qué hacer en el Mar Menor")}
             </h2>
-            <div className="space-y-5 text-white/90 leading-relaxed text-base md:text-lg">
-              <p>{t("mar_menor_turismo_p1")}</p>
-              <p>{t("mar_menor_turismo_p2")}</p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <p className="text-white/95 leading-relaxed text-base md:text-lg mb-6">
+              <strong>Playas tranquilas, deportes náuticos, gastronomía local.</strong> Un turismo responsable —respetando normas, no vertiendo residuos y apoyando iniciativas locales— contribuye a preservar el ecosistema.
+            </p>
+            <div className="flex flex-wrap gap-3">
               <LocalizedLink
                 href="/reservar"
                 className="inline-flex items-center gap-2 bg-clay hover:bg-clay-dk text-white font-extrabold px-8 py-4 rounded-full text-base transition-all shadow-xl"
