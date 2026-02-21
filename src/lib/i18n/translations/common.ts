@@ -23,7 +23,7 @@ export const commonTranslations = {
     en: "Book now",
     fr: "Réserver maintenant",
     de: "Jetzt buchen",
-    nl: "Book now"
+    nl: "Boek nu"
   },
   "Murcia, España": {
     es: "Murcia, España",
@@ -125,14 +125,14 @@ export const commonTranslations = {
     en: "Read more",
     fr: "Lire plus",
     de: "Mehr lesen",
-    nl: "Read more"
+    nl: "Lees meer"
   },
   "Ver más": {
     es: "Ver más",
     en: "See more",
     fr: "Voir plus",
     de: "Mehr sehen",
-    nl: "See more"
+    nl: "Bekijk meer"
   },
   "Continuar": {
     es: "Continuar",
@@ -216,7 +216,7 @@ export const commonTranslations = {
     en: "Contact",
     fr: "Contacter",
     de: "Kontaktieren",
-    nl: "Contact"
+    nl: "Contacteer"
   },
   
   // Time labels

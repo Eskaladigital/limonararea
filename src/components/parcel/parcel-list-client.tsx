@@ -219,7 +219,7 @@ export function ParcelListClient({ initialParcels }: ParcelListClientProps) {
                         {t("Descuentos por duración")}
                       </p>
                       <p className="text-gray-600">
-                        hasta -10% (7d) · hasta -20% (14d) · hasta -30% (21d) en Temp. Baja
+                        {t("hasta -10% (7d) · hasta -20% (14d) · hasta -30% (21d) en Temp. Baja")}
                       </p>
                     </div>
                     <ArrowRight className="h-4 w-4 text-green-600 flex-shrink-0 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all" />

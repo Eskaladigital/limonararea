@@ -269,15 +269,15 @@ export function TarifasClient() {
             <div className="flex flex-wrap justify-center gap-6 mt-8">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-white border-2 border-gray-300 rounded" />
-                <span className="text-sm font-medium text-gray-700">Temporada Baja</span>
+                <span className="text-sm font-medium text-gray-700">{t("Temporada Baja")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-orange-200 border-2 border-orange-300 rounded" />
-                <span className="text-sm font-medium text-gray-700">Temporada Media</span>
+                <span className="text-sm font-medium text-gray-700">{t("Temporada Media")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-red-200 border-2 border-red-300 rounded" />
-                <span className="text-sm font-medium text-gray-700">Temporada Alta</span>
+                <span className="text-sm font-medium text-gray-700">{t("Temporada Alta")}</span>
               </div>
             </div>
           </div>
@@ -352,8 +352,8 @@ export function TarifasClient() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
             {cancellationPolicy.map((item, index) => (
               <div key={index} className={`rounded-2xl p-8 text-center shadow-lg border-t-8 ${item.border} bg-white`}>
-                <p className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4 h-10 flex items-center justify-center">{item.period}</p>
-                <p className={`text-3xl font-heading font-bold ${item.color}`}>{item.charge}</p>
+                <p className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4 h-10 flex items-center justify-center">{t(item.period)}</p>
+                <p className={`text-3xl font-heading font-bold ${item.color}`}>{t(item.charge)}</p>
               </div>
             ))}
           </div>

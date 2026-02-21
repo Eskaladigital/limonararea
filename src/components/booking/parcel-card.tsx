@@ -241,7 +241,7 @@ export function ParcelCard({ parcel, pricing, searchParams, searchQueryId }: Par
                 {t("Descuentos por duración")}
               </p>
               <p className="text-xs text-gray-600">
-                hasta -10% (7d) · hasta -20% (14d) · hasta -30% (21d) en Temp. Baja
+                {t("hasta -10% (7d) · hasta -20% (14d) · hasta -30% (21d) en Temp. Baja")}
               </p>
             </div>
             <ArrowRight className="h-3.5 w-3.5 flex-shrink-0 text-green-600 opacity-0 group-hover/discount:opacity-100 group-hover/discount:translate-x-0.5 transition-all" />

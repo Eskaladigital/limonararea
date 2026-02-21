@@ -3,7 +3,7 @@
  * - Parcelas (como vehicles: name, short_description)
  * - Posts (title, excerpt, content, meta_title, meta_description)
  * - Categorías de contenido (name)
- * - Claves i18n página Mar Menor (source_table 'i18n', desde src/lib/i18n/data/mar-menor-es.json)
+ * - Claves i18n Mar Menor (mar-menor-es.json) y páginas (pages-es.json): source_table 'i18n'
  * Idiomas: EN, FR, DE, NL
  *
  * Requisitos en .env.local:
@@ -221,6 +221,30 @@ async function main() {
       }
     }
     console.log(`📄 Claves Mar Menor (i18n): ${Object.keys(marMenorEs).length} → hasta ${LOCALES.length * Object.keys(marMenorEs).length} traducciones\n`);
+  }
+
+  // 5) Claves i18n páginas (contacto, normas, galería, footer, etc.) → content_translations, source_table 'i18n'
+  const pagesPath = path.join(__dirname, '../src/lib/i18n/data/pages-es.json');
+  if (fs.existsSync(pagesPath)) {
+    const pagesEs = JSON.parse(fs.readFileSync(pagesPath, 'utf8'));
+    const SOURCE_FIELD = 'text';
+    for (const [key, spanishText] of Object.entries(pagesEs)) {
+      if (spanishText == null || String(spanishText).trim() === '') continue;
+      const text = String(spanishText);
+      const useLong = text.length > 400;
+      for (const locale of LOCALES) {
+        if (existing.has(buildKey('i18n', key, SOURCE_FIELD, locale))) continue;
+        missing.push({
+          source_table: 'i18n',
+          source_id: key,
+          source_field: SOURCE_FIELD,
+          locale,
+          original_text: text,
+          context: useLong ? 'long' : 'general',
+        });
+      }
+    }
+    console.log(`📄 Claves páginas (i18n): ${Object.keys(pagesEs).length} → hasta ${LOCALES.length * Object.keys(pagesEs).length} traducciones\n`);
   }
 
   console.log(`📋 Traducciones a generar: ${missing.length}\n`);

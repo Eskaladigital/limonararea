@@ -9,21 +9,21 @@ export const homeTranslations = {
     en: "Your hotel",
     fr: "Votre hôtel",
     de: "Ihr Hotel",
-    nl: "Your hotel"
+    nl: "Uw hotel"
   },
   "sobre ruedas": {
     es: "sobre ruedas",
     en: "on wheels",
     fr: "sur roues",
     de: "auf Rädern",
-    nl: "on wheels"
+    nl: "op wielen"
   },
   "Las mejores furgonetas campers de gran volumen en alquiler": {
     es: "Las mejores furgonetas campers de gran volumen en alquiler",
     en: "The best large-volume camper vans for rent",
     fr: "Les meilleurs camping-cars de grand volume à louer",
     de: "Die besten großvolumigen Campervans zur Miete",
-    nl: "The best large-volume camper vans for rent"
+    nl: "De beste grote campervans te huur"
   },
 
   // Flota Section
@@ -1175,5 +1175,924 @@ export const homeTranslations = {
     fr: "articles",
     de: "Artikel",
     nl: "artikelen"
+  },
+
+  // Parcelas / Emplacements
+  "Nuestras Parcelas": {
+    es: "Nuestras Parcelas",
+    en: "Our Parcels",
+    fr: "Nos emplacements",
+    de: "Unsere Stellplätze",
+    nl: "Onze percelen"
+  },
+  "Amplias, equipadas y a pocos minutos del Mar Menor": {
+    es: "Amplias, equipadas y a pocos minutos del Mar Menor",
+    en: "Spacious, equipped and a few minutes from the Mar Menor",
+    fr: "Spacieux, équipés et à quelques minutes du Mar Menor",
+    de: "Großzügig, ausgestattet und nur wenige Minuten vom Mar Menor",
+    nl: "Ruim, uitgerust en op een paar minuten van de Mar Menor"
+  },
+  "Los Nietos": {
+    es: "Los Nietos",
+    en: "Los Nietos",
+    fr: "Los Nietos",
+    de: "Los Nietos",
+    nl: "Los Nietos"
+  },
+  "Electricidad 16A": {
+    es: "Electricidad 16A",
+    en: "16A Electricity",
+    fr: "Électricité 16A",
+    de: "Strom 16A",
+    nl: "Elektriciteit 16A"
+  },
+  "WiFi fibra": {
+    es: "WiFi fibra",
+    en: "Fibre WiFi",
+    fr: "WiFi fibre",
+    de: "Glasfaser-WLAN",
+    nl: "Glasvezel WiFi"
+  },
+  "Sanitarios": {
+    es: "Sanitarios",
+    en: "Toilets",
+    fr: "Sanitaires",
+    de: "Sanitäranlagen",
+    nl: "Sanitair"
+  },
+  "Vaciado incluido": {
+    es: "Vaciado incluido",
+    en: "Emptying included",
+    fr: "Vidange incluse",
+    de: "Entleerung inklusive",
+    nl: "Lediging inbegrepen"
+  },
+  "Seguridad 24h": {
+    es: "Seguridad 24h",
+    en: "24h security",
+    fr: "Sécurité 24h",
+    de: "24h Sicherheit",
+    nl: "24u beveiliging"
+  },
+  "¿No encuentras lo que buscas?": {
+    es: "¿No encuentras lo que buscas?",
+    en: "Can't find what you're looking for?",
+    fr: "Vous ne trouvez pas ce que vous cherchez ?",
+    de: "Finden Sie nicht, was Sie suchen?",
+    nl: "Vind je niet wat je zoekt?"
+  },
+  "Contáctanos y te ayudaremos a encontrar la parcela perfecta para ti.": {
+    es: "Contáctanos y te ayudaremos a encontrar la parcela perfecta para ti.",
+    en: "Contact us and we'll help you find the perfect parcel for you.",
+    fr: "Contactez-nous et nous vous aiderons à trouver l'emplacement parfait pour vous.",
+    de: "Kontaktieren Sie uns und wir helfen Ihnen, den perfekten Stellplatz zu finden.",
+    nl: "Neem contact op en we helpen je de perfecte plek te vinden."
+  },
+  "Filtros": {
+    es: "Filtros",
+    en: "Filters",
+    fr: "Filtres",
+    de: "Filter",
+    nl: "Filters"
+  },
+  "Ordenar por": {
+    es: "Ordenar por",
+    en: "Sort by",
+    fr: "Trier par",
+    de: "Sortieren nach",
+    nl: "Sorteren op"
+  },
+  "Recomendado": {
+    es: "Recomendado",
+    en: "Recommended",
+    fr: "Recommandé",
+    de: "Empfohlen",
+    nl: "Aanbevolen"
+  },
+  "Precio: menor a mayor": {
+    es: "Precio: menor a mayor",
+    en: "Price: low to high",
+    fr: "Prix : croissant",
+    de: "Preis: aufsteigend",
+    nl: "Prijs: laag naar hoog"
+  },
+  "Precio: mayor a menor": {
+    es: "Precio: mayor a menor",
+    en: "Price: high to low",
+    fr: "Prix : décroissant",
+    de: "Preis: absteigend",
+    nl: "Prijs: hoog naar laag"
+  },
+  "parcelas": {
+    es: "parcelas",
+    en: "parcels",
+    fr: "emplacements",
+    de: "Stellplätze",
+    nl: "percelen"
+  },
+  "No se encontraron parcelas": {
+    es: "No se encontraron parcelas",
+    en: "No parcels found",
+    fr: "Aucun emplacement trouvé",
+    de: "Keine Stellplätze gefunden",
+    nl: "Geen percelen gevonden"
+  },
+  "Intenta ajustar los filtros de búsqueda": {
+    es: "Intenta ajustar los filtros de búsqueda",
+    en: "Try adjusting the search filters",
+    fr: "Essayez d'ajuster les filtres de recherche",
+    de: "Versuchen Sie, die Suchfilter anzupassen",
+    nl: "Probeer de zoekfilters aan te passen"
+  },
+  "Limpiar todos los filtros": {
+    es: "Limpiar todos los filtros",
+    en: "Clear all filters",
+    fr: "Effacer tous les filtres",
+    de: "Alle Filter zurücksetzen",
+    nl: "Alle filters wissen"
+  },
+  "Desde": {
+    es: "Desde",
+    en: "From",
+    fr: "À partir de",
+    de: "Ab",
+    nl: "Vanaf"
+  },
+  "Ver detalles": {
+    es: "Ver detalles",
+    en: "View details",
+    fr: "Voir les détails",
+    de: "Details ansehen",
+    nl: "Bekijk details"
+  },
+  "Descuentos por duración": {
+    es: "Descuentos por duración",
+    en: "Duration discounts",
+    fr: "Réductions selon la durée",
+    de: "Rabatte nach Aufenthaltsdauer",
+    nl: "Kortingen per verblijfsduur"
+  },
+  "hasta -10% (7d) · hasta -20% (14d) · hasta -30% (21d) en Temp. Baja": {
+    es: "hasta -10% (7d) · hasta -20% (14d) · hasta -30% (21d) en Temp. Baja",
+    en: "up to -10% (7d) · up to -20% (14d) · up to -30% (21d) in Low Season",
+    fr: "jusqu'à -10% (7j) · jusqu'à -20% (14j) · jusqu'à -30% (21j) en Basse saison",
+    de: "bis -10% (7T) · bis -20% (14T) · bis -30% (21T) in Nebensaison",
+    nl: "tot -10% (7d) · tot -20% (14d) · tot -30% (21d) in Laagseizoen"
+  },
+
+  // Tarifas / Rates
+  "Tarifas y Condiciones": {
+    es: "Tarifas y Condiciones",
+    en: "Rates and Conditions",
+    fr: "Tarifs et Conditions",
+    de: "Preise und Bedingungen",
+    nl: "Tarieven en voorwaarden"
+  },
+  "Información clara y transparente sobre precios y condiciones": {
+    es: "Información clara y transparente sobre precios y condiciones",
+    en: "Clear and transparent information on prices and conditions",
+    fr: "Informations claires et transparentes sur les prix et conditions",
+    de: "Klare und transparente Informationen zu Preisen und Bedingungen",
+    nl: "Duidelijke en transparante informatie over prijzen en voorwaarden"
+  },
+  "Precios por parcela": {
+    es: "Precios por parcela",
+    en: "Prices per parcel",
+    fr: "Prix par emplacement",
+    de: "Preise pro Stellplatz",
+    nl: "Prijzen per perceel"
+  },
+  "Tarifas orientativas por noche según temporada y duración": {
+    es: "Tarifas orientativas por noche según temporada y duración",
+    en: "Indicative rates per night by season and duration",
+    fr: "Tarifs indicatifs par nuit selon la saison et la durée",
+    de: "Richtpreise pro Nacht nach Saison und Aufenthaltsdauer",
+    nl: "Indicatieve tarieven per nacht volgens seizoen en verblijfsduur"
+  },
+  "Nota:": {
+    es: "Nota:",
+    en: "Note:",
+    fr: "Note :",
+    de: "Hinweis:",
+    nl: "Let op:"
+  },
+  "Estos precios son orientativos y pueden variar según la demanda. Consulta el precio exacto en nuestro buscador de disponibilidad.": {
+    es: "Estos precios son orientativos y pueden variar según la demanda. Consulta el precio exacto en nuestro buscador de disponibilidad.",
+    en: "These prices are indicative and may vary according to demand. Check the exact price in our availability search.",
+    fr: "Ces prix sont indicatifs et peuvent varier selon la demande. Consultez le prix exact dans notre outil de disponibilité.",
+    de: "Diese Preise sind Richtwerte und können je nach Nachfrage variieren. Den genauen Preis finden Sie in unserer Verfügbarkeitssuche.",
+    nl: "Deze prijzen zijn indicatief en kunnen variëren volgens de vraag. Raadpleeg de exacte prijs in onze beschikbaarheidszoeker."
+  },
+  "Temporada": {
+    es: "Temporada",
+    en: "Season",
+    fr: "Saison",
+    de: "Saison",
+    nl: "Seizoen"
+  },
+  "Menos de 7 noches": {
+    es: "Menos de 7 noches",
+    en: "Less than 7 nights",
+    fr: "Moins de 7 nuits",
+    de: "Weniger als 7 Nächte",
+    nl: "Minder dan 7 nachten"
+  },
+  "7 noches o más": {
+    es: "7 noches o más",
+    en: "7 nights or more",
+    fr: "7 nuits ou plus",
+    de: "7 Nächte oder mehr",
+    nl: "7 nachten of meer"
+  },
+  "14 noches o más": {
+    es: "14 noches o más",
+    en: "14 nights or more",
+    fr: "14 nuits ou plus",
+    de: "14 Nächte oder mehr",
+    nl: "14 nachten of meer"
+  },
+  "21 noches o más": {
+    es: "21 noches o más",
+    en: "21 nights or more",
+    fr: "21 nuits ou plus",
+    de: "21 Nächte oder mehr",
+    nl: "21 nachten of meer"
+  },
+  "Baja": {
+    es: "Baja",
+    en: "Low",
+    fr: "Basse",
+    de: "Niedrig",
+    nl: "Laag"
+  },
+  "Media": {
+    es: "Media",
+    en: "Medium",
+    fr: "Moyenne",
+    de: "Mittel",
+    nl: "Midden"
+  },
+  "Alta": {
+    es: "Alta",
+    en: "High",
+    fr: "Élevée",
+    de: "Hoch",
+    nl: "Hoog"
+  },
+  "Cómputo de noches": {
+    es: "Cómputo de noches",
+    en: "Night count",
+    fr: "Comptage des nuits",
+    de: "Nächtige Zählung",
+    nl: "Aantal nachten"
+  },
+  "La estancia se calcula por noches completas. La entrada es a partir de las 14:00 y la salida antes de las 12:00.": {
+    es: "La estancia se calcula por noches completas. La entrada es a partir de las 14:00 y la salida antes de las 12:00.",
+    en: "Stay is calculated in full nights. Check-in from 14:00 and check-out before 12:00.",
+    fr: "Le séjour est calculé en nuits complètes. Entrée à partir de 14h et sortie avant 12h.",
+    de: "Der Aufenthalt wird in vollen Nächten berechnet. Anreise ab 14:00, Abreise vor 12:00.",
+    nl: "Verblijf wordt in volledige nachten berekend. Inchecken vanaf 14:00, uitchecken vóór 12:00."
+  },
+  "Pago seguro": {
+    es: "Pago seguro",
+    en: "Secure payment",
+    fr: "Paiement sécurisé",
+    de: "Sichere Zahlung",
+    nl: "Veilige betaling"
+  },
+  "Pago con tarjeta de débito o crédito a través de pasarela segura. Confirmación inmediata por email.": {
+    es: "Pago con tarjeta de débito o crédito a través de pasarela segura. Confirmación inmediata por email.",
+    en: "Payment by debit or credit card via secure gateway. Immediate confirmation by email.",
+    fr: "Paiement par carte bancaire via passerelle sécurisée. Confirmation immédiate par email.",
+    de: "Zahlung per Debit- oder Kreditkarte über sicheres Gateway. Sofortige Bestätigung per E-Mail.",
+    nl: "Betaling met pin- of creditcard via veilige koppeling. Directe bevestiging per e-mail."
+  },
+  "Cuanto más tiempo, mejor precio": {
+    es: "Cuanto más tiempo, mejor precio",
+    en: "The longer you stay, the better the price",
+    fr: "Plus vous restez, plus le prix est avantageux",
+    de: "Je länger der Aufenthalt, desto günstiger der Preis",
+    nl: "Hoe langer je blijft, hoe beter de prijs"
+  },
+  "Descuentos automáticos según la duración de tu estancia": {
+    es: "Descuentos automáticos según la duración de tu estancia",
+    en: "Automatic discounts based on the length of your stay",
+    fr: "Réductions automatiques selon la durée de votre séjour",
+    de: "Automatische Rabatte nach Aufenthaltsdauer",
+    nl: "Automatische kortingen volgens verblijfsduur"
+  },
+  "Estancias de 7 días o más (Temp. Baja)": {
+    es: "Estancias de 7 días o más (Temp. Baja)",
+    en: "Stays of 7 days or more (Low Season)",
+    fr: "Séjours de 7 jours ou plus (Basse saison)",
+    de: "Aufenthalte von 7 Tagen oder mehr (Nebensaison)",
+    nl: "Verblijven van 7 dagen of meer (Laagseizoen)"
+  },
+  "Estancias de 14 días o más (Temp. Baja)": {
+    es: "Estancias de 14 días o más (Temp. Baja)",
+    en: "Stays of 14 days or more (Low Season)",
+    fr: "Séjours de 14 jours ou plus (Basse saison)",
+    de: "Aufenthalte von 14 Tagen oder mehr (Nebensaison)",
+    nl: "Verblijven van 14 dagen of meer (Laagseizoen)"
+  },
+  "Estancias de 21 días o más (Temp. Baja)": {
+    es: "Estancias de 21 días o más (Temp. Baja)",
+    en: "Stays of 21 days or more (Low Season)",
+    fr: "Séjours de 21 jours ou plus (Basse saison)",
+    de: "Aufenthalte von 21 Tagen oder mehr (Nebensaison)",
+    nl: "Verblijven van 21 dagen of meer (Laagseizoen)"
+  },
+  "Consultar precio para mis fechas": {
+    es: "Consultar precio para mis fechas",
+    en: "Check price for my dates",
+    fr: "Vérifier le prix pour mes dates",
+    de: "Preis für meine Daten prüfen",
+    nl: "Prijs voor mijn datums controleren"
+  },
+  "Todo lo esencial está incluido. Añade extras si los necesitas.": {
+    es: "Todo lo esencial está incluido. Añade extras si los necesitas.",
+    en: "All essentials are included. Add extras if you need them.",
+    fr: "L'essentiel est inclus. Ajoutez des options si besoin.",
+    de: "Alles Wichtige ist inklusive. Zusatzleistungen auf Wunsch.",
+    nl: "Alles noodzakelijke is inbegrepen. Voeg opties toe indien nodig."
+  },
+  "Incluido en el precio": {
+    es: "Incluido en el precio",
+    en: "Included in the price",
+    fr: "Inclus dans le prix",
+    de: "Im Preis inklusive",
+    nl: "Inbegrepen in de prijs"
+  },
+  "Sin sorpresas ni costes ocultos": {
+    es: "Sin sorpresas ni costes ocultos",
+    en: "No surprises or hidden costs",
+    fr: "Sans surprises ni frais cachés",
+    de: "Keine Überraschungen oder versteckte Kosten",
+    nl: "Geen verrassingen of verborgen kosten"
+  },
+  "Conexión de agua en la parcela": {
+    es: "Conexión de agua en la parcela",
+    en: "Water connection on the parcel",
+    fr: "Raccordement eau sur l'emplacement",
+    de: "Wasseranschluss auf dem Stellplatz",
+    nl: "Wateraansluiting op het perceel"
+  },
+  "Punto de vaciado de aguas grises y negras": {
+    es: "Punto de vaciado de aguas grises y negras",
+    en: "Grey and black water emptying point",
+    fr: "Point de vidange eaux grises et noires",
+    de: "Entleerung Grau- und Schwarzwasser",
+    nl: "Ledigingspunt grijs en zwart water"
+  },
+  "Parcelas amplias con sombra y césped": {
+    es: "Parcelas amplias con sombra y césped",
+    en: "Spacious parcels with shade and grass",
+    fr: "Emplacements spacieux avec ombre et pelouse",
+    de: "Großzügige Stellplätze mit Schatten und Rasen",
+    nl: "Ruime percelen met schaduw en gras"
+  },
+  "Acceso a zonas comunes y duchas": {
+    es: "Acceso a zonas comunes y duchas",
+    en: "Access to common areas and showers",
+    fr: "Accès aux espaces communs et douches",
+    de: "Zugang zu Gemeinschaftsbereichen und Duschen",
+    nl: "Toegang tot gemeenschappelijke ruimtes en douches"
+  },
+  "Extras opcionales": {
+    es: "Extras opcionales",
+    en: "Optional extras",
+    fr: "Options supplémentaires",
+    de: "Optionale Zusatzleistungen",
+    nl: "Optionele extra's"
+  },
+  "Mayor comodidad a tu medida": {
+    es: "Mayor comodidad a tu medida",
+    en: "Extra comfort to suit you",
+    fr: "Plus de confort à la carte",
+    de: "Mehr Komfort nach Maß",
+    nl: "Meer comfort naar wens"
+  },
+  "Wifi Premium": {
+    es: "Wifi Premium",
+    en: "Premium WiFi",
+    fr: "WiFi Premium",
+    de: "Premium-WLAN",
+    nl: "Premium WiFi"
+  },
+  "Calendario de temporadas": {
+    es: "Calendario de temporadas",
+    en: "Season calendar",
+    fr: "Calendrier des saisons",
+    de: "Saisonkalender",
+    nl: "Seizoenskalender"
+  },
+  "Consulta qué temporada aplica en tus fechas": {
+    es: "Consulta qué temporada aplica en tus fechas",
+    en: "Check which season applies to your dates",
+    fr: "Consultez quelle saison s'applique à vos dates",
+    de: "Prüfen Sie, welche Saison für Ihre Daten gilt",
+    nl: "Bekijk welk seizoen van toepassing is op uw data"
+  },
+  "Temporada Baja": {
+    es: "Temporada Baja",
+    en: "Low Season",
+    fr: "Basse saison",
+    de: "Nebensaison",
+    nl: "Laagseizoen"
+  },
+  "Temporada Media": {
+    es: "Temporada Media",
+    en: "Medium Season",
+    fr: "Moyenne saison",
+    de: "Mittelsaison",
+    nl: "Middenseizoen"
+  },
+  "Temporada Alta": {
+    es: "Temporada Alta",
+    en: "High Season",
+    fr: "Haute saison",
+    de: "Hochsaison",
+    nl: "Hoogseizoen"
+  },
+  "Calendario": {
+    es: "Calendario",
+    en: "Calendar",
+    fr: "Calendrier",
+    de: "Kalender",
+    nl: "Kalender"
+  },
+  "Duración de la estancia": {
+    es: "Duración de la estancia",
+    en: "Length of stay",
+    fr: "Durée du séjour",
+    de: "Aufenthaltsdauer",
+    nl: "Verblijfsduur"
+  },
+  "Noches mínimas según temporada": {
+    es: "Noches mínimas según temporada",
+    en: "Minimum nights by season",
+    fr: "Nuits minimum selon la saison",
+    de: "Mindestnächte nach Saison",
+    nl: "Minimum nachten per seizoen"
+  },
+  "Temp. Baja y Media": {
+    es: "Temp. Baja y Media",
+    en: "Low & Medium Season",
+    fr: "Basse et moyenne saison",
+    de: "Neben- und Mittelsaison",
+    nl: "Laag- en middenseizoen"
+  },
+  "Noches mínimo": {
+    es: "Noches mínimo",
+    en: "Minimum nights",
+    fr: "Nuits minimum",
+    de: "Mindestnächte",
+    nl: "Minimum nachten"
+  },
+  "Horarios": {
+    es: "Horarios",
+    en: "Schedule",
+    fr: "Horaires",
+    de: "Zeiten",
+    nl: "Tijden"
+  },
+  "Entrada a partir de las 14:00h. Salida antes de las 12:00h. Si necesitas flexibilidad, consúltanos.": {
+    es: "Entrada a partir de las 14:00h. Salida antes de las 12:00h. Si necesitas flexibilidad, consúltanos.",
+    en: "Check-in from 14:00. Check-out before 12:00. If you need flexibility, contact us.",
+    fr: "Entrée à partir de 14h. Sortie avant 12h. Pour plus de flexibilité, contactez-nous.",
+    de: "Anreise ab 14:00 Uhr. Abreise vor 12:00 Uhr. Bei Bedarf an Flexibilität kontaktieren Sie uns.",
+    nl: "Inchecken vanaf 14:00. Uitchecken vóór 12:00. Voor flexibiliteit, neem contact op."
+  },
+  "Cancelación flexible": {
+    es: "Cancelación flexible",
+    en: "Flexible cancellation",
+    fr: "Annulation flexible",
+    de: "Flexible Stornierung",
+    nl: "Flexibele annulering"
+  },
+  "Cancela gratis hasta 30 días antes de tu llegada": {
+    es: "Cancela gratis hasta 30 días antes de tu llegada",
+    en: "Cancel free up to 30 days before arrival",
+    fr: "Annulez gratuitement jusqu'à 30 jours avant votre arrivée",
+    de: "Kostenlos stornieren bis 30 Tage vor Anreise",
+    nl: "Gratis annuleren tot 30 dagen voor aankomst"
+  },
+  "Más de 30 días antes": {
+    es: "Más de 30 días antes",
+    en: "More than 30 days before",
+    fr: "Plus de 30 jours avant",
+    de: "Mehr als 30 Tage vorher",
+    nl: "Meer dan 30 dagen van tevoren"
+  },
+  "Entre 29 y 15 días": {
+    es: "Entre 29 y 15 días",
+    en: "Between 29 and 15 days",
+    fr: "Entre 29 et 15 jours",
+    de: "Zwischen 29 und 15 Tagen",
+    nl: "Tussen 29 en 15 dagen"
+  },
+  "Entre 14 y 7 días": {
+    es: "Entre 14 y 7 días",
+    en: "Between 14 and 7 days",
+    fr: "Entre 14 et 7 jours",
+    de: "Zwischen 14 und 7 Tagen",
+    nl: "Tussen 14 en 7 dagen"
+  },
+  "Menos de 7 días": {
+    es: "Menos de 7 días",
+    en: "Less than 7 days",
+    fr: "Moins de 7 jours",
+    de: "Weniger als 7 Tage",
+    nl: "Minder dan 7 dagen"
+  },
+  "GRATIS": {
+    es: "GRATIS",
+    en: "FREE",
+    fr: "GRATUIT",
+    de: "KOSTENLOS",
+    nl: "GRATIS"
+  },
+  "25% del total": {
+    es: "25% del total",
+    en: "25% of total",
+    fr: "25 % du total",
+    de: "25 % der Gesamtsumme",
+    nl: "25% van het totaal"
+  },
+  "50% del total": {
+    es: "50% del total",
+    en: "50% of total",
+    fr: "50 % du total",
+    de: "50 % der Gesamtsumme",
+    nl: "50% van het totaal"
+  },
+  "100% del total": {
+    es: "100% del total",
+    en: "100% of total",
+    fr: "100 % du total",
+    de: "100 % der Gesamtsumme",
+    nl: "100% van het totaal"
+  },
+  "Las cancelaciones se procesan automáticamente. El reembolso se realiza por el mismo método de pago en un plazo de 5-10 días laborables.": {
+    es: "Las cancelaciones se procesan automáticamente. El reembolso se realiza por el mismo método de pago en un plazo de 5-10 días laborables.",
+    en: "Cancellations are processed automatically. Refund is made by the same payment method within 5-10 working days.",
+    fr: "Les annulations sont traitées automatiquement. Le remboursement est effectué par le même moyen de paiement sous 5-10 jours ouvrés.",
+    de: "Stornierungen werden automatisch bearbeitet. Die Erstattung erfolgt innerhalb von 5-10 Werktagen auf dem gleichen Zahlungsweg.",
+    nl: "Annuleringen worden automatisch verwerkt. Terugbetaling via dezelfde betaalmethode binnen 5-10 werkdagen."
+  },
+  "Del titular de la reserva": {
+    es: "Del titular de la reserva",
+    en: "Of the reservation holder",
+    fr: "Du titulaire de la réservation",
+    de: "Des Reservierungsinhabers",
+    nl: "Van de titularis van de reservering"
+  },
+  "Tarjeta bancaria": {
+    es: "Tarjeta bancaria",
+    en: "Bank card",
+    fr: "Carte bancaire",
+    de: "Bankkarte",
+    nl: "Bankpas"
+  },
+  "Pago seguro online con Redsys": {
+    es: "Pago seguro online con Redsys",
+    en: "Secure online payment with Redsys",
+    fr: "Paiement en ligne sécurisé avec Redsys",
+    de: "Sichere Online-Zahlung mit Redsys",
+    nl: "Veilige online betaling met Redsys"
+  },
+  "DNI o Pasaporte": {
+    es: "DNI o Pasaporte",
+    en: "ID card or passport",
+    fr: "Carte d'identité ou passeport",
+    de: "Personalausweis oder Reisepass",
+    nl: "Identiteitskaart of paspoort"
+  },
+  "Escríbenos y te ayudamos a encontrar la mejor opción para tu estancia.": {
+    es: "Escríbenos y te ayudamos a encontrar la mejor opción para tu estancia.",
+    en: "Write to us and we'll help you find the best option for your stay.",
+    fr: "Écrivez-nous et nous vous aidons à trouver la meilleure option pour votre séjour.",
+    de: "Schreiben Sie uns und wir helfen Ihnen bei der besten Option für Ihren Aufenthalt.",
+    nl: "Schrijf ons en we helpen je de beste optie voor je verblijf te vinden."
+  },
+  "¿Tienes dudas sobre los precios?": {
+    es: "¿Tienes dudas sobre los precios?",
+    en: "Have questions about the prices?",
+    fr: "Vous avez des questions sur les prix ?",
+    de: "Fragen zu den Preisen?",
+    nl: "Vragen over de prijzen?"
+  },
+  "¿Qué necesitas para reservar?": {
+    es: "¿Qué necesitas para reservar?",
+    en: "What do you need to book?",
+    fr: "De quoi avez-vous besoin pour réserver ?",
+    de: "Was brauchen Sie für eine Buchung?",
+    nl: "Wat heb je nodig om te boeken?"
+  },
+  "Email y teléfono": {
+    es: "Email y teléfono",
+    en: "Email and phone",
+    fr: "Email et téléphone",
+    de: "E-Mail und Telefon",
+    nl: "E-mail en telefoon"
+  },
+  "Para enviarte la confirmación": {
+    es: "Para enviarte la confirmación",
+    en: "To send you the confirmation",
+    fr: "Pour vous envoyer la confirmation",
+    de: "Um Ihnen die Bestätigung zu senden",
+    nl: "Om je de bevestiging te sturen"
+  },
+
+  // Contacto
+  "Contacta con nosotros": {
+    es: "Contacta con nosotros",
+    en: "Contact us",
+    fr: "Contactez-nous",
+    de: "Kontaktieren Sie uns",
+    nl: "Neem contact op"
+  },
+  "Estamos aquí para ayudarte a planificar tu estancia perfecta": {
+    es: "Estamos aquí para ayudarte a planificar tu estancia perfecta",
+    en: "We are here to help you plan your perfect stay",
+    fr: "Nous sommes là pour vous aider à planifier votre séjour parfait",
+    de: "Wir sind hier, um Ihnen bei der Planung Ihres perfekten Aufenthalts zu helfen",
+    nl: "We zijn er om je te helpen je perfecte verblijf te plannen"
+  },
+  "Los Nietos, Cartagena": {
+    es: "Los Nietos, Cartagena",
+    en: "Los Nietos, Cartagena",
+    fr: "Los Nietos, Cartagena",
+    de: "Los Nietos, Cartagena",
+    nl: "Los Nietos, Cartagena"
+  },
+  "Teléfono": {
+    es: "Teléfono",
+    en: "Phone",
+    fr: "Téléphone",
+    de: "Telefon",
+    nl: "Telefoon"
+  },
+  "Llámanos en horario de atención": {
+    es: "Llámanos en horario de atención",
+    en: "Call us during opening hours",
+    fr: "Appelez-nous pendant les heures d'ouverture",
+    de: "Rufen Sie uns während der Öffnungszeiten an",
+    nl: "Bel ons tijdens openingstijden"
+  },
+  "Email": {
+    es: "Email",
+    en: "Email",
+    fr: "E-mail",
+    de: "E-Mail",
+    nl: "E-mail"
+  },
+  "Te respondemos en menos de 24h": {
+    es: "Te respondemos en menos de 24h",
+    en: "We reply within 24 hours",
+    fr: "Nous vous répondons sous 24h",
+    de: "Wir antworten innerhalb von 24 Stunden",
+    nl: "We antwoorden binnen 24 uur"
+  },
+  "Dirección": {
+    es: "Dirección",
+    en: "Address",
+    fr: "Adresse",
+    de: "Adresse",
+    nl: "Adres"
+  },
+  "Ver en Google Maps": {
+    es: "Ver en Google Maps",
+    en: "View on Google Maps",
+    fr: "Voir sur Google Maps",
+    de: "In Google Maps anzeigen",
+    nl: "Bekijken op Google Maps"
+  },
+  "Horario": {
+    es: "Horario",
+    en: "Opening hours",
+    fr: "Horaires",
+    de: "Öffnungszeiten",
+    nl: "Openingstijden"
+  },
+  "Todos los días": {
+    es: "Todos los días",
+    en: "Every day",
+    fr: "Tous les jours",
+    de: "Täglich",
+    nl: "Elke dag"
+  },
+  "Recepción y atención al cliente": {
+    es: "Recepción y atención al cliente",
+    en: "Reception and customer service",
+    fr: "Réception et service client",
+    de: "Rezeption und Kundenservice",
+    nl: "Receptie en klantenservice"
+  },
+  "Envíanos un mensaje": {
+    es: "Envíanos un mensaje",
+    en: "Send us a message",
+    fr: "Envoyez-nous un message",
+    de: "Senden Sie uns eine Nachricht",
+    nl: "Stuur ons een bericht"
+  },
+  "Rellena el formulario y te responderemos lo antes posible": {
+    es: "Rellena el formulario y te responderemos lo antes posible",
+    en: "Fill in the form and we will reply as soon as possible",
+    fr: "Remplissez le formulaire et nous vous répondrons dès que possible",
+    de: "Füllen Sie das Formular aus und wir antworten so schnell wie möglich",
+    nl: "Vul het formulier in en we reageren zo snel mogelijk"
+  },
+  "¿Tienes preguntas?": {
+    es: "¿Tienes preguntas?",
+    en: "Have any questions?",
+    fr: "Vous avez des questions ?",
+    de: "Haben Sie Fragen?",
+    nl: "Heb je vragen?"
+  },
+  "Consulta nuestras preguntas frecuentes o contáctanos directamente": {
+    es: "Consulta nuestras preguntas frecuentes o contáctanos directamente",
+    en: "Check our FAQs or contact us directly",
+    fr: "Consultez notre FAQ ou contactez-nous directement",
+    de: "Lesen Sie unsere FAQ oder kontaktieren Sie uns direkt",
+    nl: "Bekijk onze FAQ of neem direct contact op"
+  },
+  "Ver FAQs": {
+    es: "Ver FAQs",
+    en: "View FAQs",
+    fr: "Voir la FAQ",
+    de: "FAQ ansehen",
+    nl: "Bekijk FAQ"
+  },
+  "Reservar parcela": {
+    es: "Reservar parcela",
+    en: "Book a pitch",
+    fr: "Réserver un emplacement",
+    de: "Stellplatz buchen",
+    nl: "Boek een standplaats"
+  },
+
+  // Footer
+  "Área de autocaravanas en Los Nietos, Mar Menor. Parcelas equipadas para tu estancia.": {
+    es: "Área de autocaravanas en Los Nietos, Mar Menor. Parcelas equipadas para tu estancia.",
+    en: "Motorhome area in Los Nietos, Mar Menor. Pitches equipped for your stay.",
+    fr: "Aire de camping-cars à Los Nietos, Mar Menor. Emplacements équipés pour votre séjour.",
+    de: "Wohnmobilstellplatz in Los Nietos, Mar Menor. Stellplätze für Ihren Aufenthalt ausgestattet.",
+    nl: "Camperplaats in Los Nietos, Mar Menor. Standplaatsen uitgerust voor uw verblijf."
+  },
+  "Enlaces rápidos": {
+    es: "Enlaces rápidos",
+    en: "Quick links",
+    fr: "Liens rapides",
+    de: "Schnelllinks",
+    nl: "Snelle links"
+  },
+  "Legal": {
+    es: "Legal",
+    en: "Legal",
+    fr: "Mentions légales",
+    de: "Rechtliches",
+    nl: "Juridisch"
+  },
+  "Aviso legal": {
+    es: "Aviso legal",
+    en: "Legal notice",
+    fr: "Mentions légales",
+    de: "Impressum",
+    nl: "Juridische mededeling"
+  },
+  "Política de privacidad": {
+    es: "Política de privacidad",
+    en: "Privacy policy",
+    fr: "Politique de confidentialité",
+    de: "Datenschutz",
+    nl: "Privacybeleid"
+  },
+  "Tarifas y condiciones": {
+    es: "Tarifas y condiciones",
+    en: "Rates and conditions",
+    fr: "Tarifs et conditions",
+    de: "Preise und Bedingungen",
+    nl: "Tarieven en voorwaarden"
+  },
+
+  // Normas de conducta
+  "Convivencia y buen uso del área": {
+    es: "Convivencia y buen uso del área",
+    en: "Coexistence and proper use of the area",
+    fr: "Cohabitation et bon usage de l'aire",
+    de: "Zusammenleben und ordnungsgemäße Nutzung des Stellplatzes",
+    nl: "Samenleven en goed gebruik van het gebied"
+  },
+  "Normativa": {
+    es: "Normativa",
+    en: "Regulations",
+    fr: "Règlement",
+    de: "Vorschriften",
+    nl: "Reglement"
+  },
+  "Para que todos disfrutemos del área, te pedimos que respetes estas normas básicas de convivencia.": {
+    es: "Para que todos disfrutemos del área, te pedimos que respetes estas normas básicas de convivencia.",
+    en: "So that everyone can enjoy the area, we ask you to respect these basic rules of coexistence.",
+    fr: "Pour que tous profitent de l'aire, nous vous demandons de respecter ces règles de vie en commun.",
+    de: "Damit alle den Stellplatz genießen können, bitten wir Sie, diese grundlegenden Verhaltensregeln zu beachten.",
+    nl: "Opdat iedereen van het gebied kan genieten, vragen we je deze basisregels te respecteren."
+  },
+  "¿Tienes dudas?": {
+    es: "¿Tienes dudas?",
+    en: "Have any doubts?",
+    fr: "Vous avez des questions ?",
+    de: "Haben Sie Fragen?",
+    nl: "Heb je vragen?"
+  },
+
+  // Galería
+  "Fotos y vídeos del área de autocaravanas en Los Nietos, Mar Menor": {
+    es: "Fotos y vídeos del área de autocaravanas en Los Nietos, Mar Menor",
+    en: "Photos and videos of the motorhome area in Los Nietos, Mar Menor",
+    fr: "Photos et vidéos de l'aire de camping-cars à Los Nietos, Mar Menor",
+    de: "Fotos und Videos des Wohnmobilbereichs in Los Nietos, Mar Menor",
+    nl: "Foto's en video's van de camperplaats in Los Nietos, Mar Menor"
+  },
+  "Nuestras instalaciones": {
+    es: "Nuestras instalaciones",
+    en: "Our facilities",
+    fr: "Nos installations",
+    de: "Unsere Einrichtungen",
+    nl: "Onze faciliteiten"
+  },
+  "Vídeos": {
+    es: "Vídeos",
+    en: "Videos",
+    fr: "Vidéos",
+    de: "Videos",
+    nl: "Video's"
+  },
+  "Próximamente añadiremos vídeos del área y sus instalaciones.": {
+    es: "Próximamente añadiremos vídeos del área y sus instalaciones.",
+    en: "We will soon add videos of the area and its facilities.",
+    fr: "Nous ajouterons bientôt des vidéos de l'aire et de ses installations.",
+    de: "Wir werden bald Videos des Bereichs und seiner Einrichtungen hinzufügen.",
+    nl: "Binnenkort voegen we video's van het gebied en de faciliteiten toe."
+  },
+  "Contenido en preparación": {
+    es: "Contenido en preparación",
+    en: "Content in preparation",
+    fr: "Contenu en préparation",
+    de: "Inhalt in Vorbereitung",
+    nl: "Inhoud in voorbereiding"
+  },
+
+  // Header
+  "¿Quiénes somos?": {
+    es: "¿Quiénes somos?",
+    en: "About us",
+    fr: "Qui sommes-nous ?",
+    de: "Über uns",
+    nl: "Over ons"
+  },
+
+  // Parcel card / booking
+  "Precio especial 2 días": {
+    es: "Precio especial 2 días",
+    en: "Special 2-day rate",
+    fr: "Tarif spécial 2 jours",
+    de: "Sonderpreis 2 Tage",
+    nl: "Speciaal tarief 2 dagen"
+  },
+  "Alquileres de 2 días se cobran como 3 días (mismo precio)": {
+    es: "Alquileres de 2 días se cobran como 3 días (mismo precio)",
+    en: "2-day stays are charged as 3 days (same price)",
+    fr: "Les séjours de 2 jours sont facturés comme 3 jours (même prix)",
+    de: "2-Tage-Aufenthalte werden als 3 Tage berechnet (gleicher Preis)",
+    nl: "Verblijven van 2 dagen worden als 3 dagen in rekening gebracht (zelfde prijs)"
+  },
+  "Descuento aplicado": {
+    es: "Descuento aplicado",
+    en: "Discount applied",
+    fr: "Réduction appliquée",
+    de: "Rabatt angewendet",
+    nl: "Korting toegepast"
+  },
+  "Superficie": {
+    es: "Superficie",
+    en: "Surface",
+    fr: "Surface",
+    de: "Fläche",
+    nl: "Oppervlakte"
+  },
+  "Leer más": {
+    es: "Leer más",
+    en: "Read more",
+    fr: "Lire plus",
+    de: "Mehr lesen",
+    nl: "Lees meer"
+  },
+  "Ver más artículos": {
+    es: "Ver más artículos",
+    en: "See more articles",
+    fr: "Voir plus d'articles",
+    de: "Weitere Artikel anzeigen",
+    nl: "Meer artikelen bekijken"
   },
 };
