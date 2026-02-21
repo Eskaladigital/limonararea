@@ -6,10 +6,12 @@ import { translateServer } from "@/lib/i18n/server-translation";
 
 interface MarMenorContentProps {
   locale: Locale;
+  /** Si se pasa, se usan estas traducciones (p. ej. desde content_translations); si no, translateServer */
+  t?: (key: string) => string;
 }
 
-export function MarMenorContent({ locale }: MarMenorContentProps) {
-  const t = (key: string) => translateServer(key, locale);
+export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
+  const t = tProp ?? ((key: string) => translateServer(key, locale));
 
   return (
     <main className="min-h-screen bg-white">
@@ -21,6 +23,7 @@ export function MarMenorContent({ locale }: MarMenorContentProps) {
         overlayOpacity={0.6}
       />
 
+      {/* Resumen ejecutivo — ecosistema y crisis */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
           <p className="text-xs md:text-sm font-extrabold text-earth uppercase tracking-[0.15em] mb-4">
@@ -30,16 +33,14 @@ export function MarMenorContent({ locale }: MarMenorContentProps) {
             {t("Qué es el Mar Menor")}
           </h2>
           <div className="space-y-4 text-gray-600 leading-relaxed text-base md:text-lg">
-            <p>
-              {t("El Mar Menor es la mayor laguna litoral salada de Europa: unas 135 km² de agua en la costa mediterránea de Murcia (España), separada del mar abierto por el istmo de La Manga del Mar Menor. Tiene una profundidad media de unos 4 metros (máximo 7 m) y se comunica con el Mediterráneo por cinco golas o canales —El Estacio, Marchamalo y las Encañizadas—, que regulan la renovación del agua. En su interior destacan las cinco islas volcánicas: Sujeto, Perdiguera, Redonda, Ciervo y Barón, que protegen la laguna del oleaje y conforman un paisaje único.")}
-            </p>
-            <p>
-              {t("Por su clima, sus aguas tranquilas y su entorno natural, el Mar Menor ha sido durante décadas un destino turístico y de ocio muy valorado: playas, deportes náuticos, baño en familia y una identidad paisajística y cultural inseparable de Murcia. Al mismo tiempo, es un ecosistema de alto valor ecológico —humedal, aves migratorias, praderas marinas y especies protegidas— que requiere conocimiento, respeto y medidas de conservación.")}
-            </p>
+            <p>{t("mar_menor_resumen_p1")}</p>
+            <p>{t("mar_menor_resumen_p2")}</p>
+            <p>{t("mar_menor_resumen_p3")}</p>
           </div>
         </div>
       </section>
 
+      {/* Ubicación y geografía */}
       <section className="py-16 lg:py-24 bg-sand-lt">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
@@ -47,12 +48,8 @@ export function MarMenorContent({ locale }: MarMenorContentProps) {
               <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
                 {t("Ubicación y geografía")}
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                {t("La laguna se sitúa en el sureste de la península ibérica, en la Región de Murcia. Rodeada por el Campo de Cartagena (huerta y agricultura), las salinas históricas de San Pedro y Marchamalo, y las poblaciones costeras (La Manga, Los Nietos, San Javier, Cartagena, etc.), el Mar Menor es un espacio singular: aguas hipersalinas por la evaporación, más cálidas y calmadas que el Mediterráneo, ideales para el baño y los deportes acuáticos.")}
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                {t("El balance hídrico depende de la escorrentía continental (ramblas, drenajes), la lluvia y el intercambio con el mar a través de las golas. Esta semi-cerrazón hace que la laguna sea especialmente sensible a los aportes de nutrientes y a la calidad del agua, por lo que su conservación es una prioridad ambiental y turística.")}
-              </p>
+              <p className="text-gray-600 leading-relaxed mb-4">{t("mar_menor_ubicacion_p1")}</p>
+              <p className="text-gray-600 leading-relaxed">{t("mar_menor_ubicacion_p2")}</p>
             </div>
             <div className="relative h-[320px] lg:h-[400px] rounded-2xl overflow-hidden">
               <Image
@@ -68,29 +65,40 @@ export function MarMenorContent({ locale }: MarMenorContentProps) {
         </div>
       </section>
 
+      {/* Hidrología y química — eutrofización */}
       <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Hidrología y química del agua: eutrofización crónica")}
+          </h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_hidrologia_p1")}</p>
+            <p>{t("mar_menor_hidrologia_p2")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Biodiversidad en profundidad */}
+      <section className="py-16 lg:py-24 bg-sand-lt">
         <div className="container mx-auto px-4 max-w-4xl">
           <p className="text-xs md:text-sm font-extrabold text-earth uppercase tracking-[0.15em] mb-4">
             {t("Naturaleza")}
           </p>
-          <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-earth mb-8 leading-tight">
-            {t("Biodiversidad y especies emblemáticas")}
+          <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-earth mb-6 leading-tight">
+            {t("Biodiversidad: especies clave y conservación")}
           </h2>
-          <div className="space-y-6 text-gray-600 leading-relaxed">
-            <p>
-              {t("El Mar Menor alberga una biodiversidad singular. Entre la vegetación sumergida destacan la Cymodocea nodosa y la macroalga Caulerpa prolifera, que históricamente formaron extensas praderas marinas —hábitat esencial para peces, moluscos y crustáceos— y que hoy son objeto de proyectos de restauración.")}
-            </p>
-            <p>
-              {t("En fauna marina encontramos especies protegidas como el fartet (Aphanius iberus), pez endémico ibérico; la nacra (Pinna nobilis); y el caballito de mar del Mediterráneo (Hippocampus guttulatus). En aves, la zona húmeda atrae numerosas aves acuáticas migratorias y marinas. La laguna está incluida en Zonas de Especial Conservación (ZEC) y ZEPA.")}
-            </p>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_biodiv_p1")}</p>
+            <p>{t("mar_menor_biodiv_p2")}</p>
+            <p>{t("mar_menor_biodiv_p3")}</p>
           </div>
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { title: t("Praderas marinas"), desc: t("Cymodocea y Caulerpa, hábitat clave para la vida marina.") },
-              { title: t("Aves migratorias"), desc: t("Gaviota de Audouin, charrancito y otras especies protegidas.") },
-              { title: t("Especies emblemáticas"), desc: t("Fartet, nacra, caballito de mar y tortugas en paso.") },
+              { title: t("Praderas marinas"), desc: t("mar_menor_card_praderas") },
+              { title: t("Aves migratorias"), desc: t("mar_menor_card_aves") },
+              { title: t("Especies emblemáticas"), desc: t("mar_menor_card_especies") },
             ].map((item, i) => (
-              <div key={i} className="p-4 rounded-xl bg-sand-lt border border-earth/10">
+              <div key={i} className="p-4 rounded-xl bg-white border border-earth/10 shadow-sm">
                 <h3 className="font-heading font-bold text-earth mb-1">{item.title}</h3>
                 <p className="text-sm text-gray-600">{item.desc}</p>
               </div>
@@ -99,6 +107,166 @@ export function MarMenorContent({ locale }: MarMenorContentProps) {
         </div>
       </section>
 
+      {/* Historia ambiental y cronología */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Historia ambiental y cronología de la crisis")}
+          </h2>
+          <ul className="space-y-4 text-gray-600 leading-relaxed list-none">
+            <li>{t("mar_menor_cronologia_1")}</li>
+            <li>{t("mar_menor_cronologia_2")}</li>
+            <li>{t("mar_menor_cronologia_3")}</li>
+            <li>{t("mar_menor_cronologia_4")}</li>
+            <li>{t("mar_menor_cronologia_5")}</li>
+            <li>{t("mar_menor_cronologia_6")}</li>
+            <li>{t("mar_menor_cronologia_7")}</li>
+            <li>{t("mar_menor_cronologia_8")}</li>
+            <li>{t("mar_menor_cronologia_9")}</li>
+            <li>{t("mar_menor_cronologia_10")}</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Causas y fuentes de contaminación */}
+      <section className="py-16 lg:py-24 bg-sand-lt">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Causas y fuentes de contaminación")}
+          </h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_causas_p1")}</p>
+            <p>{t("mar_menor_causas_p2")}</p>
+            <p>{t("mar_menor_causas_p3")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Impactos ecológicos y socioeconómicos */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Impactos ecológicos y socioeconómicos")}
+          </h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_impactos_p1")}</p>
+            <p>{t("mar_menor_impactos_p2")}</p>
+            <p>{t("mar_menor_impactos_p3")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Medidas de gestión y restauración */}
+      <section className="py-16 lg:py-24 bg-sand-lt">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Medidas de gestión y restauración")}
+          </h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_medidas_p1")}</p>
+            <p>{t("mar_menor_medidas_p2")}</p>
+          </div>
+          <div className="mt-8 overflow-x-auto">
+            <table className="w-full text-sm border border-earth/20 rounded-lg overflow-hidden">
+              <thead>
+                <tr className="bg-earth/10">
+                  <th className="text-left p-3 font-heading font-bold text-earth">{t("mar_menor_tabla_medida")}</th>
+                  <th className="text-left p-3 font-heading font-bold text-earth">{t("mar_menor_tabla_coste")}</th>
+                  <th className="text-left p-3 font-heading font-bold text-earth">{t("mar_menor_tabla_efectividad")}</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-600">
+                <tr className="border-t border-earth/10"><td className="p-3">{t("mar_menor_tabla_r1_medida")}</td><td className="p-3">{t("mar_menor_tabla_r1_coste")}</td><td className="p-3">{t("mar_menor_tabla_r1_efect")}</td></tr>
+                <tr className="border-t border-earth/10"><td className="p-3">{t("mar_menor_tabla_r2_medida")}</td><td className="p-3">{t("mar_menor_tabla_r2_coste")}</td><td className="p-3">{t("mar_menor_tabla_r2_efect")}</td></tr>
+                <tr className="border-t border-earth/10"><td className="p-3">{t("mar_menor_tabla_r3_medida")}</td><td className="p-3">{t("mar_menor_tabla_r3_coste")}</td><td className="p-3">{t("mar_menor_tabla_r3_efect")}</td></tr>
+                <tr className="border-t border-earth/10"><td className="p-3">{t("mar_menor_tabla_r4_medida")}</td><td className="p-3">{t("mar_menor_tabla_r4_coste")}</td><td className="p-3">{t("mar_menor_tabla_r4_efect")}</td></tr>
+                <tr className="border-t border-earth/10"><td className="p-3">{t("mar_menor_tabla_r5_medida")}</td><td className="p-3">{t("mar_menor_tabla_r5_coste")}</td><td className="p-3">{t("mar_menor_tabla_r5_efect")}</td></tr>
+                <tr className="border-t border-earth/10"><td className="p-3">{t("mar_menor_tabla_r6_medida")}</td><td className="p-3">{t("mar_menor_tabla_r6_coste")}</td><td className="p-3">{t("mar_menor_tabla_r6_efect")}</td></tr>
+                <tr className="border-t border-earth/10"><td className="p-3">{t("mar_menor_tabla_r7_medida")}</td><td className="p-3">{t("mar_menor_tabla_r7_coste")}</td><td className="p-3">{t("mar_menor_tabla_r7_efect")}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Marco legal */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Marco legal y responsabilidades")}
+          </h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_marco_p1")}</p>
+            <p>{t("mar_menor_marco_p2")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Datos y monitoreo */}
+      <section className="py-16 lg:py-24 bg-sand-lt">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Datos y monitoreo")}
+          </h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_datos_p1")}</p>
+            <p>{t("mar_menor_datos_p2")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Escenarios futuros */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Escenarios futuros y alternativas de restauración")}
+          </h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_escenarios_p1")}</p>
+            <p>{t("mar_menor_escenarios_p2")}</p>
+            <p>{t("mar_menor_escenarios_p3")}</p>
+            <p>{t("mar_menor_escenarios_p4")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Recomendaciones prioritarias */}
+      <section className="py-16 lg:py-24 bg-sand-lt">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
+            {t("Recomendaciones prácticas prioritarias")}
+          </h2>
+          <ol className="space-y-3 text-gray-600 leading-relaxed list-decimal list-inside">
+            <li>{t("mar_menor_recom_1")}</li>
+            <li>{t("mar_menor_recom_2")}</li>
+            <li>{t("mar_menor_recom_3")}</li>
+            <li>{t("mar_menor_recom_4")}</li>
+            <li>{t("mar_menor_recom_5")}</li>
+            <li>{t("mar_menor_recom_6")}</li>
+          </ol>
+          <p className="mt-6 text-gray-600 leading-relaxed">{t("mar_menor_recom_final")}</p>
+        </div>
+      </section>
+
+      {/* ECO: Eco Area Limonar y el ecosistema */}
+      <section className="py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <p className="text-xs md:text-sm font-extrabold text-earth uppercase tracking-[0.15em] mb-4">
+            {t("Enfoque ECO")}
+          </p>
+          <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-earth mb-6 leading-tight">
+            {t("Eco Area Limonar y el Mar Menor: ecosistema, ecología y turismo responsable")}
+          </h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>{t("mar_menor_eco_p1")}</p>
+            <p>{t("mar_menor_eco_p2")}</p>
+            <p>{t("mar_menor_eco_p3")}</p>
+            <p>{t("mar_menor_eco_p4")}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Turismo y qué hacer */}
       <section className="py-16 lg:py-24 bg-sand-lt">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
@@ -116,33 +284,14 @@ export function MarMenorContent({ locale }: MarMenorContentProps) {
               <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-earth mb-6">
                 {t("Turismo y qué hacer en el Mar Menor")}
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                {t("La costa del Mar Menor concentra una gran oferta turística: playas de aguas tranquilas y poco profundas, ideales para familias; vela, kayak, paddle surf y otras actividades náuticas; paseos en barco hasta las islas; cicloturismo y senderismo por el litoral; y una gastronomía basada en el pescado y el marisco de la zona. Poblaciones como Los Nietos, La Manga, Santiago de la Ribera, San Pedro del Pinatar o Cartagena ofrecen servicios y un ambiente mediterráneo muy apreciado.")}
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                {t("Un turismo responsable —respetando las normas de las playas y espacios naturales, no vertiendo residuos y apoyando iniciativas locales— contribuye a mantener el Mar Menor como destino de referencia y a preservar su ecosistema para las generaciones futuras.")}
-              </p>
+              <p className="text-gray-600 leading-relaxed mb-4">{t("mar_menor_turismo_p1")}</p>
+              <p className="text-gray-600 leading-relaxed">{t("mar_menor_turismo_p2")}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <p className="text-xs md:text-sm font-extrabold text-earth uppercase tracking-[0.15em] mb-4">
-            {t("Compromiso")}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-earth mb-6 leading-tight">
-            {t("Protección y recuperación del Mar Menor")}
-          </h2>
-          <div className="space-y-4 text-gray-600 leading-relaxed">
-            <p>
-              {t("En las últimas décadas el Mar Menor ha sufrido una fuerte presión por nutrientes procedentes sobre todo de la agricultura intensiva del Campo de Cartagena. La sociedad murciana y las administraciones han reaccionado con normativa y planes de actuación: Ley 3/2020, personalidad jurídica de la laguna, Consejo y Tutoría del Mar Menor, Plan Mar Menor 2025 y MAPMM, con inversiones en saneamiento, restauración de hábitats y proyectos de desnitrificación. Como área de autocaravanas a orillas del Mar Menor, en Eco Area Limonar queremos ser parte de esa referencia: dar a conocer la laguna, su valor natural y la importancia de cuidarla.")}
-            </p>
-          </div>
-        </div>
-      </section>
-
+      {/* CTA */}
       <section className="relative h-[340px] lg:h-[400px] overflow-hidden">
         <Image
           src="/images/slides/limonar_area_camper_mar_menor_5.webp"

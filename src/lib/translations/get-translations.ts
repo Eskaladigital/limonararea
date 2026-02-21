@@ -380,3 +380,52 @@ export async function getTranslationStatus(
 
   return result;
 }
+
+const I18N_SOURCE_TABLE = 'i18n';
+const I18N_SOURCE_FIELD = 'text';
+
+/**
+ * Obtiene traducciones para claves i18n (p. ej. página Mar Menor) desde content_translations.
+ * Para locale 'es' devuelve el fallback (textos en español).
+ * Para en/fr/de/nl consulta la BD y rellena con fallback las que falten.
+ *
+ * @param keys - Lista de claves (ej. mar_menor_resumen_p1, "El Mar Menor")
+ * @param locale - Idioma
+ * @param fallback - Mapa clave → texto en español (origen)
+ * @returns Mapa clave → texto en el idioma solicitado
+ */
+export async function getI18nTranslations(
+  keys: string[],
+  locale: Locale,
+  fallback: Record<string, string>
+): Promise<Record<string, string>> {
+  const result: Record<string, string> = {};
+  for (const k of keys) {
+    result[k] = fallback[k] ?? k;
+  }
+  if (locale === 'es' || !keys.length) {
+    return result;
+  }
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return result;
+    const { data: rows, error } = await supabase
+      .from('content_translations')
+      .select('source_id, translated_text')
+      .eq('source_table', I18N_SOURCE_TABLE)
+      .eq('source_field', I18N_SOURCE_FIELD)
+      .eq('locale', locale)
+      .in('source_id', keys);
+
+    if (!error && rows?.length) {
+      rows.forEach((r: { source_id: string; translated_text: string }) => {
+        if (r.source_id in result && r.translated_text) {
+          result[r.source_id] = r.translated_text;
+        }
+      });
+    }
+  } catch (error) {
+    console.error('[getI18nTranslations] Error:', error);
+  }
+  return result;
+}

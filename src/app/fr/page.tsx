@@ -184,6 +184,55 @@ export default async function LocaleHomePage() {
         </div>
       </section>
 
+      {/* ══════ SLIDER MAR MENOR - Nuestro mayor activo ══════ */}
+      <section className="relative min-h-[420px] lg:min-h-[480px] flex flex-col justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/slides/limonar_area_camper_mar_menor_4.webp"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority={false}
+          />
+          <div className="absolute inset-0 bg-earth-deep/75 backdrop-blur-[2px]" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4 py-16 lg:py-20">
+          <div className="max-w-2xl">
+            <p className="text-clay-lt text-xs md:text-sm font-extrabold uppercase tracking-[0.2em] mb-3">
+              {t("Nuestro mayor activo")}
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
+              {t("El MAR MENOR")}
+            </h2>
+            <p className="text-white/90 text-base md:text-lg leading-relaxed mb-6">
+              {t("La mayor laguna salada de Europa: aguas tranquilas, biodiversidad única, 320 días de sol y un ecosistema que queremos conservar. A minutos de tu parcela.")}
+            </p>
+            <ul className="space-y-2 text-white/85 text-sm md:text-base mb-8">
+              <li className="flex items-center gap-2">
+                <span className="text-clay-lt font-bold">✓</span> {t("~135 km² de laguna, profundidad media 4 m")}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-clay-lt font-bold">✓</span> {t("Playas de aguas cálidas y poco profundas, ideales para familias")}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-clay-lt font-bold">✓</span> {t("ZEC y ZEPA: aves migratorias, praderas marinas y especies protegidas")}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-clay-lt font-bold">✓</span> {t("Referencia ecológica y turística de la Región de Murcia")}
+              </li>
+            </ul>
+            <LocalizedLink
+              href="/mar-menor"
+              className="inline-flex items-center gap-2 bg-clay hover:bg-clay-dk text-white font-extrabold px-8 py-4 rounded-full text-base transition-all shadow-xl"
+            >
+              <Waves className="h-5 w-5" />
+              {t("Descubre el Mar Menor")} →
+            </LocalizedLink>
+          </div>
+        </div>
+      </section>
+
       {/* ══════ STORYTELLING - Más que un área ══════ */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4">

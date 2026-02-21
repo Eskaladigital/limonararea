@@ -3,6 +3,7 @@
  * - Parcelas (como vehicles: name, short_description)
  * - Posts (title, excerpt, content, meta_title, meta_description)
  * - Categorías de contenido (name)
+ * - Claves i18n página Mar Menor (source_table 'i18n', desde src/lib/i18n/data/mar-menor-es.json)
  * Idiomas: EN, FR, DE, NL
  *
  * Requisitos en .env.local:
@@ -14,6 +15,8 @@
  */
 
 require('dotenv').config({ path: '.env.local' });
+const path = require('path');
+const fs = require('fs');
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -62,10 +65,11 @@ async function translateWithOpenAI(text, locale, context = 'general') {
     meta: `Translate this SEO text from Spanish to ${lang}. Keep it natural and SEO-friendly. Reply only with the translation.`,
     name: `Translate this name or short label from Spanish to ${lang}. Keep it natural. Reply only with the translation.`,
     general: `Translate from Spanish to ${lang}. Reply only with the translation, nothing else.`,
+    long: `Translate this paragraph or section from Spanish to ${lang}. Preserve meaning, tone and any technical or place names (e.g. Mar Menor, Cymodocea, Albujón). Reply only with the translation.`,
   };
   const systemPrompt = prompts[context] || prompts.general;
 
-  const maxTokens = context === 'content' ? 4000 : context === 'excerpt' ? 500 : 300;
+  const maxTokens = context === 'content' ? 4000 : context === 'long' ? 2000 : context === 'excerpt' ? 500 : 300;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -193,6 +197,30 @@ async function main() {
         });
       }
     }
+  }
+
+  // 4) Claves i18n página Mar Menor (mar-menor-es.json → content_translations, source_table 'i18n')
+  const marMenorPath = path.join(__dirname, '../src/lib/i18n/data/mar-menor-es.json');
+  if (fs.existsSync(marMenorPath)) {
+    const marMenorEs = JSON.parse(fs.readFileSync(marMenorPath, 'utf8'));
+    const SOURCE_FIELD = 'text';
+    for (const [key, spanishText] of Object.entries(marMenorEs)) {
+      if (spanishText == null || String(spanishText).trim() === '') continue;
+      const text = String(spanishText);
+      const useLong = text.length > 400;
+      for (const locale of LOCALES) {
+        if (existing.has(buildKey('i18n', key, SOURCE_FIELD, locale))) continue;
+        missing.push({
+          source_table: 'i18n',
+          source_id: key,
+          source_field: SOURCE_FIELD,
+          locale,
+          original_text: text,
+          context: useLong ? 'long' : 'general',
+        });
+      }
+    }
+    console.log(`📄 Claves Mar Menor (i18n): ${Object.keys(marMenorEs).length} → hasta ${LOCALES.length * Object.keys(marMenorEs).length} traducciones\n`);
   }
 
   console.log(`📋 Traducciones a generar: ${missing.length}\n`);

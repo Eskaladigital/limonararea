@@ -976,4 +976,62 @@ export const homeTranslations = {
     de: "Buchen Sie Ihren Stellplatz und genießen Sie das Mittelmeer. Kostenlose Stornierung bis 48h vorher.",
     nl: "Boek uw standplaats en geniet van de Middellandse Zee. Gratis annulering tot 48 uur van tevoren."
   },
+
+  // Slider Mar Menor - Nuestro mayor activo
+  "Nuestro mayor activo": {
+    es: "Nuestro mayor ACTIVO",
+    en: "Our greatest asset",
+    fr: "Notre plus grand atout",
+    de: "Unser größtes Asset",
+    nl: "Ons grootste pluspunt"
+  },
+  "El MAR MENOR": {
+    es: "El MAR MENOR",
+    en: "The MAR MENOR",
+    fr: "Le MAR MENOR",
+    de: "Der MAR MENOR",
+    nl: "De MAR MENOR"
+  },
+  "La mayor laguna salada de Europa: aguas tranquilas, biodiversidad única, 320 días de sol y un ecosistema que queremos conservar. A minutos de tu parcela.": {
+    es: "La mayor laguna salada de Europa: aguas tranquilas, biodiversidad única, 320 días de sol y un ecosistema que queremos conservar. A minutos de tu parcela.",
+    en: "Europe's largest saltwater lagoon: calm waters, unique biodiversity, 320 days of sunshine and an ecosystem we want to preserve. Minutes from your pitch.",
+    fr: "La plus grande lagune salée d'Europe : eaux calmes, biodiversité unique, 320 jours de soleil et un écosystème à préserver. À quelques minutes de votre emplacement.",
+    de: "Europas größte Salzwasserlagune: ruhiges Wasser, einzigartige Artenvielfalt, 320 Sonnentage und ein schützenswertes Ökosystem. Minuten von Ihrem Stellplatz.",
+    nl: "De grootste zoutwaterlagune van Europa: rustig water, unieke biodiversiteit, 320 dagen zon en een ecosysteem dat we willen behouden. Op minuten van uw standplaats."
+  },
+  "~135 km² de laguna, profundidad media 4 m": {
+    es: "~135 km² de laguna, profundidad media 4 m",
+    en: "~135 km² lagoon, average depth 4 m",
+    fr: "~135 km² de lagune, profondeur moyenne 4 m",
+    de: "~135 km² Lagune, durchschnittliche Tiefe 4 m",
+    nl: "~135 km² lagune, gemiddelde diepte 4 m"
+  },
+  "Playas de aguas cálidas y poco profundas, ideales para familias": {
+    es: "Playas de aguas cálidas y poco profundas, ideales para familias",
+    en: "Warm, shallow-water beaches, ideal for families",
+    fr: "Plages aux eaux chaudes et peu profondes, idéales pour les familles",
+    de: "Warme, flache Strände, ideal für Familien",
+    nl: "Warme, ondiepe stranden, ideaal voor gezinnen"
+  },
+  "ZEC y ZEPA: aves migratorias, praderas marinas y especies protegidas": {
+    es: "ZEC y ZEPA: aves migratorias, praderas marinas y especies protegidas",
+    en: "SAC and SPA: migratory birds, seagrass meadows and protected species",
+    fr: "ZSC et ZPS : oiseaux migrateurs, herbiers marins et espèces protégées",
+    de: "FFH- und Vogelschutzgebiete: Zugvögel, Seegraswiesen und geschützte Arten",
+    nl: "SBZ en vogelrichtlijngebieden: trekvogels, zeegrasvelden en beschermde soorten"
+  },
+  "Referencia ecológica y turística de la Región de Murcia": {
+    es: "Referencia ecológica y turística de la Región de Murcia",
+    en: "Ecological and tourist reference of the Region of Murcia",
+    fr: "Référence écologique et touristique de la Région de Murcie",
+    de: "Ökologische und touristische Referenz der Region Murcia",
+    nl: "Ecologische en toeristische referentie van de Regio Murcia"
+  },
+  "Descubre el Mar Menor": {
+    es: "Descubre el Mar Menor",
+    en: "Discover the Mar Menor",
+    fr: "Découvrir le Mar Menor",
+    de: "Den Mar Menor entdecken",
+    nl: "Ontdek de Mar Menor"
+  },
 };

@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { buildCanonicalAlternates } from "@/lib/seo/multilingual-metadata";
 import type { Locale } from "@/lib/i18n/config";
 import { MarMenorContent } from "@/components/pages/mar-menor-content";
+import { getI18nTranslations } from "@/lib/translations/get-translations";
+import marMenorEs from "@/lib/i18n/data/mar-menor-es.json";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale: Locale = "fr";
@@ -28,5 +30,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function MarMenorPage() {
-  return <MarMenorContent locale="fr" />;
+  const locale: Locale = "fr";
+  const keys = Object.keys(marMenorEs as Record<string, string>);
+  const translations = await getI18nTranslations(keys, locale, marMenorEs as Record<string, string>);
+  const t = (key: string) => translations[key] ?? key;
+  return <MarMenorContent locale={locale} t={t} />;
 }
