@@ -43,7 +43,7 @@ export function NormasConductaClient() {
         title={t("Normas de conducta")}
         subtitle={t("Convivencia y buen uso del área")}
         tag={t("Normativa")}
-        backgroundImage="/images/slides/AdobeStock_155661264.webp"
+        backgroundImage="/images/slides/AdobeStock_95139332.webp"
       />
 
       <section className="py-16 lg:py-24">

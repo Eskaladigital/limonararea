@@ -184,7 +184,7 @@ export default async function LocaleBlogPostPage({
         <PageHero
           title={translatedPost.title}
           tag={categoryName}
-          backgroundImage="/images/slides/limonar_area_camper_mar_menor_3.webp"
+          backgroundImage="/images/slides/AdobeStock_43931257.webp"
         >
           <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}

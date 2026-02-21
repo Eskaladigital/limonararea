@@ -218,7 +218,7 @@ export function FaqsClient() {
         title={t("Preguntas Frecuentes")}
         subtitle={t("Resolvemos todas tus dudas sobre tu estancia")}
         tag="FAQ"
-        backgroundImage="/images/slides/limonar_area_camper_mar_menor_6.webp"
+        backgroundImage="/images/slides/AdobeStock_43931257.webp"
       />
 
       {/* Category nav — grid de botones */}

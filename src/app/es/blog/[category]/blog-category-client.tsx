@@ -169,7 +169,7 @@ function BlogCategoryContent() {
         title={categoryName}
         subtitle={categoryDescription}
         tag={`${totalPosts} ${totalPosts === 1 ? "artículo" : "artículos"}`}
-        backgroundImage="/images/slides/limonar_area_camper_mar_menor_2.webp"
+        backgroundImage="/images/slides/AdobeStock_231250340.webp"
       >
         <nav className="flex items-center justify-center gap-2 text-white/70 text-sm mb-4">
           <LocalizedLink href="/" className="hover:text-white transition-colors">Inicio</LocalizedLink>

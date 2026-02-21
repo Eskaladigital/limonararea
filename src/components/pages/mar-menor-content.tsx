@@ -19,7 +19,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
         title={t("El Mar Menor")}
         subtitle={t("La mayor laguna salada de Europa: naturaleza, ecología y turismo en la costa de Murcia")}
         tag="🌊 Referencia · Ecología y turismo"
-        backgroundImage="/images/slides/limonar_area_camper_mar_menor_4.webp"
+        backgroundImage="/images/slides/limonar_area_camper_mar_menor_1.webp"
         overlayOpacity={0.6}
       />
 

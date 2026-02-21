@@ -34,7 +34,7 @@ export function GaleriaClient() {
         title={t("Galería")}
         subtitle={t("Fotos y vídeos del área de autocaravanas en Los Nietos, Mar Menor")}
         tag={`📷 ${t("Eco Area Limonar")}`}
-        backgroundImage="/images/slides/limonar_area_camper_mar_menor_6.webp"
+        backgroundImage="/images/slides/AdobeStock_231250340.webp"
       />
 
       {/* Mosaic gallery — full bleed, no gaps */}

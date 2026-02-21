@@ -155,7 +155,7 @@ export default async function LocaleBlogPostPage({
         <PageHero
           title={translatedPost.title}
           tag={categoryName}
-          backgroundImage="/images/slides/limonar_area_camper_mar_menor_3.webp"
+          backgroundImage="/images/slides/AdobeStock_43931257.webp"
         >
           <div className="max-w-4xl mx-auto">
             <nav className="flex items-center gap-2 text-white/70 text-sm mb-4 flex-wrap justify-center" aria-label="Breadcrumb">

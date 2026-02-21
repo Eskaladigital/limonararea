@@ -91,7 +91,7 @@ export function OfertasClient() {
         title={t("Ofertas y Descuentos")}
         subtitle={t("Aprovecha nuestras ofertas especiales y ahorra en tu estancia")}
         tag={`🔥 ${t("Eco Area Limonar")}`}
-        backgroundImage="/images/slides/limonar_area_camper_mar_menor_3.webp"
+        backgroundImage="/images/slides/AdobeStock_231250340.webp"
       />
 
       {/* Intro */}

@@ -53,7 +53,7 @@ export function TarifasClient() {
         title={t("Tarifas y Condiciones")}
         subtitle={t("Información clara y transparente sobre precios y condiciones")}
         tag={`💰 ${t("Eco Area Limonar")}`}
-        backgroundImage="/images/slides/limonar_area_camper_mar_menor_4.webp"
+        backgroundImage="/images/slides/AdobeStock_95139332.webp"
       />
 
       {/* ── Tabla de Tarifas ── */}

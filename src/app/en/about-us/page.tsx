@@ -42,7 +42,7 @@ export default async function AboutUsPage() {
           "Tu área de autocaravanas en Los Nietos, a orillas del Mar Menor"
         )}
         tag={`🌊 ${t("Cartagena, Murcia")} · ${t("320 días de sol")}`}
-        backgroundImage="/images/slides/limonar_area_camper_mar_menor_4.webp"
+        backgroundImage="/images/slides/AdobeStock_83679015.webp"
       />
 
       <section className="py-16 lg:py-24">

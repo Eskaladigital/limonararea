@@ -52,7 +52,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           "Consejos, rutas y experiencias para tu próxima aventura en autocaravana"
         )}
         tag={`📖 ${t("Eco Area Limonar")}`}
-        backgroundImage="/images/slides/limonar_area_camper_mar_menor_4.webp"
+        backgroundImage="/images/slides/AdobeStock_47883789.webp"
       />
 
       <section className="py-12 lg:py-20">
