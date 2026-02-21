@@ -67,8 +67,8 @@ function NuevaReservaContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  // Get params from URL
-  const vehicleId = searchParams.get('vehicle_id');
+  // Get params from URL (parcel_id viene del flujo reservar/parcela)
+  const vehicleId = searchParams.get('parcel_id') || searchParams.get('vehicle_id');
   const pickupDate = searchParams.get('pickup_date');
   const dropoffDate = searchParams.get('dropoff_date');
   const pickupTime = searchParams.get('pickup_time');
@@ -371,7 +371,7 @@ function NuevaReservaContent() {
         body: JSON.stringify({
           booking: {
             booking_number: bookingNumber,
-            vehicle_id: vehicle.id,
+            parcel_id: vehicle.id,
             customer_id: customerId,
             pickup_date: pickupDate,
             dropoff_date: dropoffDate,
