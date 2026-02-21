@@ -205,7 +205,7 @@ export function MarMenorContent({ locale, t: tProp }: MarMenorContentProps) {
                   <Droplets className="h-6 w-6 text-blue-600" />
                   <h3 className="font-heading font-bold text-blue-900">Oxígeno</h3>
                 </div>
-                <p className="text-sm text-blue-800 leading-relaxed">Hipoxia en zona profunda (>4-6 m) en verano. Bolsas anóxicas tras blooms</p>
+                <p className="text-sm text-blue-800 leading-relaxed">Hipoxia en zona profunda ({'>'}4-6 m) en verano. Bolsas anóxicas tras blooms</p>
               </div>
             </div>
           </div>
