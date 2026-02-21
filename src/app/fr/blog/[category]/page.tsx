@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { BlogCategoryClient } from "./blog-category-client";
+import { BlogCategoryClient } from "@/app/es/blog/[category]/blog-category-client";
 import { buildCanonicalAlternates } from "@/lib/seo/multilingual-metadata";
 import { translateServer } from "@/lib/i18n/server-translation";
 import type { Locale } from "@/lib/i18n/config";

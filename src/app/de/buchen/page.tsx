@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { headers } from "next/headers";
-import { ReservarClient } from "./reservar-client";
+import { ReservarClient } from "@/app/es/reservar/reservar-client";
 import { buildCanonicalAlternates } from "@/lib/seo/multilingual-metadata";
 import type { Locale } from "@/lib/i18n/config";
 import { baseUrl } from "@/lib/app-config";
