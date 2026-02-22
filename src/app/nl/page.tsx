@@ -178,7 +178,7 @@ export default async function LocaleHomePage() {
               <LocalizedLink
                 key={vehicle.id}
                 href={`/parcelas/${vehicle.slug}`}
-                className="group relative h-[340px] lg:h-[400px] rounded-2xl overflow-hidden"
+                className="group relative h-56 lg:h-64 rounded-2xl overflow-hidden"
               >
                 {vehicle.main_image ? (
                   <Image
