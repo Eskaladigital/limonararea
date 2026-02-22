@@ -64,7 +64,7 @@ SUPABASE_CREDENTIALS.txt
 # Los vehículos y contenido dinámico usan Supabase Storage
 
 # Carpeta de imágenes locales (están en Supabase Storage)
-furgocasa_images/
+legacy_images/
 /images/
 
 # Incluir public/images en el repo
@@ -83,8 +83,8 @@ scripts/uploaded-slides-log.json
 commit-message.txt
 
 # Archivos de migración de datos antiguos (demasiado grandes)
-OLD_FURGOCASA_DATOS/*-mysql*
-OLD_FURGOCASA_DATOS/orders-raw*.txt
+legacy_data/*-mysql*
+legacy_data/orders-raw*.txt
 
 # Archivos internos de estrategia (privados)
 src/app/es/escalabilidad/brainstorming.txt

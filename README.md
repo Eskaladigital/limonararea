@@ -1,6 +1,6 @@
 # Eco Area Limonar - Área de Autocaravanas
 
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.4.9-green.svg)](./CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-development-yellow.svg)](.)
 [![Deploy](https://img.shields.io/badge/deploy-Vercel-black.svg)](https://vercel.com)
 
@@ -14,20 +14,9 @@ Sistema de gestión de área de autocaravanas (parcelas). Basado en Next.js 15, 
 
 ## ⚠️ IMPORTANTE - Leer primero
 
-### Origen del proyecto
-
-Este proyecto es una **copia adaptada** de FURGOCASA (alquiler de campers). Se está transformando para **Eco Area Limonar** (área de autocaravanas con parcelas).
-
-### Regla absoluta: NO afectar a Furgocasa
-
-- **NUNCA** conectar este repo con el remoto de Furgocasa.
-- **NUNCA** hacer push a ningún repositorio que pueda afectar a furgocasa.com.
-- Este proyecto usa su **propia** instancia de Supabase.
-
 ### Estado de Git
 
-- El historial heredado de Furgocasa **no aplica** a este proyecto.
-- Para eliminarlo: cierra Cursor y ejecuta `rmdir /s /q .git` en la carpeta del proyecto.
+- Este proyecto usa su **propia** instancia de Supabase.
 - **Repositorio oficial (Eco Area Limonar)**: [https://github.com/Eskaladigital/limonararea](https://github.com/Eskaladigital/limonararea) — nombre del repo: **limonararea** (una palabra). Rama por defecto: **main**.  
   Conectar y subir: `git init`, `git add .`, `git commit -m "Initial commit - Eco Area Limonar"`, `git remote add origin https://github.com/Eskaladigital/limonararea.git`, `git push -u origin main`.
 - **Si `git add` falla con "Permission denied"**: ejecuta `scripts\git-push-outside-dropbox.cmd` o haz `git add` y `git commit` desde PowerShell/CMD fuera de Cursor.
@@ -42,7 +31,56 @@ Este proyecto es una **copia adaptada** de FURGOCASA (alquiler de campers). Se e
 
 ---
 
-## ⚡ [ÚLTIMA ACTUALIZACIÓN] - 21 de Febrero 2026 - **Fix hidratación Header (logo)**
+## ⚡ [ÚLTIMA ACTUALIZACIÓN] - 22 de Febrero 2026 - **Migración vehicle→parcel completa**
+
+### 🔄 Migración last_minute_offers y limpieza frontend
+
+**Estado**: ✅ Completado
+
+- **last_minute_offers**: `vehicle_id` → `parcel_id` (script `supabase/migrate-last-minute-offers-vehicle-to-parcel.sql`).
+- **API**: check-availability y search-tracking usan solo `parcel_id`, `parcel_selected`.
+- **Frontend**: Eliminados fallbacks `vehicle`, `vehicle_id` en URLs, booking, ofertas.
+- **Campos no aplicables**: Eliminadas referencias a `brand`, `model`, `seats`, `beds` (parcelas no los tienen).
+- **Única excepción vehicle**: `vehicle_type` = tipo de vehículo del cliente (autocaravana, caravana, tienda) en search-widget.
+
+**Changelog**: [CHANGELOG.md](./CHANGELOG.md) → v4.4.8
+
+---
+
+## ⚡ [ACTUALIZACIÓN ANTERIOR] - 21 de Febrero 2026 - **i18n: tarifas, búsqueda y API por idioma**
+
+### 🌐 Traducciones completas Tarifas y Búsqueda (FR/DE/NL)
+
+**Estado**: ✅ Desplegado  
+**Páginas**: `/fr/tarifs`, `/fr/recherche` (y equivalentes EN/DE/NL)
+
+- **Tarifas**: Porcentajes "hasta -10%", "¿Qué incluye tu parcela?", "Electricidad", calendario con meses y días de la semana en el idioma correcto (ej. FR: Février, Mars…).
+- **Búsqueda (recherche)**: "Buscando parcelas disponibles...", "Resultados de búsqueda", "Modificar", fechas (ej. FR: "sam. 28 févr."), "X emplacements disponibles", nombres y descripciones de parcelas traducidos desde Supabase cuando se pasa `?locale=` a la API.
+
+### 📄 Script de IA y contenido en BD
+
+- **`src/lib/i18n/data/pages-es.json`**: Claves de contacto, footer, normas, galería (español). El script `translate-all-content-openai.js` las traduce a EN/FR/DE/NL y las guarda en `content_translations`.
+- **API disponibilidad**: Acepta `?locale=fr` (o en, de, nl); devuelve nombres y descripciones de parcelas (y categorías) traducidos.
+
+**Changelog**: [CHANGELOG.md](./CHANGELOG.md) → v4.4.7
+
+---
+
+## ⚡ [ACTUALIZACIÓN ANTERIOR] - 22 de Febrero 2026 - **Home: tarjetas parcelas + fix imagen**
+
+### 🎨 Tarjetas "Encuentra tu parcela perfecta" más horizontales
+
+**Sección**: Home → "Encuentra tu parcela perfecta" — Tarjetas en formato horizontal (h-56 lg:h-64).
+
+### 🖼️ Fix imagen rota en galería
+
+Sustituida `AdobeStock_132830655.webp` por `limonar_area_camper_mar_menor_3.webp` en ES, EN, FR, DE.
+
+**Changelog**: [CHANGELOG.md](./CHANGELOG.md) → v4.4.6
+
+---
+
+## ⚡ [ACTUALIZACIÓN ANTERIOR] - 21 de Febrero 2026 - **Fix hidratación Header (logo)**
 
 ### 🐛 Hydration mismatch resuelto
 
@@ -368,7 +406,7 @@ TOTAL LCP:                     830 ms  (100%)  🏆
 
 ### 🎊 Conclusión
 
-Con un **LCP móvil de 0.83 segundos** (frente al objetivo de Google de <2.5s), **Furgocasa.com está ahora en el top 5% de rendimiento web mundial**. Las tres optimizaciones implementadas han reducido el LCP en un **79%** sin afectar negativamente ninguna otra métrica.
+Con un **LCP móvil de 0.83 segundos** (frente al objetivo de Google de <2.5s), **Eco Area Limonar.com está ahora en el top 5% de rendimiento web mundial**. Las tres optimizaciones implementadas han reducido el LCP en un **79%** sin afectar negativamente ninguna otra métrica.
 
 **ROI esperado**: Mejor ranking en Google (Core Web Vitals), mayor conversión móvil, mejor experiencia de usuario.
 
@@ -690,7 +728,7 @@ El sitio web ha sido **completamente optimizado para SEO** siguiendo las mejores
 - ✅ **Open Graph perfecto** para redes sociales (Facebook, Twitter, LinkedIn, WhatsApp)
 - ✅ **Sitemap.xml dinámico** con todas las páginas
 - ✅ **robots.txt optimizado**
-- ✅ **URLs canónicas** (www.furgocasa.com)
+- ✅ **URLs canónicas** (www.ecoarealimonar.com)
 - ✅ **100% del contenido indexable** por Google
 - ✅ **Core Web Vitals perfectos**
 
@@ -798,7 +836,7 @@ import { createClient } from '@/lib/supabase/server';
 
 export default async function VehiculosPage() {
   const supabase = await createClient();
-  const { data } = await supabase.from('vehicles').select('*');
+  const { data } = await supabase.from('parcels').select('*');
   return <div>...</div>;
 }
 ```
@@ -809,7 +847,7 @@ export default async function VehiculosPage() {
 import { usePaginatedData } from '@/hooks/use-paginated-data';
 
 export default function VehiculosAdminPage() {
-  const { data } = usePaginatedData({ table: 'vehicles', ... });
+  const { data } = usePaginatedData({ table: 'parcels', ... });
   return <div>...</div>;
 }
 ```
@@ -1260,13 +1298,13 @@ VALUES (
 -- En SQL Editor de Supabase:
 SELECT tablename, policyname, cmd 
 FROM pg_policies 
-WHERE tablename IN ('vehicles', 'bookings', 'customers', 'payments')
+WHERE tablename IN ('parcels', 'bookings', 'customers', 'payments')
 ORDER BY tablename, policyname;
 ```
 
 **Debes ver:**
-- `public_select_vehicles` - Lectura pública
-- `admin_all_vehicles` - Admin puede todo
+- `public_select_parcels` - Lectura pública
+- `admin_all_parcels` - Admin puede todo
 - `public_insert_bookings` - Crear reservas público
 - `admin_all_bookings` - Admin puede todo
 - etc.
@@ -1320,7 +1358,7 @@ src/
 │   │   │   └── [location]/page.tsx
 │   │   ├── blog/                        # Blog EN
 │   │   ├── contact/                     # Contact EN
-│   │   ├── vehicles/                    # Vehicles EN
+│   │   ├── parcels/                    # Parcels EN
 │   │   ├── rates/                       # Rates EN
 │   │   └── [22 páginas más...]
 │   │
@@ -1579,7 +1617,7 @@ Supabase Storage tiene **4 buckets públicos**:
 ```
 📦 Supabase Storage
 │
-├── 🚐 vehicles/          → Imágenes de vehículos
+├── 📍 parcels/           → Imágenes de parcelas
 │   └── {slug}/
 │       ├── principal.webp        (1200x800, 90%)
 │       └── galeria_XX.webp       (1200x800, 85%)
@@ -1622,7 +1660,7 @@ Supabase Storage tiene **4 buckets públicos**:
 4. La sube optimizada a Supabase Storage
 
 **Configuración por bucket:**
-- **vehicles**: 2000x1500px, calidad 90% (alta calidad)
+- **parcels**: 2000x1500px, calidad 90% (alta calidad)
 - **blog**: 1920x1080px, calidad 85%
 - **extras**: 1200x900px, calidad 85%
 - **media**: 1920x1080px, calidad 90%
@@ -1641,7 +1679,7 @@ Ahorro: -84% de espacio ✨
 
 | Bucket | Contenido | Resolución | Calidad | Peso |
 |--------|-----------|-----------|---------|------|
-| **vehicles** | Vehículos de la flota | 1200x800 | 85-90% | 150-250 KB |
+| **parcels** | Parcelas (imágenes) | 1200x800 | 85-90% | 150-250 KB |
 | **blog** | Artículos del blog | 1200x630 | 85-90% | 150-250 KB |
 | **extras** | Extras/equipamiento | 400x400 | 85% | 30-60 KB |
 | **media/locations** | Tarjetas de ciudades | 800x600 | 85% | 80-120 KB |
@@ -1677,15 +1715,15 @@ node scripts/upload-hero-slides.js
 ## 📝 Base de Datos
 
 ### Tablas principales:
-- `vehicles` - Vehículos de la flota
-- `vehicle_images` - Galería múltiple
-- `vehicle_categories` - Categorías
+- `parcels` - Parcelas
+- `parcel_images` - Galería múltiple
+- `parcel_categories` - Categorías
 - `equipment` - Equipamiento disponible
-- `vehicle_equipment` - Equipamiento por vehículo
+- `parcel_equipment` - Equipamiento por parcela
 - `locations` - Ubicaciones recogida/devolución
 - `seasons` - Temporadas y tarifas
 - `extras` - Extras disponibles
-- `vehicle_available_extras` - Extras por vehículo
+- `parcel_available_extras` - Extras por parcela (si aplica)
 - `bookings` - Reservas ⚠️ Tabla crítica
 - `booking_extras` - Extras en reservas
 - `customers` - Clientes ⚠️ Tabla crítica
@@ -1707,7 +1745,7 @@ node scripts/upload-hero-slides.js
 
 ### ✅ Producción actual: Vercel
 
-**URL**: https://www.furgocasa.com
+**URL objetivo**: https://ecoarealimonar.com (o tu dominio configurado en `NEXT_PUBLIC_APP_URL`)
 
 ### Configuración de variables en Vercel:
 
@@ -1758,7 +1796,7 @@ NEXT_PUBLIC_GA_ID (opcional)
 #### Sistemas Específicos
 - **PROCESO-RESERVA-COMPLETO.md** - Flujo de reserva completo
 - **GESTION-CLIENTES-OBLIGATORIO.md** - Sistema de clientes
-- **GUIA-QUERIES-VEHICULOS.md** - Queries de parcelas (tabla vehicles)
+- **GUIA-QUERIES-VEHICULOS.md** - Queries de parcelas (tabla parcels)
 - **SISTEMA_TEMPORADAS.md** - Temporadas y tarifas
 - **SISTEMA-MEDIA-RESUMEN.md** - Gestión de imágenes
 - **GALERIA-MULTIPLE-VEHICULOS.md** - Galería de vehículos
@@ -1825,9 +1863,9 @@ NEXT_PUBLIC_GA_ID (opcional)
 - **Solución**: Dividir en lotes de 50 IDs
 
 ### 5. **NO asumir que los datos no son null**
-- **Error cometido**: `vehicles.find()` sin validar que vehicles existe
+- **Error cometido**: `parcels.find()` sin validar que parcels existe
 - **Consecuencia**: `Cannot read properties of null`
-- **Solución**: Siempre validar: `if (!vehicles) return;`
+- **Solución**: Siempre validar: `if (!parcels) return;`
 
 ### 6. **NO modificar código que funciona "para mejorarlo"**
 - **Error cometido**: Cambiar a singleton "para optimizar"
@@ -1878,9 +1916,11 @@ SELECT * FROM supabase/fix-all-rls-policies.sql
 
 ### ✅ FUNCIONAL AL 100%
 
+**Dominio objetivo:** ecoarealimonar.com
+
 | Área | Estado | Última Verificación |
 |------|--------|---------------------|
-| Sitio público | ✅ | 22 Enero 2026 |
+| Sitio público | ✅ | 22 Feb 2026 |
 | **Búsqueda de parcelas** | ✅ | 22 Enero 2026 |
 | Sistema de reservas | ✅ | 22 Enero 2026 |
 | Dashboard admin | ✅ | 22 Enero 2026 |
@@ -1913,9 +1953,9 @@ Para consultas: [contacto@ecoarealimonar.com](mailto:contacto@ecoarealimonar.com
 ### v4.4.0 (25 Enero 2026) - Migración Google Analytics + Títulos Admin 📊
 - 📊 **MIGRACIÓN ANALYTICS**: Cambio a `@next/third-parties/google` (librería oficial)
 - ✅ **Títulos personalizados**: Todas las páginas del admin ahora muestran títulos descriptivos en el navegador
-  - Dashboard: "Admin - Dashboard | Furgocasa"
-  - Reservas: "Admin - Reservas | Furgocasa"
-  - Vehículos: "Admin - Vehículos | Furgocasa"
+  - Dashboard: "Admin - Dashboard | Eco Area Limonar"
+  - Reservas: "Admin - Reservas | Eco Area Limonar"
+  - Vehículos: "Admin - Vehículos | Eco Area Limonar"
   - (15 páginas totales actualizadas)
 - ✅ **Analytics estable**: Sin race conditions, títulos automáticos, fbclid nativo
 - ⚠️ **Trade-off**: Se pierde exclusión del admin (solución: filtro por IP en GA)
@@ -2038,9 +2078,9 @@ Para consultas: [contacto@ecoarealimonar.com](mailto:contacto@ecoarealimonar.com
 Desarrollado para **Eco Area Limonar**
 
 **Versión**: 1.0.0 - Área de autocaravanas  
-**Estado**: 🔄 En adaptación (desde Furgocasa)  
+**Estado**: 🔄 En adaptación (desde Eco Area Limonar)  
 **Dominio objetivo**: ecoarealimonar.com  
-**Última actualización**: Febrero 2026  
+**Última actualización**: 22 Febrero 2026  
 
 ---
 
