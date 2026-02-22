@@ -456,7 +456,7 @@ export default async function LocaleHomePage() {
               <Image src="/images/stock/mar-menor-beach-1.jpg" alt={t("A minutos de playas vírgenes")} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" />
             </div>
             <div className="relative rounded-xl overflow-hidden group">
-              <Image src="/images/slides/AdobeStock_132830655.webp" alt="Camper life" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" />
+              <Image src="/images/slides/limonar_area_camper_mar_menor_3.webp" alt="Camper life" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" />
             </div>
             <div className="relative rounded-xl overflow-hidden row-span-2 group">
               <Image src="/images/slides/limonar_area_camper_mar_menor_6.webp" alt="Eco Area Limonar" fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" />
