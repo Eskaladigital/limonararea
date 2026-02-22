@@ -57,7 +57,7 @@ export function getFromEmail(): string {
  * Nombre del remitente
  */
 export function getFromName(): string {
-  return process.env.SMTP_FROM_NAME || 'Furgocasa';
+  return process.env.SMTP_FROM_NAME || 'Eco Area Limonar';
 }
 
 /**

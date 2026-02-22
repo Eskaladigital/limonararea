@@ -84,22 +84,26 @@ Tabla en Supabase:
 
 | Columna | Descripción |
 |---------|-------------|
-| `source_table` | Tabla de origen: `vehicles`, `posts`, `content_categories` |
-| `source_id` | ID del registro (parcela, post, categoría) |
-| `source_field` | Campo traducido: `name`, `title`, `excerpt`, `content`, etc. |
+| `source_table` | Tabla de origen: `parcels`, `posts`, `content_categories`, `i18n` |
+| `source_id` | ID del registro (parcela, post, categoría) o clave de texto (cuando source_table es `i18n`) |
+| `source_field` | Campo traducido: `name`, `title`, `excerpt`, `content`, etc. Para `i18n` suele ser `text`. |
 | `locale` | `en`, `fr`, `de`, `nl` |
 | `translated_text` | Texto traducido |
 
-El español es el original en las tablas `parcels`, `posts`, `content_categories`; no se guarda en `content_translations`.
+Origen del español: tablas `parcels`, `posts`, `content_categories`; para `i18n`, los textos origen están en `src/lib/i18n/data/mar-menor-es.json` y `src/lib/i18n/data/pages-es.json` (contacto, footer, normas, galería, header).
 
 ### Cómo se usan en la app
 
 - **Parcelas (home, listados):**  
-  `getTranslatedRecords('vehicles', registros, ['name', 'short_description'], locale)`
+  `getTranslatedRecords('parcels', registros, ['name', 'short_description'], locale)`
 - **Posts (blog):**  
   `getTranslatedRecords('posts', posts, ['title', 'excerpt'], locale)` y, en la página de artículo, `getTranslatedContent('posts', id, ['title', 'excerpt', 'content', 'meta_title', 'meta_description'], locale, original)`
 - **Categorías:**  
   `getTranslatedRecords('content_categories', categorías, ['name'], locale)`
+- **Claves i18n (páginas):**  
+  Se consultan con `getTranslatedField('i18n', clave, 'text', locale)` cuando el contenido viene de `pages-es.json` o `mar-menor-es.json`.
+- **API de disponibilidad:**  
+  La ruta `/api/availability` acepta el parámetro `?locale=fr` (o `en`, `de`, `nl`). Si se envía, devuelve `name` y `short_description` de cada parcela (y `category.name`) traducidos desde `content_translations`, para mostrar resultados de búsqueda en el idioma correcto (ej. `/fr/recherche`).
 
 Definición y uso: `src/lib/translations/get-translations.ts`.
 
@@ -130,7 +134,7 @@ CREATE INDEX IF NOT EXISTS idx_content_translations_lookup
 npm run verify:translations
 ```
 
-Comprueba que existan filas en `content_translations` para todos los registros y campos que la app usa (parcelas/vehicles, posts publicados, categorías) y para los idiomas EN, FR, DE, NL. Muestra un resumen de lo que falta.
+Comprueba que existan filas en `content_translations` para todos los registros y campos que la app usa (parcelas, posts publicados, categorías) y para los idiomas EN, FR, DE, NL. Muestra un resumen de lo que falta.
 
 ### Traducir todo lo que falta (OpenAI)
 
@@ -138,8 +142,9 @@ Comprueba que existan filas en `content_translations` para todos los registros y
 npm run translate:content
 ```
 
-- Lee parcelas, posts publicados y categorías.
-- Para cada combinación (registro, campo, idioma) que no tenga fila en `content_translations`, traduce el texto original (español) con OpenAI y hace **upsert** en `content_translations`.
+- Lee **parcelas** (parcels), **posts** publicados y **categorías** (content_categories).
+- Lee también los JSON de claves i18n: **`src/lib/i18n/data/mar-menor-es.json`** (página Mar Menor) y **`src/lib/i18n/data/pages-es.json`** (contacto, footer, normas, galería, header). Para estas claves escribe en `content_translations` con `source_table: 'i18n'`, `source_field: 'text'`.
+- Para cada combinación (registro/clave, campo, idioma) que no tenga fila en `content_translations`, traduce el texto original (español) con OpenAI y hace **upsert** en `content_translations`.
 
 Requisitos en `.env.local`:
 

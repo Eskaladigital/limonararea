@@ -112,16 +112,16 @@ if (Math.abs(amount - expectedAmount) > tolerance) {
 **Implementación segura:**
 ```typescript
 // ❌ ANTES (hardcodeado):
-const token = process.env.NEXT_PUBLIC_CALENDAR_TOKEN || 'furgocasa2026';
+const token = process.env.NEXT_PUBLIC_CALENDAR_TOKEN || 'limonar2026';
 
 // ✅ DESPUÉS (desde variable de entorno):
-const token = process.env.CALENDAR_SUBSCRIPTION_TOKEN || 'furgocasa2026';
+const token = process.env.CALENDAR_SUBSCRIPTION_TOKEN || 'limonar2026';
 //                                                          ^^^^^^^^^^^^^^^^
 //                                                          Mismo fallback por seguridad
 ```
 
 **Acción requerida:**
-1. Agregar `CALENDAR_SUBSCRIPTION_TOKEN=furgocasa2026` en Vercel
+1. Agregar `CALENDAR_SUBSCRIPTION_TOKEN=limonar2026` en Vercel
 2. Cambiar código para usar nueva variable
 3. Funciona igual que antes, pero más seguro
 

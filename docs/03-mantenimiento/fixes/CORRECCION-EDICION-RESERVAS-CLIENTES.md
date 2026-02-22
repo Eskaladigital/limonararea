@@ -163,7 +163,7 @@ const { error: updateError } = await supabase
 {customerId && (
   <Link
     href={`/administrator/clientes/${customerId}/editar`}
-    className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-furgocasa-orange text-white rounded-lg hover:bg-orange-600 transition-colors"
+    className="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-limonar-orange text-white rounded-lg hover:bg-orange-600 transition-colors"
   >
     Editar cliente
   </Link>

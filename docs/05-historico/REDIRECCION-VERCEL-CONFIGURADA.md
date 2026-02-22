@@ -13,18 +13,18 @@ hacia el dominio personalizado.
 
 ### Redirección configurada:
 ```
-webfurgocasa.vercel.app/* → https://www.furgocasa.com/*
+weblimonar.vercel.app/* → https://www.ecoarealimonar.com/*
 ```
 
 ## 🎯 ¿Qué hace esta configuración?
 
-Cuando alguien visite cualquier URL de `webfurgocasa.vercel.app`, será
-automáticamente redirigido a `www.furgocasa.com` manteniendo la ruta.
+Cuando alguien visite cualquier URL de `weblimonar.vercel.app`, será
+automáticamente redirigido a `www.ecoarealimonar.com` manteniendo la ruta.
 
 ### Ejemplos:
-- `webfurgocasa.vercel.app/` → `https://www.furgocasa.com/`
-- `webfurgocasa.vercel.app/es` → `https://www.furgocasa.com/es`
-- `webfurgocasa.vercel.app/blog/articulo` → `https://www.furgocasa.com/blog/articulo`
+- `weblimonar.vercel.app/` → `https://www.ecoarealimonar.com/`
+- `weblimonar.vercel.app/es` → `https://www.ecoarealimonar.com/es`
+- `weblimonar.vercel.app/blog/articulo` → `https://www.ecoarealimonar.com/blog/articulo`
 
 ## 🔍 Beneficios SEO
 
@@ -32,7 +32,7 @@ automáticamente redirigido a `www.furgocasa.com` manteniendo la ruta.
 Google ya no verá el mismo contenido en dos dominios diferentes.
 
 ### 2. Consolida autoridad
-Toda la autoridad SEO se concentra en `www.furgocasa.com`
+Toda la autoridad SEO se concentra en `www.ecoarealimonar.com`
 
 ### 3. Redirección permanente (308)
 - HTTP 308: Permanent Redirect
@@ -45,7 +45,7 @@ Todas las URLs apuntan a una sola versión canónica.
 ## 📊 Impacto en herramientas
 
 ### Google Search Console
-- Las visitas se contabilizarán solo en `www.furgocasa.com`
+- Las visitas se contabilizarán solo en `www.ecoarealimonar.com`
 - Los enlaces a `*.vercel.app` transferirán autoridad
 
 ### Google Analytics
@@ -67,19 +67,19 @@ La redirección se activará automáticamente cuando:
 
 Después del despliegue, prueba:
 
-1. Visita `https://webfurgocasa.vercel.app/`
-2. Deberías ser redirigido automáticamente a `https://www.furgocasa.com/`
+1. Visita `https://weblimonar.vercel.app/`
+2. Deberías ser redirigido automáticamente a `https://www.ecoarealimonar.com/`
 3. La barra de direcciones mostrará el dominio nuevo
 
 ### Comando para verificar (opcional):
 ```bash
-curl -I https://webfurgocasa.vercel.app/
+curl -I https://weblimonar.vercel.app/
 ```
 
 Deberías ver:
 ```
 HTTP/2 308
-location: https://www.furgocasa.com/
+location: https://www.ecoarealimonar.com/
 ```
 
 ## 📝 Notas técnicas
@@ -99,7 +99,7 @@ olvidar la redirección.
 ### ¿Afecta al desarrollo local?
 
 No, porque:
-1. La condición `has: [{ type: 'host', value: 'webfurgocasa.vercel.app' }]`
+1. La condición `has: [{ type: 'host', value: 'weblimonar.vercel.app' }]`
    solo se aplica cuando el host es exactamente ese
 2. En local usas `localhost:3000`
 

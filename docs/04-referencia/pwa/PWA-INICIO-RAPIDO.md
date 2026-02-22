@@ -2,27 +2,27 @@
 
 ## ¿Qué es esto?
 
-Ahora el panel de administrador de Furgocasa se puede **instalar como una app en tu móvil**.
+Ahora el panel de administrador de Eco Area Limonar se puede **instalar como una app en tu móvil**.
 
 ## 📱 Instalar en tu Móvil
 
 ### iPhone (Safari)
 1. Abre Safari
-2. Ve a: `https://www.furgocasa.com/administrator`
+2. Ve a: `https://www.ecoarealimonar.com/administrator`
 3. Inicia sesión
 4. Toca el botón de **Compartir** (⬆️)
 5. Desplázate y toca **"Añadir a pantalla de inicio"**
 6. Toca **"Añadir"**
-7. ¡Listo! Verás el icono de Furgocasa Admin en tu pantalla
+7. ¡Listo! Verás el icono de Eco Area Limonar Admin en tu pantalla
 
 ### Android (Chrome)
 1. Abre Chrome
-2. Ve a: `https://www.furgocasa.com/administrator`
+2. Ve a: `https://www.ecoarealimonar.com/administrator`
 3. Inicia sesión
 4. Aparecerá un banner: **"Instalar app"**
    - Si no aparece: Menú (⋮) → "Instalar aplicación"
 5. Toca **"Instalar"**
-6. ¡Listo! Verás el icono de Furgocasa Admin
+6. ¡Listo! Verás el icono de Eco Area Limonar Admin
 
 ## ✨ Ventajas
 
@@ -57,7 +57,7 @@ Parcialmente. Guarda páginas visitadas para verlas sin conexión.
 
 **¿Cómo la desinstalo?**
 - iOS: Mantén presionado el icono → "Eliminar app"
-- Android: Ajustes → Apps → Furgocasa Admin → Desinstalar
+- Android: Ajustes → Apps → Eco Area Limonar Admin → Desinstalar
 
 ## 📚 Más Información
 

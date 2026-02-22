@@ -15,7 +15,7 @@ Organizar la documentación del proyecto de forma profesional, moviendo **~160 a
 ### Antes de la Reorganización
 
 ```
-furgocasa-app/
+limonar-app/
 ├── 141 archivos .md en raíz
 ├── 10 archivos .txt en raíz
 ├── 6 archivos .json en raíz
@@ -28,7 +28,7 @@ furgocasa-app/
 ### Después de la Reorganización
 
 ```
-furgocasa-app/
+limonar-app/
 ├── README.md ✅ (mantenido en raíz)
 ├── CHANGELOG.md ✅ (mantenido en raíz)
 ├── HACER-COMMIT.cmd ✅ (mantenido - script útil)

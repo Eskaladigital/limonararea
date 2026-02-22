@@ -32,8 +32,8 @@ const defaultPreferences: CookiePreferences = {
 
 const CookieContext = createContext<CookieContextType | undefined>(undefined);
 
-const COOKIE_CONSENT_KEY = "furgocasa_cookie_consent";
-const COOKIE_PREFERENCES_KEY = "furgocasa_cookie_preferences";
+const COOKIE_CONSENT_KEY = "limonar_cookie_consent";
+const COOKIE_PREFERENCES_KEY = "limonar_cookie_preferences";
 
 export function CookieProvider({ children }: { children: ReactNode }) {
   const [preferences, setPreferences] = useState<CookiePreferences>(defaultPreferences);

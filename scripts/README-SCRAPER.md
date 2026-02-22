@@ -1,6 +1,6 @@
-# Script de Migración del Blog Furgocasa
+# Script de Migración del Blog Eco Area Limonar
 
-Este script automatiza la extracción de todos los artículos del blog antiguo de Furgocasa (https://www.furgocasa.com/es/blog) y genera archivos para importarlos en la nueva base de datos.
+Este script automatiza la extracción de todos los artículos del blog antiguo de Eco Area Limonar (https://www.ecoarealimonar.com/es/blog) y genera archivos para importarlos en la nueva base de datos.
 
 ## 📋 Características
 
@@ -38,9 +38,9 @@ El script genera automáticamente 3 archivos en la carpeta `scripts/`:
 El script respeta la estructura de URLs del blog antiguo:
 
 ```
-https://www.furgocasa.com/es/blog/rutas/nombre-del-articulo
-https://www.furgocasa.com/es/blog/noticias/nombre-del-articulo
-https://www.furgocasa.com/es/blog/vehiculos/nombre-del-articulo
+https://www.ecoarealimonar.com/es/blog/rutas/nombre-del-articulo
+https://www.ecoarealimonar.com/es/blog/noticias/nombre-del-articulo
+https://www.ecoarealimonar.com/es/blog/vehiculos/nombre-del-articulo
 ```
 
 Y las mapea correctamente a las categorías de la nueva base de datos:
@@ -80,9 +80,9 @@ Si necesitas modificar el comportamiento del script, puedes editar `scripts/scra
 ### Cambiar categorías a procesar
 ```javascript
 const BLOG_CATEGORIES = [
-  { slug: 'rutas', url: 'https://www.furgocasa.com/es/blog/rutas' },
-  { slug: 'noticias', url: 'https://www.furgocasa.com/es/blog/noticias' },
-  { slug: 'vehiculos', url: 'https://www.furgocasa.com/es/blog/vehiculos' }
+  { slug: 'rutas', url: 'https://www.ecoarealimonar.com/es/blog/rutas' },
+  { slug: 'noticias', url: 'https://www.ecoarealimonar.com/es/blog/noticias' },
+  { slug: 'vehiculos', url: 'https://www.ecoarealimonar.com/es/blog/vehiculos' }
 ];
 ```
 
@@ -121,12 +121,12 @@ await page.goto(url, {
 ## 📊 Ejemplo de Salida
 
 ```
-🚀 Iniciando extracción del blog de Furgocasa...
+🚀 Iniciando extracción del blog de Eco Area Limonar...
 
 📂 Procesando categoría: rutas
-   URL: https://www.furgocasa.com/es/blog/rutas
+   URL: https://www.ecoarealimonar.com/es/blog/rutas
    ✅ Encontrados 25 artículos
-   📄 [1/25] Extrayendo: https://www.furgocasa.com/es/blog/rutas/los-10-mejores-planes-para-septiembre...
+   📄 [1/25] Extrayendo: https://www.ecoarealimonar.com/es/blog/rutas/los-10-mejores-planes-para-septiembre...
       ✅ Los 10 mejores planes para Septiembre con tu camper de alquiler
    ...
 
@@ -166,4 +166,4 @@ Después de importar los artículos:
 
 ---
 
-**Desarrollado para Furgocasa** - Sistema de migración del blog
+**Desarrollado para Eco Area Limonar** - Sistema de migración del blog

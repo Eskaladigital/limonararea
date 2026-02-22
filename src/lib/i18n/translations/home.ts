@@ -41,12 +41,12 @@ export const homeTranslations = {
     de: "Fahrzeugflotte höchster Qualität",
     nl: "Top quality vehicle fleet"
   },
-  "FURGOCASA:": {
-    es: "FURGOCASA:",
-    en: "FURGOCASA:",
-    fr: "FURGOCASA:",
-    de: "FURGOCASA:",
-    nl: "FURGOCASA:"
+  "Eco Area Limonar:": {
+    es: "Eco Area Limonar:",
+    en: "Eco Area Limonar:",
+    fr: "Eco Area Limonar:",
+    de: "Eco Area Limonar:",
+    nl: "Eco Area Limonar:"
   },
   "estamos especializados en el alquiler de vehículos campers van de gran volumen.": {
     es: "estamos especializados en el alquiler de vehículos campers van de gran volumen.",
@@ -232,13 +232,13 @@ export const homeTranslations = {
     nl: "See more articles"
   },
 
-  // Por qué Furgocasa
-  "¿Por qué alquilar con Furgocasa?": {
-    es: "¿Por qué alquilar con Furgocasa?",
-    en: "Why rent with Furgocasa?",
-    fr: "Pourquoi louer avec Furgocasa ?",
-    de: "Warum mit Furgocasa mieten?",
-    nl: "Why rent with Furgocasa?"
+  // Por qué Eco Area Limonar
+  "¿Por qué alquilar con Eco Area Limonar?": {
+    es: "¿Por qué alquilar con Eco Area Limonar?",
+    en: "Why rent with Eco Area Limonar?",
+    fr: "Pourquoi louer avec Eco Area Limonar ?",
+    de: "Warum mit Eco Area Limonar mieten?",
+    nl: "Why rent with Eco Area Limonar?"
   },
   "La tranquilidad de viajar con los mejores": {
     es: "La tranquilidad de viajar con los mejores",
@@ -283,11 +283,11 @@ export const homeTranslations = {
     nl: "Premium Fleet"
   },
   "Vehículos modernos y perfectamente equipados": {
-    es: "Vehículos modernos y perfectamente equipados",
-    en: "Modern and perfectly equipped vehicles",
-    fr: "Véhicules modernes et parfaitement équipés",
-    de: "Moderne und perfekt ausgestattete Fahrzeuge",
-    nl: "Modern and perfectly equipped vehicles"
+    es: "Parcelas modernas y perfectamente equipadas",
+    en: "Modern and perfectly equipped parcels",
+    fr: "Emplacements modernes et parfaitement équipés",
+    de: "Moderne und perfekt ausgestattete Stellplätze",
+    nl: "Moderne en perfect uitgeruste percelen"
   },
   "Todo Incluido": {
     es: "Todo Incluido",
@@ -346,11 +346,11 @@ export const homeTranslations = {
     nl: "Trips completed"
   },
   "Vehículos Premium": {
-    es: "Vehículos Premium",
-    en: "Premium Vehicles",
-    fr: "Véhicules Premium",
-    de: "Premium-Fahrzeuge",
-    nl: "Premium Vehicles"
+    es: "Parcelas Premium",
+    en: "Premium Parcels",
+    fr: "Emplacements Premium",
+    de: "Premium-Stellplätze",
+    nl: "Premium Percelen"
   },
   "Valoración Media": {
     es: "Valoración Media",
@@ -412,12 +412,12 @@ export const homeTranslations = {
     de: "Buchen Sie jetzt Ihren Camper!",
     nl: "Book your camper now!"
   },
-  "Furgocasa - Alquiler de Autocaravanas": {
-    es: "Furgocasa - Alquiler de Autocaravanas",
-    en: "Furgocasa - Motorhome Rental",
-    fr: "Furgocasa - Location de Camping-cars",
-    de: "Furgocasa - Wohnmobilvermietung",
-    nl: "Furgocasa - Motorhome Rental"
+  "Eco Area Limonar - Alquiler de Autocaravanas": {
+    es: "Eco Area Limonar - Alquiler de Autocaravanas",
+    en: "Eco Area Limonar - Motorhome Rental",
+    fr: "Eco Area Limonar - Location de Camping-cars",
+    de: "Eco Area Limonar - Wohnmobilvermietung",
+    nl: "Eco Area Limonar - Motorhome Rental"
   },
   "Tu hotel 5 estrellas sobre ruedas": {
     es: "Tu hotel 5 estrellas sobre ruedas",
@@ -433,12 +433,12 @@ export const homeTranslations = {
     de: "Premium-Flotte ab 95€/Tag mit unbegrenzten Kilometern",
     nl: "Premium fleet from 95€/day with unlimited mileage"
   },
-  "Interior camper Furgocasa": {
-    es: "Interior camper Furgocasa",
-    en: "Furgocasa camper interior",
-    fr: "Intérieur camping-car Furgocasa",
-    de: "Furgocasa Camper Innenraum",
-    nl: "Furgocasa camper interior"
+  "Interior camper Eco Area Limonar": {
+    es: "Interior camper Eco Area Limonar",
+    en: "Eco Area Limonar camper interior",
+    fr: "Intérieur camping-car Eco Area Limonar",
+    de: "Eco Area Limonar Camper Innenraum",
+    nl: "Eco Area Limonar camper interior"
   },
 
   // Banner de novedades

@@ -9,9 +9,9 @@ const supabase = createClient(
 
 interface OfferAvailability {
   offer_id: string;
-  vehicle_id: string;
-  vehicle_name: string;
-  vehicle_internal_code: string;
+  parcel_id: string;
+  parcel_name: string;
+  parcel_internal_code: string;
   offer_start_date: string;
   offer_end_date: string;
   offer_days: number;
@@ -35,13 +35,13 @@ export async function GET() {
       .from('last_minute_offers')
       .select(`
         id,
-        vehicle_id,
+        parcel_id,
         offer_start_date,
         offer_end_date,
         offer_days,
         discount_percentage,
         status,
-        vehicle:vehicles(name, internal_code, slug)
+        parcel:parcels(name, internal_code, slug)
       `)
       .eq('status', 'published')
       .order('offer_start_date');
@@ -74,7 +74,7 @@ export async function GET() {
             dropoff_date,
             customer:customers(name)
           `)
-          .eq('vehicle_id', offer.vehicle_id)
+          .eq('parcel_id', offer.parcel_id)
           .in('status', ['confirmed', 'active', 'completed'])
           .lte('pickup_date', offer.offer_end_date)
           .gte('dropoff_date', offer.offer_start_date);
@@ -96,7 +96,7 @@ export async function GET() {
         const { data: blockedDates } = await supabase
           .from('blocked_dates')
           .select('start_date, end_date, reason')
-          .eq('vehicle_id', offer.vehicle_id)
+          .eq('parcel_id', offer.parcel_id)
           .lte('start_date', offer.offer_end_date)
           .gte('end_date', offer.offer_start_date);
 
@@ -107,11 +107,13 @@ export async function GET() {
           reason = `Fechas bloqueadas: ${blockedDates[0].reason || 'Sin motivo'}`;
         }
 
+        const parcelName = (offer as any).parcel?.name ?? 'Parcela desconocida';
+        const parcelCode = (offer as any).parcel?.internal_code ?? '-';
         return {
           offer_id: offer.id,
-          vehicle_id: offer.vehicle_id,
-          vehicle_name: offer.vehicle?.name || 'Vehículo desconocido',
-          vehicle_internal_code: offer.vehicle?.internal_code || '-',
+          parcel_id: offer.parcel_id,
+          parcel_name: parcelName,
+          parcel_internal_code: parcelCode,
           offer_start_date: offer.offer_start_date,
           offer_end_date: offer.offer_end_date,
           offer_days: offer.offer_days,

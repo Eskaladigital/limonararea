@@ -85,13 +85,6 @@ export const routeTranslations = {
     de: "/angebote",
     nl: "/aanbiedingen" 
   },
-  "/ventas": { 
-    es: "/ventas", 
-    en: "/sales", 
-    fr: "/ventes", 
-    de: "/verkauf",
-    nl: "/verkoop" 
-  },
   "/blog": { 
     es: "/blog", 
     en: "/blog", 
@@ -113,12 +106,12 @@ export const routeTranslations = {
     de: "/blog/nachrichten",
     nl: "/blog/nieuws" 
   },
-  "/blog/vehiculos": { 
-    es: "/blog/vehiculos", 
-    en: "/blog/vehicles", 
-    fr: "/blog/vehicules", 
-    de: "/blog/fahrzeuge",
-    nl: "/blog/voertuigen" 
+  "/blog/parcelas": { 
+    es: "/blog/parcelas", 
+    en: "/blog/parcels", 
+    fr: "/blog/emplacements", 
+    de: "/blog/stellplatze",
+    nl: "/blog/percelen" 
   },
   "/blog/consejos": { 
     es: "/blog/consejos", 

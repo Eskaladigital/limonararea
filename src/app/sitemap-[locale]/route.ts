@@ -32,7 +32,7 @@ type PostRow = {
   published_at?: string | null;
   category?: CategoryRow | CategoryRow[] | null;
 };
-type VehicleRow = { slug: string; updated_at?: string | null };
+type ParcelRow = { slug: string; updated_at?: string | null };
 
 /**
  * Genera parámetros estáticos para todos los idiomas
@@ -69,7 +69,7 @@ export async function GET(
   const [
     { data: posts },
     { data: categories },
-    { data: vehiclesRent },
+    { data: parcelsRent },
   ] = await Promise.all([
     supabase
       .from('posts')
@@ -99,7 +99,7 @@ export async function GET(
 
   const postList = (posts || []) as PostRow[];
   const categoryList = (categories || []) as CategoryRow[];
-  const rentList = (vehiclesRent || []) as VehicleRow[];
+  const rentList = (parcelsRent || []) as ParcelRow[];
 
   const entries: Array<{
     url: string;
@@ -156,8 +156,6 @@ export async function GET(
     { path: '/reservar', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/contacto', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/como-funciona', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/documentacion-alquiler', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/guia-camper', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/mapa-areas', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/ofertas', priority: 0.6, changeFrequency: 'weekly' },
     { path: '/publicaciones', priority: 0.5, changeFrequency: 'weekly' },
@@ -167,7 +165,6 @@ export async function GET(
     { path: '/faqs', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/como-reservar-fin-semana', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/inteligencia-artificial', priority: 0.5, changeFrequency: 'monthly' },
-    { path: '/video-tutoriales', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/aviso-legal', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/privacidad', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/cookies', priority: 0.3, changeFrequency: 'yearly' },
@@ -247,12 +244,12 @@ export async function GET(
     });
   });
 
-  // Vehículos en alquiler
-  rentList.forEach((vehicle) => {
-    addEntry(`/parcelas/${vehicle.slug}`, {
+  // Parcelas en alquiler
+  rentList.forEach((parcel) => {
+    addEntry(`/parcelas/${parcel.slug}`, {
       priority: 0.7,
       changeFrequency: 'weekly',
-      lastModified: vehicle.updated_at || now,
+      lastModified: parcel.updated_at || now,
     });
   });
 

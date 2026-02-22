@@ -35,8 +35,8 @@ El sistema de filtrado de bots está implementado en **dos niveles**:
 4. Verificar en 24-48 horas
 
 ### Links Importantes:
-- Vercel Firewall: https://vercel.com/furgocasa/webfurgocasa/firewall/rules#bot-management
-- Analytics: https://www.furgocasa.com/administrator/busquedas
+- Vercel Firewall: https://vercel.com/limonar/weblimonar/firewall/rules#bot-management
+- Analytics: https://www.ecoarealimonar.com/administrator/busquedas
 - Supabase: Dashboard de búsquedas
 
 ---

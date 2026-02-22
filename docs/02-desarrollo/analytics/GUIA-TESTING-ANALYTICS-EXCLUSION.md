@@ -29,19 +29,19 @@ Confirmar que el middleware redirige correctamente URLs con idioma y previene lo
    - Marcar "Preserve log" ✅
 
 3. **Test A: Redirect con idioma**
-   - Escribir en barra: `https://www.furgocasa.com/es/administrator`
+   - Escribir en barra: `https://www.ecoarealimonar.com/es/administrator`
    - Presionar Enter
    
    **Verificar en Network**:
    ```
    ✅ Status: 301 (Moved Permanently)
    ✅ Location header: /administrator
-   ✅ URL final en barra: https://www.furgocasa.com/administrator
+   ✅ URL final en barra: https://www.ecoarealimonar.com/administrator
    ```
 
 4. **Test B: Redirect con idioma + subruta**
    - Limpiar Network log
-   - Escribir: `https://www.furgocasa.com/en/administrator/reservas`
+   - Escribir: `https://www.ecoarealimonar.com/en/administrator/reservas`
    - Presionar Enter
    
    **Verificar en Network**:
@@ -52,7 +52,7 @@ Confirmar que el middleware redirige correctamente URLs con idioma y previene lo
 
 5. **Test C: Ruta raíz sin loop**
    - Limpiar Network log
-   - Escribir: `https://www.furgocasa.com/administrator`
+   - Escribir: `https://www.ecoarealimonar.com/administrator`
    - Presionar Enter
    
    **Verificar en Network**:
@@ -64,7 +64,7 @@ Confirmar que el middleware redirige correctamente URLs con idioma y previene lo
 
 6. **Test D: Subruta sin redirect**
    - Limpiar Network log
-   - Escribir: `https://www.furgocasa.com/administrator/login`
+   - Escribir: `https://www.ecoarealimonar.com/administrator/login`
    - Presionar Enter
    
    **Verificar en Network**:
@@ -96,7 +96,7 @@ Confirmar que Analytics funciona correctamente en páginas públicas.
    - Ir a pestaña **Console**
    - Ir a pestaña **Network**
 
-3. **Navegar a** `https://www.furgocasa.com/`
+3. **Navegar a** `https://www.ecoarealimonar.com/`
 
 4. **Verificar Console**
    ```
@@ -148,7 +148,7 @@ Confirmar que Analytics está completamente bloqueado en admin.
 
 3. **Limpiar Console** (botón 🚫 Clear)
 
-4. **Navegar a** `https://www.furgocasa.com/administrator/login`
+4. **Navegar a** `https://www.ecoarealimonar.com/administrator/login`
 
 5. **Verificar Console**
    ```
@@ -196,7 +196,7 @@ Confirmar que Analytics está completamente bloqueado en admin.
    - **Resultado esperado**: 
      - ❌ NO debe aparecer nueva página vista
      - ❌ NO debe aparecer `/administrator/login`
-     - ❌ NO debe aparecer título "Furgocasa Admin"
+     - ❌ NO debe aparecer título "Eco Area Limonar Admin"
    
    - El usuario activo del Test 1 puede seguir apareciendo (normal)
    - Pero NO debe registrarse nueva actividad desde login
@@ -250,7 +250,7 @@ Confirmar que Analytics se reactiva al volver a páginas públicas.
 
 1. **Desde el admin**, navegar a una página pública:
    - Opción A: Click en logo/enlace a home
-   - Opción B: Escribir en barra: `https://www.furgocasa.com/vehiculos`
+   - Opción B: Escribir en barra: `https://www.ecoarealimonar.com/vehiculos`
 
 2. **Verificar Console**:
    ```

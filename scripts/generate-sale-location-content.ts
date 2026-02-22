@@ -177,12 +177,12 @@ async function generateSaleLocationContent(location: SaleLocationTarget): Promis
   const localContext = await searchLocalContext(location);
 
   const sedeContext = isSede
-    ? `${location.name} es donde Furgocasa tiene presencia directa.`
-    : `Furgocasa tiene su sede en ${officeName}. La distancia a ${location.name} es de aproximadamente ${location.distance_km || '?'} km.`;
+    ? `${location.name} es donde Eco Area Limonar tiene presencia directa.`
+    : `Eco Area Limonar tiene su sede en ${officeName}. La distancia a ${location.name} es de aproximadamente ${location.distance_km || '?'} km.`;
 
   const prompt = `Genera contenido ÚNICO para la página de venta de autocaravanas en "${location.name}, ${location.province}, ${location.region}".
 
-CONTEXTO: ${sedeContext} Furgocasa vende campers revisados de su flota, con garantía y financiación.
+CONTEXTO: ${sedeContext} Eco Area Limonar vende campers revisados de su flota, con garantía y financiación.
 
 DATOS REALES ENCONTRADOS EN GOOGLE (usa estos datos para escribir contenido con nombres y datos reales):
 ${localContext}
@@ -211,7 +211,7 @@ Ejemplos de lo que NO quiero (PROHIBIDO):
 FORMATO: JSON con esta estructura. HTML limpio dentro (p, h3, ul/li). Sin h1, sin CSS.
 
 {
-  "owner_introduction": "HTML. Máx 150 palabras. Qué tiene de especial ${location.name} para un propietario de camper. Clima CONCRETO (temperaturas reales), qué tienes cerca (costa/montaña a X km por [carretera]), particularidades locales. ${!isSede ? 'Furgocasa está en ' + officeName + ' (' + (location.distance_km || '?') + ' km por [autovía]).' : 'Furgocasa tiene sede aquí.'}",
+  "owner_introduction": "HTML. Máx 150 palabras. Qué tiene de especial ${location.name} para un propietario de camper. Clima CONCRETO (temperaturas reales), qué tienes cerca (costa/montaña a X km por [carretera]), particularidades locales. ${!isSede ? 'Eco Area Limonar está en ' + officeName + ' (' + (location.distance_km || '?') + ' km por [autovía]).' : 'Eco Area Limonar tiene sede aquí.'}",
 
   "workshops_and_services": [
     {
@@ -501,7 +501,7 @@ if (command === 'all') {
 } else {
   console.log(`
 ╔════════════════════════════════════════════════════════════════╗
-║  GENERADOR DE CONTENIDO DE VENTA (PROPIETARIO) - FURGOCASA   ║
+║  GENERADOR DE CONTENIDO DE VENTA (PROPIETARIO) - Eco Area Limonar   ║
 ╚════════════════════════════════════════════════════════════════╝
 
 Uso:

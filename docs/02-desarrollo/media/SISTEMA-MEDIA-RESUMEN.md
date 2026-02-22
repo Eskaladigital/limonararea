@@ -1,4 +1,4 @@
-# 📸 Sistema de Gestión de Media - Furgocasa
+# 📸 Sistema de Gestión de Media - Eco Area Limonar
 
 ## ✅ **¿Qué hemos implementado?**
 
@@ -153,7 +153,7 @@ npm install react-dropzone --legacy-peer-deps
 
 ## 🎨 **Diseño y UX**
 
-- **Colores:** Azul Furgocasa (#1e40af) para acciones principales
+- **Colores:** Azul Eco Area Limonar (#1e40af) para acciones principales
 - **Iconos:** Lucide React para consistencia
 - **Transiciones:** Suaves y profesionales
 - **Responsive:** Funciona en móvil, tablet y desktop

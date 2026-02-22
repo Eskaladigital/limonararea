@@ -372,11 +372,13 @@ const nextConfig = {
       // ================================================================
       // GRUPO 3: CORRECCIÓN IDIOMA CRUZADO (RUTAS GENERALES)
       // ================================================================
-      // Propósito: Corregir URLs mal formadas (ej: /de/vehicles → /de/fahrzeuge)
-      // Mantener: PERMANENTE - Mejora consistencia de URLs por idioma
+      // Propósito: Redirigir URLs legacy o mal formadas a las rutas canónicas
+      // de PARCELAS por idioma (parcelas, parcels, emplacements, stellplatze).
+      // NOTA: "vehicles"/"vehiculos"/"vehicules"/"fahrzeuge" aparecen solo en SOURCE
+      // (origen). Son enlaces antiguos que deben seguir redirigiendo; no eliminar.
       // ================================================================
       
-      // ── Alemán (DE): Corregir rutas EN/ES/FR → DE ──
+      // ── Alemán (DE): legacy vehicles/vehiculos/… → stellplatze (parcelas) ──
       { source: '/de/vehicles', destination: '/de/stellplatze', permanent: true },
       { source: '/de/vehicles/:slug', destination: '/de/stellplatze/:slug', permanent: true },
       { source: '/de/vehiculos', destination: '/de/stellplatze', permanent: true },
@@ -398,10 +400,11 @@ const nextConfig = {
       { source: '/de/offers', destination: '/de/angebote', permanent: true },
       { source: '/de/about-us', destination: '/de/uber-uns', permanent: true },
       { source: '/de/privacy', destination: '/de/datenschutz', permanent: true },
-      // Corregir subrutas de reserva con palabras en otros idiomas
-      { source: '/de/buchen/vehiculo', destination: '/de/buchen/fahrzeug', permanent: true },
-      { source: '/de/buchen/vehicle', destination: '/de/buchen/fahrzeug', permanent: true },
-      { source: '/de/buchen/vehicule', destination: '/de/buchen/fahrzeug', permanent: true },
+      // Corregir subrutas de reserva: vehiculo/vehicle/vehicule/fahrzeug → stellplatz (parcela)
+      { source: '/de/buchen/vehiculo', destination: '/de/buchen/stellplatz', permanent: true },
+      { source: '/de/buchen/vehicle', destination: '/de/buchen/stellplatz', permanent: true },
+      { source: '/de/buchen/vehicule', destination: '/de/buchen/stellplatz', permanent: true },
+      { source: '/de/buchen/fahrzeug', destination: '/de/buchen/stellplatz', permanent: true },
       { source: '/de/buchen/nueva', destination: '/de/buchen/neu', permanent: true },
       { source: '/de/buchen/new', destination: '/de/buchen/neu', permanent: true },
       { source: '/de/buchen/nouvelle', destination: '/de/buchen/neu', permanent: true },
@@ -425,10 +428,11 @@ const nextConfig = {
       { source: '/fr/offers', destination: '/fr/offres', permanent: true },
       { source: '/fr/about-us', destination: '/fr/a-propos', permanent: true },
       { source: '/fr/privacy', destination: '/fr/confidentialite', permanent: true },
-      // Corregir subrutas de reserva con palabras en otros idiomas
-      { source: '/fr/reserver/vehiculo', destination: '/fr/reserver/vehicule', permanent: true },
-      { source: '/fr/reserver/vehicle', destination: '/fr/reserver/vehicule', permanent: true },
-      { source: '/fr/reserver/fahrzeug', destination: '/fr/reserver/vehicule', permanent: true },
+      // Corregir subrutas de reserva: vehiculo/vehicle/vehicule/fahrzeug → parcelle (parcela)
+      { source: '/fr/reserver/vehiculo', destination: '/fr/reserver/parcelle', permanent: true },
+      { source: '/fr/reserver/vehicle', destination: '/fr/reserver/parcelle', permanent: true },
+      { source: '/fr/reserver/vehicule', destination: '/fr/reserver/parcelle', permanent: true },
+      { source: '/fr/reserver/fahrzeug', destination: '/fr/reserver/parcelle', permanent: true },
       { source: '/fr/reserver/nueva', destination: '/fr/reserver/nouvelle', permanent: true },
       { source: '/fr/reserver/new', destination: '/fr/reserver/nouvelle', permanent: true },
       { source: '/fr/reserver/neu', destination: '/fr/reserver/nouvelle', permanent: true },
@@ -453,10 +457,11 @@ const nextConfig = {
       { source: '/en/ofertas', destination: '/en/offers', permanent: true },
       { source: '/en/quienes-somos', destination: '/en/about-us', permanent: true },
       { source: '/en/privacidad', destination: '/en/privacy', permanent: true },
-      // Corregir subrutas de reserva con palabras en otros idiomas
-      { source: '/en/book/vehiculo', destination: '/en/book/vehicle', permanent: true },
-      { source: '/en/book/fahrzeug', destination: '/en/book/vehicle', permanent: true },
-      { source: '/en/book/vehicule', destination: '/en/book/vehicle', permanent: true },
+      // Corregir subrutas de reserva: vehiculo/vehicle/vehicule/fahrzeug → parcel (parcela)
+      { source: '/en/book/vehiculo', destination: '/en/book/parcel', permanent: true },
+      { source: '/en/book/vehicle', destination: '/en/book/parcel', permanent: true },
+      { source: '/en/book/fahrzeug', destination: '/en/book/parcel', permanent: true },
+      { source: '/en/book/vehicule', destination: '/en/book/parcel', permanent: true },
       { source: '/en/book/nueva', destination: '/en/book/new', permanent: true },
       { source: '/en/book/neu', destination: '/en/book/new', permanent: true },
       { source: '/en/book/nouvelle', destination: '/en/book/new', permanent: true },
@@ -488,10 +493,11 @@ const nextConfig = {
       { source: '/es/book/:path*', destination: '/es/reservar/:path*', permanent: true },
       { source: '/es/reserver', destination: '/es/reservar', permanent: true },
       { source: '/es/reserver/:path*', destination: '/es/reservar/:path*', permanent: true },
-      // Corregir subrutas de reserva con palabras en otros idiomas
-      { source: '/es/reservar/fahrzeug', destination: '/es/reservar/vehiculo', permanent: true },
-      { source: '/es/reservar/vehicle', destination: '/es/reservar/vehiculo', permanent: true },
-      { source: '/es/reservar/vehicule', destination: '/es/reservar/vehiculo', permanent: true },
+      // Corregir subrutas de reserva: vehiculo/vehicle/vehicule/fahrzeug → parcela (canónico)
+      { source: '/es/reservar/vehiculo', destination: '/es/reservar/parcela', permanent: true },
+      { source: '/es/reservar/fahrzeug', destination: '/es/reservar/parcela', permanent: true },
+      { source: '/es/reservar/vehicle', destination: '/es/reservar/parcela', permanent: true },
+      { source: '/es/reservar/vehicule', destination: '/es/reservar/parcela', permanent: true },
       { source: '/es/reservar/neu', destination: '/es/reservar/nueva', permanent: true },
       { source: '/es/reservar/new', destination: '/es/reservar/nueva', permanent: true },
       { source: '/es/reservar/nouvelle', destination: '/es/reservar/nueva', permanent: true },

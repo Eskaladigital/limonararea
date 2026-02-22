@@ -1,4 +1,4 @@
-# Configuración del Sistema de Administración - Furgocasa
+# Configuración del Sistema de Administración - Eco Area Limonar
 
 ## 📋 Estado Actual
 
@@ -18,7 +18,7 @@ El sistema de autenticación del administrador está completamente implementado 
 1. Ve a tu proyecto de Supabase
 2. **Authentication** > **Users** > **Add User**
 3. Ingresa:
-   - **Email**: `admin@furgocasa.com` (o el que prefieras)
+   - **Email**: `admin@ecoarealimonar.com` (o el que prefieras)
    - **Password**: (elige una contraseña segura)
    - ✅ Marca **Auto Confirm User** para no tener que confirmar el email
 4. Haz clic en **Create User**
@@ -29,11 +29,11 @@ El sistema de autenticación del administrador está completamente implementado 
 1. Ve a **SQL Editor** en Supabase
 2. Abre el archivo `supabase/create-first-admin.sql` que está en el proyecto
 3. Reemplaza `UUID_DEL_USUARIO_AUTH` con el UUID que copiaste
-4. Reemplaza `admin@furgocasa.com` si usaste otro email
+4. Reemplaza `admin@ecoarealimonar.com` si usaste otro email
 5. Ejecuta el script SQL
 6. Verifica que se creó correctamente ejecutando:
    ```sql
-   SELECT * FROM admins WHERE email = 'admin@furgocasa.com';
+   SELECT * FROM admins WHERE email = 'admin@ecoarealimonar.com';
    ```
 
 ### Paso 3: Verificar Políticas de RLS
@@ -59,7 +59,7 @@ SUPABASE_SERVICE_ROLE_KEY=tu-service-role-key-aqui
 
 1. Navega a: `http://localhost:3000/administrator/login`
 2. Ingresa las credenciales que creaste:
-   - **Email**: `admin@furgocasa.com`
+   - **Email**: `admin@ecoarealimonar.com`
    - **Password**: (la que elegiste)
 3. Haz clic en **Iniciar sesión**
 
@@ -160,7 +160,7 @@ const { data, error } = await supabase.auth.signInWithPassword({
 
 Ejecuta en SQL Editor:
 ```sql
-UPDATE admins SET is_active = TRUE WHERE email = 'tu-email@furgocasa.com';
+UPDATE admins SET is_active = TRUE WHERE email = 'tu-email@ecoarealimonar.com';
 ```
 
 ### Error: "Credenciales incorrectas"

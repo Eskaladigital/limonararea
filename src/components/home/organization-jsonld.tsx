@@ -2,14 +2,14 @@ export function OrganizationJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness"],
-    "name": "Furgocasa",
-    "legalName": "Furgocasa S.L.",
-    "url": "https://www.furgocasa.com",
-    "logo": "https://www.furgocasa.com/logo.png",
+    "name": "Eco Area Limonar",
+    "legalName": "Eco Area Limonar",
+    "url": "https://www.limonar.com",
+    "logo": "https://www.limonar.com/logo.png",
     "description": "Empresa especializada en alquiler de autocaravanas y campers de gran volumen en Murcia. Flota premium con kilómetros ilimitados.",
     "foundingDate": "2012",
     "telephone": "+34868364161",
-    "email": "info@furgocasa.com",
+    "email": "info@limonar.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Avenida Puente Tocinos, 4",
@@ -52,8 +52,8 @@ export function OrganizationJsonLd() {
       }
     ],
     "sameAs": [
-      "https://www.facebook.com/furgocasa",
-      "https://www.instagram.com/furgocasa"
+      "https://www.facebook.com/limonar",
+      "https://www.instagram.com/limonar"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -96,8 +96,8 @@ export function ProductJsonLd({ parcels }: ProductJsonLdProps) {
     "@type": "Product",
     "name": parcel.name,
     "description": `${dims}. Parcela equipada con electricidad, agua y servicios en Eco Area Limonar, Los Nietos.`,
-    "image": parcel.main_image || "https://www.furgocasa.com/default-parcel.jpg",
-    "url": `https://www.furgocasa.com/parcelas/${parcel.slug}`,
+    "image": parcel.main_image || "https://www.limonar.com/default-parcel.jpg",
+    "url": `https://www.limonar.com/parcelas/${parcel.slug}`,
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "EUR",
@@ -108,7 +108,7 @@ export function ProductJsonLd({ parcels }: ProductJsonLdProps) {
       "priceValidUntil": "2026-12-31",
       "seller": {
         "@type": "Organization",
-        "name": "Furgocasa"
+        "name": "Eco Area Limonar"
       }
     },
     "additionalProperty": parcel.length_m && parcel.width_m
@@ -143,13 +143,13 @@ export function WebsiteJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Furgocasa",
-    "url": "https://www.furgocasa.com",
+    "name": "Eco Area Limonar",
+    "url": "https://www.limonar.com",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://www.furgocasa.com/buscar?q={search_term_string}"
+        "urlTemplate": "https://www.limonar.com/buscar?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }

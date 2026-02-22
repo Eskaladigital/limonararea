@@ -10,12 +10,12 @@ export function LocalBusinessJsonLd({ location }: LocalBusinessJsonLdProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Furgocasa",
-    "alternateName": `Furgocasa - Alquiler de Campers cerca de ${location.name}`,
+    "name": "Eco Area Limonar",
+    "alternateName": `Eco Area Limonar - Alquiler de Campers cerca de ${location.name}`,
     "description": `Empresa de alquiler de autocaravanas y campers con sede en Murcia. Servimos a clientes de ${location.name} y toda ${location.region}. Flota premium con kilómetros ilimitados.`,
-    "url": `https://www.furgocasa.com/alquiler-autocaravanas-campervans-${location.slug}`,
+    "url": `https://www.limonar.com/alquiler-autocaravanas-campervans-${location.slug}`,
     "telephone": "+34868364161",
-    "email": "info@furgocasa.com",
+    "email": "info@limonar.com",
     "priceRange": "95€ - 155€",
     // ⚠️ IMPORTANTE: La dirección es la REAL (Murcia), no la ciudad de la landing
     "address": {
@@ -84,7 +84,7 @@ export function LocalBusinessJsonLd({ location }: LocalBusinessJsonLdProps) {
             "description": "Servicio de alquiler de furgonetas campers de 4-6 plazas con baño, cocina y calefacción. Kilómetros ilimitados incluidos.",
             "provider": {
               "@type": "Organization",
-              "name": "Furgocasa"
+              "name": "Eco Area Limonar"
             }
           },
           "price": "95",
@@ -102,13 +102,13 @@ export function LocalBusinessJsonLd({ location }: LocalBusinessJsonLdProps) {
       "worstRating": "1"
     },
     "image": [
-      location.hero_image || "https://www.furgocasa.com/images/slides/hero-01.webp",
-      "https://www.furgocasa.com/logo.png"
+      location.hero_image || "https://www.limonar.com/images/slides/hero-01.webp",
+      "https://www.limonar.com/logo.png"
     ],
-    "logo": "https://www.furgocasa.com/logo.png",
+    "logo": "https://www.limonar.com/logo.png",
     "sameAs": [
-      "https://www.facebook.com/furgocasa",
-      "https://www.instagram.com/furgocasa"
+      "https://www.facebook.com/limonar",
+      "https://www.instagram.com/limonar"
     ]
   };
 
@@ -121,19 +121,19 @@ export function LocalBusinessJsonLd({ location }: LocalBusinessJsonLdProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Inicio",
-        "item": "https://www.furgocasa.com"
+        "item": "https://www.limonar.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Alquiler Camper",
-        "item": "https://www.furgocasa.com/parcelas"
+        "item": "https://www.limonar.com/parcelas"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": `Alquiler Camper ${location.name}`,
-        "item": `https://www.furgocasa.com/alquiler-autocaravanas-campervans-${location.slug}`
+        "item": `https://www.limonar.com/alquiler-autocaravanas-campervans-${location.slug}`
       }
     ]
   };

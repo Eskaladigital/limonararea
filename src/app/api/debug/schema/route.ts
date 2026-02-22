@@ -6,10 +6,10 @@ export async function GET() {
     const supabase = await createClient();
     
     const tables = [
-      'vehicles',
-      'vehicle_categories',
-      'vehicle_images',
-      'vehicle_equipment',
+      'parcels',
+      'parcel_categories',
+      'parcel_images',
+      'parcel_equipment',
       'equipment',
       'extras',
       'bookings',

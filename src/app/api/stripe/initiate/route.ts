@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       .from("bookings")
       .select(`
         *,
-        vehicle:vehicles(name)
+        parcel:parcels(name)
       `)
       .eq("id", bookingId)
       .single();
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     const orderNumber = generateOrderNumber("FC");
 
     // Descripción del producto
-    const description = `Furgocasa - ${booking.vehicle?.name || "Alquiler"} (${booking.booking_number})`;
+    const description = `Eco Area Limonar - ${booking.parcel?.name || "Alquiler"} (${booking.booking_number})`;
 
     // Crear sesión de Stripe Checkout
     const session = await createCheckoutSession({

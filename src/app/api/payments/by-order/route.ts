@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
         *,
         booking:bookings(
           *,
-          vehicle:vehicles(name, brand, model),
+          parcel:parcels(name, slug, internal_code),
           pickup_location:locations!pickup_location_id(name),
           dropoff_location:locations!dropoff_location_id(name)
         )

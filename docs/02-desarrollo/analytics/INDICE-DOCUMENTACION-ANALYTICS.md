@@ -60,7 +60,7 @@
 ## 🗂️ Estructura de Documentos
 
 ```
-furgocasa-app/
+limonar-app/
 │
 ├── 📘 Implementación Actual (v4.4.0+)
 │   ├── RESUMEN-MIGRACION-ANALYTICS-v4.4.0.md ⭐
@@ -290,7 +290,7 @@ La documentación siguiente se mantiene como referencia histórica.
 ## 🗂️ Estructura de Carpetas
 
 ```
-furgocasa-app/
+limonar-app/
 │
 ├── 📘 Documentación Principal
 │   ├── RESUMEN-MAESTRO-ANALYTICS-ADMIN.md ⭐ (NUEVO)
@@ -389,6 +389,6 @@ furgocasa-app/
 ---
 
 **Última actualización**: 22 de enero de 2026  
-**Mantenido por**: Equipo de desarrollo Furgocasa  
+**Mantenido por**: Equipo de desarrollo Eco Area Limonar  
 **Versión del índice**: 1.0  
 **Commit de documentación**: `bf81345`

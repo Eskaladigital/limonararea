@@ -122,7 +122,7 @@ URL: /en/rent-campervan-motorhome-murcia
 ### DESPUÉS ✅
 ```
 URL: /en/rent-campervan-motorhome-murcia
-- Título: "Motorhome Rental in Murcia | Furgocasa Campervans" (inglés)
+- Título: "Motorhome Rental in Murcia | Eco Area Limonar Campervans" (inglés)
 - Textos: "The best camper vans for rent" (inglés)
 - Botones: "See more campers" (inglés)
 - Metadata: inglés (locale: en_US)

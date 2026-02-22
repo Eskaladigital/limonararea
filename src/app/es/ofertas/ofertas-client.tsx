@@ -3,7 +3,7 @@
 import { LocalizedLink } from "@/components/localized-link";
 import { PageHero } from "@/components/layout/page-hero";
 import { HeroSlider } from "@/components/hero-slider";
-import { Mail, Clock, Calendar, Zap, Shield, Map, Phone, Smile, AlertCircle, CalendarClock, Truck, Loader2, Users, Bed } from "lucide-react";
+import { Mail, Clock, Calendar, Zap, Shield, Map, Phone, Smile, AlertCircle, CalendarClock, Truck, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { infoEmail } from "@/lib/app-config";
 import { useState, useEffect } from "react";
@@ -11,15 +11,11 @@ import Image from "next/image";
 
 interface LastMinuteOffer {
   id: string;
-  vehicle_id: string;
-  vehicle_name: string;
-  vehicle_slug: string;
-  vehicle_image_url: string | null;
-  vehicle_brand: string;
-  vehicle_model: string;
-  vehicle_seats: number;
-  vehicle_beds: number;
-  vehicle_internal_code: string;
+  parcel_id?: string;
+  parcel_name?: string;
+  parcel_slug?: string;
+  parcel_image_url?: string | null;
+  parcel_internal_code?: string;
   offer_start_date: string;
   offer_end_date: string;
   offer_days: number;
@@ -164,13 +160,13 @@ export function OfertasClient() {
                     key={offer.id}
                     className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
                   >
-                    {/* Imagen del vehículo */}
+                    {/* Imagen de la parcela */}
                     <LocalizedLink href={`/reservar/oferta/${offer.id}`} className="block">
                       <div className="h-64 relative bg-sand overflow-hidden">
-                        {offer.vehicle_image_url ? (
+                        {offer.parcel_image_url ? (
                           <Image
-                            src={offer.vehicle_image_url}
-                            alt={offer.vehicle_name}
+                            src={offer.parcel_image_url ?? ''}
+                            alt={offer.parcel_name ?? ''}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                           />
@@ -190,24 +186,12 @@ export function OfertasClient() {
                     <div className="p-6">
                       <LocalizedLink href={`/reservar/oferta/${offer.id}`}>
                         <h4 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-clay transition-colors">
-                          {offer.vehicle_name}
+                          {offer.parcel_name}
                         </h4>
                       </LocalizedLink>
                       
                       {/* Características y fechas */}
                       <div className="flex flex-wrap gap-2 text-sm text-gray-600 mb-3">
-                        {offer.vehicle_seats > 0 && (
-                          <span className="flex items-center gap-1.5 bg-earth/10 px-2.5 py-1 rounded-full text-earth">
-                            <Users className="w-4 h-4" />
-                            {offer.vehicle_seats} {t("plazas")}
-                          </span>
-                        )}
-                        {offer.vehicle_beds > 0 && (
-                          <span className="flex items-center gap-1.5 bg-earth/10 px-2.5 py-1 rounded-full text-earth">
-                            <Bed className="w-4 h-4" />
-                            {offer.vehicle_beds} {t("camas")}
-                          </span>
-                        )}
                         <span className="flex items-center gap-1.5 bg-sand px-2.5 py-1 rounded-full">
                           <Calendar className="w-4 h-4 text-earth" />
                           {formatDate(offer.offer_start_date)} - {formatDate(offer.offer_end_date)}

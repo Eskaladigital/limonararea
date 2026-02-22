@@ -16,20 +16,20 @@ export function BlogPostJsonLd({ post, url }: BlogPostJsonLdProps) {
     "dateModified": post.updated_at || post.published_at,
     "author": {
       "@type": "Organization",
-      "name": "Furgocasa",
-      "url": "https://www.furgocasa.com",
+      "name": "Eco Area Limonar",
+      "url": "https://www.limonar.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.furgocasa.com/logo.png"
+        "url": "https://www.limonar.com/logo.png"
       }
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Furgocasa",
-      "url": "https://www.furgocasa.com",
+      "name": "Eco Area Limonar",
+      "url": "https://www.limonar.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.furgocasa.com/logo.png"
+        "url": "https://www.limonar.com/logo.png"
       }
     },
     "mainEntityOfPage": {
@@ -51,19 +51,19 @@ export function BlogPostJsonLd({ post, url }: BlogPostJsonLdProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Inicio",
-        "item": "https://www.furgocasa.com"
+        "item": "https://www.limonar.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://www.furgocasa.com/blog"
+        "item": "https://www.limonar.com/blog"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": post.category.name,
-        "item": `https://www.furgocasa.com/blog/${post.category.slug}`
+        "item": `https://www.limonar.com/blog/${post.category.slug}`
       },
       {
         "@type": "ListItem",

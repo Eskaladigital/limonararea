@@ -81,7 +81,7 @@ interface Booking {
     driver_license: string | null;
     driver_license_expiry: string | null;
   } | null;
-  vehicle: {
+  parcel: {
     id: string;
     name: string;
     brand: string;
@@ -191,13 +191,16 @@ export default function ReservaPage() {
         return;
       }
 
-      // Procesar la imagen principal del vehículo
-      if (data.vehicle && data.vehicle.images) {
-        const primaryImage = data.vehicle.images.find((img: any) => img.is_primary);
-        const firstImage = data.vehicle.images[0];
-        (data.vehicle as any).main_image = primaryImage?.image_url || firstImage?.image_url || null;
+      // Normalizar: API devuelve parcel (legacy vehicle)
+      const unit = (data as any).parcel;
+      if (unit) {
+        (data as any).parcel = { ...unit, main_image: null };
+        if (unit.images?.length) {
+          const primary = unit.images.find((img: any) => img.is_primary);
+          const first = unit.images[0];
+          (data as any).parcel.main_image = primary?.image_url || first?.image_url || null;
+        }
       }
-
       setBooking(data as any);
     } catch (error: any) {
       console.error('Error loading booking:', error);
@@ -428,10 +431,10 @@ export default function ReservaPage() {
                 </h2>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    {booking.vehicle.main_image ? (
+                    {booking.parcel?.main_image ? (
                       <img 
-                        src={booking.vehicle.main_image} 
-                        alt={booking.vehicle.name}
+                        src={booking.parcel.main_image} 
+                        alt={booking.parcel.name}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -440,10 +443,10 @@ export default function ReservaPage() {
                   </div>
                   <div>
                     <p className="font-bold text-gray-900 text-xl">
-                      {booking.vehicle.internal_code && (
-                        <span className="text-clay">{booking.vehicle.internal_code} - </span>
+                      {booking.parcel?.internal_code && (
+                        <span className="text-clay">{booking.parcel.internal_code} - </span>
                       )}
-                      {booking.vehicle.name}
+                      {booking.parcel?.name}
                     </p>
                   </div>
                 </div>

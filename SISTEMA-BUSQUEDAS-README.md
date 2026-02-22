@@ -1,4 +1,4 @@
-# Sistema de Análisis de Búsquedas - Furgocasa
+# Sistema de Análisis de Búsquedas - Eco Area Limonar
 
 ## 📊 Descripción
 
@@ -367,11 +367,11 @@ Ideas para futuras versiones:
 
 1. Verificar que `searchQueryId` se guarda en sessionStorage
 2. Abrir DevTools → Application → Session Storage
-3. Buscar clave `furgocasa_search_query_id`
+3. Buscar clave `limonar_search_query_id`
 
 ### No se marcan conversiones
 
-1. Verificar que la cookie `furgocasa_session_id` existe
+1. Verificar que la cookie `limonar_session_id` existe
 2. Revisar logs del endpoint `/api/bookings/create`
 
 ## 📝 Changelog
@@ -382,7 +382,7 @@ Ideas para futuras versiones:
   - SQL ejecutado exitosamente en Supabase
   - Tabla `search_queries` creada con 33 columnas
   - Tracking funcionando correctamente en `/api/availability`
-  - Dashboard `/administrator/busquedas` accesible con título "Admin - Búsquedas | Furgocasa"
+  - Dashboard `/administrator/busquedas` accesible con título "Admin - Búsquedas | Eco Area Limonar"
   - Todas las búsquedas se registran automáticamente
   - Análisis de demanda vs disponibilidad activo
 - ✅ **Verificación Completa**
@@ -410,7 +410,7 @@ Ideas para futuras versiones:
   - Gráfico "Ingresos por mes" ahora muestra correctamente reservas creadas en año seleccionado
   - Filtrado condicional por `created_at` o `pickup_date` según modo
 - ✅ **UX Admin Mejorada**
-  - Título de página descriptivo: "Admin - Búsquedas | Furgocasa"
+  - Título de página descriptivo: "Admin - Búsquedas | Eco Area Limonar"
 
 ### v1.1.0 (2026-01-25) ⭐ NUEVO
 
@@ -432,4 +432,4 @@ Ideas para futuras versiones:
 
 ---
 
-**Desarrollado para Furgocasa** 🚐
+**Desarrollado para Eco Area Limonar** 🚐

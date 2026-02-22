@@ -1,7 +1,7 @@
-# ⏰ Sistema de Ofertas de Última Hora - Furgocasa
+# ⏰ Sistema de Ofertas de Última Hora - Eco Area Limonar
 
-**Versión**: 1.0  
-**Fecha**: 23 de Enero, 2026
+**Versión**: 1.1  
+**Fecha**: 22 de Febrero 2026
 
 Sistema para detectar y gestionar huecos entre reservas que no cumplen el mínimo de días de temporada.
 
@@ -13,7 +13,7 @@ Las **Ofertas de Última Hora** son diferentes de los cupones:
 
 | Aspecto | Cupones | Ofertas Última Hora |
 |---------|---------|---------------------|
-| Aplicación | Cualquier reserva que cumpla condiciones | Vehículo y fechas ESPECÍFICOS |
+| Aplicación | Cualquier reserva que cumpla condiciones | Parcela y fechas ESPECÍFICOS |
 | Origen | Creados manualmente por admin | Detectados automáticamente por el sistema |
 | Duración | Puede durar meses | Días específicos entre reservas |
 | Uso típico | Promociones de temporada | Cubrir huecos en temporada alta |
@@ -36,8 +36,8 @@ Sistema analiza reservas → Encuentra huecos < min_days de temporada
 
 ```
 ┌────────────────────────────────────────────────┐
-│ 🚐 KNAUS Boxstar Street (FU0010)               │
-│ 📅 Hueco: 15-20 agosto (5 días)                │
+│ 📍 Parcela A001 - Estándar                     │
+│ 📅 Hueco: 15-20 agosto (5 días)               │
 │ ⚠️ Temporada Alta requiere mín. 7 días         │
 │ 💰 Precio normal: 145€/día                     │
 │                                                │
@@ -68,7 +68,7 @@ La oferta aparece en `/ofertas` → Sección "Última Hora"
 ```sql
 CREATE TABLE last_minute_offers (
     id UUID PRIMARY KEY,
-    vehicle_id UUID REFERENCES vehicles(id),
+    parcel_id UUID REFERENCES parcels(id),
     
     -- Hueco original detectado
     detected_start_date DATE,

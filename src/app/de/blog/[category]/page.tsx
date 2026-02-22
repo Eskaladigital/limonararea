@@ -25,7 +25,7 @@ const categoryMeta: Record<string, { name: string; description: string }> = {
     name: "Noticias Camper",
     description: "Mantente al día con las últimas novedades del mundo camper. Eventos, ferias, actualidad del sector y tendencias del caravaning.",
   },
-  vehiculos: {
+  parcelas: {
     name: "Vehículos y Comparativas",
     description: "Conoce los mejores vehículos para viajar en camper. Comparativas, análisis detallados y recomendaciones de expertos.",
   },
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   const meta = categoryMeta[category] || {
     name: category.charAt(0).toUpperCase() + category.slice(1),
-    description: `Artikel über ${category} im Furgocasa Blog. Tipps, Anleitungen und Camper-Reiseerfahrungen.`,
+    description: `Artikel über ${category} im Eco Area Limonar Blog. Tipps, Anleitungen und Camper-Reiseerfahrungen.`,
   };
 
   // ✅ Canonical autorreferenciado
@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${meta.name} - ${t("Blog Camper")}`,
     description: meta.description,
-    keywords: `Camper Blog ${category}, ${category} Artikel, Camper Reisen, Furgocasa Blog`,
+    keywords: `Camper Blog ${category}, ${category} Artikel, Camper Reisen, Eco Area Limonar Blog`,
     openGraph: {
       title: `${meta.name} - ${t("Blog Camper")}`,
       description: meta.description,

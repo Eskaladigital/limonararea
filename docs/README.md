@@ -9,8 +9,7 @@ Esta carpeta contiene toda la documentación técnica del proyecto organizada po
 **👉 [00-PROYECTO-ECO-AREA-LIMONAR.md](./00-PROYECTO-ECO-AREA-LIMONAR.md)**
 
 Documento esencial que explica:
-- Origen del proyecto (copia de Furgocasa)
-- Regla absoluta: NO afectar a Furgocasa
+- Contexto y reglas del proyecto
 - Estado de Git (sin remoto, commits locales)
 - Plan de trabajo para nuevos agentes
 
@@ -110,9 +109,8 @@ Documentación técnica de referencia:
 - Gestión de clientes
 - Proceso completo
 
-#### vehiculos/
-- Páginas de vehículos
-- Queries optimizadas
+#### vehiculos/ (legacy: parcelas)
+- GUIA-QUERIES-VEHICULOS.md → Queries parcelas (tabla parcels)
 
 #### emails/
 - Sistema de emails automatizados
@@ -194,5 +192,5 @@ Cuando añadas nueva documentación:
 
 ---
 
-Última actualización: 5 de Febrero, 2026
-Versión del proyecto: 4.4.0
+Última actualización: 22 de Febrero, 2026
+Versión del proyecto: 4.4.8

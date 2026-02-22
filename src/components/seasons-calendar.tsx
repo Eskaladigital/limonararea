@@ -142,7 +142,7 @@ export function SeasonsCalendar({ year, hidePassedMonths = false }: { year: numb
 
     return (
       <div key={monthIndex} className={`bg-white rounded-xl shadow-md overflow-hidden ${isPastMonth ? 'opacity-50' : ''}`}>
-        <div className={`bg-gradient-to-r ${isPastMonth ? 'from-gray-400 to-gray-500' : 'from-furgocasa-blue to-blue-700'} text-white p-4`}>
+        <div className={`bg-gradient-to-r ${isPastMonth ? 'from-gray-400 to-gray-500' : 'from-limonar-blue to-blue-700'} text-white p-4`}>
           <h3 className="text-lg font-bold text-center capitalize">
             {format(monthDate, 'MMMM', { locale: dateFnsLocales[language] })}
           </h3>
@@ -190,7 +190,7 @@ export function SeasonsCalendar({ year, hidePassedMonths = false }: { year: numb
                 <div
                   key={day.toISOString()}
                   className={`aspect-square flex items-center justify-center text-sm rounded-lg transition-all font-medium ${
-                    isToday ? 'ring-2 ring-furgocasa-orange font-bold' : ''
+                    isToday ? 'ring-2 ring-limonar-orange font-bold' : ''
                   } ${isPastDay ? 'opacity-50' : ''} ${
                     seasonInfo.tipo !== 'BAJA' ? 'shadow-sm' : ''
                   }`}
@@ -215,7 +215,7 @@ export function SeasonsCalendar({ year, hidePassedMonths = false }: { year: numb
   if (loading) {
     return (
       <div className="text-center py-12">
-        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-furgocasa-blue"></div>
+        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-limonar-blue"></div>
         <p className="mt-4 text-gray-500">{t("Cargando calendario...")}</p>
       </div>
     );

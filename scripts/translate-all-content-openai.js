@@ -1,6 +1,6 @@
 /**
  * Traduce TODO el contenido que falte en content_translations usando OpenAI.
- * - Parcelas (como vehicles: name, short_description)
+ * - Parcelas (source_table 'parcels': name, short_description)
  * - Posts (title, excerpt, content, meta_title, meta_description)
  * - Categorías de contenido (name)
  * - Claves i18n Mar Menor (mar-menor-es.json) y páginas (pages-es.json): source_table 'i18n'
@@ -123,7 +123,7 @@ async function main() {
 
   const missing = [];
 
-  // 1) Parcelas → la app usa source_table 'vehicles'
+  // 1) Parcelas → source_table 'parcels'
   const { data: parcels } = await supabase.from('parcels').select('id, name, short_description');
   if (parcels && parcels.length > 0) {
     const fields = ['name', 'short_description'];
@@ -132,9 +132,9 @@ async function main() {
         const value = p[field];
         if (value == null || String(value).trim() === '') continue;
         for (const locale of LOCALES) {
-          if (existing.has(buildKey('vehicles', p.id, field, locale))) continue;
+          if (existing.has(buildKey('parcels', p.id, field, locale))) continue;
           missing.push({
-            source_table: 'vehicles',
+            source_table: 'parcels',
             source_id: p.id,
             source_field: field,
             locale,

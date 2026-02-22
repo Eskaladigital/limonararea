@@ -1,6 +1,7 @@
 /**
- * Tipos de vehículo para áreas camper.
- * Se usa en el buscador para filtrar parcelas por longitud mínima.
+ * Tipos de vehículo del CLIENTE (autocaravana, caravana, tienda, etc.).
+ * Eco Area Limonar: indica qué tipo de vehículo ocupará la parcela.
+ * Se usa en search-widget y API (vehicle_type en query params).
  * length_m = longitud mínima de parcela (metros) que necesita el vehículo.
  */
 export interface VehicleType {

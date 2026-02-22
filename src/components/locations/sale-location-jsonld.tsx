@@ -17,8 +17,8 @@ export function SaleLocationJsonLd({ location }: SaleLocationJsonLdProps) {
   const autoDealerJsonLd = {
     "@context": "https://schema.org",
     "@type": "AutoDealer",
-    "name": "Furgocasa",
-    "alternateName": `Furgocasa - Venta de Autocaravanas cerca de ${location.name}`,
+    "name": "Eco Area Limonar",
+    "alternateName": `Eco Area Limonar - Venta de Autocaravanas cerca de ${location.name}`,
     "description": `Venta de autocaravanas y campers premium cerca de ${location.name}. Entrega desde Murcia. Garantía oficial, financiación flexible hasta 120 meses y asesoramiento personalizado.`,
     "url": `${baseUrl}/es/venta-autocaravanas-camper/${location.slug}`,
     "telephone": "+34868364161",
@@ -88,8 +88,8 @@ export function SaleLocationJsonLd({ location }: SaleLocationJsonLdProps) {
     ],
     "logo": `${baseUrl}/logo.png`,
     "sameAs": [
-      "https://www.facebook.com/furgocasa",
-      "https://www.instagram.com/furgocasa"
+      "https://www.facebook.com/limonar",
+      "https://www.instagram.com/limonar"
     ]
   };
 
@@ -160,7 +160,7 @@ export function SaleLocationJsonLd({ location }: SaleLocationJsonLdProps) {
       },
       {
         "@type": "Question",
-        "name": "¿Qué incluye la compra de una autocaravana con Furgocasa?",
+        "name": "¿Qué incluye la compra de una autocaravana con Eco Area Limonar?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "La compra incluye: garantía oficial, revisión completa pre-entrega, transferencia de documentación, ITV en vigor, seguro temporal de traslado, y asesoramiento completo sobre uso y mantenimiento. Además, tienes acceso a nuestro servicio técnico post-venta."

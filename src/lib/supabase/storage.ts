@@ -1,6 +1,6 @@
 /**
  * Funciones helper para gestión de Supabase Storage
- * Buckets: vehicles, blog, extras, media
+ * Buckets: parcels, blog, extras, media
  * 
  * OPTIMIZACIÓN AUTOMÁTICA:
  * Todas las imágenes subidas se convierten automáticamente a WebP
@@ -9,7 +9,7 @@
 import { supabase as supabaseClient } from '@/lib/supabase/client';
 
 // Tipos de bucket disponibles
-export type BucketType = 'vehicles' | 'blog' | 'extras' | 'media';
+export type BucketType = 'parcels' | 'blog' | 'extras' | 'media';
 
 // Interfaz para archivos
 export interface StorageFile {
@@ -27,7 +27,7 @@ const OPTIMIZATION_CONFIG: Record<BucketType, {
   maxHeight: number;
   quality: number;
 }> = {
-  vehicles: { maxWidth: 2000, maxHeight: 1500, quality: 0.90 }, // Alta calidad para vehículos
+  parcels: { maxWidth: 2000, maxHeight: 1500, quality: 0.90 }, // Alta calidad para parcelas
   blog: { maxWidth: 1920, maxHeight: 1080, quality: 0.85 },      // Buena calidad para blog
   extras: { maxWidth: 1200, maxHeight: 900, quality: 0.85 },     // Media calidad para extras
   media: { maxWidth: 1920, maxHeight: 1080, quality: 0.90 },     // Alta calidad para media general

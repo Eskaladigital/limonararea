@@ -48,7 +48,7 @@ function ReservarParcelaContent() {
   const searchParams = useSearchParams();
   
   // Get params from URL
-  const parcelId = searchParams.get('parcel_id') || searchParams.get('vehicle_id');
+  const parcelId = searchParams.get('parcel_id');
   const pickupDate = searchParams.get('pickup_date');
   const dropoffDate = searchParams.get('dropoff_date');
   const pickupTime = searchParams.get('pickup_time');
@@ -347,7 +347,7 @@ function ReservarParcelaContent() {
               {/* Gallery */}
               <ParcelGallery images={parcel.images || []} parcelName={parcel.name} />
 
-              {/* Vehicle Info */}
+              {/* Parcel Info */}
               <div className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-6">
                 {parcel.category && (
                   <span className="px-2 md:px-3 py-1 bg-clay/10 text-clay rounded-full text-xs md:text-sm font-medium">

@@ -51,7 +51,7 @@ export function daysBetween(from: Date, to: Date): number {
 }
 
 /**
- * Calculate rental days according to Furgocasa business rules:
+ * Calculate rental days according to Eco Area Limonar business rules:
  * - Rentals are charged in complete 24-hour periods, no proration
  * - If pickup is 12th at 10:00 and return is 15th at 10:00 = 3 days
  * - If pickup is 12th at 10:00 and return is 15th at 10:01 = 4 days (one minute over = full extra day)
@@ -91,7 +91,7 @@ export function calculateRentalDays(
 }
 
 /**
- * Calculate pricing days according to Furgocasa business rules:
+ * Calculate pricing days according to Eco Area Limonar business rules:
  * - 2-day rentals are charged as 3 days (minimum pricing rule)
  * - All other durations are charged as actual days
  * 

@@ -279,7 +279,7 @@ Las siguientes páginas necesitan actualizarse para usar los campos traducidos d
 ## 🐛 Pruebas Recomendadas
 
 1. **Visita la URL en inglés:**
-   - https://www.furgocasa.com/en/rent-campervan-motorhome-murcia
+   - https://www.ecoarealimonar.com/en/rent-campervan-motorhome-murcia
    - Verifica que todos los textos estáticos estén en inglés
    - (Los datos de BD seguirán en español hasta que se traduzcan)
 

@@ -1,4 +1,4 @@
-# Estrategia de Diseño Responsive - Furgocasa
+# Estrategia de Diseño Responsive - Eco Area Limonar
 
 ## 🎯 Filosofía: Mobile+Tablet vs Desktop
 
@@ -186,4 +186,4 @@ Este proyecto implementa una estrategia responsive optimizada donde:
 
 **Fecha de implementación**: Enero 2026
 **Versión**: 1.0
-**Mantenedor**: Equipo Furgocasa
+**Mantenedor**: Equipo Eco Area Limonar

@@ -45,7 +45,7 @@ import {
 import { es } from "date-fns/locale";
 
 // Tipos
-interface Vehicle {
+interface ParcelForReport {
   id: string;
   name: string;
   slug: string;
@@ -84,7 +84,7 @@ interface Season {
 }
 
 interface InformesClientProps {
-  vehicles: Vehicle[];
+  parcels: ParcelForReport[];
   bookings: Booking[];
   seasons: Season[];
 }
@@ -107,7 +107,7 @@ const MONTHS = [
 ];
 
 export default function InformesClient({
-  vehicles,
+  parcels,
   bookings,
   seasons,
 }: InformesClientProps) {
@@ -115,7 +115,7 @@ export default function InformesClient({
   const currentMonth = new Date().getMonth();
 
   // Estados de filtros
-  const [selectedVehicles, setSelectedVehicles] = useState<string[]>([]);
+  const [selectedParcels, setSelectedParcels] = useState<string[]>([]);
   const [selectedYear, setSelectedYear] = useState<number>(currentYear);
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
   const [selectedSeason, setSelectedSeason] = useState<string | null>(null);
@@ -128,11 +128,11 @@ export default function InformesClient({
   // Estado para años expandidos en la tabla de control
   const [expandedYears, setExpandedYears] = useState<Set<number>>(new Set([currentYear]));
 
-  // Todos los vehículos (incluidos vendidos para mantener histórico)
-  const allVehiclesForReports = vehicles;
+  // Todas las parcelas (incluidas no en alquiler para mantener histórico)
+  const allParcelsForReports = parcels;
   
   // Vehículos de alquiler activos (para cálculo de ocupación)
-  const activeRentableVehicles = vehicles.filter(v => v.is_for_rent);
+  const activeRentableParcels = parcels.filter(v => v.is_for_rent);
 
   // Años disponibles basado en reservas
   const availableYears = useMemo(() => {
@@ -201,8 +201,8 @@ export default function InformesClient({
       // Solo incluir reservas confirmadas, en curso o completadas (alquileres reales)
       if (!VALID_STATUSES.includes(booking.status)) return false;
       
-      // Filtro por vehículos
-      if (selectedVehicles.length > 0 && !selectedVehicles.includes(booking.parcel_id)) {
+      // Filtro por parcelas
+      if (selectedParcels.length > 0 && !selectedParcels.includes(booking.parcel_id)) {
         return false;
       }
 
@@ -224,7 +224,7 @@ export default function InformesClient({
         return overlaps;
       }
     });
-  }, [bookings, selectedVehicles, getDateRange, revenueMode]);
+  }, [bookings, selectedParcels, getDateRange, revenueMode]);
 
   // ============================================
   // CÁLCULOS DE MÉTRICAS
@@ -244,28 +244,28 @@ export default function InformesClient({
   // Total reservas
   const totalBookings = filteredBookings.length;
 
-  // Cálculo de ocupación real (solo vehículos activos en alquiler)
+  // Cálculo de ocupación real (solo parcelas activas en alquiler)
   const occupancyData = useMemo(() => {
-    const vehiclesToCalculate = selectedVehicles.length > 0 
-      ? activeRentableVehicles.filter(v => selectedVehicles.includes(v.id))
-      : activeRentableVehicles;
+    const parcelsToCalculate = selectedParcels.length > 0 
+      ? activeRentableParcels.filter(v => selectedParcels.includes(v.id))
+      : activeRentableParcels;
     
-    if (vehiclesToCalculate.length === 0) return { percentage: 0, daysBooked: 0, daysAvailable: 0 };
+    if (parcelsToCalculate.length === 0) return { percentage: 0, daysBooked: 0, daysAvailable: 0 };
 
-    // Días totales en el rango * número de vehículos
+    // Días totales en el rango * número de parcelas
     const daysInRange = differenceInDays(getDateRange.end, getDateRange.start) + 1;
-    const totalAvailableDays = daysInRange * vehiclesToCalculate.length;
+    const totalAvailableDays = daysInRange * parcelsToCalculate.length;
 
     // Calcular días reservados (sin doble conteo)
     let totalBookedDays = 0;
     
-    vehiclesToCalculate.forEach(vehicle => {
-      const vehicleBookings = filteredBookings.filter(b => b.parcel_id === vehicle.id);
+    parcelsToCalculate.forEach(parcel => {
+      const parcelBookings = filteredBookings.filter(b => b.parcel_id === parcel.id);
       
       // Crear un set de fechas reservadas para evitar solapamientos
       const bookedDates = new Set<string>();
       
-      vehicleBookings.forEach(booking => {
+      parcelBookings.forEach(booking => {
         const bookingStart = parseISO(booking.pickup_date);
         const bookingEnd = parseISO(booking.dropoff_date);
         
@@ -291,7 +291,7 @@ export default function InformesClient({
       daysBooked: totalBookedDays,
       daysAvailable: totalAvailableDays,
     };
-  }, [filteredBookings, activeRentableVehicles, selectedVehicles, getDateRange]);
+  }, [filteredBookings, activeRentableParcels, selectedParcels, getDateRange]);
 
   // Valor medio por reserva
   const avgBookingValue = totalBookings > 0 ? totalRevenue / totalBookings : 0;
@@ -361,13 +361,13 @@ export default function InformesClient({
     return data;
   }, [filteredBookings, selectedYear, revenueMode]);
 
-  // Ocupación por mes (solo vehículos activos en alquiler)
+  // Ocupación por mes (solo parcelas activas en alquiler)
   const occupancyByMonth = useMemo(() => {
-    const vehiclesToCalculate = selectedVehicles.length > 0 
-      ? activeRentableVehicles.filter(v => selectedVehicles.includes(v.id))
-      : activeRentableVehicles;
+    const parcelsToCalculate = selectedParcels.length > 0 
+      ? activeRentableParcels.filter(v => selectedParcels.includes(v.id))
+      : activeRentableParcels;
     
-    if (vehiclesToCalculate.length === 0) return [];
+    if (parcelsToCalculate.length === 0) return [];
 
     const data: { month: string; ocupacion: number }[] = [];
     
@@ -375,20 +375,20 @@ export default function InformesClient({
       const monthStart = startOfMonth(new Date(selectedYear, i));
       const monthEnd = endOfMonth(new Date(selectedYear, i));
       const daysInMonth = differenceInDays(monthEnd, monthStart) + 1;
-      const totalAvailableDays = daysInMonth * vehiclesToCalculate.length;
+      const totalAvailableDays = daysInMonth * parcelsToCalculate.length;
       
       let totalBookedDays = 0;
       
-      vehiclesToCalculate.forEach(vehicle => {
-        const vehicleBookings = bookings.filter(b => 
-          b.parcel_id === vehicle.id && 
+      parcelsToCalculate.forEach(parcel => {
+        const parcelBookings = bookings.filter(b => 
+          b.parcel_id === parcel.id && 
           VALID_STATUSES.includes(b.status) &&
-          (selectedVehicles.length === 0 || selectedVehicles.includes(b.parcel_id))
+          (selectedParcels.length === 0 || selectedParcels.includes(b.parcel_id))
         );
         
         const bookedDates = new Set<string>();
         
-        vehicleBookings.forEach(booking => {
+        parcelBookings.forEach(booking => {
           const bookingStart = parseISO(booking.pickup_date);
           const bookingEnd = parseISO(booking.dropoff_date);
           
@@ -415,23 +415,23 @@ export default function InformesClient({
     }
     
     return data;
-  }, [bookings, activeRentableVehicles, selectedVehicles, selectedYear]);
+  }, [bookings, activeRentableParcels, selectedParcels, selectedYear]);
 
-  // Datos por vehículo (todos los vehículos incluidos vendidos)
-  const vehicleStats = useMemo(() => {
-    const vehiclesToShow = selectedVehicles.length > 0 
-      ? allVehiclesForReports.filter(v => selectedVehicles.includes(v.id))
-      : allVehiclesForReports;
+  // Datos por parcela (todas las parcelas incluidas)
+  const parcelStats = useMemo(() => {
+    const parcelsToShow = selectedParcels.length > 0 
+      ? allParcelsForReports.filter(v => selectedParcels.includes(v.id))
+      : allParcelsForReports;
 
-    return vehiclesToShow.map(vehicle => {
-      const vehicleBookings = filteredBookings.filter(b => b.parcel_id === vehicle.id);
-      const revenue = vehicleBookings.reduce((sum, b) => sum + (b.total_price || 0), 0);
+    return parcelsToShow.map(p => {
+      const parcelBookings = filteredBookings.filter(b => b.parcel_id === p.id);
+      const revenue = parcelBookings.reduce((sum, b) => sum + (b.total_price || 0), 0);
       
-      // Calcular ocupación del vehículo
+      // Calcular ocupación de la parcela
       const daysInRange = differenceInDays(getDateRange.end, getDateRange.start) + 1;
       const bookedDates = new Set<string>();
       
-      vehicleBookings.forEach(booking => {
+      parcelBookings.forEach(booking => {
         const bookingStart = parseISO(booking.pickup_date);
         const bookingEnd = parseISO(booking.dropoff_date);
         
@@ -447,17 +447,17 @@ export default function InformesClient({
       const occupancy = daysInRange > 0 ? (bookedDates.size / daysInRange) * 100 : 0;
 
       return {
-        id: vehicle.id,
-        name: vehicle.internal_code || vehicle.name,
-        fullName: vehicle.name,
+        id: p.id,
+        name: p.internal_code || p.name,
+        fullName: p.name,
         ingresos: revenue,
-        reservas: vehicleBookings.length,
+        reservas: parcelBookings.length,
         ocupacion: Math.round(occupancy * 10) / 10,
         diasReservados: bookedDates.size,
-        isSold: vehicle.status === 'inactive',
+        isSold: p.status === 'inactive',
       };
     }).sort((a, b) => b.ingresos - a.ingresos);
-  }, [allVehiclesForReports, selectedVehicles, filteredBookings, getDateRange]);
+  }, [allParcelsForReports, selectedParcels, filteredBookings, getDateRange]);
 
   // Datos por temporada - Agrupados en 3 categorías: Baja, Media, Alta
   const seasonStats = useMemo(() => {
@@ -470,9 +470,9 @@ export default function InformesClient({
       alta: 'Temporada Alta'
     };
     
-    const vehiclesToCalculate = selectedVehicles.length > 0 
-      ? activeRentableVehicles.filter(v => selectedVehicles.includes(v.id))
-      : activeRentableVehicles;
+    const parcelsToCalculate = selectedParcels.length > 0 
+      ? activeRentableParcels.filter(v => selectedParcels.includes(v.id))
+      : activeRentableParcels;
 
     return seasonTypes.map(seasonType => {
       // Obtener todas las temporadas de este tipo
@@ -512,7 +512,7 @@ export default function InformesClient({
         // Filtrar reservas que caen en esta temporada
         const seasonBookings = bookings.filter(b => {
           if (!VALID_STATUSES.includes(b.status)) return false;
-          if (selectedVehicles.length > 0 && !selectedVehicles.includes(b.parcel_id)) return false;
+          if (selectedParcels.length > 0 && !selectedParcels.includes(b.parcel_id)) return false;
           
           const pickupDate = parseISO(b.pickup_date);
           const dropoffDate = parseISO(b.dropoff_date);
@@ -543,13 +543,13 @@ export default function InformesClient({
 
         // Calcular ocupación de esta temporada específica
         const daysInSeason = differenceInDays(seasonEnd, seasonStart) + 1;
-        totalAvailableDays += daysInSeason * vehiclesToCalculate.length;
+        totalAvailableDays += daysInSeason * parcelsToCalculate.length;
         
-        vehiclesToCalculate.forEach(vehicle => {
-          const vehicleBookings = seasonBookings.filter(b => b.parcel_id === vehicle.id);
+        parcelsToCalculate.forEach(parcel => {
+          const parcelBookings = seasonBookings.filter(b => b.parcel_id === parcel.id);
           const bookedDates = new Set<string>();
           
-          vehicleBookings.forEach(booking => {
+          parcelBookings.forEach(booking => {
             const bookingStart = parseISO(booking.pickup_date);
             const bookingEnd = parseISO(booking.dropoff_date);
             
@@ -578,16 +578,16 @@ export default function InformesClient({
         periodo: allPeriods.length > 0 ? allPeriods.join(' | ') : 'Sin periodos definidos',
       };
     });
-  }, [seasons, bookings, activeRentableVehicles, selectedVehicles]);
+  }, [seasons, bookings, activeRentableParcels, selectedParcels]);
 
   // Distribución de ingresos para gráfico de pastel
   const revenueDistribution = useMemo(() => {
-    return vehicleStats.slice(0, 6).map((v, i) => ({
+    return parcelStats.slice(0, 6).map((v, i) => ({
       name: v.name,
       value: v.ingresos,
       color: COLORS[i % COLORS.length],
     }));
-  }, [vehicleStats]);
+  }, [parcelStats]);
 
   // ============================================
   // TABLA DE CONTROL DE INGRESOS (Año → Vehículo → Meses)
@@ -607,10 +607,11 @@ export default function InformesClient({
     
     // Estructura por año
     const tableData: Record<number, {
-      vehicles: Array<{
+      parcels: Array<{
         id: string;
         name: string;
         internalCode: string;
+        isSold?: boolean;
         months: number[]; // 12 meses (0=Enero, 11=Diciembre)
         total: number;
       }>;
@@ -621,11 +622,11 @@ export default function InformesClient({
     sortedYears.forEach(year => {
       // Inicializar estructura del año
       const yearData = {
-        vehicles: allVehiclesForReports.map(vehicle => ({
-          id: vehicle.id,
-          name: vehicle.name,
-          internalCode: vehicle.internal_code || vehicle.name,
-          isSold: vehicle.status === 'inactive',
+        parcels: allParcelsForReports.map(p => ({
+          id: p.id,
+          name: p.name,
+          internalCode: p.internal_code || p.name,
+          isSold: p.status === 'inactive',
           months: Array(12).fill(0),
           total: 0,
         })),
@@ -644,9 +645,9 @@ export default function InformesClient({
         // Solo procesar reservas de este año
         if (bookingYear !== year) return;
         
-        // Encontrar vehículo
-        const vehicleIndex = yearData.vehicles.findIndex(v => v.id === booking.parcel_id);
-        if (vehicleIndex === -1) return;
+        // Encontrar parcela
+        const parcelIndex = yearData.parcels.findIndex(v => v.id === booking.parcel_id);
+        if (parcelIndex === -1) return;
         
         if (revenueMode === 'creation') {
           // Modo creación: ingresos en el mes de creación
@@ -656,7 +657,7 @@ export default function InformesClient({
           const createdMonth = createdDate.getMonth();
           
           if (createdYear === year) {
-            yearData.vehicles[vehicleIndex].months[createdMonth] += booking.total_price || 0;
+            yearData.parcels[parcelIndex].months[createdMonth] += booking.total_price || 0;
           }
         } else {
           // Modo días alquilados: distribuir proporcionalmente
@@ -681,7 +682,7 @@ export default function InformesClient({
                   
                   // Distribuir ingresos proporcionalmente
                   const proportionalRevenue = (booking.total_price || 0) * (daysInMonth / totalDays);
-                  yearData.vehicles[vehicleIndex].months[month] += proportionalRevenue;
+                  yearData.parcels[parcelIndex].months[month] += proportionalRevenue;
                 }
               }
             }
@@ -690,18 +691,18 @@ export default function InformesClient({
       });
       
       // Calcular totales
-      yearData.vehicles.forEach(vehicle => {
-        vehicle.total = vehicle.months.reduce((sum, val) => sum + val, 0);
-        yearData.yearTotal += vehicle.total;
+      yearData.parcels.forEach(parcel => {
+        parcel.total = parcel.months.reduce((sum, val) => sum + val, 0);
+        yearData.yearTotal += parcel.total;
         
         // Sumar a totales mensuales
-        vehicle.months.forEach((value, monthIndex) => {
+        parcel.months.forEach((value, monthIndex) => {
           yearData.monthTotals[monthIndex] += value;
         });
       });
       
-      // Ordenar vehículos por código interno
-      yearData.vehicles.sort((a, b) => {
+      // Ordenar parcelas por código interno
+      yearData.parcels.sort((a, b) => {
         const codeA = a.internalCode.toUpperCase();
         const codeB = b.internalCode.toUpperCase();
         return codeA.localeCompare(codeB);
@@ -711,7 +712,7 @@ export default function InformesClient({
     });
     
     return { years: sortedYears, data: tableData };
-  }, [bookings, allVehiclesForReports, revenueMode]);
+  }, [bookings, allParcelsForReports, revenueMode]);
   
   // Totales generales de todos los años
   const grandTotals = useMemo(() => {
@@ -745,16 +746,16 @@ export default function InformesClient({
   // FUNCIONES DE CONTROL
   // ============================================
 
-  const toggleVehicle = (vehicleId: string) => {
-    setSelectedVehicles(prev => 
-      prev.includes(vehicleId)
-        ? prev.filter(id => id !== vehicleId)
-        : [...prev, vehicleId]
+  const toggleParcel = (parcelId: string) => {
+    setSelectedParcels(prev => 
+      prev.includes(parcelId)
+        ? prev.filter(id => id !== parcelId)
+        : [...prev, parcelId]
     );
   };
 
   const clearFilters = () => {
-    setSelectedVehicles([]);
+    setSelectedParcels([]);
     setSelectedMonth(null);
     setSelectedSeason(null);
     setDateRange(null);
@@ -762,7 +763,7 @@ export default function InformesClient({
   };
 
   const hasActiveFilters = 
-    selectedVehicles.length > 0 || 
+    selectedParcels.length > 0 || 
     selectedMonth !== null || 
     selectedSeason !== null || 
     dateRange !== null ||
@@ -930,32 +931,32 @@ export default function InformesClient({
           <div className="mt-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Vehículos 
-              {selectedVehicles.length > 0 && (
-                <span className="ml-2 text-clay">({selectedVehicles.length} seleccionados)</span>
+              {selectedParcels.length > 0 && (
+                <span className="ml-2 text-clay">({selectedParcels.length} seleccionados)</span>
               )}
             </label>
             <div className="flex flex-wrap gap-2">
-              {allVehiclesForReports.map(vehicle => (
+              {allParcelsForReports.map(parcel => (
                 <button
-                  key={vehicle.id}
-                  onClick={() => toggleVehicle(vehicle.id)}
+                  key={parcel.id}
+                  onClick={() => toggleParcel(parcel.id)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                    selectedVehicles.includes(vehicle.id)
+                    selectedParcels.includes(parcel.id)
                       ? 'bg-clay text-white'
-                      : vehicle.status === 'inactive'
+                      : parcel.status === 'inactive'
                       ? 'bg-red-100 text-red-700 hover:bg-red-200'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
-                  {vehicle.internal_code || vehicle.name}
-                  {vehicle.status === 'inactive' && (
+                  {parcel.internal_code || parcel.name}
+                  {parcel.status === 'inactive' && (
                     <span className="ml-1.5 text-xs">🔴</span>
                   )}
                 </button>
               ))}
-              {selectedVehicles.length > 0 && (
+              {selectedParcels.length > 0 && (
                 <button
-                  onClick={() => setSelectedVehicles([])}
+                  onClick={() => setSelectedParcels([])}
                   className="px-3 py-1.5 rounded-full text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200"
                 >
                   Quitar todos
@@ -1016,7 +1017,7 @@ export default function InformesClient({
           <p className="text-sm text-gray-500">Reservas</p>
           <p className="text-2xl font-bold text-gray-900 mt-1">{totalBookings}</p>
           <p className="text-xs text-gray-500 mt-1">
-            {(totalBookings / Math.max(1, (selectedVehicles.length || allVehiclesForReports.length))).toFixed(1)} por vehículo
+            {(totalBookings / Math.max(1, (selectedParcels.length || allParcelsForReports.length))).toFixed(1)} por parcela
           </p>
         </div>
 
@@ -1169,7 +1170,7 @@ export default function InformesClient({
 
         {/* Tabla por Vehículo */}
         <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Rendimiento por vehículo</h3>
+          <h3 className="text-lg font-bold text-gray-900 mb-4">Rendimiento por parcela</h3>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -1182,44 +1183,44 @@ export default function InformesClient({
                 </tr>
               </thead>
               <tbody>
-                {vehicleStats.map((vehicle, i) => (
+                {parcelStats.map((row, i) => (
                   <tr 
                     key={i} 
                     className={`border-b border-gray-100 ${
-                      vehicle.isSold ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-gray-50'
+                      row.isSold ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-gray-50'
                     }`}
                   >
                     <td className="py-3 px-2">
                       <div>
-                        <p className={`font-medium ${vehicle.isSold ? 'text-red-900' : 'text-gray-900'}`}>
-                          {vehicle.name}
-                          {vehicle.isSold && (
+                        <p className={`font-medium ${row.isSold ? 'text-red-900' : 'text-gray-900'}`}>
+                          {row.name}
+                          {row.isSold && (
                             <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-red-200 text-red-800 font-semibold">
                               VENDIDO
                             </span>
                           )}
                         </p>
-                        <p className="text-xs text-gray-500">{vehicle.fullName}</p>
+                        <p className="text-xs text-gray-500">{row.fullName}</p>
                       </div>
                     </td>
                     <td className="text-right py-3 px-2 font-semibold text-gray-900">
-                      {formatPrice(vehicle.ingresos)}
+                      {formatPrice(row.ingresos)}
                     </td>
-                    <td className="text-right py-3 px-2 text-gray-700">{vehicle.reservas}</td>
+                    <td className="text-right py-3 px-2 text-gray-700">{row.reservas}</td>
                     <td className="text-right py-3 px-2">
                       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                        vehicle.ocupacion >= 70 ? 'bg-green-100 text-green-700' :
-                        vehicle.ocupacion >= 40 ? 'bg-yellow-100 text-yellow-700' :
+                        row.ocupacion >= 70 ? 'bg-green-100 text-green-700' :
+                        row.ocupacion >= 40 ? 'bg-yellow-100 text-yellow-700' :
                         'bg-red-100 text-red-700'
                       }`}>
-                        {vehicle.ocupacion}%
+                        {row.ocupacion}%
                       </span>
                     </td>
-                    <td className="text-right py-3 px-2 text-gray-500 text-sm">{vehicle.diasReservados}</td>
+                    <td className="text-right py-3 px-2 text-gray-500 text-sm">{row.diasReservados}</td>
                   </tr>
                 ))}
               </tbody>
-              {vehicleStats.length > 0 && (
+              {parcelStats.length > 0 && (
                 <tfoot className="bg-gray-50">
                   <tr>
                     <td className="py-3 px-2 font-bold text-gray-900">Total</td>
@@ -1282,10 +1283,10 @@ export default function InformesClient({
 
       {/* Gráfico de Barras Comparativo por Vehículo */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Comparativa de vehículos</h3>
+        <h3 className="text-lg font-bold text-gray-900 mb-4">Comparativa de parcelas</h3>
         <div className="h-96">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={vehicleStats} layout="vertical">
+            <BarChart data={parcelStats} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
               <XAxis type="number" tick={{ fill: '#6B7280', fontSize: 12 }} />
               <YAxis dataKey="name" type="category" tick={{ fill: '#6B7280', fontSize: 12 }} width={80} />
@@ -1309,7 +1310,7 @@ export default function InformesClient({
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Tabla de Control de Ingresos Mensual</h3>
-            <p className="text-sm text-gray-500 mt-1">Vista detallada por vehículo y mes</p>
+            <p className="text-sm text-gray-500 mt-1">Vista detallada por parcela y mes</p>
           </div>
           
           {/* Selector de modo de visualización */}
@@ -1393,28 +1394,28 @@ export default function InformesClient({
                         </td>
                       </tr>
                       
-                      {/* Filas de vehículos (solo si está expandido) */}
-                      {isExpanded && yearData.vehicles.map((vehicle, vehIndex) => {
-                        // Solo mostrar vehículos con ingresos
-                        if (vehicle.total === 0) return null;
+                      {/* Filas de parcelas (solo si está expandido) */}
+                      {isExpanded && yearData.parcels.map((parcelRow, vehIndex) => {
+                        // Solo mostrar parcelas con ingresos
+                        if (parcelRow.total === 0) return null;
                         
                         return (
                           <tr 
-                            key={vehicle.id}
+                            key={parcelRow.id}
                             className={`border-b border-gray-100 hover:bg-blue-50/30 transition-colors ${
                               vehIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'
                             }`}
                           >
                             <td className="py-2 px-4 pl-10 text-gray-700 bg-white sticky left-0 z-10">
-                              {vehicle.internalCode}
+                              {parcelRow.internalCode}
                             </td>
-                            {vehicle.months.map((value, monthIndex) => (
+                            {parcelRow.months.map((value, monthIndex) => (
                               <td key={monthIndex} className="text-right py-2 px-3 text-gray-700">
                                 {value > 0 ? formatPrice(value) : '-'}
                               </td>
                             ))}
                             <td className="text-right py-2 px-4 font-semibold text-gray-900 bg-orange-50/50">
-                              {formatPrice(vehicle.total)}
+                              {formatPrice(parcelRow.total)}
                             </td>
                           </tr>
                         );

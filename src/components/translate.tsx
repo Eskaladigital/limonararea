@@ -13,7 +13,7 @@ interface TranslateProps {
  * Componente que traduce automáticamente el contenido
  * 
  * Uso:
- * <T>Bienvenido a Furgocasa</T>
+ * <T>Bienvenido a Eco Area Limonar</T>
  * 
  * Si el idioma es inglés y no hay traducción en caché,
  * automáticamente usará OpenAI para traducir

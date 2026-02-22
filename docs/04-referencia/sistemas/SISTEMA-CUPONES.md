@@ -1,4 +1,4 @@
-# 🎟️ Sistema de Cupones de Descuento - Furgocasa
+# 🎟️ Sistema de Cupones de Descuento - Eco Area Limonar
 
 **Versión**: 1.0  
 **Fecha**: 23 de Enero, 2026
@@ -208,7 +208,7 @@ El sistema valida:
 | **Válido hasta** | 20 marzo 2026 |
 | **Usos** | Ilimitados |
 
-**Visible en**: https://www.furgocasa.com/es/ofertas
+**Visible en**: https://www.ecoarealimonar.com/es/ofertas
 
 ---
 

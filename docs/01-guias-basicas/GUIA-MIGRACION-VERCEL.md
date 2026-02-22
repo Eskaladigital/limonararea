@@ -1,6 +1,6 @@
 =================================================================
 GUÍA DE MIGRACIÓN DNS: OVH → VERCEL
-Dominio: furgocasa.com
+Dominio: ecoarealimonar.com
 Fecha: 20 de enero de 2026
 =================================================================
 
@@ -13,23 +13,23 @@ PASO 1: PREPARATIVOS EN VERCEL
 =================================================================
 
 1. Ve a tu proyecto en Vercel Dashboard: https://vercel.com/dashboard
-2. Entra en tu proyecto furgocasa-app
+2. Entra en tu proyecto limonar-app
 3. Ve a Settings → Domains
 4. Añade estos dos dominios:
-   - furgocasa.com
-   - www.furgocasa.com
+   - ecoarealimonar.com
+   - www.ecoarealimonar.com
 
 5. Vercel te mostrará qué registros DNS necesitas configurar. 
    Normalmente serán:
    
    ✅ VERCEL TE PIDE ESTOS VALORES ESPECÍFICOS:
    
-   Para furgocasa.com (dominio raíz):
+   Para ecoarealimonar.com (dominio raíz):
    - Tipo: A
-   - Host: @ (o furgocasa.com)
+   - Host: @ (o ecoarealimonar.com)
    - Value: 216.198.79.1
    
-   Para www.furgocasa.com:
+   Para www.ecoarealimonar.com:
    - Tipo: CNAME
    - Host: www
    - Value: 84e15c1fe0a9edd9.vercel-dns-017.com.
@@ -40,7 +40,7 @@ PASO 1: PREPARATIVOS EN VERCEL
 PASO 2: MODIFICACIONES EN OVH
 =================================================================
 
-Inicia sesión en OVH y ve a la zona DNS de furgocasa.com.
+Inicia sesión en OVH y ve a la zona DNS de ecoarealimonar.com.
 
 ⚠️ ORDEN IMPORTANTE: Sigue estos pasos EN ORDEN
 
@@ -50,11 +50,11 @@ Inicia sesión en OVH y ve a la zona DNS de furgocasa.com.
 
 Busca estos dos registros:
 
-❌ CAMBIO 1 - Dominio raíz (furgocasa.com):
+❌ CAMBIO 1 - Dominio raíz (ecoarealimonar.com):
    
    ANTES:
    Tipo: A
-   Host: @ (o furgocasa.com.)
+   Host: @ (o ecoarealimonar.com.)
    Valor: 46.105.204.26
 
    DESPUÉS:
@@ -63,7 +63,7 @@ Busca estos dos registros:
    Valor: 216.198.79.1
    TTL: 300 (5 minutos, para poder revertir rápido si hay problemas)
 
-❌ CAMBIO 2 - Subdominio www (www.furgocasa.com):
+❌ CAMBIO 2 - Subdominio www (www.ecoarealimonar.com):
    
    ANTES:
    Tipo: A
@@ -86,7 +86,7 @@ Busca estos dos registros:
 Estos registros TXT parecen ser redirecciones de OVH que ya no necesitas:
 
 ❌ PUEDES ELIMINAR (opcional, no afectarán):
-   - TXT @ "1|www.furgocasa.com"
+   - TXT @ "1|www.ecoarealimonar.com"
    - TXT www "3|welcome"
    - TXT www "l|es"
 
@@ -107,28 +107,28 @@ MX (3 registros):
    - MX 100 mx3.mail.ovh.net.
 
 CNAME para email:
-   - mail.furgocasa.com → ssl0.ovh.net.
-   - smtp.furgocasa.com → ssl0.ovh.net.
-   - imap.furgocasa.com → ssl0.ovh.net.
-   - pop3.furgocasa.com → ssl0.ovh.net.
-   - autoconfig.furgocasa.com → mailconfig.ovh.net.
-   - autodiscover.furgocasa.com → mailconfig.ovh.net.
+   - mail.ecoarealimonar.com → ssl0.ovh.net.
+   - smtp.ecoarealimonar.com → ssl0.ovh.net.
+   - imap.ecoarealimonar.com → ssl0.ovh.net.
+   - pop3.ecoarealimonar.com → ssl0.ovh.net.
+   - autoconfig.ecoarealimonar.com → mailconfig.ovh.net.
+   - autodiscover.ecoarealimonar.com → mailconfig.ovh.net.
 
 CNAME para DKIM:
-   - ovhmo3368304-selector1._domainkey.furgocasa.com → ...
-   - ovhmo3368304-selector2._domainkey.furgocasa.com → ...
+   - ovhmo3368304-selector1._domainkey.ecoarealimonar.com → ...
+   - ovhmo3368304-selector2._domainkey.ecoarealimonar.com → ...
 
 SRV:
-   - _autodiscover._tcp.furgocasa.com
-   - _imaps._tcp.furgocasa.com
-   - _submission._tcp.furgocasa.com
+   - _autodiscover._tcp.ecoarealimonar.com
+   - _imaps._tcp.ecoarealimonar.com
+   - _submission._tcp.ecoarealimonar.com
 
 SPF:
    - "v=spf1 include:mx.ovh.com ~all"
 
 A para webmail:
-   - webmail.furgocasa.com → 213.186.33.5
-   - www.webmail.furgocasa.com → 213.186.33.5
+   - webmail.ecoarealimonar.com → 213.186.33.5
+   - www.webmail.ecoarealimonar.com → 213.186.33.5
 
 =================================================================
 PASO 3: GUARDAR Y ESPERAR PROPAGACIÓN
@@ -150,16 +150,16 @@ PASO 4: VERIFICACIÓN
 Prueba estos comandos en tu terminal para verificar:
 
 # Verificar que el DNS apunta a Vercel
-nslookup furgocasa.com
-nslookup www.furgocasa.com
+nslookup ecoarealimonar.com
+nslookup www.ecoarealimonar.com
 
 # Verificar que el sitio carga
-curl -I https://www.furgocasa.com
-curl -I https://furgocasa.com
+curl -I https://www.ecoarealimonar.com
+curl -I https://ecoarealimonar.com
 
 Prueba en navegadores:
-- https://furgocasa.com
-- https://www.furgocasa.com
+- https://ecoarealimonar.com
+- https://www.ecoarealimonar.com
 - Modo incógnito (para evitar caché)
 - En tu móvil (con datos móviles, no WiFi de casa)
 
@@ -170,7 +170,7 @@ PASO 5: CONFIGURAR SSL/HTTPS EN VERCEL
 Vercel automáticamente:
 1. Genera certificados SSL (Let's Encrypt)
 2. Redirige HTTP → HTTPS
-3. Redirige furgocasa.com → www.furgocasa.com (o viceversa, tú eliges)
+3. Redirige ecoarealimonar.com → www.ecoarealimonar.com (o viceversa, tú eliges)
 
 En Settings → Domains, puedes configurar cuál es tu dominio principal.
 
@@ -184,7 +184,7 @@ Una vez confirmes que todo funciona correctamente:
    - Cambia de 300 a 3600 (1 hora) o más
    - Esto mejorará el rendimiento y reducirá consultas DNS
 
-2. Elimina el CNAME de ftp.furgocasa.com si no lo usas
+2. Elimina el CNAME de ftp.ecoarealimonar.com si no lo usas
 
 3. Puedes eliminar los TXT de OVH que marcamos como opcionales
 
@@ -195,8 +195,8 @@ PLAN B: CÓMO REVERTIR SI ALGO SALE MAL
 Si después de hacer los cambios algo no funciona:
 
 1. Ve a OVH y cambia los registros A de vuelta:
-   - furgocasa.com A → 46.105.204.26
-   - www.furgocasa.com A → 46.105.204.26
+   - ecoarealimonar.com A → 46.105.204.26
+   - www.ecoarealimonar.com A → 46.105.204.26
 
 2. Espera 5-15 minutos (TTL de 300 segundos)
 
@@ -221,15 +221,15 @@ Antes de empezar:
 ☐ He avisado a mi equipo/clientes de posible downtime
 
 Durante la migración:
-☐ He cambiado el registro A de furgocasa.com
-☐ He cambiado el registro A de www.furgocasa.com
+☐ He cambiado el registro A de ecoarealimonar.com
+☐ He cambiado el registro A de www.ecoarealimonar.com
 ☐ NO he tocado ningún registro MX, CNAME de email, ni SPF
 ☐ He guardado los cambios en OVH
 
 Después de la migración:
 ☐ Vercel muestra el dominio como verificado
-☐ https://furgocasa.com carga correctamente
-☐ https://www.furgocasa.com carga correctamente
+☐ https://ecoarealimonar.com carga correctamente
+☐ https://www.ecoarealimonar.com carga correctamente
 ☐ El certificado SSL es válido (candado verde)
 ☐ He probado en modo incógnito
 ☐ He probado desde mi móvil con datos

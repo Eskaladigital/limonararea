@@ -53,18 +53,18 @@ async function getInformesData() {
   }
 
   return { 
-    vehicles: parcels || [], 
+    parcels: parcels || [], 
     bookings: bookings || [], 
     seasons: seasons || [] 
   };
 }
 
 export default async function InformesPage() {
-  const { vehicles, bookings, seasons } = await getInformesData();
+  const { parcels, bookings, seasons } = await getInformesData();
 
   return (
     <InformesClient
-      vehicles={vehicles}
+      parcels={parcels}
       bookings={bookings}
       seasons={seasons}
     />

@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Plus, Search, Home, ArrowUpDown, ArrowUp, ArrowDown, Package, Loader2, RefreshCw } from "lucide-react";
 import { useAllDataCached } from "@/hooks/use-all-data-cached";
 import { useCachedData } from "@/hooks/use-paginated-data";
-import VehicleActions from "./vehicle-actions";
+import ParcelActions from "./parcel-actions";
 
-interface VehicleExtra {
+interface ParcelExtra {
   id: string;
   name: string;
 }
@@ -27,7 +27,7 @@ interface Parcel {
     name: string;
   } | null;
   parcel_available_extras?: {
-    extras: VehicleExtra;
+    extras: ParcelExtra;
   }[];
   images?: {
     image_url: string;
@@ -35,7 +35,7 @@ interface Parcel {
   }[];
 }
 
-interface VehicleCategory {
+interface ParcelCategory {
   id: string;
   name: string;
 }
@@ -66,8 +66,8 @@ export default function ParcelasPage() {
   const { 
     data: categories, 
     loading: categoriesLoading, 
-  } = useCachedData<VehicleCategory[]>({
-    queryKey: ['vehicle_categories'],
+  } = useCachedData<ParcelCategory[]>({
+    queryKey: ['parcel_categories'],
     queryFn: async () => {
       const { createClient } = await import('@/lib/supabase/client');
       const supabase = createClient();
@@ -77,17 +77,17 @@ export default function ParcelasPage() {
         .eq('is_active', true)
         .order('sort_order', { ascending: true });
       
-      return (result.data || []) as VehicleCategory[];
+      return (result.data || []) as ParcelCategory[];
     },
     staleTime: 1000 * 60 * 60, // 1 hora - las categorías casi nunca cambian
   });
 
-  // Cargar TODOS los vehículos con caché de 30 minutos
+  // Cargar TODAS las parcelas con caché de 30 minutos
   const { 
-    data: vehicles, 
-    loading: vehiclesLoading,
+    data: parcels, 
+    loading: parcelsLoading,
     totalCount,
-    refetch: refetchVehicles,
+    refetch: refetchParcels,
     isRefetching,
   } = useAllDataCached<Parcel>({
     queryKey: ['parcels'],
@@ -105,7 +105,7 @@ export default function ParcelasPage() {
     staleTime: 1000 * 60 * 30,
   });
 
-  const loading = categoriesLoading || vehiclesLoading;
+  const loading = categoriesLoading || parcelsLoading;
 
   // Función para manejar el ordenamiento
   const handleSort = (field: string) => {
@@ -131,31 +131,30 @@ export default function ParcelasPage() {
     );
   };
 
-  // Procesar vehículos para obtener imagen principal y extras
-  const processedVehicles = useMemo(() => {
-    if (!vehicles) return [];
+  // Procesar parcelas para obtener imagen principal y extras
+  const processedParcels = useMemo(() => {
+    if (!parcels) return [];
     
-    return vehicles.map(vehicle => {
-      const primaryImage = vehicle.images?.find(img => img.is_primary);
-      const firstImage = vehicle.images?.[0];
+    return parcels.map(parcel => {
+      const primaryImage = parcel.images?.find(img => img.is_primary);
+      const firstImage = parcel.images?.[0];
       const main_image = primaryImage?.image_url || firstImage?.image_url || null;
       
-      // Aplanar los extras
-      const extras = vehicle.parcel_available_extras
+      const extras = parcel.parcel_available_extras
         ?.map(item => item.extras)
         .filter(Boolean) || [];
       
       return {
-        ...vehicle,
+        ...parcel,
         main_image,
         extras,
       };
     });
-  }, [vehicles]);
+  }, [parcels]);
 
   // Filtrado
-  const filteredVehicles = useMemo(() => {
-    let filtered = [...processedVehicles];
+  const filteredParcels = useMemo(() => {
+    let filtered = [...processedParcels];
     
     // Búsqueda por texto
     if (searchTerm) {
@@ -178,11 +177,11 @@ export default function ParcelasPage() {
     }
 
     return filtered;
-  }, [processedVehicles, searchTerm, categoryFilter, statusFilter]);
+  }, [processedParcels, searchTerm, categoryFilter, statusFilter]);
 
   // Ordenamiento
-  const sortedVehicles = useMemo(() => {
-    return [...filteredVehicles].sort((a, b) => {
+  const sortedParcels = useMemo(() => {
+    return [...filteredParcels].sort((a, b) => {
       let aValue: any;
       let bValue: any;
 
@@ -227,12 +226,12 @@ export default function ParcelasPage() {
         return aValue < bValue ? 1 : -1;
       }
     });
-  }, [filteredVehicles, sortField, sortDirection]);
+  }, [filteredParcels, sortField, sortDirection]);
 
-  const vehiclesList = sortedVehicles;
-  const allVehicles = processedVehicles || [];
+  const parcelsList = sortedParcels;
+  const allParcels = processedParcels || [];
 
-  if (loading && vehiclesList.length === 0) {
+  if (loading && parcelsList.length === 0) {
     return (
       <div className="space-y-6">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
@@ -253,7 +252,7 @@ export default function ParcelasPage() {
         <div className="flex gap-3">
           {/* Botón Actualizar */}
           <button 
-            onClick={() => refetchVehicles()}
+            onClick={() => refetchParcels()}
             disabled={isRefetching}
             className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 transition-colors"
             title="Actualizar parcelas"
@@ -272,19 +271,19 @@ export default function ParcelasPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
           <p className="text-sm text-gray-500">Total parcelas</p>
-          <p className="text-2xl font-bold text-gray-900">{allVehicles.length}</p>
+          <p className="text-2xl font-bold text-gray-900">{allParcels.length}</p>
         </div>
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
           <p className="text-sm text-gray-500">Disponibles</p>
-          <p className="text-2xl font-bold text-blue-600">{allVehicles.filter(v => v.status === 'available').length}</p>
+          <p className="text-2xl font-bold text-blue-600">{allParcels.filter(v => v.status === 'available').length}</p>
         </div>
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
           <p className="text-sm text-gray-500">Ocupadas</p>
-          <p className="text-2xl font-bold text-orange-600">{allVehicles.filter(v => v.status === 'rented').length}</p>
+          <p className="text-2xl font-bold text-orange-600">{allParcels.filter(v => v.status === 'rented').length}</p>
         </div>
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
           <p className="text-sm text-gray-500">Mantenimiento</p>
-          <p className="text-2xl font-bold text-yellow-600">{allVehicles.filter(v => v.status === 'maintenance').length}</p>
+          <p className="text-2xl font-bold text-yellow-600">{allParcels.filter(v => v.status === 'maintenance').length}</p>
         </div>
       </div>
 
@@ -393,7 +392,7 @@ export default function ParcelasPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {vehiclesList.length === 0 ? (
+              {parcelsList.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
                     <Home className="h-12 w-12 mx-auto mb-4 text-gray-300" />
@@ -410,7 +409,7 @@ export default function ParcelasPage() {
                   </td>
                 </tr>
               ) : (
-                vehiclesList.map((parcel) => (
+                parcelsList.map((parcel) => (
                   <tr 
                     key={parcel.id} 
                     className="hover:bg-gray-50 transition-colors"
@@ -494,9 +493,9 @@ export default function ParcelasPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <VehicleActions 
-                        vehicleId={parcel.id} 
-                        vehicleSlug={parcel.slug}
+                      <ParcelActions 
+parcelId={parcel.id}
+                        parcelSlug={parcel.slug}
                         isForSale={false}
                       />
                     </td>
@@ -510,7 +509,7 @@ export default function ParcelasPage() {
         {/* Info de totales */}
         <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
           <p className="text-sm text-gray-600">
-            Mostrando {vehiclesList.length} de {totalCount} parcelas
+            Mostrando {parcelsList.length} de {totalCount} parcelas
             {(searchTerm || categoryFilter || statusFilter) && ' (filtrados)'}
             {isRefetching && ' • Actualizando...'}
           </p>

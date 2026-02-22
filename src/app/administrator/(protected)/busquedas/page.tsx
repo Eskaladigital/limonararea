@@ -25,7 +25,7 @@ interface AnalyticsData {
   kpis: {
     totalSearches: number;
     withAvailability: number;
-    vehicleSelections: number;
+    parcelSelections: number;
     bookingsCreated: number;
     selectionRate: string;
     bookingRateFromSelection: string;
@@ -63,11 +63,11 @@ interface TopDatesData {
   }>;
 }
 
-interface VehiclePerformanceData {
-  vehiclePerformance: Array<{
-    vehicle_id: string;
-    vehicle_name: string;
-    vehicle_slug: string;
+interface ParcelPerformanceData {
+  parcelPerformance: Array<{
+    parcel_id: string;
+    parcel_name: string;
+    parcel_slug: string;
     times_selected: number;
     times_booked: number;
     booking_rate: string;
@@ -105,7 +105,7 @@ interface DemandAvailabilityData {
     unique_date_ranges: number;
     occupancy_rate: string;
     availability_rate: string;
-    total_vehicles: number;
+    total_parcels: number;
     demand_index: string;
     price_opportunity: "high" | "medium" | "low" | "none";
     recommendation: string;
@@ -149,7 +149,7 @@ interface SearchTimingData {
     is_weekend: boolean;
     total_searches: number;
     searches_with_availability: number;
-    vehicle_selections: number;
+    parcel_selections: number;
     bookings_created: number;
     selection_rate: string;
     conversion_rate: string;
@@ -303,9 +303,9 @@ export default function SearchAnalyticsPage() {
     queryFn: () => fetchAnalytics("dates", dateRange.start, dateRange.end),
   });
 
-  const { data: vehiclePerf, isLoading: loadingVehicles } = useQuery<VehiclePerformanceData>({
-    queryKey: ["search-analytics", "vehicles", dateRange.start, dateRange.end],
-    queryFn: () => fetchAnalytics("vehicles", dateRange.start, dateRange.end),
+  const { data: parcelPerf, isLoading: loadingParcels } = useQuery<ParcelPerformanceData>({
+    queryKey: ["search-analytics", "parcels", dateRange.start, dateRange.end],
+    queryFn: () => fetchAnalytics("parcels", dateRange.start, dateRange.end),
   });
 
   const { data: seasonStats, isLoading: loadingSeasons } = useQuery<SeasonStatsData>({
@@ -341,7 +341,7 @@ export default function SearchAnalyticsPage() {
   // Hooks de ordenación para todas las tablas (deben estar al nivel superior)
   const sortedDates = useSortableData(topDates?.topDates, { key: 'search_count', direction: 'desc' });
   const sortedTiming = useSortableData(searchTiming?.searchTiming, { key: 'search_date', direction: 'desc' });
-  const sortedVehicles = useSortableData(vehiclePerf?.vehiclePerformance, { key: 'times_selected', direction: 'desc' });
+  const sortedParcels = useSortableData(parcelPerf?.parcelPerformance, { key: 'times_selected', direction: 'desc' });
   const sortedDemand = useSortableData(demandAvailability?.demandAvailability, { key: 'week_start', direction: 'desc' });
 
   if (loadingOverview) {
@@ -405,7 +405,7 @@ export default function SearchAnalyticsPage() {
           <div className="flex items-center justify-between mb-2">
             <MousePointerClick className="h-8 w-8 text-purple-600" />
             <span className="text-3xl font-bold text-gray-900">
-              {overview?.kpis.vehicleSelections || 0}
+              {overview?.kpis.parcelSelections || 0}
             </span>
           </div>
           <p className="text-sm text-gray-600">Vehículos seleccionados</p>
@@ -931,7 +931,7 @@ export default function SearchAnalyticsPage() {
                   <SortableTableHeader label="Día" sortKey="day_name" currentSort={sortedTiming.sortConfig} onSort={sortedTiming.requestSort} />
                   <SortableTableHeader label="Búsquedas" sortKey="total_searches" currentSort={sortedTiming.sortConfig} onSort={sortedTiming.requestSort} />
                   <SortableTableHeader label="Disponib." sortKey="searches_with_availability" currentSort={sortedTiming.sortConfig} onSort={sortedTiming.requestSort} />
-                  <SortableTableHeader label="Selecciones" sortKey="vehicle_selections" currentSort={sortedTiming.sortConfig} onSort={sortedTiming.requestSort} />
+                  <SortableTableHeader label="Selecciones" sortKey="parcel_selections" currentSort={sortedTiming.sortConfig} onSort={sortedTiming.requestSort} />
                   <SortableTableHeader label="Reservas" sortKey="bookings_created" currentSort={sortedTiming.sortConfig} onSort={sortedTiming.requestSort} />
                   <SortableTableHeader label="Conv. %" sortKey="conversion_rate" currentSort={sortedTiming.sortConfig} onSort={sortedTiming.requestSort} />
                   <SortableTableHeader label="Antelación" sortKey="avg_advance_days" currentSort={sortedTiming.sortConfig} onSort={sortedTiming.requestSort} />
@@ -963,7 +963,7 @@ export default function SearchAnalyticsPage() {
                       {timing.searches_with_availability}
                     </td>
                     <td className="px-4 py-3 text-sm text-purple-600 font-semibold">
-                      {timing.vehicle_selections}
+                      {timing.parcel_selections}
                     </td>
                     <td className="px-4 py-3 text-sm text-green-600 font-semibold">
                       {timing.bookings_created}
@@ -1013,14 +1013,14 @@ export default function SearchAnalyticsPage() {
         )}
       </div>
 
-      {/* Rendimiento por vehículo */}
+      {/* Rendimiento por parcela */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
         <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
           <Car className="h-6 w-6 text-clay" />
-          Rendimiento por Vehículo
+          Rendimiento por Parcela
         </h2>
 
-        {loadingVehicles ? (
+        {loadingParcels ? (
           <div className="flex justify-center py-8">
             <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
           </div>
@@ -1029,38 +1029,38 @@ export default function SearchAnalyticsPage() {
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <SortableTableHeader label="Vehículo" sortKey="vehicle_name" currentSort={sortedVehicles.sortConfig} onSort={sortedVehicles.requestSort} />
-                  <SortableTableHeader label="Selecciones" sortKey="times_selected" currentSort={sortedVehicles.sortConfig} onSort={sortedVehicles.requestSort} />
-                  <SortableTableHeader label="Reservas" sortKey="times_booked" currentSort={sortedVehicles.sortConfig} onSort={sortedVehicles.requestSort} />
-                  <SortableTableHeader label="Conv. %" sortKey="booking_rate" currentSort={sortedVehicles.sortConfig} onSort={sortedVehicles.requestSort} />
-                  <SortableTableHeader label="Precio medio" sortKey="avg_price" currentSort={sortedVehicles.sortConfig} onSort={sortedVehicles.requestSort} />
+                  <SortableTableHeader label="Parcela" sortKey="parcel_name" currentSort={sortedParcels.sortConfig} onSort={sortedParcels.requestSort} />
+                  <SortableTableHeader label="Selecciones" sortKey="times_selected" currentSort={sortedParcels.sortConfig} onSort={sortedParcels.requestSort} />
+                  <SortableTableHeader label="Reservas" sortKey="times_booked" currentSort={sortedParcels.sortConfig} onSort={sortedParcels.requestSort} />
+                  <SortableTableHeader label="Conv. %" sortKey="booking_rate" currentSort={sortedParcels.sortConfig} onSort={sortedParcels.requestSort} />
+                  <SortableTableHeader label="Precio medio" sortKey="avg_price" currentSort={sortedParcels.sortConfig} onSort={sortedParcels.requestSort} />
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {sortedVehicles.items.map((vehicle) => (
-                  <tr key={vehicle.vehicle_id} className="hover:bg-gray-50">
+                {sortedParcels.items.map((parcel) => (
+                  <tr key={parcel.parcel_id} className="hover:bg-gray-50">
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">
-                      {vehicle.vehicle_name}
+                      {parcel.parcel_name}
                     </td>
                     <td className="px-4 py-3 text-sm text-blue-600 font-semibold">
-                      {vehicle.times_selected}
+                      {parcel.times_selected}
                     </td>
                     <td className="px-4 py-3 text-sm text-green-600 font-semibold">
-                      {vehicle.times_booked}
+                      {parcel.times_booked}
                     </td>
                     <td className="px-4 py-3 text-sm">
                       <span className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${
-                        parseFloat(vehicle.booking_rate) >= 40 
+                        parseFloat(parcel.booking_rate) >= 40 
                           ? "bg-green-100 text-green-800"
-                          : parseFloat(vehicle.booking_rate) >= 25
+                          : parseFloat(parcel.booking_rate) >= 25
                           ? "bg-yellow-100 text-yellow-800"
                           : "bg-red-100 text-red-800"
                       }`}>
-                        {vehicle.booking_rate}%
+                        {parcel.booking_rate}%
                       </span>
                     </td>
                     <td className="px-4 py-3 text-sm font-semibold text-gray-900">
-                      €{vehicle.avg_price}
+                      €{parcel.avg_price}
                     </td>
                   </tr>
                 ))}
@@ -1251,7 +1251,7 @@ export default function SearchAnalyticsPage() {
                         {week.demand_index}
                       </span>
                       <div className="text-xs text-gray-500">
-                        ({week.total_vehicles} veh.)
+                        ({week.total_parcels} parcelas)
                       </div>
                     </td>
                     <td className="px-4 py-3">

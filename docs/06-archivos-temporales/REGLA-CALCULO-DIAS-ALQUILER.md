@@ -4,7 +4,7 @@
 
 ### 1. Períodos Completos de 24 Horas
 
-**Los precios en Furgocasa se devengan por períodos completos de 24 horas, NO siendo posible su prorrateo.**
+**Los precios en Eco Area Limonar se devengan por períodos completos de 24 horas, NO siendo posible su prorrateo.**
 
 #### Ejemplos
 

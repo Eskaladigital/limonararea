@@ -36,7 +36,7 @@
 ### 3. ✅ Variables de Entorno Corregidas
 - **Archivo**: `.env.local`
 - `REDSYS_TERMINAL`: Cambiado de `1` a `001` ✅
-- `NEXT_PUBLIC_URL`: Añadida con valor `https://www.furgocasa.com` ✅
+- `NEXT_PUBLIC_URL`: Añadida con valor `https://www.ecoarealimonar.com` ✅
 
 ---
 
@@ -82,7 +82,7 @@ Verás logs como estos:
 
 #### En Vercel (Backend)
 1. Ve a https://vercel.com
-2. Abre tu proyecto `furgocasa-app`
+2. Abre tu proyecto `limonar-app`
 3. Ve a **Functions** > Busca la función `api/redsys/initiate`
 4. Haz clic en **Logs**
 
@@ -105,9 +105,9 @@ Busca esta sección en los logs de Vercel:
   terminal: '001',                // ✅ Debe ser '001' (con ceros)
   hasSecretKey: true,             // ✅ Debe ser true
   secretKeyLength: 32,            // ✅ Debe ser > 0
-  urlOk: 'https://www.furgocasa.com/pago/exito',
-  urlKo: 'https://www.furgocasa.com/pago/error',
-  notificationUrl: 'https://www.furgocasa.com/api/redsys/notification',
+  urlOk: 'https://www.ecoarealimonar.com/pago/exito',
+  urlKo: 'https://www.ecoarealimonar.com/pago/error',
+  notificationUrl: 'https://www.ecoarealimonar.com/api/redsys/notification',
   environment: 'production'
 }
 ```
@@ -117,7 +117,7 @@ Busca esta sección en los logs de Vercel:
 - ✅ `terminal` es `001` (NO `1`)
 - ✅ `hasSecretKey` es `true`
 - ✅ `secretKeyLength` es mayor que 0
-- ✅ Todas las URLs son `https://www.furgocasa.com/...`
+- ✅ Todas las URLs son `https://www.ecoarealimonar.com/...`
 
 ### 2. Parámetros Enviados a Redsys
 
@@ -129,9 +129,9 @@ Busca esta sección en los logs de Vercel:
   "DS_MERCHANT_CURRENCY": "978",          // ✅ Euro
   "DS_MERCHANT_TRANSACTIONTYPE": "0",     
   "DS_MERCHANT_TERMINAL": "001",          // ✅ Con ceros
-  "DS_MERCHANT_MERCHANTURL": "https://www.furgocasa.com/api/redsys/notification",
-  "DS_MERCHANT_URLOK": "https://www.furgocasa.com/pago/exito",
-  "DS_MERCHANT_URLKO": "https://www.furgocasa.com/pago/error"
+  "DS_MERCHANT_MERCHANTURL": "https://www.ecoarealimonar.com/api/redsys/notification",
+  "DS_MERCHANT_URLOK": "https://www.ecoarealimonar.com/pago/exito",
+  "DS_MERCHANT_URLKO": "https://www.ecoarealimonar.com/pago/error"
 }
 ```
 

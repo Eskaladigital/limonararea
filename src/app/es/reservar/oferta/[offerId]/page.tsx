@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 import { 
   Calendar, MapPin, User, Mail, Phone, 
-  CreditCard, AlertCircle, Loader2, FileText, Users, Bed, 
+  CreditCard, AlertCircle, Loader2, FileText, 
   Tag, CheckCircle, Clock, Percent, Lock, ArrowLeft, Plus, Minus
 } from "lucide-react";
 import { LocalizedLink } from "@/components/localized-link";
@@ -16,7 +16,7 @@ import { getTranslatedRoute } from "@/lib/route-translations";
 
 interface OfferData {
   id: string;
-  vehicle_id: string;
+  parcel_id: string;
   offer_start_date: string;
   offer_end_date: string;
   offer_days: number;
@@ -25,7 +25,7 @@ interface OfferData {
   final_price_per_day: number;
   pickup_location_id: string;
   dropoff_location_id: string;
-  vehicle: {
+  parcel: {
     id: string;
     name: string;
     slug: string;
@@ -126,7 +126,6 @@ export default function ReservarOfertaPage({
         setError(offerData.error);
         return;
       }
-      
       setOffer(offerData.offer);
 
       // Las ubicaciones vienen de la oferta (son fijas, no modificables)
@@ -238,7 +237,7 @@ export default function ReservarOfertaPage({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          vehicle_id: offer.vehicle_id,
+          parcel_id: offer.parcel_id,
           pickup_date: offer.offer_start_date,
           dropoff_date: offer.offer_end_date,
           pickup_time: pickupTime,
@@ -354,8 +353,9 @@ export default function ReservarOfertaPage({
     );
   }
 
-  const vehicleImage = offer.vehicle.images?.find(img => img.is_primary)?.image_url || 
-                       offer.vehicle.images?.[0]?.image_url;
+  const parcel = offer.parcel;
+  const parcelImage = parcel?.images?.find((img: any) => img.is_primary)?.image_url || 
+                      parcel?.images?.[0]?.image_url;
 
   return (
     <main className="min-h-screen bg-sand-lt py-8">
@@ -391,12 +391,12 @@ export default function ReservarOfertaPage({
               </div>
               
               <div className="flex flex-col md:flex-row gap-6">
-                {vehicleImage && (
+                {parcelImage && (
                   <div className="md:w-1/3">
                     <div className="aspect-[4/3] relative rounded-xl overflow-hidden">
                       <Image
-                        src={vehicleImage}
-                        alt={offer.vehicle.name}
+                        src={parcelImage}
+                        alt={parcel?.name ?? ''}
                         fill
                         className="object-cover"
                       />
@@ -404,8 +404,7 @@ export default function ReservarOfertaPage({
                   </div>
                 )}
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{offer.vehicle.name}</h3>
-                  <p className="text-gray-600 mb-4">{offer.vehicle.brand} {offer.vehicle.model}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{parcel?.name}</h3>
                   
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div className="flex items-center gap-2">
@@ -425,14 +424,6 @@ export default function ReservarOfertaPage({
                   </div>
                   
                   <div className="mt-4 flex items-center gap-4">
-                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                      <Users className="w-4 h-4" />
-                      {offer.vehicle.seats} {t("plazas")}
-                    </div>
-                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                      <Bed className="w-4 h-4" />
-                      {offer.vehicle.beds} {t("camas")}
-                    </div>
                     <div className="flex items-center gap-1 text-sm text-clay font-medium">
                       <Clock className="w-4 h-4" />
                       {offer.offer_days} {t("días")}

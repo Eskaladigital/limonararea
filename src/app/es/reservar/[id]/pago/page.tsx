@@ -26,7 +26,7 @@ interface Booking {
   customer_name: string;
   customer_email: string;
   customer_phone: string;
-  vehicle: {
+  parcel: {
     name: string;
     brand: string;
     model: string;
@@ -384,13 +384,12 @@ export default function PagoPage() {
             </h2>
 
             <div className="space-y-6">
-              {/* Vehicle */}
+              {/* Parcel */}
               <div className="flex items-start gap-4 p-4 bg-sand-lt rounded-lg">
                 <Car className="h-6 w-6 text-earth flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Vehículo")}</p>
-                  <p className="font-semibold text-gray-900 text-lg">{booking.vehicle.name}</p>
-                  <p className="text-sm text-gray-600">{booking.vehicle.brand} {booking.vehicle.model}</p>
+                  <p className="font-semibold text-gray-900 text-lg">{booking.parcel?.name}</p>
                 </div>
               </div>
 

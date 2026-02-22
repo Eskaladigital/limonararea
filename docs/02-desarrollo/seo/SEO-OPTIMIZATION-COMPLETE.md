@@ -1,4 +1,4 @@
-# 🚀 Optimizaciones SEO Completas - Blog Furgocasa
+# 🚀 Optimizaciones SEO Completas - Blog Eco Area Limonar
 
 ## ✅ Cambios Implementados (Según Guidelines de Google 2024-2026)
 
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   
   return {
-    title: post.meta_title || `${post.title} | Furgocasa`,
+    title: post.meta_title || `${post.title} | Eco Area Limonar`,
     description: post.meta_description || post.excerpt,
     keywords: post.tags?.map(tag => tag.name).join(", "),
     openGraph: {
@@ -77,10 +77,10 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     // ⚠️ IMPORTANTE: Siempre con www y prefijo /es/
     // Ver SEO-MULTIIDIOMA-MODELO.md para documentación completa
     alternates: {
-      canonical: `https://www.furgocasa.com/es/blog/${params.category}/${params.slug}`,
+      canonical: `https://www.ecoarealimonar.com/es/blog/${params.category}/${params.slug}`,
       languages: {
-        'es': `https://www.furgocasa.com/es/blog/${params.category}/${params.slug}`,
-        'x-default': `https://www.furgocasa.com/es/blog/${params.category}/${params.slug}`,
+        'es': `https://www.ecoarealimonar.com/es/blog/${params.category}/${params.slug}`,
+        'x-default': `https://www.ecoarealimonar.com/es/blog/${params.category}/${params.slug}`,
       }
     },
     robots: {
@@ -114,7 +114,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   "datePublished": "2025-01-20",
   "author": {
     "@type": "Organization",
-    "name": "Furgocasa"
+    "name": "Eco Area Limonar"
   },
   // ... más datos estructurados
 }
@@ -141,7 +141,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();
   return posts.map(post => ({
     // ⚠️ SIEMPRE con www y prefijo /es/
-    url: `https://www.furgocasa.com/es/blog/${post.category}/${post.slug}`,
+    url: `https://www.ecoarealimonar.com/es/blog/${post.category}/${post.slug}`,
     lastModified: post.updated_at,
     changeFrequency: 'weekly',
     priority: 0.8
@@ -169,7 +169,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/administrator/', '/api/', '/admin/'],
       },
     ],
-    sitemap: 'https://www.furgocasa.com/sitemap.xml',
+    sitemap: 'https://www.ecoarealimonar.com/sitemap.xml',
   }
 }
 ```
@@ -180,7 +180,7 @@ export default function robots(): MetadataRoute.Robots {
 
 ```typescript
 export const metadata: Metadata = {
-  title: "Blog de Viajes en Camper y Autocaravanas | Consejos, Rutas | Furgocasa",
+  title: "Blog de Viajes en Camper y Autocaravanas | Consejos, Rutas | Eco Area Limonar",
   description: "Descubre los mejores consejos para viajar en camper, rutas...",
   keywords: "blog camper, viajes autocaravana, rutas camper españa...",
   // ... Open Graph completo
@@ -238,7 +238,7 @@ export const metadata: Metadata = {
 ```html
 <html>
   <head>
-    <title>Navidades en camper por Murcia | Furgocasa</title>
+    <title>Navidades en camper por Murcia | Eco Area Limonar</title>
     <meta name="description" content="Descubre las mejores..."/>
     <script type="application/ld+json">
       { "@type": "BlogPosting", ... }
@@ -324,7 +324,7 @@ export const metadata: Metadata = {
 ## 🎯 Próximos Pasos Recomendados
 
 1. **Google Search Console**
-   - Enviar sitemap: `https://furgocasa.com/sitemap.xml`
+   - Enviar sitemap: `https://ecoarealimonar.com/sitemap.xml`
    - Solicitar re-indexación de las páginas principales
    - Monitorizar errores de crawling
 
@@ -361,4 +361,4 @@ El tráfico orgánico debería empezar a crecer significativamente en 2-3 meses.
 
 **Última actualización**: 2026-01-21  
 **Modelo SEO Multiidioma**: Ver [SEO-MULTIIDIOMA-MODELO.md](./SEO-MULTIIDIOMA-MODELO.md)  
-**Nota**: Todas las URLs deben usar `www.furgocasa.com` con prefijo `/es/` para español.
+**Nota**: Todas las URLs deben usar `www.ecoarealimonar.com` con prefijo `/es/` para español.

@@ -15,15 +15,11 @@ import {
 } from "lucide-react";
 
 interface SearchResults {
-  vehicles: Array<{
+  parcels: Array<{
     id: string;
     name: string;
-    internal_code: string;
-    brand: string;
-    model: string;
-    year: number;
-    status: string;
-    plate_number: string;
+    internal_code: string | null;
+    status?: string;
   }>;
   bookings: Array<{
     id: string;
@@ -34,7 +30,7 @@ interface SearchResults {
     dropoff_date: string;
     total_price: number;
     customer: { name: string; email: string; phone: string } | null;
-    vehicle: { name: string; internal_code: string } | null;
+    parcel: { name: string; internal_code: string | null } | null;
     pickup_location: { id: string; name: string; city: string } | null;
     dropoff_location: { id: string; name: string; city: string } | null;
   }>;
@@ -203,41 +199,39 @@ export function GlobalSearch() {
       {showResults && results && results.total > 0 && (
         <div className="absolute top-full mt-2 w-full bg-white rounded-xl shadow-2xl border border-gray-200 z-[60] max-h-[600px] overflow-hidden flex flex-col">
           <div className="overflow-y-auto">
-            {/* Vehículos */}
-            {results.vehicles.length > 0 && (
+            {/* Parcelas */}
+            {results.parcels && results.parcels.length > 0 && (
               <div className="border-b border-gray-100">
                 <div className="px-4 py-3 bg-gray-50 flex items-center gap-2">
                   <Car className="h-4 w-4 text-blue-600" />
                   <h3 className="font-semibold text-sm text-gray-900">
-                    Vehículos ({results.vehicles.length})
+                    Parcelas ({results.parcels.length})
                   </h3>
                 </div>
                 <div className="divide-y divide-gray-100">
-                  {results.vehicles.map((vehicle) => (
+                  {results.parcels.map((parcel) => (
                     <button
-                      key={vehicle.id}
+                      key={parcel.id}
                       onClick={() =>
-                        handleNavigate(`/administrator/parcelas/${vehicle.id}/editar`)
+                        handleNavigate(`/administrator/parcelas/${parcel.id}/editar`)
                       }
                       className="w-full px-4 py-3 hover:bg-earth/10 transition-colors text-left flex items-center justify-between group"
                     >
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                           <span className="font-medium text-gray-900">
-                            {vehicle.internal_code}
+                            {parcel.internal_code}
                           </span>
-                          <span className="text-gray-600">{vehicle.name}</span>
-                          <span
-                            className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
-                              vehicle.status
-                            )}`}
-                          >
-                            {vehicle.status}
-                          </span>
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {vehicle.brand} {vehicle.model} • {vehicle.year} •{" "}
-                          {vehicle.plate_number}
+                          <span className="text-gray-600">{parcel.name}</span>
+                          {parcel.status && (
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
+                                parcel.status
+                              )}`}
+                            >
+                              {parcel.status}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
@@ -291,7 +285,7 @@ export function GlobalSearch() {
                           </div>
                         )}
                         <div className="text-xs text-gray-500">
-                          {booking.vehicle?.internal_code} {booking.vehicle?.name} •{" "}
+                          {booking.parcel?.internal_code} {booking.parcel?.name} •{" "}
                           {new Date(booking.pickup_date).toLocaleDateString()} →{" "}
                           {new Date(booking.dropoff_date).toLocaleDateString()}
                           {booking.pickup_location && (

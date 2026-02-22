@@ -1,10 +1,10 @@
-# 🚀 DEPLOY STATUS - Furgocasa App
+# 🚀 DEPLOY STATUS - Eco Area Limonar App
 
 ## ✅ Estado Actual en Producción
 
 **Fecha**: 2026-01-20  
 **Versión**: 1.0.5  
-**URL**: https://www.furgocasa.com  
+**URL**: https://www.ecoarealimonar.com  
 **Estado**: ✅ **TOTALMENTE FUNCIONAL**
 
 ---
@@ -124,10 +124,10 @@
 ## 📈 Monitorización
 
 ### URLs Principales
-- ✅ https://www.furgocasa.com (Home)
-- ✅ https://www.furgocasa.com/es/vehiculos (Catálogo)
-- ✅ https://www.furgocasa.com/es/blog (Blog)
-- ✅ https://www.furgocasa.com/administrator (Admin)
+- ✅ https://www.ecoarealimonar.com (Home)
+- ✅ https://www.ecoarealimonar.com/es/vehiculos (Catálogo)
+- ✅ https://www.ecoarealimonar.com/es/blog (Blog)
+- ✅ https://www.ecoarealimonar.com/administrator (Admin)
 
 ### Herramientas
 - ✅ Vercel Analytics activado

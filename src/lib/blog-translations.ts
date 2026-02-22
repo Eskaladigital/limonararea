@@ -19,12 +19,12 @@ export const blogCategoryTranslations = {
     de: 'nachrichten',
     nl: 'nieuws',
   },
-  vehiculos: {
-    es: 'vehiculos',
-    en: 'vehicles',
-    fr: 'vehicules',
-    de: 'fahrzeuge',
-    nl: 'voertuigen',
+  parcelas: {
+    es: 'parcelas',
+    en: 'parcels',
+    fr: 'emplacements',
+    de: 'stellplatze',
+    nl: 'percelen',
   },
   consejos: {
     es: 'consejos',
@@ -104,12 +104,12 @@ export const blogCategoryNames = {
     de: 'Nachrichten',
     nl: 'Nieuws',
   },
-  vehiculos: {
-    es: 'Vehículos',
-    en: 'Vehicles',
-    fr: 'Véhicules',
-    de: 'Fahrzeuge',
-    nl: 'Voertuigen',
+  parcelas: {
+    es: 'Parcelas',
+    en: 'Parcels',
+    fr: 'Emplacements',
+    de: 'Stellplätze',
+    nl: 'Percelen',
   },
   consejos: {
     es: 'Consejos',
@@ -357,18 +357,18 @@ export function sanitizeBlogContentLinks(html: string, pageLocale: Locale): stri
   if (!html) return html;
 
   // Paso 1: Eliminar etiquetas <title> del contenido (causan "Multiple title tags" en SEO)
-  // El contenido de blog puede tener SVGs embebidos con <title>Banner Mapa Furgocasa</title>
+  // El contenido de blog puede tener SVGs embebidos con <title>Banner Mapa Eco Area Limonar</title>
   let sanitized = html.replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '');
 
-  // Paso 2: Corregir http:// → https:// en todos los links a furgocasa.com
+  // Paso 2: Corregir http:// → https:// en todos los links a limonar.com
   sanitized = sanitized.replace(
-    /href="http:\/\/(www\.)?furgocasa\.com/g,
-    'href="https://www.furgocasa.com'
+    /href="http:\/\/(www\.)?limonar\.com/g,
+    'href="https://www.limonar.com'
   );
 
   // Paso 3: Corregir links internos del blog con locale incorrecto
   return sanitized.replace(
-    /href="(?:https?:\/\/(?:www\.)?furgocasa\.com)?\/(es|en|fr|de)\/blog\/([^/"]+)\/([^/"]+)"/g,
+    /href="(?:https?:\/\/(?:www\.)?limonar\.com)?\/(es|en|fr|de)\/blog\/([^/"]+)\/([^/"]+)"/g,
     (_match, linkLocale: string, categorySlug: string, articleSlug: string) => {
       const detectedLocale = detectCategoryLocale(categorySlug);
 

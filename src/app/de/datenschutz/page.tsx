@@ -41,15 +41,15 @@ export default async function PrivacyPage() {
 
           <h2>1. Verantwortlicher für die Datenverarbeitung</h2>
           <ul>
-            <li><strong>Identität:</strong> FURGOCASA S.L.</li>
+            <li><strong>Identität:</strong> Eco Area Limonar S.L.</li>
             <li><strong>CIF:</strong> B-XXXXXXXX</li>
             <li><strong>Adresse:</strong> Calle Ejemplo, 123 - 30001 Murcia</li>
-            <li><strong>E-Mail:</strong> privacidad@furgocasa.com</li>
+            <li><strong>E-Mail:</strong> privacidad@limonar.com</li>
             <li><strong>Telefon:</strong> +34 968 000 000</li>
           </ul>
 
           <h2>2. Personenbezogene Daten, die wir verarbeiten</h2>
-          <p>FURGOCASA kann die folgenden Kategorien personenbezogener Daten verarbeiten:</p>
+          <p>Eco Area Limonar kann die folgenden Kategorien personenbezogener Daten verarbeiten:</p>
           <ul>
             <li><strong>Identifikationsdaten:</strong> Name, Nachname, Personalausweis/NIE/Reisepass</li>
             <li><strong>Kontaktdaten:</strong> Postanschrift, E-Mail, Telefon</li>
@@ -103,16 +103,16 @@ export default async function PrivacyPage() {
             <li><strong>Datenübertragbarkeit:</strong> Ihre Daten in einem strukturierten Format zu erhalten</li>
             <li><strong>Widerspruch:</strong> der Verarbeitung Ihrer Daten zu widersprechen</li>
           </ul>
-          <p>Um diese Rechte auszuüben, kontaktieren Sie uns unter privacidad@furgocasa.com mit einer Kopie Ihres Ausweises.</p>
+          <p>Um diese Rechte auszuüben, kontaktieren Sie uns unter privacidad@limonar.com mit einer Kopie Ihres Ausweises.</p>
 
           <h2>8. Cookies</h2>
           <p>Diese Website verwendet eigene und Cookies von Drittanbietern. Bitte lesen Sie unsere Cookie-Richtlinie für weitere Informationen.</p>
 
           <h2>9. Sicherheit</h2>
-          <p>FURGOCASA hat die notwendigen technischen und organisatorischen Maßnahmen ergriffen, um die Sicherheit der personenbezogenen Daten zu gewährleisten.</p>
+          <p>Eco Area Limonar hat die notwendigen technischen und organisatorischen Maßnahmen ergriffen, um die Sicherheit der personenbezogenen Daten zu gewährleisten.</p>
 
           <h2>10. Änderungen</h2>
-          <p>FURGOCASA behält sich das Recht vor, diese Datenschutzrichtlinie zu ändern, um sie an gesetzliche Entwicklungen oder Rechtsprechung anzupassen.</p>
+          <p>Eco Area Limonar behält sich das Recht vor, diese Datenschutzrichtlinie zu ändern, um sie an gesetzliche Entwicklungen oder Rechtsprechung anzupassen.</p>
 
           <h2>11. Beschwerden</h2>
           <p>Wenn Sie der Meinung sind, dass die Verarbeitung Ihrer Daten nicht den Vorschriften entspricht, können Sie eine Beschwerde bei der spanischen Datenschutzbehörde (www.aepd.es) einreichen.</p>

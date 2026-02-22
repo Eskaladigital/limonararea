@@ -83,7 +83,7 @@ export default function RedsysWarningModal({
 
             {/* Pequeña nota visual con icono */}
             <div className="flex items-start gap-3 text-sm text-gray-600 bg-blue-50 rounded-xl p-4">
-              <CreditCard className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+              <CreditCard className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
               <p>
                 Tras completar el pago, <strong>no cierres la ventana</strong> y asegúrate de hacer clic en el botón "Continuar" para volver a nuestra web.
               </p>

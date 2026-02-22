@@ -1,4 +1,4 @@
-# Plantillas de Email - Furgocasa
+# Plantillas de Email - Eco Area Limonar
 
 Esta carpeta contiene las plantillas HTML de ejemplo de los emails que se envían automáticamente en el proceso de reserva.
 
@@ -6,7 +6,7 @@ Esta carpeta contiene las plantillas HTML de ejemplo de los emails que se envía
 
 Cada email se envía **a los dos destinatarios**:
 - Cliente (el email que proporcionó al reservar)
-- reservas@furgocasa.com
+- reservas@ecoarealimonar.com
 
 ## Archivos
 
@@ -44,7 +44,7 @@ Puedes abrir cualquier archivo `.html` directamente en el navegador para ver có
 - Los datos mostrados son de ejemplo (Juan García López, reserva FU0018, etc.)
 - En producción, estos datos se reemplazan dinámicamente con los datos reales de cada reserva
 - Las plantillas reales están en `src/lib/email/templates.ts`
-- El **mismo email** se envía tanto al cliente como a reservas@furgocasa.com
+- El **mismo email** se envía tanto al cliente como a reservas@ecoarealimonar.com
 - El asunto incluye: código vehículo, fecha inicio, nombre y apellidos del cliente
 
 ## Colores de la marca

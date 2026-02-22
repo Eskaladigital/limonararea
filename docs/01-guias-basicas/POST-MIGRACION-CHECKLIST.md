@@ -1,13 +1,13 @@
 =================================================================
-ACTUALIZACIÓN POST-MIGRACIÓN A www.furgocasa.com
+ACTUALIZACIÓN POST-MIGRACIÓN A www.ecoarealimonar.com
 Fecha: 20 de enero de 2026
 =================================================================
 
 ## ✅ MIGRACIÓN COMPLETADA
 
 La aplicación ha migrado exitosamente de:
-- ❌ `webfurgocasa.vercel.app` (URL temporal de Vercel)
-- ✅ `www.furgocasa.com` (URL de producción definitiva)
+- ❌ `weblimonar.vercel.app` (URL temporal de Vercel)
+- ✅ `www.ecoarealimonar.com` (URL de producción definitiva)
 
 ## 🔄 CAMBIOS NECESARIOS EN CONFIGURACIONES
 
@@ -19,12 +19,12 @@ La aplicación ha migrado exitosamente de:
 
 **ANTES:**
 ```
-https://webfurgocasa.vercel.app/api/stripe/webhook
+https://weblimonar.vercel.app/api/stripe/webhook
 ```
 
 **AHORA (ACTUALIZAR):**
 ```
-https://www.furgocasa.com/api/stripe/webhook
+https://www.ecoarealimonar.com/api/stripe/webhook
 ```
 
 ### ✅ Cómo actualizar:
@@ -32,7 +32,7 @@ https://www.furgocasa.com/api/stripe/webhook
 1. Ve a https://dashboard.stripe.com/webhooks
 2. Encuentra tu webhook actual
 3. Haz clic en **"..."** (menú) → **"Update details"**
-4. Cambia la URL a: `https://www.furgocasa.com/api/stripe/webhook`
+4. Cambia la URL a: `https://www.ecoarealimonar.com/api/stripe/webhook`
 5. **Guarda**
 
 ⚠️ **IMPORTANTE**: Si no actualizas esto, los webhooks de Stripe NO llegarán
@@ -46,25 +46,25 @@ y los pagos quedarán en estado "pending" indefinidamente.
 
 **ANTES:**
 ```
-https://webfurgocasa.vercel.app
+https://weblimonar.vercel.app
 ```
 
 **AHORA (ACTUALIZAR):**
 ```
-https://www.furgocasa.com
+https://www.ecoarealimonar.com
 ```
 
 ### ✅ Cómo actualizar:
 
 1. Contacta con soporte de Redsys: soporte.comercios@redsys.es
 2. Solicita actualizar las URLs de callback/notificación a:
-   - URL OK: `https://www.furgocasa.com/pago/exito`
-   - URL KO: `https://www.furgocasa.com/pago/error`
-   - URL de notificación: `https://www.furgocasa.com/api/redsys/notification`
+   - URL OK: `https://www.ecoarealimonar.com/pago/exito`
+   - URL KO: `https://www.ecoarealimonar.com/pago/error`
+   - URL de notificación: `https://www.ecoarealimonar.com/api/redsys/notification`
 
 3. Pregunta específicamente sobre:
    - Error SIS0042 (si aún persiste)
-   - Autorización del nuevo dominio www.furgocasa.com
+   - Autorización del nuevo dominio www.ecoarealimonar.com
    - Configuración del terminal 001
 
 =================================================================
@@ -78,11 +78,11 @@ de entorno (porque la app escucha en el dominio que le llegue),
 PODRÍAS actualizar si tienes variables como:
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://www.furgocasa.com
-NEXT_PUBLIC_BASE_URL=https://www.furgocasa.com
+NEXT_PUBLIC_SITE_URL=https://www.ecoarealimonar.com
+NEXT_PUBLIC_BASE_URL=https://www.ecoarealimonar.com
 ```
 
-Verifica que apunten a `www.furgocasa.com` y no a `webfurgocasa.vercel.app`
+Verifica que apunten a `www.ecoarealimonar.com` y no a `weblimonar.vercel.app`
 
 =================================================================
 4. META PIXEL - DOMINIO VERIFICADO (OPCIONAL)
@@ -94,7 +94,7 @@ Si tienes Meta Pixel configurado:
 
 1. Ve a https://business.facebook.com/
 2. Settings → Domains
-3. Verifica que `www.furgocasa.com` esté añadido y verificado
+3. Verifica que `www.ecoarealimonar.com` esté añadido y verificado
 4. El TXT de verificación ya está en tus DNS:
    ```
    facebook-domain-verification=038n6pvvpp7ts3tp9z9n8tohwm77et
@@ -109,17 +109,17 @@ Si tienes Meta Pixel configurado:
 **ACCIÓN NECESARIA:**
 
 1. Ve a https://search.google.com/search-console
-2. Añade `www.furgocasa.com` como nueva propiedad
+2. Añade `www.ecoarealimonar.com` como nueva propiedad
 3. Verifica usando el método DNS TXT (ya está configurado):
    ```
    google-site-verification=XdSPsgba3G9a1Msc1PPBRti1T8vuV9h3mMjXlxL16BA
    ```
 4. Envía el sitemap:
    ```
-   https://www.furgocasa.com/sitemap.xml
+   https://www.ecoarealimonar.com/sitemap.xml
    ```
 
-**OPCIONAL:** Puedes mantener la propiedad de `webfurgocasa.vercel.app` 
+**OPCIONAL:** Puedes mantener la propiedad de `weblimonar.vercel.app` 
 pero la redirección 308 transferirá la autoridad al nuevo dominio.
 
 =================================================================
@@ -130,7 +130,7 @@ pero la redirección 308 transferirá la autoridad al nuevo dominio.
 
 Verifica que el "Default URL" esté configurado como:
 ```
-https://www.furgocasa.com
+https://www.ecoarealimonar.com
 ```
 
 No requiere cambios en el código (el tracking ID funciona en cualquier dominio).
@@ -141,18 +141,18 @@ No requiere cambios en el código (el tracking ID funciona en cualquier dominio)
 
 ✅ **Ya están actualizados automáticamente** porque usan la URL canónica:
 
-- `src/app/sitemap.ts` - Genera URLs con www.furgocasa.com
+- `src/app/sitemap.ts` - Genera URLs con www.ecoarealimonar.com
 - `src/app/robots.ts` - Apunta al sitemap correcto
-- Todas las páginas tienen `canonical: "https://www.furgocasa.com/..."`
+- Todas las páginas tienen `canonical: "https://www.ecoarealimonar.com/..."`
 
 =================================================================
 8. OPEN GRAPH Y META TAGS (YA ACTUALIZADO)
 =================================================================
 
 ✅ **Ya están actualizados** en:
-- `src/app/page.tsx` - og:url apunta a www.furgocasa.com
+- `src/app/page.tsx` - og:url apunta a www.ecoarealimonar.com
 - `src/components/home/organization-jsonld.tsx` - URLs correctas
-- Todos los JSON-LD schemas usan www.furgocasa.com
+- Todos los JSON-LD schemas usan www.ecoarealimonar.com
 
 =================================================================
 9. EMAILS (VERIFICAR PLANTILLAS)
@@ -160,16 +160,16 @@ No requiere cambios en el código (el tracking ID funciona en cualquier dominio)
 
 ### 📍 Ubicación: src/lib/email/templates.ts
 
-Verifica que los enlaces en los emails apunten a www.furgocasa.com:
+Verifica que los enlaces en los emails apunten a www.ecoarealimonar.com:
 
 ✅ Las plantillas usan URLs relativas o dinámicas, pero verifica que
-cualquier enlace absoluto use `www.furgocasa.com`
+cualquier enlace absoluto use `www.ecoarealimonar.com`
 
 =================================================================
 10. DOCUMENTACIÓN (ACTUALIZAR REFERENCIAS)
 =================================================================
 
-Los siguientes archivos .md tienen referencias a webfurgocasa.vercel.app
+Los siguientes archivos .md tienen referencias a weblimonar.vercel.app
 y deberían actualizarse para reflejar el dominio de producción:
 
 ### Archivos críticos a actualizar:
@@ -188,9 +188,9 @@ CHECKLIST DE VERIFICACIÓN POST-MIGRACIÓN
 ### Inmediato (Hoy):
 ☐ Actualizar webhook de Stripe con nueva URL
 ☐ Contactar Redsys para actualizar callbacks
-☐ Añadir www.furgocasa.com a Google Search Console
+☐ Añadir www.ecoarealimonar.com a Google Search Console
 ☐ Enviar sitemap a Google
-☐ Verificar que la redirección funciona (webfurgocasa.vercel.app → www.furgocasa.com)
+☐ Verificar que la redirección funciona (weblimonar.vercel.app → www.ecoarealimonar.com)
 
 ### Esta semana:
 ☐ Verificar Meta Pixel con nuevo dominio
@@ -204,7 +204,7 @@ CHECKLIST DE VERIFICACIÓN POST-MIGRACIÓN
 ☐ Redirección 308 de *.vercel.app funciona
 ☐ Todos los assets (imágenes, CSS, JS) cargan desde Supabase Storage
 ☐ No hay mixed content warnings (HTTP/HTTPS)
-☐ PWA se instala correctamente desde www.furgocasa.com
+☐ PWA se instala correctamente desde www.ecoarealimonar.com
 ☐ Emails se envían con links correctos
 
 =================================================================
@@ -213,26 +213,26 @@ COMANDOS DE VERIFICACIÓN
 
 ### Verificar redirección:
 ```bash
-curl -I https://webfurgocasa.vercel.app/
-# Debería mostrar: HTTP/2 308 y location: https://www.furgocasa.com/
+curl -I https://weblimonar.vercel.app/
+# Debería mostrar: HTTP/2 308 y location: https://www.ecoarealimonar.com/
 ```
 
 ### Verificar SSL:
 ```bash
-curl -I https://www.furgocasa.com/
+curl -I https://www.ecoarealimonar.com/
 # Debería mostrar: HTTP/2 200
 ```
 
 ### Verificar sitemap:
 ```bash
-curl https://www.furgocasa.com/sitemap.xml
-# Debería mostrar XML con URLs de www.furgocasa.com
+curl https://www.ecoarealimonar.com/sitemap.xml
+# Debería mostrar XML con URLs de www.ecoarealimonar.com
 ```
 
 ### Verificar robots.txt:
 ```bash
-curl https://www.furgocasa.com/robots.txt
-# Debería mostrar: Sitemap: https://www.furgocasa.com/sitemap.xml
+curl https://www.ecoarealimonar.com/robots.txt
+# Debería mostrar: Sitemap: https://www.ecoarealimonar.com/sitemap.xml
 ```
 
 =================================================================

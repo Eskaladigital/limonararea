@@ -19,7 +19,7 @@ export function HreflangTags() {
   const locales: Locale[] = ['es', 'en', 'fr', 'de', 'nl'];
   
   // Dominio base (cambiar por tu dominio en producción)
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.furgocasa.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.limonar.com';
   
   return (
     <>

@@ -577,7 +577,7 @@ const reservationUrl = `/reservar/vehiculo?vehicle_id=${vehicle.id}&${searchPara
 </Link>
 
 <Link href={reservationUrl}>
-  <h3 className="text-xl font-bold hover:text-furgocasa-orange">
+  <h3 className="text-xl font-bold hover:text-limonar-orange">
     {vehicle.name}
   </h3>
 </Link>

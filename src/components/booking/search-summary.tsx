@@ -63,7 +63,7 @@ export function SearchSummary({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Entrada */}
         <div className="flex items-center gap-4">
-          <div className="p-3 bg-furgocasa-orange rounded-lg">
+          <div className="p-3 bg-limonar-orange rounded-lg">
             <Calendar className="h-6 w-6 text-white" />
           </div>
           <div className="text-white">
@@ -78,7 +78,7 @@ export function SearchSummary({
 
         {/* Arrow / Days / Huéspedes */}
         <div className="hidden md:flex flex-col items-center gap-1">
-          <span className="text-2xl font-bold text-furgocasa-orange">
+          <span className="text-2xl font-bold text-limonar-orange">
             {days} {t("días")}
           </span>
           <span className="text-sm text-white/80">
@@ -90,7 +90,7 @@ export function SearchSummary({
 
         {/* Salida */}
         <div className="flex items-center gap-4">
-          <div className="p-3 bg-furgocasa-orange rounded-lg">
+          <div className="p-3 bg-limonar-orange rounded-lg">
             <Calendar className="h-6 w-6 text-white" />
           </div>
           <div className="text-white">

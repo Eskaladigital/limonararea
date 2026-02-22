@@ -43,14 +43,14 @@ export async function GET(request: Request) {
 
     const customerIds = matchingCustomers?.map(c => c.id) || [];
 
-    // Buscar vehículos que coincidan
-    const { data: matchingVehicles } = await supabase
-      .from("vehicles")
+    // Buscar parcelas que coincidan
+    const { data: matchingParcels } = await supabase
+      .from("parcels")
       .select("id")
       .or(`name.ilike.${searchTerm},internal_code.ilike.${searchTerm}`)
       .limit(10);
 
-    const vehicleIds = matchingVehicles?.map(v => v.id) || [];
+    const parcelIds = matchingParcels?.map(p => p.id) || [];
 
     // Buscar ubicaciones que coincidan
     const { data: matchingLocations } = await supabase
@@ -65,7 +65,7 @@ export async function GET(request: Request) {
     console.log('🔍 Búsqueda:', query);
     console.log('📍 Location IDs encontrados:', locationIds);
     console.log('👥 Customer IDs encontrados:', customerIds);
-    console.log('🚗 Vehicle IDs encontrados:', vehicleIds);
+    console.log('📍 Parcel IDs encontrados:', parcelIds);
 
     // Construir consulta de bookings dinámicamente
     const buildBookingsQuery = async () => {
@@ -78,8 +78,8 @@ export async function GET(request: Request) {
       if (customerIds.length > 0) {
         orConditions.push(`customer_id.in.(${customerIds.join(",")})`);
       }
-      if (vehicleIds.length > 0) {
-        orConditions.push(`vehicle_id.in.(${vehicleIds.join(",")})`);
+      if (parcelIds.length > 0) {
+        orConditions.push(`parcel_id.in.(${parcelIds.join(",")})`);
       }
       if (locationIds.length > 0) {
         orConditions.push(`pickup_location_id.in.(${locationIds.join(",")})`);
@@ -99,11 +99,11 @@ export async function GET(request: Request) {
           dropoff_date,
           total_price,
           customer_id,
-          vehicle_id,
+          parcel_id,
           pickup_location_id,
           dropoff_location_id,
           customer:customer_id(name, email, phone),
-          vehicle:vehicle_id(name, internal_code),
+          parcel:parcel_id(name, internal_code),
           pickup_location:pickup_location_id(id, name, city),
           dropoff_location:dropoff_location_id(id, name, city)
         `)
@@ -113,15 +113,15 @@ export async function GET(request: Request) {
     };
 
     // Buscar en paralelo en todas las entidades
-    const [vehicles, bookings, customers, extras, locations] = await Promise.all([
-      // Vehículos
+    const [parcels, bookings, customers, extras, locations] = await Promise.all([
+      // Parcelas
       supabase
-        .from("vehicles")
-        .select("id, name, internal_code, brand, model, year, status, plate_number")
-        .or(`name.ilike.${searchTerm},internal_code.ilike.${searchTerm},brand.ilike.${searchTerm},model.ilike.${searchTerm},plate_number.ilike.${searchTerm}`)
+        .from("parcels")
+        .select("id, name, internal_code, status")
+        .or(`name.ilike.${searchTerm},internal_code.ilike.${searchTerm}`)
         .limit(5),
 
-      // Reservas - Buscar por número de reserva O por cliente O por vehículo O por ubicación
+      // Reservas - Buscar por número de reserva O por cliente O por parcela O por ubicación
       buildBookingsQuery(),
 
       // Clientes
@@ -156,13 +156,13 @@ export async function GET(request: Request) {
 
     // Formatear resultados
     const results = {
-      vehicles: vehicles.data || [],
+      parcels: parcels.data || [],
       bookings: bookings.data || [],
       customers: customers.data || [],
       extras: extras.data || [],
       locations: locations.data || [],
       total:
-        (vehicles.data?.length || 0) +
+        (parcels.data?.length || 0) +
         (bookings.data?.length || 0) +
         (customers.data?.length || 0) +
         (extras.data?.length || 0) +

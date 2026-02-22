@@ -8,7 +8,7 @@
 
 ## 📋 RESUMEN EJECUTIVO
 
-Este documento analiza los **ataques externos reales** que pueden ocurrir contra tu aplicación Furgocasa. Se identifican **12 tipos de ataques** que son posibles actualmente debido a vulnerabilidades existentes.
+Este documento analiza los **ataques externos reales** que pueden ocurrir contra tu aplicación Eco Area Limonar. Se identifican **12 tipos de ataques** que son posibles actualmente debido a vulnerabilidades existentes.
 
 ### ⚠️ ATAQUES POSIBLES ACTUALMENTE
 
@@ -37,7 +37,7 @@ Un atacante envía notificaciones falsas de pago a tu endpoint `/api/redsys/noti
 ### ¿Cómo funciona?
 ```bash
 # Atacante puede hacer esto:
-curl -X POST https://www.furgocasa.com/api/redsys/notification \
+curl -X POST https://www.ecoarealimonar.com/api/redsys/notification \
   -d "Ds_MerchantParameters=FAKE_DATA" \
   -d "Ds_Signature=FAKE_SIGNATURE"
 ```
@@ -90,7 +90,7 @@ Un sitio web malicioso hace que tus usuarios ejecuten acciones en tu sitio sin s
 ### ¿Cómo funciona?
 ```html
 <!-- Sitio malicioso: evil-site.com -->
-<form action="https://www.furgocasa.com/api/bookings/create" method="POST">
+<form action="https://www.ecoarealimonar.com/api/bookings/create" method="POST">
   <input name="vehicle_id" value="VEHICULO_CARO">
   <input name="amount" value="0.01">  <!-- Precio manipulado -->
   <input name="customer_email" value="atacante@evil.com">
@@ -111,7 +111,7 @@ Un sitio web malicioso hace que tus usuarios ejecuten acciones en tu sitio sin s
 
 ### Escenario Real:
 ```
-1. Usuario está logueado en furgocasa.com
+1. Usuario está logueado en ecoarealimonar.com
 2. Visita sitio malicioso (ej: oferta-camper-gratis.com)
 3. El sitio malicioso automáticamente crea una reserva con precio 0.01€
 4. Usuario no se da cuenta hasta que recibe confirmación
@@ -148,7 +148,7 @@ Atacante satura tu servidor con requests para dejarlo inoperativo.
 ```bash
 # Atacante ejecuta esto desde múltiples IPs:
 for i in {1..10000}; do
-  curl https://www.furgocasa.com/api/availability &
+  curl https://www.ecoarealimonar.com/api/availability &
 done
 ```
 
@@ -260,10 +260,10 @@ Atacante obtiene tokens y secretos de tu aplicación para usarlos maliciosamente
 ```javascript
 // Atacante abre DevTools en el navegador
 console.log(process.env.NEXT_PUBLIC_CALENDAR_TOKEN);
-// Ve: "furgocasa2026"
+// Ve: "limonar2026"
 
 // Ahora puede acceder a:
-fetch('/api/calendar/entregas?token=furgocasa2026')
+fetch('/api/calendar/entregas?token=limonar2026')
 ```
 
 ### ¿Por qué es posible?
@@ -280,8 +280,8 @@ fetch('/api/calendar/entregas?token=furgocasa2026')
 ### Escenario Real:
 ```
 1. Atacante revisa código fuente en GitHub
-2. Encuentra token hardcodeado: "furgocasa2026"
-3. Accede a /api/calendar/entregas?token=furgocasa2026
+2. Encuentra token hardcodeado: "limonar2026"
+3. Accede a /api/calendar/entregas?token=limonar2026
 4. Obtiene información de entregas y recogidas
 5. Puede planificar ataques con información sensible
 ```
@@ -314,7 +314,7 @@ Atacante captura un request legítimo y lo reenvía múltiples veces.
 # Atacante captura request de pago exitoso
 # Lo reenvía 10 veces:
 for i in {1..10}; do
-  curl -X POST https://www.furgocasa.com/api/redsys/notification \
+  curl -X POST https://www.ecoarealimonar.com/api/redsys/notification \
     -d "Ds_MerchantParameters=CAPTURED_DATA" \
     -d "Ds_Signature=CAPTURED_SIGNATURE"
 done
@@ -357,7 +357,7 @@ Atacante descubre qué usuarios son administradores.
 ### ¿Cómo funciona?
 ```javascript
 // Atacante prueba emails comunes:
-const emails = ['admin@furgocasa.com', 'root@furgocasa.com', ...];
+const emails = ['admin@ecoarealimonar.com', 'root@ecoarealimonar.com', ...];
 
 emails.forEach(email => {
   fetch('/api/admin/check-auth')

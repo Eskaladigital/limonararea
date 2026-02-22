@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { buildCanonicalAlternates } from "@/lib/seo/multilingual-metadata";
 import { ogImageUrl } from "@/lib/app-config";
 import { Zap, Sun, Waves, TreePine, ShieldCheck, UtensilsCrossed } from "lucide-react";
-import { getFeaturedVehicles, getLatestBlogArticles, getCompanyStats } from "@/lib/home/server-actions";
+import { getFeaturedParcels, getLatestBlogArticles, getCompanyStats } from "@/lib/home/server-actions";
 import { OrganizationJsonLd, ProductJsonLd, WebsiteJsonLd } from "@/components/home/organization-jsonld";
 import { getTranslatedRecords } from "@/lib/translations/get-translations";
 
@@ -95,18 +95,18 @@ export default async function LocaleHomePage() {
   const t = (key: string) => translateServer(key, locale);
   
   // Cargar datos en el servidor
-  const featuredVehiclesRaw = await getFeaturedVehicles();
+  const featuredParcelsRaw = await getFeaturedParcels();
   const blogArticlesRaw = await getLatestBlogArticles(3);
   const stats = await getCompanyStats();
   
-  // Aplicar traducciones a los vehículos destacados
-  const featuredVehicles = await getTranslatedRecords(
-    'vehicles',
-    featuredVehiclesRaw,
+  // Aplicar traducciones a las parcelas destacadas
+  const featuredParcels = await getTranslatedRecords(
+    'parcels',
+    featuredParcelsRaw,
     ['name', 'short_description'],
     locale
   );
-  const featuredVehiclesHome = featuredVehicles.slice(0, 3);
+  const featuredParcelsHome = featuredParcels.slice(0, 3);
   
   // Aplicar traducciones a los posts del blog
   const blogArticles = await getTranslatedRecords(
@@ -136,7 +136,7 @@ export default async function LocaleHomePage() {
   return (
     <>
       <OrganizationJsonLd />
-      <ProductJsonLd parcels={featuredVehicles} />
+      <ProductJsonLd parcels={featuredParcels} />
       <WebsiteJsonLd />
       
       {/* Hero Section - V5 fullscreen + V6 buscador split (mt negativo para que el header lo sobrevuele) */}
@@ -280,16 +280,16 @@ export default async function LocaleHomePage() {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 max-w-6xl mx-auto">
-            {featuredVehiclesHome.map((vehicle) => (
+            {featuredParcelsHome.map((parcel) => (
               <LocalizedLink
-                key={vehicle.id}
-                href={`/parcelas/${vehicle.slug}`}
+                key={parcel.id}
+                href={`/parcelas/${parcel.slug}`}
                 className="group relative h-56 lg:h-64 rounded-2xl overflow-hidden"
               >
-                {vehicle.main_image ? (
+                {parcel.main_image ? (
                   <Image
-                    src={vehicle.main_image}
-                    alt={vehicle.name}
+                    src={parcel.main_image}
+                    alt={parcel.name}
                     fill
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -302,10 +302,10 @@ export default async function LocaleHomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-heading font-extrabold text-white mb-1 drop-shadow-lg">
-                    {vehicle.name}
+                    {parcel.name}
                   </h3>
-                  {vehicle.category?.name && (
-                    <p className="text-white/70 text-sm md:text-base mb-3">{vehicle.category.name}</p>
+                  {parcel.category?.name && (
+                    <p className="text-white/70 text-sm md:text-base mb-3">{parcel.category.name}</p>
                   )}
                   <span className="inline-flex items-center gap-1.5 text-clay-lt text-sm md:text-base font-bold group-hover:translate-x-1 transition-transform">
                     {t("Descubrir")} →
@@ -698,7 +698,7 @@ export default async function LocaleHomePage() {
                 <p className="text-white/50 text-xs md:text-sm uppercase tracking-wider mt-1">{t("Reservas")}</p>
               </div>
               <div>
-                <p className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold">{stats.totalVehicles}</p>
+                <p className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold">{stats.totalParcels}</p>
                 <p className="text-white/50 text-xs md:text-sm uppercase tracking-wider mt-1">{t("Parcelas")}</p>
               </div>
               <div>

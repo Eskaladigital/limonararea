@@ -19,7 +19,7 @@ export async function GET() {
     
     // Hacer una consulta simple para mantener la conexión activa
     const { count, error } = await supabase
-      .from('vehicles')
+      .from('parcels')
       .select('*', { count: 'exact', head: true });
     
     if (error) {
@@ -36,12 +36,12 @@ export async function GET() {
     
     const duration = Date.now() - startTime;
     
-    console.log(`[Keepalive] OK - ${duration}ms - ${count} vehículos`);
+    console.log(`[Keepalive] OK - ${duration}ms - ${count} parcelas`);
     
     return NextResponse.json({
       status: 'ok',
       duration: `${duration}ms`,
-      vehicleCount: count,
+      parcelCount: count,
       timestamp: new Date().toISOString(),
     });
     

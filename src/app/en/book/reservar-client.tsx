@@ -41,7 +41,7 @@ export function ReservarClient() {
   return (
     <main className="min-h-screen bg-gray-50 font-amiko">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-furgocasa-blue via-furgocasa-blue-dark to-gray-900 pt-8 md:pt-12 pb-48 relative overflow-visible">
+      <section className="bg-gradient-to-br from-limonar-blue via-limonar-blue-dark to-gray-900 pt-8 md:pt-12 pb-48 relative overflow-visible">
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}></div>
@@ -83,8 +83,8 @@ export function ReservarClient() {
             {locations.map((location) => (
               <div key={location.id} className="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-furgocasa-blue/10 rounded-xl flex items-center justify-center">
-                    <MapPin className="h-6 w-6 text-furgocasa-blue" />
+                  <div className="w-12 h-12 bg-limonar-blue/10 rounded-xl flex items-center justify-center">
+                    <MapPin className="h-6 w-6 text-limonar-blue" />
                   </div>
                   <div className="flex-1">
                     <h3 className="font-bold text-xl text-gray-900 mb-1">{location.name}</h3>
@@ -132,8 +132,8 @@ export function ReservarClient() {
               { icon: CheckCircle, title: "4. ¡A viajar!", desc: "Recoge tu camper y disfruta" },
             ].map((step, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-furgocasa-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <step.icon className="h-8 w-8 text-furgocasa-orange" />
+                <div className="w-16 h-16 bg-limonar-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <step.icon className="h-8 w-8 text-limonar-orange" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">{t(step.title)}</h3>
                 <p className="text-gray-600 text-sm">{t(step.desc)}</p>

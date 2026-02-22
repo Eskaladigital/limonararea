@@ -5,22 +5,22 @@
 El componente de semáforo de ocupación ahora está integrado en **todas las páginas de reservas** de todos los idiomas:
 
 ### 1. ✅ Español
-**URL**: https://www.furgocasa.com/es/reservar  
+**URL**: https://www.ecoarealimonar.com/es/reservar  
 **Archivo**: `src/app/es/reservar/reservar-client.tsx`  
 **Estado**: ✅ Integrado
 
 ### 2. ✅ Inglés
-**URL**: https://www.furgocasa.com/en/book  
+**URL**: https://www.ecoarealimonar.com/en/book  
 **Archivo**: `src/app/en/book/reservar-client.tsx`  
 **Estado**: ✅ Integrado
 
 ### 3. ✅ Francés
-**URL**: https://www.furgocasa.com/fr/reserver  
+**URL**: https://www.ecoarealimonar.com/fr/reserver  
 **Archivo**: `src/app/fr/reserver/reservar-client.tsx`  
 **Estado**: ✅ Integrado
 
 ### 4. ✅ Alemán
-**URL**: https://www.furgocasa.com/de/buchen  
+**URL**: https://www.ecoarealimonar.com/de/buchen  
 **Archivo**: `src/app/de/buchen/reservar-client.tsx`  
 **Estado**: ✅ Integrado
 
@@ -154,7 +154,7 @@ En todas las páginas se añadió:
 http://localhost:3000/es/reservar
 
 # Producción
-https://www.furgocasa.com/es/reservar
+https://www.ecoarealimonar.com/es/reservar
 ```
 
 #### Inglés
@@ -163,7 +163,7 @@ https://www.furgocasa.com/es/reservar
 http://localhost:3000/en/book
 
 # Producción
-https://www.furgocasa.com/en/book
+https://www.ecoarealimonar.com/en/book
 ```
 
 #### Francés
@@ -172,7 +172,7 @@ https://www.furgocasa.com/en/book
 http://localhost:3000/fr/reserver
 
 # Producción
-https://www.furgocasa.com/fr/reserver
+https://www.ecoarealimonar.com/fr/reserver
 ```
 
 #### Alemán
@@ -181,7 +181,7 @@ https://www.furgocasa.com/fr/reserver
 http://localhost:3000/de/buchen
 
 # Producción
-https://www.furgocasa.com/de/buchen
+https://www.ecoarealimonar.com/de/buchen
 ```
 
 ---
@@ -260,5 +260,5 @@ El semáforo de ocupación está completamente integrado en las 4 páginas de re
 ---
 
 **Desarrollado por**: Sistema IA Cursor  
-**Cliente**: Furgocasa - Narciso Pardo  
+**Cliente**: Eco Area Limonar - Narciso Pardo  
 **Feedback incorporado**: Solo mostrar periodos >= 50% ocupación

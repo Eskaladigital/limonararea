@@ -15,7 +15,7 @@ import {
   getAccommodationTypes,
   shouldShowAccommodationTypeSelector,
 } from "@/lib/accommodation-types";
-import { getVehicleTypes } from "@/lib/vehicle-types";
+import { getVehicleTypes } from "@/lib/vehicle-types"; // tipo de vehículo del cliente (autocaravana, etc.)
 
 // Área única: Eco Area Limonar (Los Nietos). No hay selector de ubicación.
 const DEFAULT_LOCATION = "los-nietos";
@@ -33,9 +33,9 @@ export function SearchWidget({ defaultLocation, fallbackLocation, variant = "ful
 
   const accommodationTypes = getAccommodationTypes();
   const showAccommodationSelector = shouldShowAccommodationTypeSelector();
-  const vehicleTypes = getVehicleTypes();
+  const guestVehicleTypes = getVehicleTypes(); // tipo de vehículo del cliente (autocaravana, etc.)
 
-  // Form state - fechas, horas, tipo alojamiento, tipo vehículo, huéspedes
+  // Form state - fechas, horas, tipo alojamiento, tipo vehículo cliente, huéspedes
   const [dateRange, setDateRange] = useState<{
     from: Date | undefined;
     to: Date | undefined;
@@ -48,7 +48,7 @@ export function SearchWidget({ defaultLocation, fallbackLocation, variant = "ful
   const [accommodationType, setAccommodationType] = useState(
     accommodationTypes[0]?.slug ?? "parcela"
   );
-  const [vehicleType, setVehicleType] = useState(vehicleTypes[0]?.slug ?? "autocaravana");
+  const [guestVehicleType, setGuestVehicleType] = useState(guestVehicleTypes[0]?.slug ?? "autocaravana");
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
 
@@ -104,7 +104,7 @@ export function SearchWidget({ defaultLocation, fallbackLocation, variant = "ful
     if (showAccommodationSelector) {
       params.set("accommodation_type", accommodationType);
     }
-    params.set("vehicle_type", vehicleType);
+    params.set("vehicle_type", guestVehicleType); // API sigue usando vehicle_type (tipo vehículo cliente)
 
     // Usar ruta traducida según el idioma actual
     // ⚠️ IMPORTANTE: Usar window.location.href en lugar de router.push
@@ -154,7 +154,7 @@ export function SearchWidget({ defaultLocation, fallbackLocation, variant = "ful
           </div>
         )}
 
-        {/* Tipo de vehículo */}
+        {/* Tipo de vehículo del cliente (autocaravana, caravana, etc.) */}
         <div className="space-y-2">
           <label className={`block font-bold text-gray-400 uppercase tracking-wider text-left ${
             isHero ? "text-[11px]" : "text-xs lg:text-sm"
@@ -162,13 +162,13 @@ export function SearchWidget({ defaultLocation, fallbackLocation, variant = "ful
             {t("Tipo de vehículo")}
           </label>
           <select
-            value={vehicleType}
-            onChange={(e) => setVehicleType(e.target.value)}
+            value={guestVehicleType}
+            onChange={(e) => setGuestVehicleType(e.target.value)}
             className={`w-full border rounded-lg bg-sand-lt text-gray-900 focus:border-clay focus:ring-0 outline-none transition-colors ${
               isHero ? "px-3 py-2.5 text-sm border-sand" : "px-4 py-3 border-gray-300 focus:ring-2 focus:ring-clay/20"
             }`}
           >
-            {vehicleTypes.map((type) => (
+            {guestVehicleTypes.map((type) => (
               <option key={type.id} value={type.slug}>
                 {t(type.name)}
               </option>

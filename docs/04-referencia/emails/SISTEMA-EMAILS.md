@@ -1,8 +1,8 @@
-# Sistema de Envío de Emails - Furgocasa
+# Sistema de Envío de Emails - Eco Area Limonar
 
 ## 📧 Descripción General
 
-Este documento describe el sistema completo de envío de correos electrónicos implementado en la aplicación Furgocasa. El sistema envía notificaciones automáticas tanto a los clientes como a la empresa en los momentos clave del proceso de reserva.
+Este documento describe el sistema completo de envío de correos electrónicos implementado en la aplicación Eco Area Limonar. El sistema envía notificaciones automáticas tanto a los clientes como a la empresa en los momentos clave del proceso de reserva.
 
 **Tecnología:** SMTP via Nodemailer (compatible con OVH y cualquier servidor SMTP)
 
@@ -13,7 +13,7 @@ Este documento describe el sistema completo de envío de correos electrónicos i
 
 **Quién recibe:**
 - ✉️ **Cliente:** Email con detalles de la reserva y enlace para proceder al pago
-- ✉️ **Empresa (reservas@furgocasa.com):** Notificación de nueva reserva pendiente
+- ✉️ **Empresa (reservas@ecoarealimonar.com):** Notificación de nueva reserva pendiente
 
 **Archivo:** `src/app/reservar/nueva/page.tsx`
 
@@ -65,30 +65,30 @@ Añade las siguientes variables a tu archivo `.env.local`:
 # ==========================================
 SMTP_HOST=ssl0.ovh.net
 SMTP_PORT=465
-SMTP_USER=reservas@furgocasa.com
+SMTP_USER=reservas@ecoarealimonar.com
 SMTP_PASSWORD=tu-contraseña-del-buzon
 
 # Email remitente
-SMTP_FROM_EMAIL=reservas@furgocasa.com
-SMTP_FROM_NAME=Furgocasa
+SMTP_FROM_EMAIL=reservas@ecoarealimonar.com
+SMTP_FROM_NAME=Eco Area Limonar
 
 # Email de la empresa (para recibir notificaciones)
-COMPANY_EMAIL=reservas@furgocasa.com
+COMPANY_EMAIL=reservas@ecoarealimonar.com
 
 # URL de la aplicación (para producción)
-NEXT_PUBLIC_APP_URL=https://furgocasa.com
+NEXT_PUBLIC_APP_URL=https://ecoarealimonar.com
 ```
 
 ### Configurar SMTP en OVH
 
 1. **Accede a tu panel de OVH** → Webmail / Emails
-2. **Crea el buzón** `reservas@furgocasa.com` si no existe
+2. **Crea el buzón** `reservas@ecoarealimonar.com` si no existe
 3. **Anota la contraseña** del buzón
 4. **Datos del servidor SMTP de OVH:**
    - **Host:** `ssl0.ovh.net`
    - **Puerto SSL:** `465`
    - **Puerto TLS:** `587`
-   - **Usuario:** Email completo (ej: `reservas@furgocasa.com`)
+   - **Usuario:** Email completo (ej: `reservas@ecoarealimonar.com`)
    - **Contraseña:** La del buzón
 
 ### Probar la Configuración
@@ -143,7 +143,7 @@ await sendSecondPaymentConfirmedEmail(customerEmail, bookingData);
 
 Todas las plantillas están en `src/lib/email/templates.ts` y siguen un diseño consistente:
 
-- **Header:** Logo y nombre de Furgocasa con degradado naranja
+- **Header:** Logo y nombre de Eco Area Limonar con degradado naranja
 - **Contenido:** Información específica de la reserva
 - **Detalles:** Boxes con información estructurada
 - **Botones CTA:** Enlaces a la reserva o al panel de administración

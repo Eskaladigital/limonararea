@@ -1,34 +1,32 @@
 /**
  * Queries reutilizables de Supabase
  * Funciones helper para consultas comunes
- * 
- * IMPORTANTE: Para datos públicos (vehículos, categorías, etc.) usar el cliente
+ *
+ * IMPORTANTE: Para datos públicos (parcelas, categorías, etc.) usar el cliente
  * público `supabase` definido abajo. NO usar createClient() de ./server ya que
  * usa cookies y falla en generateMetadata de Next.js 15.
- * 
- * @updated 2026-01-23 - Fix error 500 en páginas de vehículos
+ *
+ * @updated 2026-01-23 - Fix error 500 en páginas de parcelas
  */
 
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { createClient } from './server';
 
 // Cliente público para queries de datos públicos (sin cookies)
-// Funciona tanto en servidor como en cliente
-// ⚠️ CRÍTICO: Usar este cliente para vehículos, categorías, etc.
+// ⚠️ CRÍTICO: Usar este cliente para parcelas, categorías, etc.
 const supabase = createSupabaseClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
 // ==============================================
-// VEHÍCULOS
+// PARCELAS
 // ==============================================
 
 /**
- * Obtener todos los vehículos (para administrador)
- * Ordenados por código interno por defecto
+ * Obtener todas las parcelas (para administrador)
  */
-export async function getAllVehicles() {
+export async function getAllParcels() {
   const supabaseServer = await createClient();
   const { data, error } = await supabaseServer
     .from('parcels')
@@ -39,18 +37,20 @@ export async function getAllVehicles() {
     .order('internal_code', { ascending: true, nullsFirst: false });
 
   if (error) {
-    console.error('Error fetching all vehicles:', error);
+    console.error('Error fetching all parcels:', error);
     return { data: null, error };
   }
 
   return { data, error: null };
 }
 
+/** @deprecated Usar getAllParcels */
+export const getAllVehicles = getAllParcels;
+
 /**
- * Obtener todos los vehículos disponibles para alquiler
- * Ordenados por código interno por defecto
+ * Obtener todas las parcelas disponibles para alquiler
  */
-export async function getAvailableVehicles() {
+export async function getAvailableParcels() {
   const { data, error } = await supabase
     .from('parcels')
     .select(`
@@ -63,18 +63,20 @@ export async function getAvailableVehicles() {
     .order('internal_code', { ascending: true, nullsFirst: false });
 
   if (error) {
-    console.error('Error fetching vehicles:', error);
+    console.error('Error fetching parcels:', error);
     return { data: null, error };
   }
 
   return { data, error: null };
 }
 
+/** @deprecated Usar getAvailableParcels */
+export const getAvailableVehicles = getAvailableParcels;
+
 /**
- * Obtener un vehículo por slug (Server-side)
- * Usa el cliente público (anon) ya que los vehículos son datos públicos
+ * Obtener una parcela por slug (Server-side)
  */
-export async function getVehicleBySlug(slug: string) {
+export async function getParcelBySlug(slug: string) {
   const { data, error } = await supabase
     .from('parcels')
     .select(`
@@ -91,18 +93,20 @@ export async function getVehicleBySlug(slug: string) {
     .single();
 
   if (error) {
-    console.error('Error fetching vehicle:', error);
+    console.error('Error fetching parcel:', error);
     return { data: null, error };
   }
 
   return { data, error: null };
 }
 
+/** @deprecated Usar getParcelBySlug */
+export const getVehicleBySlug = getParcelBySlug;
+
 /**
- * Obtener vehículos en venta
- * Ordenados por código interno por defecto
+ * Obtener parcelas en venta
  */
-export async function getVehiclesForSale() {
+export async function getParcelsForSale() {
   const { data, error } = await supabase
     .from('parcels')
     .select(`
@@ -115,33 +119,39 @@ export async function getVehiclesForSale() {
     .order('internal_code', { ascending: true, nullsFirst: false });
 
   if (error) {
-    console.error('Error fetching vehicles for sale:', error);
+    console.error('Error fetching parcels for sale:', error);
     return { data: null, error };
   }
 
   return { data, error: null };
 }
+
+/** @deprecated Usar getParcelsForSale */
+export const getVehiclesForSale = getParcelsForSale;
 
 // ==============================================
 // CATEGORÍAS
 // ==============================================
 
 /**
- * Obtener todas las categorías de vehículos
+ * Obtener todas las categorías de parcelas
  */
-export async function getVehicleCategories() {
+export async function getParcelCategories() {
   const { data, error } = await supabase
     .from('parcel_categories')
     .select('*')
     .order('sort_order', { ascending: true });
 
   if (error) {
-    console.error('Error fetching categories:', error);
+    console.error('Error fetching parcel categories:', error);
     return { data: null, error };
   }
 
   return { data, error: null };
 }
+
+/** @deprecated Usar getParcelCategories */
+export const getVehicleCategories = getParcelCategories;
 
 // ==============================================
 // UBICACIONES
@@ -248,27 +258,30 @@ export async function getPostBySlug(slug: string) {
 // ==============================================
 
 /**
- * Verificar disponibilidad de un vehículo (RPC)
+ * Verificar disponibilidad de una parcela (RPC; nombre en BD: check_vehicle_availability)
  */
-export async function checkVehicleAvailability(
-  vehicleId: string,
+export async function checkParcelAvailability(
+  parcelId: string,
   pickupDate: string,
   dropoffDate: string
 ) {
   const { data, error } = await supabase
     .rpc('check_vehicle_availability', {
-      p_vehicle_id: vehicleId,
+      p_vehicle_id: parcelId,
       p_pickup_date: pickupDate,
       p_dropoff_date: dropoffDate,
     });
 
   if (error) {
-    console.error('Error checking availability:', error);
+    console.error('Error checking parcel availability:', error);
     return { available: false, error };
   }
 
   return { available: data, error: null };
 }
+
+/** @deprecated Usar checkParcelAvailability */
+export const checkVehicleAvailability = checkParcelAvailability;
 
 /**
  * Crear una reserva (Server-side)
@@ -329,11 +342,11 @@ export async function getDashboardStats() {
   const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1).toISOString();
   const lastMonthEnd = new Date(today.getFullYear(), today.getMonth(), 0).toISOString();
   
-  // 1. VEHÍCULOS
-  const { data: vehiclesData } = await supabaseServer
+  // 1. PARCELAS
+  const { data: parcelsData } = await supabaseServer
     .from('parcels')
     .select('id, name, status, is_for_rent, base_price_per_day');
-  
+
   // 2. RESERVAS (completas con relaciones)
   const { data: bookingsData } = await supabaseServer
     .from('bookings')
@@ -360,28 +373,28 @@ export async function getDashboardStats() {
     .from('payments')
     .select('id, amount, status, created_at, booking_id');
   
-  // 4. DAÑOS PENDIENTES
-  const { data: damagesData } = await supabaseServer
+  // 4. DAÑOS PENDIENTES (tabla legacy vehicle_damages - no existe en Eco Area)
+  let damagesData: { id: string }[] | null = null;
+  const { data: damagesResult } = await supabaseServer
     .from('vehicle_damages')
     .select('id, vehicle_id, severity, repair_cost, status')
     .neq('status', 'repaired');
-  
+  // Si la tabla no existe (Eco Area), Supabase devuelve error; ignorar
+  if (damagesResult) damagesData = damagesResult;
+
   // ===== CÁLCULOS =====
-  
-  // Vehículos disponibles (considerando reservas activas HOY)
-  // IMPORTANTE: Usar EXACTAMENTE la misma lógica que el calendario
-  // El calendario solo filtra por: status !== 'cancelled' y rango de fechas
-  // NO considera payment_status para determinar disponibilidad
-  const activeBookings = bookingsData?.filter(b => 
-    b.status !== 'cancelled' && 
+  // Parcelas disponibles (considerando reservas activas HOY)
+  // IMPORTANTE: misma lógica que el calendario (status !== 'cancelled', rango fechas)
+  const activeBookings = bookingsData?.filter(b =>
+    b.status !== 'cancelled' &&
     b.pickup_date <= todayStr &&
     b.dropoff_date >= todayStr
   ) || [];
-  
+
   const occupiedParcelIds = new Set(activeBookings.map(b => b.parcel_id));
-  const totalVehicles = vehiclesData?.length || 0;
-  const availableVehicles = totalVehicles - occupiedParcelIds.size;
-  const vehiclesInMaintenance = vehiclesData?.filter(v => v.status === 'maintenance').length || 0;
+  const totalParcels = parcelsData?.length || 0;
+  const availableParcels = totalParcels - occupiedParcelIds.size;
+  const parcelsInMaintenance = parcelsData?.filter(p => p.status === 'maintenance').length || 0;
   
   // Tasa de ocupación (últimos 30 días)
   const last30DaysBookings = bookingsData?.filter(b => 
@@ -389,7 +402,7 @@ export async function getDashboardStats() {
     b.status !== 'cancelled'
   ) || [];
   
-  const totalDaysAvailable = totalVehicles * 30;
+  const totalDaysAvailable = totalParcels * 30;
   const totalDaysRented = last30DaysBookings.reduce((sum, b) => {
     const start = new Date(b.pickup_date);
     const end = new Date(b.dropoff_date);
@@ -448,7 +461,7 @@ export async function getDashboardStats() {
     }
   });
   
-  const topVehicle = Array.from(parcelRevenue.values())
+  const topParcel = Array.from(parcelRevenue.values())
     .sort((a, b) => b.revenue - a.revenue)[0] || null;
   
   // Cliente más frecuente
@@ -510,16 +523,16 @@ export async function getDashboardStats() {
     date: b.pickup_date === todayStr || b.pickup_date === tomorrow ? b.pickup_date : b.dropoff_date,
     time: b.pickup_date === todayStr || b.pickup_date === tomorrow ? b.pickup_time : b.dropoff_time,
     customer: b.customer_name,
-    vehicle: b.parcel?.name || 'Parcela',
+    parcel: b.parcel?.name || 'Parcela',
     bookingId: b.id
   })) || [];
   
   return {
     // Básicas
     todayBookings,
-    totalVehicles,
-    availableVehicles,
-    vehiclesInMaintenance,
+    totalParcels,
+    availableParcels,
+    parcelsInMaintenance,
     
     // Reservas
     pendingBookings,
@@ -536,7 +549,7 @@ export async function getDashboardStats() {
     
     // Métricas avanzadas
     occupancyRate,
-    topVehicle,
+    topParcel,
     topCustomer,
     
     // Alertas

@@ -39,7 +39,7 @@ const SLUG_COLUMNS: Record<Locale, string> = {
 
 /**
  * Genera un slug a partir de un texto
- * Ejemplo: "Mapa Furgocasa: la alternativa" -> "mapa-furgocasa-la-alternativa"
+ * Ejemplo: "Mapa Eco Area Limonar: la alternativa" -> "mapa-limonar-la-alternativa"
  */
 function generateSlug(text: string): string {
   return text

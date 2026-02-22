@@ -5,8 +5,8 @@ Fecha: 20 de enero de 2026
 
 ## ✅ ARCHIVOS ACTUALIZADOS
 
-Se han actualizado todas las referencias de `webfurgocasa.vercel.app` 
-a `www.furgocasa.com` en la documentación del proyecto.
+Se han actualizado todas las referencias de `weblimonar.vercel.app` 
+a `www.ecoarealimonar.com` en la documentación del proyecto.
 
 ### Archivos modificados:
 1. ✅ **POST-MIGRACION-CHECKLIST.md** (NUEVO)
@@ -40,7 +40,7 @@ a `www.furgocasa.com` en la documentación del proyecto.
 ### Archivos con referencias históricas (NO actualizados):
 - CHANGELOG.md - Mantiene referencias históricas
 - RESUMEN-FIX-CRITICO-v1.0.4.md - Documento de fecha específica
-- Archivos en OLD_FURGOCASA_DATOS/ - Datos legacy
+- Archivos en datos legacy/ - Datos legacy
 
 ### Archivos con redirección ya configurada:
 - REDIRECCION-VERCEL-CONFIGURADA.md - Documenta la redirección
@@ -53,26 +53,26 @@ ACCIONES CRÍTICAS PENDIENTES (USUARIO)
 ### 🔴 URGENTE (HOY):
 
 1. **Stripe Dashboard - Actualizar Webhook**
-   - URL anterior: https://webfurgocasa.vercel.app/api/stripe/webhook
-   - URL nueva: https://www.furgocasa.com/api/stripe/webhook
+   - URL anterior: https://weblimonar.vercel.app/api/stripe/webhook
+   - URL nueva: https://www.ecoarealimonar.com/api/stripe/webhook
    - Ubicación: https://dashboard.stripe.com/webhooks
 
 2. **Google Search Console - Añadir Propiedad**
-   - Añadir: www.furgocasa.com
+   - Añadir: www.ecoarealimonar.com
    - Verificar con DNS TXT (ya configurado)
-   - Enviar sitemap: https://www.furgocasa.com/sitemap.xml
+   - Enviar sitemap: https://www.ecoarealimonar.com/sitemap.xml
 
 ### ⚠️ IMPORTANTE (ESTA SEMANA):
 
 3. **Redsys - Actualizar Callbacks**
    - Contactar: soporte.comercios@redsys.es
    - URLs a actualizar:
-     * URL OK: https://www.furgocasa.com/pago/exito
-     * URL KO: https://www.furgocasa.com/pago/error
-     * Notificación: https://www.furgocasa.com/api/redsys/notification
+     * URL OK: https://www.ecoarealimonar.com/pago/exito
+     * URL KO: https://www.ecoarealimonar.com/pago/error
+     * Notificación: https://www.ecoarealimonar.com/api/redsys/notification
 
 4. **Meta Pixel - Verificar Dominio**
-   - Verificar que www.furgocasa.com esté en Meta Business Suite
+   - Verificar que www.ecoarealimonar.com esté en Meta Business Suite
    - El TXT de verificación ya está en DNS
 
 =================================================================
@@ -80,26 +80,26 @@ CONFIGURACIONES YA ACTUALIZADAS (AUTOMÁTICAS)
 =================================================================
 
 ✅ **Redirección 308 configurada**
-   - webfurgocasa.vercel.app → www.furgocasa.com
+   - weblimonar.vercel.app → www.ecoarealimonar.com
    - Código en next.config.js
 
 ✅ **URLs canónicas**
-   - Todas las páginas apuntan a www.furgocasa.com
+   - Todas las páginas apuntan a www.ecoarealimonar.com
    - Configurado en metadatos SEO
 
 ✅ **Sitemap.xml**
-   - Genera URLs con www.furgocasa.com automáticamente
+   - Genera URLs con www.ecoarealimonar.com automáticamente
    - Actualización dinámica
 
 ✅ **robots.txt**
-   - Sitemap apunta a www.furgocasa.com
+   - Sitemap apunta a www.ecoarealimonar.com
 
 ✅ **JSON-LD Schemas**
-   - Todos los schemas usan www.furgocasa.com
+   - Todos los schemas usan www.ecoarealimonar.com
    - Organization, LocalBusiness, Product, etc.
 
 ✅ **Open Graph**
-   - og:url apunta a www.furgocasa.com
+   - og:url apunta a www.ecoarealimonar.com
    - Twitter cards actualizadas
 
 =================================================================
@@ -107,7 +107,7 @@ VERIFICACIONES REALIZADAS
 =================================================================
 
 ✅ Redirección funciona correctamente (308 permanente)
-✅ SSL activo en www.furgocasa.com
+✅ SSL activo en www.ecoarealimonar.com
 ✅ Contenido se sirve correctamente
 ✅ Assets cargan desde Supabase Storage
 ✅ No hay mixed content (HTTP/HTTPS)

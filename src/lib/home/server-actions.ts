@@ -92,9 +92,6 @@ export const getFeaturedParcels = cache(async (): Promise<FeaturedParcel[]> => {
   });
 });
 
-/** @deprecated Use getFeaturedParcels */
-export const getFeaturedVehicles = getFeaturedParcels;
-
 // ⚡ Obtener últimos artículos del blog
 export const getLatestBlogArticles = cache(async (limit: number = 3): Promise<BlogArticle[]> => {
   const supabase = getSupabaseClient();
@@ -203,7 +200,7 @@ export const getRoutesArticles = cache(async (limit: number = 4, locale: Locale 
 // ⚡ Obtener estadísticas de la empresa
 export interface CompanyStats {
   totalBookings: number;
-  totalVehicles: number;
+  totalParcels: number;
   averageRating: number;
   yearsExperience: number;
 }
@@ -211,7 +208,7 @@ export interface CompanyStats {
 export const getCompanyStats = cache(async (): Promise<CompanyStats> => {
   const supabase = getSupabaseClient();
   if (!supabase) {
-    return { totalBookings: 0, totalVehicles: 0, averageRating: 0, yearsExperience: new Date().getFullYear() - 2012 };
+    return { totalBookings: 0, totalParcels: 0, averageRating: 0, yearsExperience: new Date().getFullYear() - 2012 };
   }
 
   // Contar reservas completadas
@@ -229,7 +226,7 @@ export const getCompanyStats = cache(async (): Promise<CompanyStats> => {
 
   return {
     totalBookings: bookingsCount || 500, // Valor por defecto si no hay datos
-    totalVehicles: parcelsCount || 8,
+    totalParcels: parcelsCount || 8,
     averageRating: 4.9,
     yearsExperience: new Date().getFullYear() - 2012
   };

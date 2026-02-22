@@ -1,4 +1,4 @@
-# Configuración de Stripe para Furgocasa
+# Configuración de Stripe para Eco Area Limonar
 
 ## 📋 Variables de Entorno Necesarias
 
@@ -11,7 +11,7 @@ STRIPE_SECRET_KEY=sk_test_XXXXXXXXXXXXXXXXXXXXXXXXXX                    # Clave 
 STRIPE_WEBHOOK_SECRET=whsec_XXXXXXXXXXXXXXXXXXXXXXXXXX                  # Secret del webhook (empieza con whsec_)
 
 # URL pública de tu aplicación
-NEXT_PUBLIC_URL=https://furgocasa.com  # Sin barra final
+NEXT_PUBLIC_URL=https://ecoarealimonar.com  # Sin barra final
 ```
 
 ## 🧪 Entorno de Pruebas

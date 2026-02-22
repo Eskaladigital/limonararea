@@ -2,7 +2,7 @@
 
 ## ✨ ¿Qué es esto?
 
-Sistema de suscripción a calendario iCalendar (.ics) que permite a los administradores de Furgocasa recibir automáticamente las entregas y recogidas de vehículos en sus calendarios nativos (iPhone, Android, Outlook, etc.).
+Sistema de suscripción a calendario iCalendar (.ics) que permite a los administradores de Eco Area Limonar recibir automáticamente las entregas y recogidas de vehículos en sus calendarios nativos (iPhone, Android, Outlook, etc.).
 
 **Funciona exactamente como Notion Calendar**: sincronización automática en segundo plano sin necesidad de interacción manual.
 
@@ -91,9 +91,9 @@ NEXT_PUBLIC_CALENDAR_TOKEN=tu_token_secreto_aqui
 
 **Recomendaciones de seguridad:**
 
-1. **Cambiar el token por defecto** (`furgocasa2026`) por uno seguro
+1. **Cambiar el token por defecto** (`limonar2026`) por uno seguro
 2. Usar un generador de contraseñas seguras
-3. No compartir el token fuera del equipo de Furgocasa
+3. No compartir el token fuera del equipo de Eco Area Limonar
 4. Si un empleado deja la empresa, cambiar el token
 
 ### Generador de Token Seguro
@@ -116,7 +116,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 5. Toca **"Calendarios"** (abajo en el centro)
 6. Toca **"Añadir calendario"** → **"Añadir suscripción"**
 7. Pega la URL copiada
-8. Dale un nombre descriptivo: **"Furgocasa - Entregas"**
+8. Dale un nombre descriptivo: **"Eco Area Limonar - Entregas"**
 9. Elige un color (recomendado: naranja 🟠)
 10. ¡Listo! Ya recibirás eventos automáticamente
 
@@ -153,7 +153,7 @@ Cada reserva genera **2 eventos**:
 ```
 Título: 🟢 ENTREGA - FU0018 (Juan Pérez)
 Hora: 10:00 - 10:30
-Ubicación: Furgocasa Murcia
+Ubicación: Eco Area Limonar Murcia
 Descripción:
   Entrega de vehículo
   
@@ -161,7 +161,7 @@ Descripción:
   Cliente: Juan Pérez
   Teléfono: 666 123 456
   Reserva: FU0018
-  Ubicación: Furgocasa Murcia
+  Ubicación: Eco Area Limonar Murcia
   C/ Ejemplo 123
 ```
 
@@ -169,7 +169,7 @@ Descripción:
 ```
 Título: 🔴 DEVOLUCIÓN - FU0018 (Juan Pérez)
 Hora: 18:00 - 18:30
-Ubicación: Furgocasa Murcia
+Ubicación: Eco Area Limonar Murcia
 Descripción:
   Devolución de vehículo
   
@@ -177,7 +177,7 @@ Descripción:
   Cliente: Juan Pérez
   Teléfono: 666 123 456
   Reserva: FU0018
-  Ubicación: Furgocasa Murcia
+  Ubicación: Eco Area Limonar Murcia
   C/ Ejemplo 123
 ```
 
@@ -187,7 +187,7 @@ Descripción:
 - **Android**: Cada 2-4 horas aproximadamente
 - **Outlook**: Cada 3-4 horas aproximadamente
 
-**Nota**: La frecuencia exacta depende del sistema operativo y no se puede controlar desde Furgocasa.
+**Nota**: La frecuencia exacta depende del sistema operativo y no se puede controlar desde Eco Area Limonar.
 
 ## 🛠️ Configuración Técnica
 
@@ -275,21 +275,21 @@ Los calendarios nativos sincronizan cada pocas horas. Para forzar una actualizac
 ### ¿Puedo personalizar las notificaciones?
 
 Sí, en tu calendario nativo:
-- **iOS**: Calendario → Calendarios → (i) junto a "Furgocasa" → Alertas
+- **iOS**: Calendario → Calendarios → (i) junto a "Eco Area Limonar" → Alertas
 - **Android**: Google Calendar → Configuración → Notificaciones
 - **Outlook**: Configuración → Notificaciones de calendario
 
 ### ¿Los eventos se pueden editar?
 
-No, son de solo lectura. Cualquier cambio debe hacerse en Furgocasa y se sincronizará automáticamente.
+No, son de solo lectura. Cualquier cambio debe hacerse en Eco Area Limonar y se sincronizará automáticamente.
 
 ### ¿Qué pasa si elimino un evento del calendario?
 
-Volverá a aparecer en la próxima sincronización. Para eliminarlo permanentemente, cancela la reserva en Furgocasa.
+Volverá a aparecer en la próxima sincronización. Para eliminarlo permanentemente, cancela la reserva en Eco Area Limonar.
 
 ### ¿Puedo compartir esta URL con clientes?
 
-**NO**. Esta URL contiene información privada de todos los clientes. Solo para uso interno del equipo de Furgocasa.
+**NO**. Esta URL contiene información privada de todos los clientes. Solo para uso interno del equipo de Eco Area Limonar.
 
 ## 📊 Alcance
 
@@ -343,4 +343,4 @@ Si tienes problemas con la sincronización:
 
 **Última actualización**: Enero 2026  
 **Versión**: 1.0.0  
-**Autor**: Sistema Furgocasa
+**Autor**: Sistema Eco Area Limonar

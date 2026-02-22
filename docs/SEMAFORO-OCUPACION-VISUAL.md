@@ -2,7 +2,7 @@
 
 ## 📍 Ubicación en la Web
 
-**URL**: https://www.furgocasa.com/es/reservar
+**URL**: https://www.ecoarealimonar.com/es/reservar
 
 **Posición**: Justo debajo del widget de búsqueda, antes de "Puntos de recogida"
 
@@ -221,7 +221,7 @@ Solo en periodos 🟠 y 🔴
 
 ## ✅ Checklist Visual
 
-- [x] Colores coherentes con brand (azul/naranja Furgocasa)
+- [x] Colores coherentes con brand (azul/naranja Eco Area Limonar)
 - [x] Iconos claros (emojis universales 🟢🟡🟠🔴)
 - [x] Responsive perfecto (mobile-first)
 - [x] Animaciones sutiles (no invasivas)
@@ -233,4 +233,4 @@ Solo en periodos 🟠 y 🔴
 ---
 
 **Vista previa creada**: 9 febrero 2026  
-**Puede verse en**: http://localhost:3000/es/reservar (dev) o https://www.furgocasa.com/es/reservar (prod)
+**Puede verse en**: http://localhost:3000/es/reservar (dev) o https://www.ecoarealimonar.com/es/reservar (prod)

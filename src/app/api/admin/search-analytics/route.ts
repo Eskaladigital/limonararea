@@ -44,7 +44,7 @@ async function fetchAllRecords<T>(
  * Query params:
  * - start_date: Fecha inicio (YYYY-MM-DD)
  * - end_date: Fecha fin (YYYY-MM-DD)
- * - type: 'overview' | 'funnel' | 'dates' | 'vehicles' | 'seasons' | 'duration'
+ * - type: 'overview' | 'funnel' | 'dates' | 'parcels' | 'seasons' | 'duration'
  */
 export async function GET(request: NextRequest) {
   try {
@@ -101,7 +101,7 @@ export async function GET(request: NextRequest) {
 
         const totalSearches = searches?.length || 0;
         const withAvailability = searches?.filter(s => s.had_availability).length || 0;
-        const vehicleSelections = searches?.filter(s => s.vehicle_selected).length || 0;
+        const parcelSelections = searches?.filter(s => s.parcel_selected).length || 0;
         const bookingsCreated = searches?.filter(s => s.booking_created).length || 0;
 
         const avgRentalDays = searches?.length 
@@ -125,10 +125,10 @@ export async function GET(request: NextRequest) {
           kpis: {
             totalSearches,
             withAvailability,
-            vehicleSelections,
+            parcelSelections,
             bookingsCreated,
-            selectionRate: totalSearches > 0 ? (vehicleSelections / totalSearches * 100).toFixed(2) : 0,
-            bookingRateFromSelection: vehicleSelections > 0 ? (bookingsCreated / vehicleSelections * 100).toFixed(2) : 0,
+            selectionRate: totalSearches > 0 ? (parcelSelections / totalSearches * 100).toFixed(2) : 0,
+            bookingRateFromSelection: parcelSelections > 0 ? (bookingsCreated / parcelSelections * 100).toFixed(2) : 0,
             overallConversionRate: totalSearches > 0 ? (bookingsCreated / totalSearches * 100).toFixed(2) : 0,
             avgRentalDays: avgRentalDays.toFixed(1),
             avgAdvanceDays: avgAdvanceDays.toFixed(1),
@@ -160,20 +160,20 @@ export async function GET(request: NextRequest) {
       const total = searches?.length || 0;
       const withAvailability = searches?.filter(s => s.had_availability).length || 0;
       const withoutAvailability = total - withAvailability;
-      const vehicleSelected = searches?.filter(s => s.funnel_stage === "vehicle_selected" || s.funnel_stage === "booking_created").length || 0;
+      const parcelSelected = searches?.filter(s => s.funnel_stage === "parcel_selected" || s.funnel_stage === "booking_created").length || 0;
       const bookingCreated = searches?.filter(s => s.funnel_stage === "booking_created").length || 0;
 
       return NextResponse.json({
         funnel: [
           { stage: "Búsquedas", count: total, percentage: 100 },
           { stage: "Con disponibilidad", count: withAvailability, percentage: total > 0 ? (withAvailability / total * 100).toFixed(1) : 0 },
-          { stage: "Vehículo seleccionado", count: vehicleSelected, percentage: total > 0 ? (vehicleSelected / total * 100).toFixed(1) : 0 },
+          { stage: "Parcela seleccionada", count: parcelSelected, percentage: total > 0 ? (parcelSelected / total * 100).toFixed(1) : 0 },
           { stage: "Reserva creada", count: bookingCreated, percentage: total > 0 ? (bookingCreated / total * 100).toFixed(1) : 0 },
         ],
         abandonment: {
           noAvailability: withoutAvailability,
-          afterSearch: withAvailability - vehicleSelected,
-          afterSelection: vehicleSelected - bookingCreated,
+          afterSearch: withAvailability - parcelSelected,
+          afterSelection: parcelSelected - bookingCreated,
         }
       });
     }
@@ -224,31 +224,31 @@ export async function GET(request: NextRequest) {
     }
 
     // ============================================
-    // VEHICLES: Rendimiento por vehículo
+    // PARCELS: Rendimiento por parcela
     // ============================================
-    if (type === "vehicles") {
+    if (type === "parcels") {
       const baseQuery = supabase
         .from("search_queries")
         .select(`
-          selected_vehicle_id,
-          vehicle_selected,
+          selected_parcel_id,
+          parcel_selected,
           booking_created,
-          selected_vehicle_price
+          selected_parcel_price
         `)
         .gte("searched_at", dateFrom)
         .lte("searched_at", dateTo + " 23:59:59")
-        .not("selected_vehicle_id", "is", null);
+        .not("selected_parcel_id", "is", null);
 
-      const vehicleStats = await fetchAllRecords<any>(baseQuery);
+      const parcelStats = await fetchAllRecords<any>(baseQuery);
 
-      // Agrupar por vehículo
-      const vehicleGroups = vehicleStats?.reduce((acc: any, s) => {
-        const id = s.selected_vehicle_id;
+      // Agrupar por parcela
+      const parcelGroups = parcelStats?.reduce((acc: any, s) => {
+        const id = s.selected_parcel_id;
         if (!id) return acc;
         
         if (!acc[id]) {
           acc[id] = {
-            vehicle_id: id,
+            parcel_id: id,
             times_selected: 0,
             times_booked: 0,
             prices: [],
@@ -256,25 +256,25 @@ export async function GET(request: NextRequest) {
         }
         acc[id].times_selected++;
         if (s.booking_created) acc[id].times_booked++;
-        if (s.selected_vehicle_price) acc[id].prices.push(s.selected_vehicle_price);
+        if (s.selected_parcel_price) acc[id].prices.push(s.selected_parcel_price);
         return acc;
       }, {});
 
-      const vehicleIds = Object.keys(vehicleGroups || {});
+      const parcelIds = Object.keys(parcelGroups || {});
       
-      // Obtener nombres de vehículos
-      const { data: vehicles } = await supabase
-        .from("vehicles")
+      // Obtener nombres de parcelas
+      const { data: parcels } = await supabase
+        .from("parcels")
         .select("id, name, slug")
-        .in("id", vehicleIds);
+        .in("id", parcelIds);
 
-      const vehiclePerformance = Object.values(vehicleGroups || {})
+      const parcelPerformance = Object.values(parcelGroups || {})
         .map((v: any) => {
-          const vehicle = vehicles?.find((vh: any) => vh.id === v.vehicle_id);
+          const parcel = parcels?.find((p: any) => p.id === v.parcel_id);
           return {
-            vehicle_id: v.vehicle_id,
-            vehicle_name: vehicle?.name || "Desconocido",
-            vehicle_slug: vehicle?.slug,
+            parcel_id: v.parcel_id,
+            parcel_name: parcel?.name || "Desconocido",
+            parcel_slug: parcel?.slug,
             times_selected: v.times_selected,
             times_booked: v.times_booked,
             booking_rate: v.times_selected > 0 ? (v.times_booked / v.times_selected * 100).toFixed(2) : 0,
@@ -283,7 +283,7 @@ export async function GET(request: NextRequest) {
         })
         .sort((a: any, b: any) => b.times_selected - a.times_selected);
 
-      return NextResponse.json({ vehiclePerformance });
+      return NextResponse.json({ parcelPerformance });
     }
 
     // ============================================
@@ -292,7 +292,7 @@ export async function GET(request: NextRequest) {
     if (type === "seasons") {
       const baseQuery = supabase
         .from("search_queries")
-        .select("season_applied, vehicle_selected, booking_created, avg_price_shown")
+        .select("season_applied, parcel_selected, booking_created, avg_price_shown")
         .gte("searched_at", dateFrom)
         .lte("searched_at", dateTo + " 23:59:59")
         .not("season_applied", "is", null);
@@ -311,7 +311,7 @@ export async function GET(request: NextRequest) {
           };
         }
         acc[season].search_count++;
-        if (s.vehicle_selected) acc[season].selection_count++;
+        if (s.parcel_selected) acc[season].selection_count++;
         if (s.booking_created) acc[season].booking_count++;
         if (s.avg_price_shown) acc[season].prices.push(s.avg_price_shown);
         return acc;
@@ -380,7 +380,7 @@ export async function GET(request: NextRequest) {
     if (type === "search-timing") {
       const baseQuery = supabase
         .from("search_queries")
-        .select("searched_at, had_availability, vehicle_selected, booking_created, advance_days, rental_days")
+        .select("searched_at, had_availability, parcel_selected, booking_created, advance_days, rental_days")
         .gte("searched_at", dateFrom)
         .lte("searched_at", dateTo + " 23:59:59");
 
@@ -400,7 +400,7 @@ export async function GET(request: NextRequest) {
             is_weekend: dayOfWeek === 0 || dayOfWeek === 6,
             total_searches: 0,
             searches_with_availability: 0,
-            vehicle_selections: 0,
+            parcel_selections: 0,
             bookings_created: 0,
             advance_days_sum: 0,
             rental_days_sum: 0,
@@ -409,7 +409,7 @@ export async function GET(request: NextRequest) {
         
         acc[dateKey].total_searches++;
         if (s.had_availability) acc[dateKey].searches_with_availability++;
-        if (s.vehicle_selected) acc[dateKey].vehicle_selections++;
+        if (s.parcel_selected) acc[dateKey].parcel_selections++;
         if (s.booking_created) acc[dateKey].bookings_created++;
         acc[dateKey].advance_days_sum += s.advance_days || 0;
         acc[dateKey].rental_days_sum += s.rental_days || 0;
@@ -420,7 +420,7 @@ export async function GET(request: NextRequest) {
       const searchTiming = Object.values(dateGroups || {})
         .map((d: any) => ({
           ...d,
-          selection_rate: d.total_searches > 0 ? (d.vehicle_selections / d.total_searches * 100).toFixed(2) : 0,
+          selection_rate: d.total_searches > 0 ? (d.parcel_selections / d.total_searches * 100).toFixed(2) : 0,
           conversion_rate: d.total_searches > 0 ? (d.bookings_created / d.total_searches * 100).toFixed(2) : 0,
           avg_advance_days: d.total_searches > 0 ? (d.advance_days_sum / d.total_searches).toFixed(1) : 0,
           avg_rental_days: d.total_searches > 0 ? (d.rental_days_sum / d.total_searches).toFixed(1) : 0,
@@ -436,7 +436,7 @@ export async function GET(request: NextRequest) {
     if (type === "locale") {
       const baseQuery = supabase
         .from("search_queries")
-        .select("locale, vehicle_selected, booking_created, had_availability")
+        .select("locale, parcel_selected, booking_created, had_availability")
         .gte("searched_at", dateFrom)
         .lte("searched_at", dateTo + " 23:59:59");
 
@@ -462,7 +462,7 @@ export async function GET(request: NextRequest) {
         }
         acc[locale].search_count++;
         if (s.had_availability) acc[locale].with_availability++;
-        if (s.vehicle_selected) acc[locale].selection_count++;
+        if (s.parcel_selected) acc[locale].selection_count++;
         if (s.booking_created) acc[locale].booking_count++;
         return acc;
       }, {});
@@ -489,7 +489,7 @@ export async function GET(request: NextRequest) {
         .select(`
           pickup_location_id,
           dropoff_location_id,
-          vehicle_selected,
+          parcel_selected,
           booking_created,
           had_availability,
           avg_price_shown
@@ -536,7 +536,7 @@ export async function GET(request: NextRequest) {
         }
         acc[cityGroup].search_count++;
         if (s.had_availability) acc[cityGroup].with_availability++;
-        if (s.vehicle_selected) acc[cityGroup].selection_count++;
+        if (s.parcel_selected) acc[cityGroup].selection_count++;
         if (s.booking_created) acc[cityGroup].booking_count++;
         if (s.avg_price_shown) acc[cityGroup].prices.push(s.avg_price_shown);
         return acc;
@@ -614,20 +614,20 @@ export async function GET(request: NextRequest) {
           // Obtener todas las reservas que se solapan con esta semana
           const { data: bookings } = await supabase
             .from("bookings")
-            .select("pickup_date, dropoff_date, vehicle_id")
+            .select("pickup_date, dropoff_date, parcel_id")
             .neq("status", "cancelled")
             .in("payment_status", ["partial", "paid"])
             .lte("pickup_date", weekData.end)
             .gte("dropoff_date", weekData.start);
 
-          // Obtener total de vehículos disponibles para alquiler
-          const { count: totalVehicles } = await supabase
-            .from("vehicles")
+          // Obtener total de parcelas disponibles para alquiler
+          const { count: totalParcels } = await supabase
+            .from("parcels")
             .select("id", { count: "exact", head: true })
             .eq("is_for_rent", true)
             .eq("status", "available");
 
-          // Calcular días-vehículo ocupados
+          // Calcular días-parcela ocupados
           let totalDaysOccupied = 0;
           const weekStartDate = new Date(weekData.start);
           const weekEndDate = new Date(weekData.end);
@@ -648,12 +648,12 @@ export async function GET(request: NextRequest) {
           });
 
           // Calcular % de ocupación
-          const totalCapacity = (totalVehicles || 1) * weekDays;
+          const totalCapacity = (totalParcels || 1) * weekDays;
           const occupancyRate = (totalDaysOccupied / totalCapacity) * 100;
           const availabilityRate = 100 - occupancyRate;
 
-          // Calcular índice de demanda (búsquedas por vehículo disponible)
-          const demandIndex = weekData.searches / (totalVehicles || 1);
+          // Calcular índice de demanda (búsquedas por parcela disponible)
+          const demandIndex = weekData.searches / (totalParcels || 1);
 
           // Determinar oportunidad de precio
           let priceOpportunity: "high" | "medium" | "low" | "none" = "none";
@@ -683,7 +683,7 @@ export async function GET(request: NextRequest) {
             unique_date_ranges: weekData.dateRanges.size,
             occupancy_rate: occupancyRate.toFixed(1),
             availability_rate: availabilityRate.toFixed(1),
-            total_vehicles: totalVehicles || 0,
+            total_parcels: totalParcels || 0,
             demand_index: demandIndex.toFixed(2),
             price_opportunity: priceOpportunity,
             recommendation,

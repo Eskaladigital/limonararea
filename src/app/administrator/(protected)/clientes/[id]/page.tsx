@@ -40,7 +40,7 @@ interface Booking {
   total_price: number;
   status: string;
   payment_status: string;
-  vehicle: {
+  parcel: {
     name: string;
     internal_code: string | null;
   };
@@ -105,7 +105,7 @@ export default function ClienteDetallePage() {
           total_price,
           status,
           payment_status,
-          vehicle:vehicles(name, internal_code)
+          parcel:parcels(name, internal_code)
         `)
         .eq('customer_id', customerId)
         .order('pickup_date', { ascending: false });
@@ -419,14 +419,14 @@ export default function ClienteDetallePage() {
                           <span className="inline-block px-2 py-1 text-xs font-mono font-bold bg-blue-100 text-blue-800 rounded">
                             {booking.booking_number}
                           </span>
-                          {booking.vehicle.internal_code && (
+                          {booking.parcel.internal_code && (
                             <span className="inline-block px-2 py-1 text-xs font-mono font-bold bg-gray-100 text-gray-700 rounded">
-                              {booking.vehicle.internal_code}
+                              {booking.parcel.internal_code}
                             </span>
                           )}
                         </div>
                         
-                        <p className="font-semibold text-gray-900 mb-1">{booking.vehicle.name}</p>
+                        <p className="font-semibold text-gray-900 mb-1">{booking.parcel.name}</p>
                         
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600">
                           <span className="flex items-center gap-1">

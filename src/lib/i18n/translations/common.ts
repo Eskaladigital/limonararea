@@ -11,12 +11,12 @@ export const commonTranslations = {
     de: "Eco Area Limonar",
     nl: "Eco Area Limonar"
   },
-  "Furgocasa": {
-    es: "Furgocasa",
-    en: "Furgocasa",
-    fr: "Furgocasa",
-    de: "Furgocasa",
-    nl: "Furgocasa"
+  "Eco Area Limonar": {
+    es: "Eco Area Limonar",
+    en: "Eco Area Limonar",
+    fr: "Eco Area Limonar",
+    de: "Eco Area Limonar",
+    nl: "Eco Area Limonar"
   },
   "Reservar ahora": {
     es: "Reservar ahora",
@@ -42,11 +42,11 @@ export const commonTranslations = {
     nl: "Offers"
   },
   "Vehículos": {
-    es: "Vehículos",
-    en: "Vehicles",
-    fr: "Véhicules",
-    de: "Fahrzeuge",
-    nl: "Vehicles"
+    es: "Parcelas",
+    en: "Parcels",
+    fr: "Emplacements",
+    de: "Stellplätze",
+    nl: "Percelen"
   },
   "Parcelas": {
     es: "Parcelas",

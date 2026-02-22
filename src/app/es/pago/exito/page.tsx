@@ -64,10 +64,10 @@ interface Payment {
     amount_paid: number;
     customer_name: string;
     customer_email: string;
-    vehicle: {
+    parcel?: {
       name: string;
-      brand: string;
-      model: string;
+      slug?: string;
+      internal_code?: string | null;
     };
     pickup_location: {
       name: string;
@@ -155,7 +155,7 @@ function PagoExitoContent() {
             *,
             booking:bookings(
               *,
-              vehicle:vehicles(name, brand, model),
+              parcel:parcels(name, slug, internal_code),
               pickup_location:locations!pickup_location_id(name),
               dropoff_location:locations!dropoff_location_id(name)
             )
@@ -300,7 +300,7 @@ function PagoExitoContent() {
                     *,
                     booking:bookings(
                       *,
-                      vehicle:vehicles(name, brand, model),
+                      parcel:parcels(name, slug, internal_code),
                       pickup_location:locations!pickup_location_id(name),
                       dropoff_location:locations!dropoff_location_id(name)
                     )
@@ -402,10 +402,7 @@ function PagoExitoContent() {
                     <div className="flex items-center gap-3 p-4 bg-sand-lt rounded-lg">
                       <Car className="h-6 w-6 text-earth" />
                       <div>
-                        <p className="font-semibold text-gray-900">{payment.booking.vehicle.name}</p>
-                        <p className="text-sm text-gray-600">
-                          {payment.booking.vehicle.brand} {payment.booking.vehicle.model}
-                        </p>
+                        <p className="font-semibold text-gray-900">{payment.booking.parcel?.name}</p>
                       </div>
                     </div>
 

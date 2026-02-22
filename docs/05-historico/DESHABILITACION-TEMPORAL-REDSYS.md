@@ -71,16 +71,16 @@ Reemplaza toda la sección del selector (líneas 408-470 aproximadamente) con el
       onClick={() => setPaymentMethod('redsys')}
       className={`p-4 border-2 rounded-lg transition-all ${
         paymentMethod === 'redsys'
-          ? 'border-furgocasa-orange bg-orange-50'
+          ? 'border-limonar-orange bg-orange-50'
           : 'border-gray-200 bg-white hover:border-gray-300'
       }`}
     >
       <div className="flex items-center gap-3">
         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-          paymentMethod === 'redsys' ? 'border-furgocasa-orange' : 'border-gray-300'
+          paymentMethod === 'redsys' ? 'border-limonar-orange' : 'border-gray-300'
         }`}>
           {paymentMethod === 'redsys' && (
-            <div className="w-3 h-3 rounded-full bg-furgocasa-orange"></div>
+            <div className="w-3 h-3 rounded-full bg-limonar-orange"></div>
           )}
         </div>
         <div className="text-left flex-1">
@@ -100,16 +100,16 @@ Reemplaza toda la sección del selector (líneas 408-470 aproximadamente) con el
       onClick={() => setPaymentMethod('stripe')}
       className={`p-4 border-2 rounded-lg transition-all ${
         paymentMethod === 'stripe'
-          ? 'border-furgocasa-orange bg-orange-50'
+          ? 'border-limonar-orange bg-orange-50'
           : 'border-gray-200 bg-white hover:border-gray-300'
       }`}
     >
       <div className="flex items-center gap-3">
         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-          paymentMethod === 'stripe' ? 'border-furgocasa-orange' : 'border-gray-300'
+          paymentMethod === 'stripe' ? 'border-limonar-orange' : 'border-gray-300'
         }`}>
           {paymentMethod === 'stripe' && (
-            <div className="w-3 h-3 rounded-full bg-furgocasa-orange"></div>
+            <div className="w-3 h-3 rounded-full bg-limonar-orange"></div>
           )}
         </div>
         <div className="text-left flex-1">

@@ -1,6 +1,26 @@
-# 🎯 NORMAS SEO CRÍTICAS - PROYECTO FURGOCASA
+# 🎯 NORMAS SEO CRÍTICAS - PROYECTO ECO AREA LIMONAR
 
 **PRIORIDAD MÁXIMA**: Este proyecto depende del SEO local para su éxito. TODAS las páginas deben seguir estas normas obligatoriamente.
+
+---
+
+## 📍 ESTRATEGIA SEO: UN SOLO SITIO (NO MÚLTIPLES LANDINGS)
+
+**Eco Area Limonar** tiene **una única ubicación física**: Los Nietos, Cartagena, Mar Menor (Murcia).
+
+| Aspecto | ❌ Enfoque anterior (multi-ubicación) | ✅ Eco Area Limonar |
+|---------|--------------------------------------|---------------------|
+| **Landing pages** | Una por ciudad (Alicante, Valencia, Murcia...) | Una sola: el área en Los Nietos |
+| **Objetivo** | Posicionar en muchas ciudades | Posicionar el área Mar Menor / Los Nietos |
+| **Schema** | areaServed en múltiples ciudades | Campground en una sola ubicación |
+| **Keywords** | "alquiler camper {ciudad}" × N ciudades | "área autocaravanas Mar Menor", "parcelas Los Nietos" |
+| **Contenido** | Páginas por localización | Home, parcelas, tarifas, reservar, blog |
+
+**No crear** landing pages por ciudad. El SEO se centra en:
+- Home optimizado para Mar Menor / Los Nietos / Cartagena
+- Páginas de parcelas individuales
+- Tarifas, reservar, FAQs, blog
+- Schema `Campground` con la dirección real única
 
 ---
 
@@ -119,7 +139,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   
   return {
     // OBLIGATORIO
-    title: "Título optimizado con keywords - Furgocasa",
+    title: "Título optimizado con keywords - Eco Area Limonar",
     description: "Descripción entre 150-160 caracteres con keywords principales",
     
     // RECOMENDADO
@@ -298,11 +318,11 @@ const HeavyComponent = dynamic(() => import('./heavy'), {
 
 ```typescript
 // ❌ MAL
-<Link href="/murcia">Haz clic aquí</Link>
+<Link href="/parcelas">Haz clic aquí</Link>
 
 // ✅ BIEN
-<Link href="/murcia">
-  Alquiler de autocaravanas en Murcia
+<Link href="/parcelas">
+  Parcelas para autocaravanas en Mar Menor
 </Link>
 ```
 
@@ -310,14 +330,15 @@ const HeavyComponent = dynamic(() => import('./heavy'), {
 
 ```
 ✅ CORRECTO:
-/es/alquiler-autocaravanas-campervans-murcia
-/en/rent-campervan-motorhome-murcia
-/vehiculos/weinsberg-caratour-600
+/es/parcelas/parcela-standard
+/en/parcels/standard-pitch
+/es/reservar/nueva
+/parcelas/parcela-premium-mar-menor
 
 ❌ INCORRECTO:
 /location?id=123
-/car?slug=weinsberg-caratour-600
-/page.php?city=murcia
+/parcel?slug=standard
+/page.php?parcel=1
 ```
 
 ---
@@ -350,30 +371,31 @@ const HeavyComponent = dynamic(() => import('./heavy'), {
 
 ## 🎯 REGLA #8: KEYWORDS Y CONTENIDO
 
-### Para páginas de localización (SEO LOCAL):
+### Para páginas de área de autocaravanas (SEO LOCAL):
 
 **Keywords principales**:
-1. "alquiler de autocaravanas {ciudad}"
-2. "alquiler de camper {ciudad}"
-3. "alquiler de motorhomes {ciudad}"
+1. "área de autocaravanas {zona}"
+2. "parcelas autocaravanas Mar Menor"
+3. "camping autocaravanas Los Nietos"
 
 **Keywords secundarias**:
-- "casas rodantes {ciudad}"
-- "campervan {ciudad}"
-- "furgoneta camper {ciudad}"
+- "área camper Cartagena"
+- "estacionamiento autocaravanas Murcia"
+- "parcelas camping Mar Menor"
+- "área pernocta autocaravanas"
 
 ### ✅ Integración natural:
 
 ```typescript
 // ✅ BIEN - Keywords en títulos y contenido
-<h1>Alquiler de Autocaravanas en Murcia</h1>
-<p className="subtitle">(casas rodantes / motorhomes)</p>
-<h2>ALQUILER CAMPER MURCIA</h2>
+<h1>Área de Autocaravanas en Los Nietos, Mar Menor</h1>
+<p className="subtitle">Parcelas con electricidad y servicios</p>
+<h2>ÁREA CAMPER MAR MENOR</h2>
 
 // ❌ MAL - Keyword stuffing
 <h1>
-  Alquiler autocaravanas camper motorhomes casas rodantes 
-  campervan furgoneta camper Murcia
+  Área autocaravanas parcelas camping camper 
+  Mar Menor Los Nietos Cartagena Murcia
 </h1>
 ```
 
@@ -388,32 +410,36 @@ const HeavyComponent = dynamic(() => import('./heavy'), {
 
 ## 🔍 REGLA #9: SCHEMA MARKUP (JSON-LD)
 
-**OBLIGATORIO para páginas de negocio local**:
+**OBLIGATORIO para páginas de área de autocaravanas**:
 
 ```typescript
 // En page.tsx o layout.tsx
 export default function Page() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Furgocasa Campervans',
-    description: 'Alquiler de autocaravanas y campers en Murcia',
-    image: 'https://furgocasa.com/images/logo.jpg',
+    '@type': 'Campground',
+    name: 'Eco Area Limonar',
+    description: 'Área de autocaravanas en Los Nietos, Cartagena. Parcelas con electricidad y servicios en el Mar Menor.',
+    image: 'https://ecoarealimonar.com/images/logo.jpg',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Avenida Puente Tocinos, 4',
-      addressLocality: 'Murcia',
-      postalCode: '30007',
+      streetAddress: 'Los Nietos',
+      addressLocality: 'Cartagena',
+      addressRegion: 'Murcia',
+      postalCode: '30389',
       addressCountry: 'ES',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 37.9922,
-      longitude: -1.1307,
+      latitude: 37.65,
+      longitude: -0.85,
     },
-    telephone: '+34868364161',
-    openingHours: 'Mo-Fr 09:00-18:00',
-    priceRange: '€€',
+    telephone: '+34XXXXXXXXX',
+    url: 'https://ecoarealimonar.com',
+    amenityFeature: [
+      { '@type': 'LocationFeatureSpecification', name: 'Electricidad' },
+      { '@type': 'LocationFeatureSpecification', name: 'Servicios' },
+    ],
   };
 
   return (
@@ -488,7 +514,7 @@ export const metadata = {
 export async function generateMetadata({ params }) {
   const data = await loadData(params);
   return {
-    title: `${data.name} - Alquiler Autocaravanas | Furgocasa`,
+    title: `${data.name} - Parcelas Autocaravanas | Eco Area Limonar`,
   };
 }
 ```
@@ -550,7 +576,7 @@ export default async function Page() {
 
 ### 🎯 OBJETIVO:
 
-**Todas las páginas de Furgocasa deben**:
+**Todas las páginas de Eco Area Limonar deben**:
 - ✅ Cargar en < 2.5 segundos
 - ✅ Tener HTML completo desde el servidor
 - ✅ Score de SEO = 100 en Lighthouse
@@ -562,4 +588,4 @@ export default async function Page() {
 
 **Fecha de creación**: 8 de Enero, 2026  
 **Última actualización**: 8 de Enero, 2026  
-**Responsable**: Equipo de Desarrollo Furgocasa
+**Responsable**: Equipo de Desarrollo Eco Area Limonar

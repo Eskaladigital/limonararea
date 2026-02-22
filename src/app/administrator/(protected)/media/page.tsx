@@ -44,7 +44,7 @@ export default function MediaPage() {
     document.title = "Admin - Media | Eco Area Limonar";
   }, []);
 
-  const [bucket, setBucket] = useState<BucketType>("vehicles");
+  const [bucket, setBucket] = useState<BucketType>("parcels");
   const [currentPath, setCurrentPath] = useState("");
   const [folders, setFolders] = useState<FolderItem[]>([]);
   const [files, setFiles] = useState<StorageFile[]>([]);
@@ -253,16 +253,16 @@ export default function MediaPage() {
         <div className="mb-6 flex gap-2 flex-wrap">
           <button
             onClick={() => {
-              setBucket("vehicles");
-              setCurrentPath("");
-            }}
-            className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
-              bucket === "vehicles"
-                ? "bg-blue-600 text-white shadow-lg"
-                : "bg-white text-gray-600 hover:bg-gray-50"
-            }`}
-          >
-            🚐 Vehículos
+            setBucket("parcels");
+            setCurrentPath("");
+          }}
+          className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+            bucket === "parcels"
+              ? "bg-blue-600 text-white shadow-lg"
+              : "bg-white text-gray-600 hover:bg-gray-50"
+          }`}
+        >
+          📍 Parcelas
           </button>
           <button
             onClick={() => {
@@ -405,7 +405,7 @@ export default function MediaPage() {
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <p className="text-sm text-gray-600 mb-1">Bucket actual</p>
             <p className="text-2xl font-bold text-gray-900">
-              {bucket === "vehicles" && "🚐 Vehículos"}
+              {bucket === "parcels" && "📍 Parcelas"}
               {bucket === "blog" && "📝 Blog"}
               {bucket === "extras" && "🎁 Extras"}
               {bucket === "media" && "📸 Media"}
@@ -693,7 +693,7 @@ export default function MediaPage() {
               />
               <p className="text-xs text-gray-500 mt-2">
                 💡 Tip: Usa códigos como FU0010, FU0011 para organizar por
-                vehículo
+                parcela
               </p>
             </div>
             <div className="p-6 border-t bg-gray-50 flex gap-3 justify-end">

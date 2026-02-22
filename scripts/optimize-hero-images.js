@@ -9,26 +9,26 @@ const targetDir = path.join(__dirname, '../public/images/slides');
 // Selección variada de imágenes - mix de números y localizaciones
 const selectedImages = [
   // Variedad de números
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (1).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (10).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (22).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (35).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (46).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (54).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (60).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (70).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (83).jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_ (93).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (1).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (10).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (22).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (35).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (46).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (54).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (60).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (70).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (83).jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_ (93).jpg',
   
   // Variedad de localizaciones (paisajes diversos)
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_murcia.jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_espana.jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_pirineos.jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_a_coruna.jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_gandia.jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_altea.jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_mazarron.jpg',
-  'furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_lorca.jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_murcia.jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_espana.jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_pirineos.jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_a_coruna.jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_gandia.jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_altea.jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_mazarron.jpg',
+  'limonar_campervans_alquiler_autocaravanas_motorhome_rent_lorca.jpg',
 ];
 
 // Crear directorio de destino si no existe

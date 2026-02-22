@@ -138,7 +138,7 @@ export function ParcelCard({ parcel, pricing, searchParams, searchQueryId }: Par
         {/* Title - Clicable con tracking */}
         <h3 
           onClick={handleParcelClick}
-          className="text-xl font-bold text-gray-900 mb-2 hover:text-furgocasa-orange transition-colors cursor-pointer"
+          className="text-xl font-bold text-gray-900 mb-2 hover:text-limonar-orange transition-colors cursor-pointer"
         >
           {parcel.name}
         </h3>
@@ -216,14 +216,14 @@ export function ParcelCard({ parcel, pricing, searchParams, searchQueryId }: Par
                   </>
                 )}
               </p>
-              <p className="text-2xl font-bold text-furgocasa-orange">
+              <p className="text-2xl font-bold text-limonar-orange">
                 {formatPrice(pricing.totalPrice)}
               </p>
             </div>
 
             <button
               onClick={handleParcelClick}
-              className="flex items-center gap-2 bg-furgocasa-orange hover:bg-furgocasa-orange-dark text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+              className="flex items-center gap-2 bg-limonar-orange hover:bg-limonar-orange-dark text-white font-semibold py-2 px-4 rounded-lg transition-colors"
             >
               {t("Reservar")}
               <ArrowRight className="h-4 w-4" />

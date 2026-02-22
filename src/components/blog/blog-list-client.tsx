@@ -136,7 +136,7 @@ export function BlogListClient({
       <aside className="hidden lg:block lg:col-span-3">
         <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
           <h3 className="text-xl font-heading font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <Tag className="h-5 w-5 text-furgocasa-orange" />
+            <Tag className="h-5 w-5 text-limonar-orange" />
             {t("Categorías")}
           </h3>
           <div className="space-y-2">
@@ -145,7 +145,7 @@ export function BlogListClient({
               disabled={isPending}
               className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all ${
                 !selectedCategory
-                  ? "bg-furgocasa-blue text-white shadow-md"
+                  ? "bg-limonar-blue text-white shadow-md"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
             >
@@ -163,7 +163,7 @@ export function BlogListClient({
                 disabled={isPending}
                 className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all ${
                   selectedCategory === category.slug
-                    ? "bg-furgocasa-blue text-white shadow-md"
+                    ? "bg-limonar-blue text-white shadow-md"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
@@ -192,7 +192,7 @@ export function BlogListClient({
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               disabled={isPending}
-              className="w-full pl-12 pr-20 py-4 rounded-xl border-2 border-gray-200 focus:border-furgocasa-blue focus:ring-2 focus:ring-furgocasa-blue/20 transition-all disabled:opacity-50"
+              className="w-full pl-12 pr-20 py-4 rounded-xl border-2 border-gray-200 focus:border-limonar-blue focus:ring-2 focus:ring-limonar-blue/20 transition-all disabled:opacity-50"
             />
             {searchInput && (
               <button
@@ -209,7 +209,7 @@ export function BlogListClient({
             <button
               type="submit"
               disabled={isPending}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-furgocasa-blue text-white px-4 py-2 rounded-lg hover:bg-furgocasa-blue-dark transition-all disabled:opacity-50"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-limonar-blue text-white px-4 py-2 rounded-lg hover:bg-limonar-blue-dark transition-all disabled:opacity-50"
             >
               {t("Buscar")}
             </button>
@@ -222,7 +222,7 @@ export function BlogListClient({
               disabled={isPending}
               className={`px-4 py-2 rounded-full font-medium transition-all text-sm ${
                 !selectedCategory
-                  ? "bg-furgocasa-blue text-white shadow-lg"
+                  ? "bg-limonar-blue text-white shadow-lg"
                   : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
               }`}
             >
@@ -235,7 +235,7 @@ export function BlogListClient({
                 disabled={isPending}
                 className={`px-4 py-2 rounded-full font-medium transition-all text-sm ${
                   selectedCategory === category.slug
-                    ? "bg-furgocasa-blue text-white shadow-lg"
+                    ? "bg-limonar-blue text-white shadow-lg"
                     : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
                 }`}
               >
@@ -247,7 +247,7 @@ export function BlogListClient({
 
         {/* Indicador de carga */}
         {isPending && (
-          <div className="fixed top-20 left-1/2 -translate-x-1/2 bg-furgocasa-blue text-white px-6 py-3 rounded-full shadow-lg z-50 flex items-center gap-2">
+          <div className="fixed top-20 left-1/2 -translate-x-1/2 bg-limonar-blue text-white px-6 py-3 rounded-full shadow-lg z-50 flex items-center gap-2">
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
             {t("Cargando...")}
           </div>
@@ -257,7 +257,7 @@ export function BlogListClient({
         {featuredPosts.length > 0 && (
           <div className="mb-12 md:mb-16">
             <div className="flex items-center gap-2 md:gap-3 mb-2">
-              <Sparkles className="h-6 w-6 md:h-8 md:w-8 text-furgocasa-orange flex-shrink-0" />
+              <Sparkles className="h-6 w-6 md:h-8 md:w-8 text-limonar-orange flex-shrink-0" />
               <h2 className="text-xl md:text-3xl font-heading font-bold text-gray-900">
                 {t("Artículos Destacados")}
               </h2>
@@ -268,7 +268,7 @@ export function BlogListClient({
                   <Link
                     key={post.id}
                     href={getBlogArticleHref(post)}
-                    className="group bg-gradient-to-br from-white to-blue-50 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-furgocasa-orange/30"
+                    className="group bg-gradient-to-br from-white to-blue-50 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-limonar-orange/30"
                   >
                     <div className="h-56 bg-gray-200 relative overflow-hidden">
                       {post.featured_image ? (
@@ -278,13 +278,13 @@ export function BlogListClient({
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-furgocasa-blue to-blue-600">
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-limonar-blue to-blue-600">
                           <BookOpen className="h-16 w-16 text-white/50" />
                         </div>
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                       <div className="absolute top-3 left-3">
-                        <span className="bg-furgocasa-orange text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase flex items-center gap-1.5 shadow-lg">
+                        <span className="bg-limonar-orange text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase flex items-center gap-1.5 shadow-lg">
                           <Sparkles className="h-3.5 w-3.5" />
                           {t("Destacado")}
                         </span>
@@ -298,7 +298,7 @@ export function BlogListClient({
                       )}
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-furgocasa-blue transition-colors line-clamp-2 leading-tight">
+                      <h3 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-limonar-blue transition-colors line-clamp-2 leading-tight">
                         {post.title}
                       </h3>
                       {post.excerpt && (
@@ -312,7 +312,7 @@ export function BlogListClient({
                           </span>
                         )}
                         {post.reading_time > 0 && (
-                          <span className="flex items-center gap-1.5 font-medium text-furgocasa-blue">
+                          <span className="flex items-center gap-1.5 font-medium text-limonar-blue">
                             <Clock className="h-3.5 w-3.5" />
                             {post.reading_time} min
                           </span>
@@ -358,7 +358,7 @@ export function BlogListClient({
                   navigateWithParams({ q: null, category: null, page: 1 });
                 }}
                 disabled={isPending}
-                className="text-furgocasa-blue font-semibold hover:underline disabled:opacity-50"
+                className="text-limonar-blue font-semibold hover:underline disabled:opacity-50"
               >
                 {t("Limpiar filtros")}
               </button>
@@ -389,14 +389,14 @@ export function BlogListClient({
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                       {post.category && (
                         <div className="absolute top-3 left-3">
-                          <span className="bg-furgocasa-blue text-white px-2 py-1 rounded-full text-xs font-semibold">
+                          <span className="bg-limonar-blue text-white px-2 py-1 rounded-full text-xs font-semibold">
                             {getCategoryName(post.category.slug, locale)}
                           </span>
                         </div>
                       )}
                     </div>
                     <div className="p-5">
-                      <h3 className="text-lg font-heading font-bold text-gray-900 mb-2 group-hover:text-furgocasa-blue transition-colors line-clamp-2">
+                      <h3 className="text-lg font-heading font-bold text-gray-900 mb-2 group-hover:text-limonar-blue transition-colors line-clamp-2">
                         {post.title}
                       </h3>
                       {post.excerpt && (
@@ -412,7 +412,7 @@ export function BlogListClient({
                             })}
                           </span>
                         )}
-                        <span className="text-furgocasa-orange font-semibold group-hover:translate-x-1 transition-transform">
+                        <span className="text-limonar-orange font-semibold group-hover:translate-x-1 transition-transform">
                           {t("Leer más")} →
                         </span>
                       </div>
@@ -432,7 +432,7 @@ export function BlogListClient({
                     className={`p-2 rounded-lg transition-all ${
                       currentPage === 1
                         ? 'text-gray-300 cursor-not-allowed'
-                        : 'text-furgocasa-blue hover:bg-furgocasa-blue hover:text-white disabled:opacity-50'
+                        : 'text-limonar-blue hover:bg-limonar-blue hover:text-white disabled:opacity-50'
                     }`}
                   >
                     <ChevronLeft className="h-5 w-5" />
@@ -453,7 +453,7 @@ export function BlogListClient({
                           disabled={isPending}
                           className={`min-w-[40px] h-10 rounded-lg font-medium transition-all disabled:opacity-50 ${
                             currentPage === pageNum
-                              ? 'bg-furgocasa-blue text-white shadow-lg'
+                              ? 'bg-limonar-blue text-white shadow-lg'
                               : 'text-gray-700 hover:bg-gray-100'
                           }`}
                         >
@@ -476,7 +476,7 @@ export function BlogListClient({
                     className={`p-2 rounded-lg transition-all ${
                       currentPage === totalPages
                         ? 'text-gray-300 cursor-not-allowed'
-                        : 'text-furgocasa-blue hover:bg-furgocasa-blue hover:text-white disabled:opacity-50'
+                        : 'text-limonar-blue hover:bg-limonar-blue hover:text-white disabled:opacity-50'
                     }`}
                   >
                     <ChevronRight className="h-5 w-5" />

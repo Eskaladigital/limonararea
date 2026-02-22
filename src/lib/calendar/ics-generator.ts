@@ -59,12 +59,12 @@ export function generateICalendar(events: CalendarEvent[]): string {
   // Header del calendario
   lines.push('BEGIN:VCALENDAR');
   lines.push('VERSION:2.0');
-  lines.push('PRODID:-//Furgocasa//Calendario Entregas//ES');
+  lines.push('PRODID:-//Eco Area Limonar//Calendario Entregas//ES');
   lines.push('CALSCALE:GREGORIAN');
   lines.push('METHOD:PUBLISH');
-  lines.push('X-WR-CALNAME:Furgocasa - Entregas y Recogidas');
+  lines.push('X-WR-CALNAME:Eco Area Limonar - Entregas y Recogidas');
   lines.push('X-WR-TIMEZONE:Europe/Madrid');
-  lines.push('X-WR-CALDESC:Calendario de entregas y recogidas de vehículos Furgocasa');
+  lines.push('X-WR-CALDESC:Calendario de entregas y recogidas de vehículos Eco Area Limonar');
   
   // Añadir cada evento
   events.forEach(event => {
@@ -73,7 +73,7 @@ export function generateICalendar(events: CalendarEvent[]): string {
     const endDateTime = toICalDateTime(event.startDate, endTime);
     
     lines.push('BEGIN:VEVENT');
-    lines.push(`UID:${event.id}@furgocasa.com`);
+    lines.push(`UID:${event.id}@limonar.com`);
     lines.push(`DTSTART:${startDateTime}`);
     lines.push(`DTEND:${endDateTime}`);
     lines.push(`DTSTAMP:${toICalDateTime(new Date().toISOString().split('T')[0], '00:00')}`);
@@ -127,7 +127,8 @@ export function bookingsToCalendarEvents(bookings: BookingEventData[]): Calendar
   const events: CalendarEvent[] = [];
   
   bookings.forEach(booking => {
-    const vehicleName = booking.vehicle?.internal_code || booking.vehicle?.name || 'Vehículo';
+    const parcel = booking.parcel;
+    const parcelName = parcel?.internal_code || parcel?.name || 'Parcela';
     const customerName = booking.customer?.name || 'Cliente';
     const customerPhone = booking.customer?.phone ? `\nTeléfono: ${booking.customer.phone}` : '';
     
@@ -137,8 +138,8 @@ export function bookingsToCalendarEvents(bookings: BookingEventData[]): Calendar
     
     events.push({
       id: `entrega-${booking.id}`,
-      title: `🟢 ENTREGA - ${vehicleName} (${customerName})`,
-      description: `Entrega de vehículo\n\nVehículo: ${booking.vehicle?.name || 'N/A'}\nCliente: ${customerName}${customerPhone}\nReserva: ${booking.booking_number}\nUbicación: ${pickupLocation}${pickupAddress}`,
+      title: `🟢 ENTREGA - ${parcelName} (${customerName})`,
+      description: `Entrega parcela\n\nParcela: ${parcel?.name || 'N/A'}\nCliente: ${customerName}${customerPhone}\nReserva: ${booking.booking_number}\nUbicación: ${pickupLocation}${pickupAddress}`,
       location: pickupLocation,
       startDate: booking.pickup_date,
       startTime: booking.pickup_time,
@@ -152,8 +153,8 @@ export function bookingsToCalendarEvents(bookings: BookingEventData[]): Calendar
     
     events.push({
       id: `devolucion-${booking.id}`,
-      title: `🔴 DEVOLUCIÓN - ${vehicleName} (${customerName})`,
-      description: `Devolución de vehículo\n\nVehículo: ${booking.vehicle?.name || 'N/A'}\nCliente: ${customerName}${customerPhone}\nReserva: ${booking.booking_number}\nUbicación: ${dropoffLocation}${dropoffAddress}`,
+      title: `🔴 DEVOLUCIÓN - ${parcelName} (${customerName})`,
+      description: `Devolución parcela\n\nParcela: ${parcel?.name || 'N/A'}\nCliente: ${customerName}${customerPhone}\nReserva: ${booking.booking_number}\nUbicación: ${dropoffLocation}${dropoffAddress}`,
       location: dropoffLocation,
       startDate: booking.dropoff_date,
       startTime: booking.dropoff_time,

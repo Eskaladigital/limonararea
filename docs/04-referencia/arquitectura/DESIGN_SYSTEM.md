@@ -1,9 +1,9 @@
-# Sistema de Diseño Furgocasa
+# Sistema de Diseño Eco Area Limonar
 
 ## Filosofía de diseño
 **Moderno, elegante, disruptivo pero funcional**
 
-Furgocasa se destaca por un diseño que combina:
+Eco Area Limonar se destaca por un diseño que combina:
 - ✨ Modernidad visual
 - 🎯 Elegancia profesional
 - 🚀 Innovación disruptiva
@@ -88,23 +88,23 @@ max-w-4xl mx-auto (para contenido de lectura)
 
 #### Primario (Azul)
 ```tsx
-className="bg-furgocasa-blue hover:bg-furgocasa-blue-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+className="bg-limonar-blue hover:bg-limonar-blue-dark text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
 ```
 
 #### Secundario (Naranja - CTA)
 ```tsx
-className="bg-furgocasa-orange hover:bg-furgocasa-orange-dark text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+className="bg-limonar-orange hover:bg-limonar-orange-dark text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
 ```
 
 #### Outlined
 ```tsx
-className="border-2 border-furgocasa-blue text-furgocasa-blue hover:bg-furgocasa-blue hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200"
+className="border-2 border-limonar-blue text-limonar-blue hover:bg-limonar-blue hover:text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200"
 ```
 
 #### Acción de texto (Admin / acciones secundarias)
 ```tsx
 // Botón sutil para copiar, exportar, etc. Ej: "Copiar detalles de la reserva"
-className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-furgocasa-blue hover:bg-blue-50 rounded-lg transition-colors"
+className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-limonar-blue hover:bg-blue-50 rounded-lg transition-colors"
 ```
 
 ### Cards
@@ -116,14 +116,14 @@ className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow dura
 
 #### Con borde de acento
 ```tsx
-className="bg-white rounded-2xl border-t-4 border-furgocasa-blue shadow-md hover:shadow-xl transition-shadow duration-300 p-6"
+className="bg-white rounded-2xl border-t-4 border-limonar-blue shadow-md hover:shadow-xl transition-shadow duration-300 p-6"
 ```
 
 ### Hero Sections
 
 #### Estilo Moderno con Gradiente
 ```tsx
-className="relative min-h-[70vh] bg-gradient-to-br from-furgocasa-blue via-furgocasa-blue-dark to-gray-900"
+className="relative min-h-[70vh] bg-gradient-to-br from-limonar-blue via-limonar-blue-dark to-gray-900"
 ```
 
 #### Con Overlay
@@ -164,8 +164,8 @@ Lucide React
 - Hero: `h-16 w-16`
 
 ### Colores
-- Primario: `text-furgocasa-blue`
-- Acento: `text-furgocasa-orange`
+- Primario: `text-limonar-blue`
+- Acento: `text-limonar-orange`
 - Success: `text-green-500`
 - Warning: `text-yellow-500`
 - Error: `text-red-500`
@@ -199,7 +199,7 @@ transition-transform duration-200
 ### Hover Effects
 - Botones: `hover:shadow-lg transform hover:scale-105`
 - Cards: `hover:shadow-xl`
-- Enlaces: `hover:text-furgocasa-orange transition-colors`
+- Enlaces: `hover:text-limonar-orange transition-colors`
 
 ---
 
@@ -231,7 +231,7 @@ className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 
 ### Focus States
 ```tsx
-focus:ring-2 focus:ring-furgocasa-blue focus:ring-offset-2
+focus:ring-2 focus:ring-limonar-blue focus:ring-offset-2
 ```
 
 ---
@@ -240,7 +240,7 @@ focus:ring-2 focus:ring-furgocasa-blue focus:ring-offset-2
 
 ### Hero Section Completo
 ```tsx
-<section className="relative min-h-[80vh] bg-gradient-to-br from-furgocasa-blue via-furgocasa-blue-dark to-gray-900 overflow-hidden">
+<section className="relative min-h-[80vh] bg-gradient-to-br from-limonar-blue via-limonar-blue-dark to-gray-900 overflow-hidden">
   {/* Background Pattern */}
   <div className="absolute inset-0 opacity-10">
     {/* Pattern SVG */}
@@ -254,7 +254,7 @@ focus:ring-2 focus:ring-furgocasa-blue focus:ring-offset-2
     <p className="text-xl text-white/90 max-w-2xl mb-8">
       Subtítulo descriptivo
     </p>
-    <button className="bg-furgocasa-orange hover:bg-furgocasa-orange-dark text-white font-bold py-4 px-10 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+    <button className="bg-limonar-orange hover:bg-limonar-orange-dark text-white font-bold py-4 px-10 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
       Call to Action
     </button>
   </div>
@@ -263,9 +263,9 @@ focus:ring-2 focus:ring-furgocasa-blue focus:ring-offset-2
 
 ### Card de Servicio
 ```tsx
-<div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border-t-4 border-furgocasa-blue">
-  <div className="w-16 h-16 bg-furgocasa-blue/10 rounded-full flex items-center justify-center mb-6">
-    <Icon className="h-8 w-8 text-furgocasa-blue" />
+<div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border-t-4 border-limonar-blue">
+  <div className="w-16 h-16 bg-limonar-blue/10 rounded-full flex items-center justify-center mb-6">
+    <Icon className="h-8 w-8 text-limonar-blue" />
   </div>
   <h3 className="text-xl font-heading font-bold text-gray-900 mb-3">
     Título del Servicio

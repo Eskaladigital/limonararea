@@ -13,12 +13,12 @@ export const staticTranslations = {
     de: "Eco Area Limonar",
     nl: "Eco Area Limonar"
   },
-  "Furgocasa": {
-    es: "Furgocasa",
-    en: "Furgocasa",
-    fr: "Furgocasa",
-    de: "Furgocasa",
-    nl: "Furgocasa"
+  "Eco Area Limonar": {
+    es: "Eco Area Limonar",
+    en: "Eco Area Limonar",
+    fr: "Eco Area Limonar",
+    de: "Eco Area Limonar",
+    nl: "Eco Area Limonar"
   },
   "Reservar ahora": {
     es: "Reservar ahora",
@@ -44,11 +44,11 @@ export const staticTranslations = {
     nl: "Offers"
   },
   "Vehículos": {
-    es: "Vehículos",
-    en: "Vehicles",
-    fr: "Véhicules",
-    de: "Fahrzeuge",
-    nl: "Vehicles"
+    es: "Parcelas",
+    en: "Parcels",
+    fr: "Emplacements",
+    de: "Stellplätze",
+    nl: "Percelen"
   },
   "Parcelas": {
     es: "Parcelas",
@@ -65,11 +65,11 @@ export const staticTranslations = {
     nl: "Accommodation type"
   },
   "Tipo de vehículo": {
-    es: "Tipo de vehículo",
-    en: "Vehicle type",
-    fr: "Type de véhicule",
-    de: "Fahrzeugtyp",
-    nl: "Vehicle type"
+    es: "Tipo de parcela",
+    en: "Parcel type",
+    fr: "Type de parcelle",
+    de: "Stellplatztyp",
+    nl: "Parcel type"
   },
   "Autocaravana": {
     es: "Autocaravana",
@@ -352,7 +352,7 @@ export const staticTranslations = {
     nl: "Contact"
   },
   
-  // Furgocasa Dropdown
+  // Eco Area Limonar Dropdown
   "¿Quiénes somos?": {
     es: "¿Quiénes somos?",
     en: "Who we are?",
@@ -482,11 +482,11 @@ export const staticTranslations = {
     nl: "Search Results"
   },
   "Buscando vehículos disponibles...": {
-    es: "Buscando vehículos disponibles...",
-    en: "Searching for available vehicles...",
-    fr: "Recherche de véhicules disponibles...",
-    de: "Suche nach verfügbaren Fahrzeugen...",
-    nl: "Searching for available vehicles..."
+    es: "Buscando parcelas disponibles...",
+    en: "Searching for available parcels...",
+    fr: "Recherche de parcelles disponibles...",
+    de: "Suche nach verfügbaren Stellplätzen...",
+    nl: "Searching for available parcels..."
   },
   "Error al buscar disponibilidad": {
     es: "Error al buscar disponibilidad",
@@ -503,11 +503,11 @@ export const staticTranslations = {
     nl: "Try different dates"
   },
   "vehículo": {
-    es: "vehículo",
-    en: "vehicle",
-    fr: "véhicule",
-    de: "Fahrzeug",
-    nl: "vehicle"
+    es: "parcela",
+    en: "parcel",
+    fr: "parcelle",
+    de: "Stellplatz",
+    nl: "parcel"
   },
   "disponible": {
     es: "disponible",
@@ -613,11 +613,11 @@ export const staticTranslations = {
   
   // Loading & Error states
   "Cargando vehículo...": {
-    es: "Cargando vehículo...",
-    en: "Loading vehicle...",
-    fr: "Chargement du véhicule...",
-    de: "Fahrzeug wird geladen...",
-    nl: "Loading vehicle..."
+    es: "Cargando parcela...",
+    en: "Loading parcel...",
+    fr: "Chargement de la parcelle...",
+    de: "Stellplatz wird geladen...",
+    nl: "Loading parcel..."
   },
   "Cargando información...": {
     es: "Cargando información...",
@@ -813,11 +813,11 @@ export const staticTranslations = {
     nl: "Book"
   },
   "Buscando vehículos disponibles...": {
-    es: "Buscando vehículos disponibles...",
-    en: "Searching available vehicles...",
-    fr: "Recherche des véhicules disponibles...",
-    de: "Suche verfügbare Fahrzeuge...",
-    nl: "Searching available vehicles..."
+    es: "Buscando parcelas disponibles...",
+    en: "Searching available parcels...",
+    fr: "Recherche des parcelles disponibles...",
+    de: "Suche verfügbare Stellplätze...",
+    nl: "Searching available parcels..."
   },
   "Error al buscar disponibilidad": {
     es: "Error al buscar disponibilidad",
@@ -890,11 +890,11 @@ export const staticTranslations = {
     nl: "Duration discounts"
   },
   "No hay vehículos disponibles": {
-    es: "No hay vehículos disponibles",
-    en: "No vehicles available",
-    fr: "Aucun véhicule disponible",
-    de: "Keine Fahrzeuge verfügbar",
-    nl: "No vehicles available"
+    es: "No hay parcelas disponibles",
+    en: "No parcels available",
+    fr: "Aucune parcelle disponible",
+    de: "Keine Stellplätze verfügbar",
+    nl: "No parcels available"
   },
   "Resultados de búsqueda": {
     es: "Resultados de búsqueda",
@@ -904,11 +904,11 @@ export const staticTranslations = {
     nl: "Search results"
   },
   "vehículos encontrados": {
-    es: "vehículos encontrados",
-    en: "vehicles found",
-    fr: "véhicules trouvés",
-    de: "Fahrzeuge gefunden",
-    nl: "vehicles found"
+    es: "parcelas encontradas",
+    en: "parcels found",
+    fr: "parcelles trouvées",
+    de: "Stellplätze gefunden",
+    nl: "parcels found"
   },
   "Filtrar por": {
     es: "Filtrar por",
@@ -1297,11 +1297,11 @@ export const staticTranslations = {
     nl: "Booking created on"
   },
   "Tu vehículo": {
-    es: "Tu vehículo",
-    en: "Your vehicle",
-    fr: "Votre véhicule",
-    de: "Ihr Fahrzeug",
-    nl: "Your vehicle"
+    es: "Tu parcela",
+    en: "Your parcel",
+    fr: "Votre parcelle",
+    de: "Ihr Stellplatz",
+    nl: "Your parcel"
   },
   "Vehículo": {
     es: "Vehículo",
@@ -2370,18 +2370,18 @@ export const staticTranslations = {
     nl: "Discounts are applied automatically based on rental duration"
   },
   "Vehículos de 4 plazas:": {
-    es: "Vehículos de 4 plazas:",
-    en: "4-seat vehicles:",
-    fr: "Véhicules 4 places :",
-    de: "4-Sitzer-Fahrzeuge:",
-    nl: "4-seat vehicles:"
+    es: "Parcelas de 4 plazas:",
+    en: "4-berth parcels:",
+    fr: "Emplacements 4 places :",
+    de: "4-Schlafplatz-Stellplätze:",
+    nl: "4-persoons percelen:"
   },
   "En relación a los vehículos de hasta 4 plazas de noche, con dos camas, en el caso de que se desee incluir el colchón de la segunda cama y, por tanto, disfrutar de la posibilidad de que duerman hasta 4 personas, los precios anteriormente mostrados se incrementarán en 10,00 euros día, debiendo el cliente incluir el referido extra de alquiler en el momento de hacer la reserva.": {
-    es: "En relación a los vehículos de hasta 4 plazas de noche, con dos camas, en el caso de que se desee incluir el colchón de la segunda cama y, por tanto, disfrutar de la posibilidad de que duerman hasta 4 personas, los precios anteriormente mostrados se incrementarán en 10,00 euros día, debiendo el cliente incluir el referido extra de alquiler en el momento de hacer la reserva.",
-    en: "For vehicles with up to 4 sleeping places with two beds, if you wish to include the second bed mattress and therefore enjoy the possibility of up to 4 people sleeping, the prices shown above will be increased by 10.00 euros per day, with the customer having to include said rental extra at the time of booking.",
-    fr: "Pour les véhicules avec jusqu'à 4 places de couchage avec deux lits, si vous souhaitez inclure le matelas du deuxième lit et ainsi profiter de la possibilité de faire dormir jusqu'à 4 personnes, les prix indiqués ci-dessus seront augmentés de 10,00 euros par jour, le client devant inclure cet extra de location au moment de la réservation.",
-    de: "Für Fahrzeuge mit bis zu 4 Schlafplätzen mit zwei Betten, wenn Sie die Matratze des zweiten Bettes hinzufügen möchten und somit die Möglichkeit haben möchten, dass bis zu 4 Personen schlafen können, werden die oben angezeigten Preise um 10,00 Euro pro Tag erhöht, wobei der Kunde dieses Miet-Extra zum Zeitpunkt der Buchung hinzufügen muss.",
-    nl: "For vehicles with up to 4 sleeping places with two beds, if you wish to include the second bed mattress and therefore enjoy the possibility of up to 4 people sleeping, the prices shown above will be increased by 10.00 euros per day, with the customer having to include said rental extra at the time of booking."
+    es: "En relación a las parcelas de hasta 4 plazas de noche, con dos camas, en el caso de que se desee incluir el colchón de la segunda cama y, por tanto, disfrutar de la posibilidad de que duerman hasta 4 personas, los precios anteriormente mostrados se incrementarán en 10,00 euros día, debiendo el cliente incluir el referido extra de alquiler en el momento de hacer la reserva.",
+    en: "For parcels with up to 4 sleeping places with two beds, if you wish to include the second bed mattress and therefore enjoy the possibility of up to 4 people sleeping, the prices shown above will be increased by 10.00 euros per day, with the customer having to include said rental extra at the time of booking.",
+    fr: "Pour les emplacements avec jusqu'à 4 places de couchage avec deux lits, si vous souhaitez inclure le matelas du deuxième lit et ainsi profiter de la possibilité de faire dormir jusqu'à 4 personnes, les prix indiqués ci-dessus seront augmentés de 10,00 euros par jour, le client devant inclure cet extra de location au moment de la réservation.",
+    de: "Bei Stellplätzen mit bis zu 4 Schlafplätzen und zwei Betten: Wenn Sie die Matratze des zweiten Bettes hinzufügen möchten und somit bis zu 4 Personen schlafen können, werden die oben angezeigten Preise um 10,00 Euro pro Tag erhöht; der Kunde muss dieses Miet-Extra zum Zeitpunkt der Buchung hinzufügen.",
+    nl: "Voor percelen met tot 4 slaapplaatsen met twee bedden: als u de matras van het tweede bed wilt laten meenemen en daarmee tot 4 personen wilt laten slapen, worden de hierboven getoonde prijzen met 10,00 euro per dag verhoogd; de klant moet dit huurextra bij de boeking toevoegen."
   },
   "Modificación de fechas:": {
     es: "Modificación de fechas:",
@@ -2674,12 +2674,12 @@ export const staticTranslations = {
     de: "Note:",
     nl: "Note:"
   },
-  "El período de alquiler comienza con la entrega del vehículo a la hora acordada y finaliza con la devolución de las llaves al personal de Furgocasa.": {
-    es: "El período de alquiler comienza con la entrega del vehículo a la hora acordada y finaliza con la devolución de las llaves al personal de Furgocasa.",
-    en: "The rental period begins with the delivery of the vehicle at the agreed time and ends with the return of the keys to Furgocasa staff.",
-    fr: "The rental period begins with the delivery of the vehicle at the agreed time and ends with the return of the keys to Furgocasa staff.",
-    de: "The rental period begins with the delivery of the vehicle at the agreed time and ends with the return of the keys to Furgocasa staff.",
-    nl: "The rental period begins with the delivery of the vehicle at the agreed time and ends with the return of the keys to Furgocasa staff."
+  "El período de alquiler comienza con la entrega del vehículo a la hora acordada y finaliza con la devolución de las llaves al personal de Eco Area Limonar.": {
+    es: "El período de alquiler comienza con la entrega del vehículo a la hora acordada y finaliza con la devolución de las llaves al personal de Eco Area Limonar.",
+    en: "The rental period begins with the delivery of the vehicle at the agreed time and ends with the return of the keys to Eco Area Limonar staff.",
+    fr: "The rental period begins with the delivery of the vehicle at the agreed time and ends with the return of the keys to Eco Area Limonar staff.",
+    de: "The rental period begins with the delivery of the vehicle at the agreed time and ends with the return of the keys to Eco Area Limonar staff.",
+    nl: "The rental period begins with the delivery of the vehicle at the agreed time and ends with the return of the keys to Eco Area Limonar staff."
   },
   "Política de cancelación": {
     es: "Política de cancelación",
@@ -2688,12 +2688,12 @@ export const staticTranslations = {
     de: "Stornierungsbedingungen",
     nl: "Cancellation policy"
   },
-  "En caso de cancelación, FURGOCASA aplicará los siguientes cargos sobre el precio total del alquiler:": {
-    es: "En caso de cancelación, FURGOCASA aplicará los siguientes cargos sobre el precio total del alquiler:",
-    en: "In case of cancellation, FURGOCASA will apply the following charges on the total rental price:",
-    fr: "In case of cancellation, FURGOCASA will apply the following charges on the total rental price:",
-    de: "In case of cancellation, FURGOCASA will apply the following charges on the total rental price:",
-    nl: "In case of cancellation, FURGOCASA will apply the following charges on the total rental price:"
+  "En caso de cancelación, Eco Area Limonar aplicará los siguientes cargos sobre el precio total del alquiler:": {
+    es: "En caso de cancelación, Eco Area Limonar aplicará los siguientes cargos sobre el precio total del alquiler:",
+    en: "In case of cancellation, Eco Area Limonar will apply the following charges on the total rental price:",
+    fr: "In case of cancellation, Eco Area Limonar will apply the following charges on the total rental price:",
+    de: "In case of cancellation, Eco Area Limonar will apply the following charges on the total rental price:",
+    nl: "In case of cancellation, Eco Area Limonar will apply the following charges on the total rental price:"
   },
   "Servicio de Cancelación": {
     es: "Servicio de Cancelación",
@@ -2730,19 +2730,19 @@ export const staticTranslations = {
     de: "Rückerstattung per Überweisung",
     nl: "Refund by bank transfer"
   },
-  "En el caso de que las devoluciones, que siempre se realizarán por transferencia, conlleven alguna comisión de gestión de la transferencia, este coste será siempre asumido por el cliente, de manera que Furgocasa devolverá el importe abonado descontando dicha comisión.": {
-    es: "En el caso de que las devoluciones, que siempre se realizarán por transferencia, conlleven alguna comisión de gestión de la transferencia, este coste será siempre asumido por el cliente, de manera que Furgocasa devolverá el importe abonado descontando dicha comisión.",
-    en: "In the event that refunds, which will always be made by bank transfer, incur any transfer management fees, this cost will always be borne by the customer, so that Furgocasa will refund the amount paid minus said fee.",
-    fr: "Dans le cas où les remboursements, qui seront toujours effectués par virement bancaire, entraînent des frais de gestion de virement, ce coût sera toujours supporté par le client, de sorte que Furgocasa remboursera le montant payé en déduisant ces frais.",
-    de: "Falls bei Rückerstattungen, die immer per Banküberweisung erfolgen, Überweisungsgebühren anfallen, werden diese Kosten stets vom Kunden getragen, sodass Furgocasa den gezahlten Betrag abzüglich dieser Gebühr erstattet.",
-    nl: "In the event that refunds, which will always be made by bank transfer, incur any transfer management fees, this cost will always be borne by the customer, so that Furgocasa will refund the amount paid minus said fee."
+  "En el caso de que las devoluciones, que siempre se realizarán por transferencia, conlleven alguna comisión de gestión de la transferencia, este coste será siempre asumido por el cliente, de manera que Eco Area Limonar devolverá el importe abonado descontando dicha comisión.": {
+    es: "En el caso de que las devoluciones, que siempre se realizarán por transferencia, conlleven alguna comisión de gestión de la transferencia, este coste será siempre asumido por el cliente, de manera que Eco Area Limonar devolverá el importe abonado descontando dicha comisión.",
+    en: "In the event that refunds, which will always be made by bank transfer, incur any transfer management fees, this cost will always be borne by the customer, so that Eco Area Limonar will refund the amount paid minus said fee.",
+    fr: "Dans le cas où les remboursements, qui seront toujours effectués par virement bancaire, entraînent des frais de gestion de virement, ce coût sera toujours supporté par le client, de sorte que Eco Area Limonar remboursera le montant payé en déduisant ces frais.",
+    de: "Falls bei Rückerstattungen, die immer per Banküberweisung erfolgen, Überweisungsgebühren anfallen, werden diese Kosten stets vom Kunden getragen, sodass Eco Area Limonar den gezahlten Betrag abzüglich dieser Gebühr erstattet.",
+    nl: "In the event that refunds, which will always be made by bank transfer, incur any transfer management fees, this cost will always be borne by the customer, so that Eco Area Limonar will refund the amount paid minus said fee."
   },
-  "El plazo de desistimiento expira a los 14 días naturales del envío de la factura y contrato por parte de FURGOCASA.": {
-    es: "El plazo de desistimiento expira a los 14 días naturales del envío de la factura y contrato por parte de FURGOCASA.",
-    en: "The withdrawal period expires 14 calendar days after the invoice and contract are sent by FURGOCASA.",
-    fr: "Le delai de retractation expire 14 jours calendaires apres l'envoi de la facture et du contrat par FURGOCASA.",
-    de: "Die Widerrufsfrist lauft 14 Kalendertage nach Versand der Rechnung und des Vertrags durch FURGOCASA ab.",
-    nl: "The withdrawal period expires 14 calendar days after the invoice and contract are sent by FURGOCASA."
+  "El plazo de desistimiento expira a los 14 días naturales del envío de la factura y contrato por parte de Eco Area Limonar.": {
+    es: "El plazo de desistimiento expira a los 14 días naturales del envío de la factura y contrato por parte de Eco Area Limonar.",
+    en: "The withdrawal period expires 14 calendar days after the invoice and contract are sent by Eco Area Limonar.",
+    fr: "Le delai de retractation expire 14 jours calendaires apres l'envoi de la facture et du contrat par Eco Area Limonar.",
+    de: "Die Widerrufsfrist lauft 14 Kalendertage nach Versand der Rechnung und des Vertrags durch Eco Area Limonar ab.",
+    nl: "The withdrawal period expires 14 calendar days after the invoice and contract are sent by Eco Area Limonar."
   },
   "Si entre la reserva y el inicio del alquiler distan menos de 14 días, el derecho para desistir vence, como tarde, 7 días antes del inicio del viaje.": {
     es: "Si entre la reserva y el inicio del alquiler distan menos de 14 días, el derecho para desistir vence, como tarde, 7 días antes del inicio del viaje.",
@@ -2954,12 +2954,12 @@ export const staticTranslations = {
     de: "Return conditions",
     nl: "Return conditions"
   },
-  "Las devoluciones deberán realizarse siempre en la hora acordada dentro del horario fijado por FURGOCASA. No se pueden realizar devoluciones fuera del horario establecido.": {
-    es: "Las devoluciones deberán realizarse siempre en la hora acordada dentro del horario fijado por FURGOCASA. No se pueden realizar devoluciones fuera del horario establecido.",
-    en: "Returns must always be made at the agreed time within the schedule set by FURGOCASA. Returns cannot be made outside the established schedule.",
-    fr: "Returns must always be made at the agreed time within the schedule set by FURGOCASA. Returns cannot be made outside the established schedule.",
-    de: "Returns must always be made at the agreed time within the schedule set by FURGOCASA. Returns cannot be made outside the established schedule.",
-    nl: "Returns must always be made at the agreed time within the schedule set by FURGOCASA. Returns cannot be made outside the established schedule."
+  "Las devoluciones deberán realizarse siempre en la hora acordada dentro del horario fijado por Eco Area Limonar. No se pueden realizar devoluciones fuera del horario establecido.": {
+    es: "Las devoluciones deberán realizarse siempre en la hora acordada dentro del horario fijado por Eco Area Limonar. No se pueden realizar devoluciones fuera del horario establecido.",
+    en: "Returns must always be made at the agreed time within the schedule set by Eco Area Limonar. Returns cannot be made outside the established schedule.",
+    fr: "Returns must always be made at the agreed time within the schedule set by Eco Area Limonar. Returns cannot be made outside the established schedule.",
+    de: "Returns must always be made at the agreed time within the schedule set by Eco Area Limonar. Returns cannot be made outside the established schedule.",
+    nl: "Returns must always be made at the agreed time within the schedule set by Eco Area Limonar. Returns cannot be made outside the established schedule."
   },
   "El vehículo debe estar:": {
     es: "El vehículo debe estar:",
@@ -3087,12 +3087,12 @@ export const staticTranslations = {
     de: "Important recommendation",
     nl: "Important recommendation"
   },
-  "Si prevés llegar con retraso, contacta con Furgocasa cuanto antes. Puedes ampliar tu alquiler pagando la tarifa diaria normal, lo que supone un coste inferior a la penalización. Ten en cuenta que puede no ser posible si hay otro alquiler posterior confirmado.": {
-    es: "Si prevés llegar con retraso, contacta con Furgocasa cuanto antes. Puedes ampliar tu alquiler pagando la tarifa diaria normal, lo que supone un coste inferior a la penalización. Ten en cuenta que puede no ser posible si hay otro alquiler posterior confirmado.",
-    en: "If you expect to arrive late, contact Furgocasa as soon as possible. You can extend your rental by paying the normal daily rate, which is a lower cost than the penalty. Note that it may not be possible if there is another subsequent rental confirmed.",
-    fr: "If you expect to arrive late, contact Furgocasa as soon as possible. You can extend your rental by paying the normal daily rate, which is a lower cost than the penalty. Note that it may not be possible if there is another subsequent rental confirmed.",
-    de: "If you expect to arrive late, contact Furgocasa as soon as possible. You can extend your rental by paying the normal daily rate, which is a lower cost than the penalty. Note that it may not be possible if there is another subsequent rental confirmed.",
-    nl: "If you expect to arrive late, contact Furgocasa as soon as possible. You can extend your rental by paying the normal daily rate, which is a lower cost than the penalty. Note that it may not be possible if there is another subsequent rental confirmed."
+  "Si prevés llegar con retraso, contacta con Eco Area Limonar cuanto antes. Puedes ampliar tu alquiler pagando la tarifa diaria normal, lo que supone un coste inferior a la penalización. Ten en cuenta que puede no ser posible si hay otro alquiler posterior confirmado.": {
+    es: "Si prevés llegar con retraso, contacta con Eco Area Limonar cuanto antes. Puedes ampliar tu alquiler pagando la tarifa diaria normal, lo que supone un coste inferior a la penalización. Ten en cuenta que puede no ser posible si hay otro alquiler posterior confirmado.",
+    en: "If you expect to arrive late, contact Eco Area Limonar as soon as possible. You can extend your rental by paying the normal daily rate, which is a lower cost than the penalty. Note that it may not be possible if there is another subsequent rental confirmed.",
+    fr: "If you expect to arrive late, contact Eco Area Limonar as soon as possible. You can extend your rental by paying the normal daily rate, which is a lower cost than the penalty. Note that it may not be possible if there is another subsequent rental confirmed.",
+    de: "If you expect to arrive late, contact Eco Area Limonar as soon as possible. You can extend your rental by paying the normal daily rate, which is a lower cost than the penalty. Note that it may not be possible if there is another subsequent rental confirmed.",
+    nl: "If you expect to arrive late, contact Eco Area Limonar as soon as possible. You can extend your rental by paying the normal daily rate, which is a lower cost than the penalty. Note that it may not be possible if there is another subsequent rental confirmed."
   },
   "¿Listo para tu aventura?": {
     es: "¿Listo para tu aventura?",
@@ -3201,12 +3201,12 @@ export const staticTranslations = {
     de: "YOUR WINTER ADVENTURE!",
     nl: "YOUR WINTER ADVENTURE!"
   },
-  "¡Descubre el invierno con FURGOCASA!": {
-    es: "¡Descubre el invierno con FURGOCASA!",
-    en: "Discover winter with FURGOCASA!",
-    fr: "Discover winter with FURGOCASA!",
-    de: "Discover winter with FURGOCASA!",
-    nl: "Discover winter with FURGOCASA!"
+  "¡Descubre el invierno con Eco Area Limonar!": {
+    es: "¡Descubre el invierno con Eco Area Limonar!",
+    en: "Discover winter with Eco Area Limonar!",
+    fr: "Discover winter with Eco Area Limonar!",
+    de: "Discover winter with Eco Area Limonar!",
+    nl: "Discover winter with Eco Area Limonar!"
   },
   "Viaja con libertad en nuestras camper vans totalmente equipadas. Del norte nevado al sur más cálido, ¡tú decides el camino!": {
     es: "Viaja con libertad en nuestras camper vans totalmente equipadas. Del norte nevado al sur más cálido, ¡tú decides el camino!",
@@ -3299,12 +3299,12 @@ export const staticTranslations = {
     de: "Conditions: Minimum booking of 5 days to get 20% discount. Promotion valid from January 5th until March 20th, 2026.",
     nl: "Conditions: Minimum booking of 5 days to get 20% discount. Promotion valid from January 5th until March 20th, 2026."
   },
-  "¿POR QUÉ ELEGIR FURGOCASA?": {
-    es: "¿POR QUÉ ELEGIR FURGOCASA?",
-    en: "WHY CHOOSE FURGOCASA?",
-    fr: "WHY CHOOSE FURGOCASA?",
-    de: "WHY CHOOSE FURGOCASA?",
-    nl: "WHY CHOOSE FURGOCASA?"
+  "¿POR QUÉ ELEGIR Eco Area Limonar?": {
+    es: "¿POR QUÉ ELEGIR Eco Area Limonar?",
+    en: "WHY CHOOSE Eco Area Limonar?",
+    fr: "WHY CHOOSE Eco Area Limonar?",
+    de: "WHY CHOOSE Eco Area Limonar?",
+    nl: "WHY CHOOSE Eco Area Limonar?"
   },
   "Flota Moderna": {
     es: "Flota Moderna",
@@ -3673,11 +3673,11 @@ export const staticTranslations = {
     nl: "Total paid"
   },
   "Tu vehículo": {
-    es: "Tu vehículo",
-    en: "Your vehicle",
-    fr: "Your vehicle",
-    de: "Your vehicle",
-    nl: "Your vehicle"
+    es: "Tu parcela",
+    en: "Your parcel",
+    fr: "Your parcel",
+    de: "Your parcel",
+    nl: "Your parcel"
   },
   "Datos del conductor principal": {
     es: "Datos del conductor principal",
@@ -4248,12 +4248,12 @@ export const staticTranslations = {
     de: "Camper Offers",
     nl: "Camper Offers"
   },
-  "Accede a nuestra sección de ofertas para estar al tanto de las últimas promociones y poder alquilar una Furgocasa al mejor precio.": {
-    es: "Accede a nuestra sección de ofertas para estar al tanto de las últimas promociones y poder alquilar una Furgocasa al mejor precio.",
-    en: "Access our offers section to stay informed about the latest promotions and be able to rent a Furgocasa at the best price.",
-    fr: "Access our offers section to stay informed about the latest promotions and be able to rent a Furgocasa at the best price.",
-    de: "Access our offers section to stay informed about the latest promotions and be able to rent a Furgocasa at the best price.",
-    nl: "Access our offers section to stay informed about the latest promotions and be able to rent a Furgocasa at the best price."
+  "Accede a nuestra sección de ofertas para estar al tanto de las últimas promociones y poder alquilar una Eco Area Limonar al mejor precio.": {
+    es: "Accede a nuestra sección de ofertas para estar al tanto de las últimas promociones y poder alquilar una Eco Area Limonar al mejor precio.",
+    en: "Access our offers section to stay informed about the latest promotions and be able to rent a Eco Area Limonar at the best price.",
+    fr: "Access our offers section to stay informed about the latest promotions and be able to rent a Eco Area Limonar at the best price.",
+    de: "Access our offers section to stay informed about the latest promotions and be able to rent a Eco Area Limonar at the best price.",
+    nl: "Access our offers section to stay informed about the latest promotions and be able to rent a Eco Area Limonar at the best price."
   },
   "Ver Ofertas": {
     es: "Ver Ofertas",
@@ -4315,23 +4315,23 @@ export const staticTranslations = {
     de: "AI at the service of your Camper trip",
     nl: "AI at the service of your Camper trip"
   },
-  "En Furgocasa, la tecnología siempre ha sido nuestra aliada, pero ahora damos un paso más allá: ponemos la Inteligencia Artificial al alcance de nuestros clientes. Después de meses de trabajo y mucha ilusión, hemos desarrollado dos herramientas revolucionarias que transformarán tu experiencia de viaje en camper.": {
-    es: "En Furgocasa, la tecnología siempre ha sido nuestra aliada, pero ahora damos un paso más allá: ponemos la Inteligencia Artificial al alcance de nuestros clientes. Después de meses de trabajo y mucha ilusión, hemos desarrollado dos herramientas revolucionarias que transformarán tu experiencia de viaje en camper.",
-    en: "At Furgocasa, technology has always been our ally, but now we go one step further: we put Artificial Intelligence within reach of our customers. After months of work and great enthusiasm, we have developed two revolutionary tools that will transform your camper travel experience.",
-    fr: "At Furgocasa, technology has always been our ally, but now we go one step further: we put Artificial Intelligence within reach of our customers. After months of work and great enthusiasm, we have developed two revolutionary tools that will transform your camper travel experience.",
-    de: "At Furgocasa, technology has always been our ally, but now we go one step further: we put Artificial Intelligence within reach of our customers. After months of work and great enthusiasm, we have developed two revolutionary tools that will transform your camper travel experience.",
-    nl: "At Furgocasa, technology has always been our ally, but now we go one step further: we put Artificial Intelligence within reach of our customers. After months of work and great enthusiasm, we have developed two revolutionary tools that will transform your camper travel experience."
+  "En Eco Area Limonar, la tecnología siempre ha sido nuestra aliada, pero ahora damos un paso más allá: ponemos la Inteligencia Artificial al alcance de nuestros clientes. Después de meses de trabajo y mucha ilusión, hemos desarrollado dos herramientas revolucionarias que transformarán tu experiencia de viaje en camper.": {
+    es: "En Eco Area Limonar, la tecnología siempre ha sido nuestra aliada, pero ahora damos un paso más allá: ponemos la Inteligencia Artificial al alcance de nuestros clientes. Después de meses de trabajo y mucha ilusión, hemos desarrollado dos herramientas revolucionarias que transformarán tu experiencia de viaje en camper.",
+    en: "At Eco Area Limonar, technology has always been our ally, but now we go one step further: we put Artificial Intelligence within reach of our customers. After months of work and great enthusiasm, we have developed two revolutionary tools that will transform your camper travel experience.",
+    fr: "At Eco Area Limonar, technology has always been our ally, but now we go one step further: we put Artificial Intelligence within reach of our customers. After months of work and great enthusiasm, we have developed two revolutionary tools that will transform your camper travel experience.",
+    de: "At Eco Area Limonar, technology has always been our ally, but now we go one step further: we put Artificial Intelligence within reach of our customers. After months of work and great enthusiasm, we have developed two revolutionary tools that will transform your camper travel experience.",
+    nl: "At Eco Area Limonar, technology has always been our ally, but now we go one step further: we put Artificial Intelligence within reach of our customers. After months of work and great enthusiasm, we have developed two revolutionary tools that will transform your camper travel experience."
   },
   "Por un lado, un GPT integrado en ChatGPT que será tu guía personalizada. ¿Quieres planificar la ruta perfecta desde tu punto de partida hasta ese destino soñado? Este agente te lo hace fácil: solo dile desde dónde sales, a dónde vas y qué tipo de aventura buscas. Te diseñará un itinerario a medida, te dará consejos sobre dónde pernoctar y hasta te redactará un cuaderno de bitácora al final del viaje. Puedes usarlo desde la app de ChatGPT (necesitarás una cuenta) y charlar con él como si fuera tu compañero de ruta. Al final del viaje podrás pedirle que te escriba un memorándum, \"cuaderno de bitácora\", y tener así un texto que narre de forma detallada tu viaje.": { 
     es: "Por un lado, un GPT integrado en ChatGPT que será tu guía personalizada. ¿Quieres planificar la ruta perfecta desde tu punto de partida hasta ese destino soñado? Este agente te lo hace fácil: solo dile desde dónde sales, a dónde vas y qué tipo de aventura buscas. Te diseñará un itinerario a medida, te dará consejos sobre dónde pernoctar y hasta te redactará un cuaderno de bitácora al final del viaje. Puedes usarlo desde la app de ChatGPT (necesitarás una cuenta) y charlar con él como si fuera tu compañero de ruta. Al final del viaje podrás pedirle que te escriba un memorándum, \"cuaderno de bitácora\", y tener así un texto que narre de forma detallada tu viaje.", 
     en: "On one hand, a GPT integrated into ChatGPT that will be your personalized guide. Want to plan the perfect route from your starting point to that dream destination? This agent makes it easy: just tell it where you're leaving from, where you're going, and what kind of adventure you're looking for. It will design a custom itinerary, give you advice on where to stay overnight, and even write a logbook for you at the end of the trip. You can use it from the ChatGPT app (you'll need an account) and chat with it as if it were your travel companion. At the end of the trip, you can ask it to write you a memorandum, \"logbook\", and thus have a text that narrates your journey in detail." 
   },
-  "Por otro lado, nuestro Chat Bot de WhatsApp está listo para echarte una mano en cualquier momento. ¿No recuerdas cómo funciona la calefacción o tienes una incidencia en plena carretera? Envíale un mensaje o un audio, y te dará la solución al instante, con instrucciones claras y precisas diseñadas por el equipo de Furgocasa. Un asistente siempre disponible para que nada frene tu aventura.": {
-    es: "Por otro lado, nuestro Chat Bot de WhatsApp está listo para echarte una mano en cualquier momento. ¿No recuerdas cómo funciona la calefacción o tienes una incidencia en plena carretera? Envíale un mensaje o un audio, y te dará la solución al instante, con instrucciones claras y precisas diseñadas por el equipo de Furgocasa. Un asistente siempre disponible para que nada frene tu aventura.",
-    en: "On the other hand, our WhatsApp Chat Bot is ready to lend you a hand at any time. Don't remember how the heating works or have an issue on the road? Send it a message or a voice note, and it will give you the solution instantly, with clear and precise instructions designed by the Furgocasa team. An assistant always available so nothing stops your adventure.",
-    fr: "On the other hand, our WhatsApp Chat Bot is ready to lend you a hand at any time. Don't remember how the heating works or have an issue on the road? Send it a message or a voice note, and it will give you the solution instantly, with clear and precise instructions designed by the Furgocasa team. An assistant always available so nothing stops your adventure.",
-    de: "On the other hand, our WhatsApp Chat Bot is ready to lend you a hand at any time. Don't remember how the heating works or have an issue on the road? Send it a message or a voice note, and it will give you the solution instantly, with clear and precise instructions designed by the Furgocasa team. An assistant always available so nothing stops your adventure.",
-    nl: "On the other hand, our WhatsApp Chat Bot is ready to lend you a hand at any time. Don't remember how the heating works or have an issue on the road? Send it a message or a voice note, and it will give you the solution instantly, with clear and precise instructions designed by the Furgocasa team. An assistant always available so nothing stops your adventure."
+  "Por otro lado, nuestro Chat Bot de WhatsApp está listo para echarte una mano en cualquier momento. ¿No recuerdas cómo funciona la calefacción o tienes una incidencia en plena carretera? Envíale un mensaje o un audio, y te dará la solución al instante, con instrucciones claras y precisas diseñadas por el equipo de Eco Area Limonar. Un asistente siempre disponible para que nada frene tu aventura.": {
+    es: "Por otro lado, nuestro Chat Bot de WhatsApp está listo para echarte una mano en cualquier momento. ¿No recuerdas cómo funciona la calefacción o tienes una incidencia en plena carretera? Envíale un mensaje o un audio, y te dará la solución al instante, con instrucciones claras y precisas diseñadas por el equipo de Eco Area Limonar. Un asistente siempre disponible para que nada frene tu aventura.",
+    en: "On the other hand, our WhatsApp Chat Bot is ready to lend you a hand at any time. Don't remember how the heating works or have an issue on the road? Send it a message or a voice note, and it will give you the solution instantly, with clear and precise instructions designed by the Eco Area Limonar team. An assistant always available so nothing stops your adventure.",
+    fr: "On the other hand, our WhatsApp Chat Bot is ready to lend you a hand at any time. Don't remember how the heating works or have an issue on the road? Send it a message or a voice note, and it will give you the solution instantly, with clear and precise instructions designed by the Eco Area Limonar team. An assistant always available so nothing stops your adventure.",
+    de: "On the other hand, our WhatsApp Chat Bot is ready to lend you a hand at any time. Don't remember how the heating works or have an issue on the road? Send it a message or a voice note, and it will give you the solution instantly, with clear and precise instructions designed by the Eco Area Limonar team. An assistant always available so nothing stops your adventure.",
+    nl: "On the other hand, our WhatsApp Chat Bot is ready to lend you a hand at any time. Don't remember how the heating works or have an issue on the road? Send it a message or a voice note, and it will give you the solution instantly, with clear and precise instructions designed by the Eco Area Limonar team. An assistant always available so nothing stops your adventure."
   },
   "Estas herramientas son el resultado de nuestro compromiso con la innovación y con vosotros, nuestros clientes. La IA ya no es solo para nosotros en la gestión interna; ahora es tuya para que disfrutes al máximo de cada kilómetro. ¿Te animas a probarlas? Tus comentarios nos ayudarán a pulir los últimos detalles antes del gran lanzamiento. ¡Adelante, tu aventura empieza aquí!": {
     es: "Estas herramientas son el resultado de nuestro compromiso con la innovación y con vosotros, nuestros clientes. La IA ya no es solo para nosotros en la gestión interna; ahora es tuya para que disfrutes al máximo de cada kilómetro. ¿Te animas a probarlas? Tus comentarios nos ayudarán a pulir los últimos detalles antes del gran lanzamiento. ¡Adelante, tu aventura empieza aquí!",
@@ -4452,12 +4452,12 @@ export const staticTranslations = {
     de: "Send text messages or voice notes",
     nl: "Send text messages or voice notes"
   },
-  "Instrucciones claras y precisas del equipo Furgocasa": {
-    es: "Instrucciones claras y precisas del equipo Furgocasa",
-    en: "Clear and precise instructions from the Furgocasa team",
-    fr: "Clear and precise instructions from the Furgocasa team",
-    de: "Clear and precise instructions from the Furgocasa team",
-    nl: "Clear and precise instructions from the Furgocasa team"
+  "Instrucciones claras y precisas del equipo Eco Area Limonar": {
+    es: "Instrucciones claras y precisas del equipo Eco Area Limonar",
+    en: "Clear and precise instructions from the Eco Area Limonar team",
+    fr: "Clear and precise instructions from the Eco Area Limonar team",
+    de: "Clear and precise instructions from the Eco Area Limonar team",
+    nl: "Clear and precise instructions from the Eco Area Limonar team"
   },
   "Disponible:": {
     es: "Disponible:",
@@ -4706,12 +4706,12 @@ export const staticTranslations = {
     de: "Are you a motorhome or camper owner?",
     nl: "Are you a motorhome or camper owner?"
   },
-  "¿Por qué elegir el parking de FURGOCASA?": {
-    es: "¿Por qué elegir el parking de FURGOCASA?",
-    en: "Why choose FURGOCASA parking?",
-    fr: "Why choose FURGOCASA parking?",
-    de: "Why choose FURGOCASA parking?",
-    nl: "Why choose FURGOCASA parking?"
+  "¿Por qué elegir el parking de Eco Area Limonar?": {
+    es: "¿Por qué elegir el parking de Eco Area Limonar?",
+    en: "Why choose Eco Area Limonar parking?",
+    fr: "Why choose Eco Area Limonar parking?",
+    de: "Why choose Eco Area Limonar parking?",
+    nl: "Why choose Eco Area Limonar parking?"
   },
   "Ubicación estratégica": {
     es: "Ubicación estratégica",
@@ -5019,11 +5019,11 @@ export const staticTranslations = {
     nl: "Choose location"
   },
   "Selecciona dónde recoger tu vehículo": {
-    es: "Selecciona dónde recoger tu vehículo",
-    en: "Select where to pick up your vehicle",
-    fr: "Select where to pick up your vehicle",
-    de: "Select where to pick up your vehicle",
-    nl: "Select where to pick up your vehicle"
+    es: "Selecciona dónde recoger",
+    en: "Select pickup location",
+    fr: "Select pickup location",
+    de: "Abholort wählen",
+    nl: "Select pickup location"
   },
   "Selecciona fechas": {
     es: "Selecciona fechas",
@@ -5040,11 +5040,11 @@ export const staticTranslations = {
     nl: "Indicate your trip dates"
   },
   "Elige vehículo": {
-    es: "Elige vehículo",
-    en: "Choose vehicle",
-    fr: "Choose vehicle",
-    de: "Choose vehicle",
-    nl: "Choose vehicle"
+    es: "Elige parcela",
+    en: "Choose parcel",
+    fr: "Choose parcel",
+    de: "Choose parcel",
+    nl: "Choose parcel"
   },
   "Escoge el modelo que mejor te encaje": {
     es: "Escoge el modelo que mejor te encaje",
@@ -5350,11 +5350,11 @@ export const staticTranslations = {
     nl: "We will send you an email as soon as we receive your payment (usually 24-48h)"
   },
   "Recoge tu vehículo": {
-    es: "Recoge tu vehículo",
-    en: "Pick up your vehicle",
-    fr: "Pick up your vehicle",
-    de: "Pick up your vehicle",
-    nl: "Pick up your vehicle"
+    es: "Recogida",
+    en: "Pickup",
+    fr: "Récupération",
+    de: "Abholung",
+    nl: "Pickup"
   },
   "En la fecha indicada, acude a recoger tu camper con la documentación necesaria": {
     es: "En la fecha indicada, acude a recoger tu camper con la documentación necesaria",
@@ -5428,12 +5428,12 @@ export const staticTranslations = {
     de: "Secure international payment",
     nl: "Secure international payment"
   },
-  "Política de pago Furgocasa": {
-    es: "Política de pago Furgocasa",
-    en: "Furgocasa payment policy",
-    fr: "Furgocasa payment policy",
-    de: "Furgocasa payment policy",
-    nl: "Furgocasa payment policy"
+  "Política de pago Eco Area Limonar": {
+    es: "Política de pago Eco Area Limonar",
+    en: "Eco Area Limonar payment policy",
+    fr: "Eco Area Limonar payment policy",
+    de: "Eco Area Limonar payment policy",
+    nl: "Eco Area Limonar payment policy"
   },
   "al realizar la reserva": {
     es: "al realizar la reserva",
@@ -5642,11 +5642,11 @@ export const staticTranslations = {
     nl: "Select your dates"
   },
   "Vehículos disponibles en": {
-    es: "Vehículos disponibles en",
-    en: "Vehicles available in",
-    fr: "Vehicles available in",
-    de: "Vehicles available in",
-    nl: "Vehicles available in"
+    es: "Parcelas disponibles en",
+    en: "Parcels available in",
+    fr: "Emplacements disponibles dans",
+    de: "Stellplätze verfügbar in",
+    nl: "Percelen beschikbaar in"
   },
   "Selecciona las fechas arriba para ver disponibilidad y precios": {
     es: "Selecciona las fechas arriba para ver disponibilidad y precios",
@@ -5658,11 +5658,11 @@ export const staticTranslations = {
 
   // ===== PÁGINA BUSCAR =====
   "Buscando vehículos disponibles...": {
-    es: "Buscando vehículos disponibles...",
-    en: "Searching available vehicles...",
-    fr: "Searching available vehicles...",
-    de: "Searching available vehicles...",
-    nl: "Searching available vehicles..."
+    es: "Buscando parcelas disponibles...",
+    en: "Searching available parcels...",
+    fr: "Searching available parcels...",
+    de: "Searching available parcels...",
+    nl: "Searching available parcels..."
   },
   "Error al buscar disponibilidad": {
     es: "Error al buscar disponibilidad",
@@ -5721,39 +5721,39 @@ export const staticTranslations = {
     nl: "Capacity"
   },
   "No hay vehículos disponibles": {
-    es: "No hay vehículos disponibles",
-    en: "No vehicles available",
-    fr: "No vehicles available",
-    de: "No vehicles available",
-    nl: "No vehicles available"
+    es: "No hay parcelas disponibles",
+    en: "No parcels available",
+    fr: "No parcels available",
+    de: "No parcels available",
+    nl: "No parcels available"
   },
   "Cargando vehículos...": {
-    es: "Cargando vehículos...",
-    en: "Loading vehicles...",
-    fr: "Loading vehicles...",
-    de: "Loading vehicles...",
-    nl: "Loading vehicles..."
+    es: "Cargando parcelas...",
+    en: "Loading parcels...",
+    fr: "Chargement des parcelles...",
+    de: "Stellplätze werden geladen...",
+    nl: "Loading parcels..."
   },
   "Cargando vehículos en venta...": {
-    es: "Cargando vehículos en venta...",
-    en: "Loading vehicles for sale...",
-    fr: "Loading vehicles for sale...",
-    de: "Loading vehicles for sale...",
-    nl: "Loading vehicles for sale..."
+    es: "Cargando parcelas en venta...",
+    en: "Loading parcels for sale...",
+    fr: "Chargement des parcelles à vendre...",
+    de: "Stellplätze zum Verkauf werden geladen...",
+    nl: "Loading parcels for sale..."
   },
   "No hay vehículos en venta": {
-    es: "No hay vehículos en venta",
-    en: "No vehicles for sale",
-    fr: "No vehicles for sale",
-    de: "No vehicles for sale",
-    nl: "No vehicles for sale"
+    es: "No hay parcelas en venta",
+    en: "No parcels for sale",
+    fr: "No parcels for sale",
+    de: "No parcels for sale",
+    nl: "No parcels for sale"
   },
   "En este momento no tenemos vehículos disponibles para la venta": {
-    es: "En este momento no tenemos vehículos disponibles para la venta",
-    en: "We currently have no vehicles available for sale",
-    fr: "We currently have no vehicles available for sale",
-    de: "We currently have no vehicles available for sale",
-    nl: "We currently have no vehicles available for sale"
+    es: "En este momento no tenemos parcelas disponibles para la venta",
+    en: "We currently have no parcels available for sale",
+    fr: "We currently have no parcels available for sale",
+    de: "We currently have no parcels available for sale",
+    nl: "We currently have no parcels available for sale"
   },
   "Contacta con nosotros si buscas algo específico": {
     es: "Contacta con nosotros si buscas algo específico",
@@ -5779,11 +5779,11 @@ export const staticTranslations = {
 
   // ===== DETALLE VEHÍCULO =====
   "Volver a vehículos": {
-    es: "Volver a vehículos",
-    en: "Back to vehicles",
-    fr: "Back to vehicles",
-    de: "Back to vehicles",
-    nl: "Back to vehicles"
+    es: "Volver a parcelas",
+    en: "Back to parcels",
+    fr: "Back to parcels",
+    de: "Back to parcels",
+    nl: "Back to parcels"
   },
   "Plazas": {
     es: "Plazas",
@@ -5977,11 +5977,11 @@ export const staticTranslations = {
 
   // ===== PÁGINA VENTAS =====
   "Vehículos en Venta": {
-    es: "Vehículos en Venta",
-    en: "Vehicles for Sale",
-    fr: "Vehicles for Sale",
-    de: "Vehicles for Sale",
-    nl: "Vehicles for Sale"
+    es: "Parcelas en venta",
+    en: "Parcels for Sale",
+    fr: "Emplacements à vendre",
+    de: "Stellplätze zu verkaufen",
+    nl: "Percelen te koop"
   },
   "Encuentra tu próxima camper": {
     es: "Encuentra tu próxima camper",
@@ -6476,12 +6476,12 @@ export const staticTranslations = {
   },
   
   // Clientes VIP
-  "Clientes VIP Furgocasa": {
-    es: "Clientes VIP Furgocasa",
-    en: "Furgocasa VIP Clients",
-    fr: "Furgocasa VIP Clients",
-    de: "Furgocasa VIP Clients",
-    nl: "Furgocasa VIP Clients"
+  "Clientes VIP Eco Area Limonar": {
+    es: "Clientes VIP Eco Area Limonar",
+    en: "Eco Area Limonar VIP Clients",
+    fr: "Eco Area Limonar VIP Clients",
+    de: "Eco Area Limonar VIP Clients",
+    nl: "Eco Area Limonar VIP Clients"
   },
   "Nuestros clientes más fieles merecen un trato especial. Descubre todas las ventajas de ser VIP.": {
     es: "Nuestros clientes más fieles merecen un trato especial. Descubre todas las ventajas de ser VIP.",
@@ -6799,13 +6799,13 @@ export const staticTranslations = {
     nl: "View all articles"
   },
 
-  // ===== HOME PAGE - POR QUÉ FURGOCASA =====
-  "¿Por qué elegir Furgocasa?": {
-    es: "¿Por qué elegir Furgocasa?",
-    en: "Why choose Furgocasa?",
-    fr: "Why choose Furgocasa?",
-    de: "Why choose Furgocasa?",
-    nl: "Why choose Furgocasa?"
+  // ===== HOME PAGE - POR QUÉ Eco Area Limonar =====
+  "¿Por qué elegir Eco Area Limonar?": {
+    es: "¿Por qué elegir Eco Area Limonar?",
+    en: "Why choose Eco Area Limonar?",
+    fr: "Why choose Eco Area Limonar?",
+    de: "Why choose Eco Area Limonar?",
+    nl: "Why choose Eco Area Limonar?"
   },
   "La mejor experiencia en alquiler de autocaravanas": {
     es: "La mejor experiencia en alquiler de autocaravanas",
@@ -6844,10 +6844,10 @@ export const staticTranslations = {
   },
   "Vehículos certificados": {
     es: "Vehículos certificados",
-    en: "Certified vehicles",
-    fr: "Certified vehicles",
-    de: "Certified vehicles",
-    nl: "Certified vehicles"
+    en: "Certified parcels",
+    fr: "Emplacements certifiés",
+    de: "Zertifizierte Stellplätze",
+    nl: "Gecertificeerde percelen"
   },
   "Mantenimiento y revisiones exhaustivas": {
     es: "Mantenimiento y revisiones exhaustivas",
@@ -7082,11 +7082,11 @@ export const staticTranslations = {
     nl: "It will be worth coming"
   },
   "Flota de vehículos de máxima calidad": {
-    es: "Flota de vehículos de máxima calidad",
-    en: "Top quality vehicle fleet",
-    fr: "Top quality vehicle fleet",
-    de: "Top quality vehicle fleet",
-    nl: "Top quality vehicle fleet"
+    es: "Parcelas de máxima calidad",
+    en: "Top quality parcels",
+    fr: "Parcelles de qualité supérieure",
+    de: "Stellplätze in Top-Qualität",
+    nl: "Top quality parcels"
   },
   "estamos especializados en el alquiler de vehículos campers van de gran volumen.": {
     es: "estamos especializados en el alquiler de vehículos campers van de gran volumen.",
@@ -7235,12 +7235,12 @@ export const staticTranslations = {
     de: "Discover hiking routes, natural parks and spectacular landscapes around",
     nl: "Discover hiking routes, natural parks and spectacular landscapes around"
   },
-  "Alquiler de autocaravanas con Furgocasa": {
-    es: "Alquiler de autocaravanas con Furgocasa",
-    en: "Motorhome rental with Furgocasa",
-    fr: "Motorhome rental with Furgocasa",
-    de: "Motorhome rental with Furgocasa",
-    nl: "Motorhome rental with Furgocasa"
+  "Alquiler de autocaravanas con Eco Area Limonar": {
+    es: "Alquiler de autocaravanas con Eco Area Limonar",
+    en: "Motorhome rental with Eco Area Limonar",
+    fr: "Motorhome rental with Eco Area Limonar",
+    de: "Motorhome rental with Eco Area Limonar",
+    nl: "Motorhome rental with Eco Area Limonar"
   },
   "Viajar en una": {
     es: "Viajar en una",
@@ -7256,12 +7256,12 @@ export const staticTranslations = {
     de: "rental campervan",
     nl: "rental campervan"
   },
-  "con Furgocasa te brinda la libertad total de explorar": {
-    es: "con Furgocasa te brinda la libertad total de explorar",
-    en: "with Furgocasa gives you total freedom to explore",
-    fr: "with Furgocasa gives you total freedom to explore",
-    de: "with Furgocasa gives you total freedom to explore",
-    nl: "with Furgocasa gives you total freedom to explore"
+  "con Eco Area Limonar te brinda la libertad total de explorar": {
+    es: "con Eco Area Limonar te brinda la libertad total de explorar",
+    en: "with Eco Area Limonar gives you total freedom to explore",
+    fr: "with Eco Area Limonar gives you total freedom to explore",
+    de: "with Eco Area Limonar gives you total freedom to explore",
+    nl: "with Eco Area Limonar gives you total freedom to explore"
   },
   "y sus alrededores a tu propio ritmo. Nuestra flota de": {
     es: "y sus alrededores a tu propio ritmo. Nuestra flota de",
@@ -7340,12 +7340,12 @@ export const staticTranslations = {
     de: "RVs",
     nl: "RVs"
   },
-  "En Furgocasa, nos especializamos en el alquiler de estos vehículos de gran volumen, perfectos para familias y parejas que buscan la máxima comodidad.": {
-    es: "En Furgocasa, nos especializamos en el alquiler de estos vehículos de gran volumen, perfectos para familias y parejas que buscan la máxima comodidad.",
-    en: "At Furgocasa, we specialize in renting these large-volume vehicles, perfect for families and couples looking for maximum comfort.",
-    fr: "At Furgocasa, we specialize in renting these large-volume vehicles, perfect for families and couples looking for maximum comfort.",
-    de: "At Furgocasa, we specialize in renting these large-volume vehicles, perfect for families and couples looking for maximum comfort.",
-    nl: "At Furgocasa, we specialize in renting these large-volume vehicles, perfect for families and couples looking for maximum comfort."
+  "En Eco Area Limonar, nos especializamos en el alquiler de estos vehículos de gran volumen, perfectos para familias y parejas que buscan la máxima comodidad.": {
+    es: "En Eco Area Limonar, nos especializamos en el alquiler de estos vehículos de gran volumen, perfectos para familias y parejas que buscan la máxima comodidad.",
+    en: "At Eco Area Limonar, we specialize in renting these large-volume parcels, perfect for families and couples looking for maximum comfort.",
+    fr: "Chez Eco Area Limonar, nous proposons ces emplacements grand volume, parfaits pour les familles et les couples en quête de confort maximal.",
+    de: "Bei Eco Area Limonar vermieten wir diese Großraum-Stellplätze, ideal für Familien und Paare mit höchstem Komfort.",
+    nl: "Bij Eco Area Limonar specialiseren we ons in het verhuren van deze grote percelen, perfect voor gezinnen en koppels die maximaal comfort zoeken."
   },
   "Descuento Especial LATAM": {
     es: "Descuento Especial LATAM",
@@ -7391,10 +7391,10 @@ export const staticTranslations = {
   },
   "Vehículos espaciosos de hasta 6 metros": {
     es: "Vehículos espaciosos de hasta 6 metros",
-    en: "Spacious vehicles up to 6 meters",
-    fr: "Spacious vehicles up to 6 meters",
-    de: "Spacious vehicles up to 6 meters",
-    nl: "Spacious vehicles up to 6 meters"
+    en: "Spacious parcels up to 6 meters",
+    fr: "Emplacements spacieux jusqu'à 6 mètres",
+    de: "Geräumige Stellplätze bis 6 Meter",
+    nl: "Ruime percelen tot 6 meter"
   },
   "Totalmente equipadas:": {
     es: "Totalmente equipadas:",
@@ -7573,10 +7573,10 @@ export const staticTranslations = {
   },
   "No, con el carnet de conducir B (coche) es suficiente para todos nuestros vehículos.": {
     es: "No, con el carnet de conducir B (coche) es suficiente para todos nuestros vehículos.",
-    en: "No, a B (car) driver's license is sufficient for all our vehicles.",
-    fr: "No, a B (car) driver's license is sufficient for all our vehicles.",
-    de: "No, a B (car) driver's license is sufficient for all our vehicles.",
-    nl: "No, a B (car) driver's license is sufficient for all our vehicles."
+    en: "No, a B (car) driver's license is sufficient for all our parcels.",
+    fr: "Non, le permis B (voiture) suffit pour tous nos emplacements.",
+    de: "Nein, der Führerschein Klasse B (Pkw) reicht für alle unsere Stellplätze.",
+    nl: "Nee, een B (auto) rijbewijs is voldoende voor al onze percelen."
   },
   "¿Qué edades se permiten para conductores?": {
     es: "¿Qué edades se permiten para conductores?",
@@ -7652,17 +7652,17 @@ export const staticTranslations = {
   },
   "Vehículos premium, garantía y financiación. Entrega cerca de": {
     es: "Vehículos premium, garantía y financiación. Entrega cerca de",
-    en: "Premium vehicles, warranty and financing. Delivery near",
-    fr: "Premium vehicles, warranty and financing. Delivery near",
-    de: "Premium vehicles, warranty and financing. Delivery near",
-    nl: "Premium vehicles, warranty and financing. Delivery near"
+    en: "Premium parcels, warranty and financing. Delivery near",
+    fr: "Emplacements premium, garantie et financement. Livraison à proximité",
+    de: "Premium-Stellplätze, Garantie und Finanzierung. Lieferung in der Nähe",
+    nl: "Premium percelen, garantie en financiering. Levering in de buurt"
   },
   "No hay vehículos disponibles actualmente": {
-    es: "No hay vehículos disponibles actualmente",
-    en: "No vehicles currently available",
-    fr: "No vehicles currently available",
-    de: "No vehicles currently available",
-    nl: "No vehicles currently available"
+    es: "No hay parcelas disponibles actualmente",
+    en: "No parcels currently available",
+    fr: "No parcels currently available",
+    de: "No parcels currently available",
+    nl: "No parcels currently available"
   },
   "Estamos actualizando nuestro stock. Consulta disponibilidad.": {
     es: "Estamos actualizando nuestro stock. Consulta disponibilidad.",
@@ -7673,10 +7673,10 @@ export const staticTranslations = {
   },
   "Ver Todos los Vehículos en Venta": {
     es: "Ver Todos los Vehículos en Venta",
-    en: "See All Vehicles for Sale",
-    fr: "See All Vehicles for Sale",
-    de: "See All Vehicles for Sale",
-    nl: "See All Vehicles for Sale"
+    en: "See All Parcels for Sale",
+    fr: "Voir tous les emplacements à vendre",
+    de: "Alle Stellplätze zu verkaufen anzeigen",
+    nl: "Alle percelen te koop bekijken"
   },
   "Entrega desde": {
     es: "Entrega desde",
@@ -7687,12 +7687,12 @@ export const staticTranslations = {
   },
 
   // Meta titles y descriptions para SEO
-  "Ubicación no encontrada | Furgocasa Campervans": {
-    es: "Ubicación no encontrada | Furgocasa Campervans",
-    en: "Location not found | Furgocasa Campervans",
-    fr: "Location not found | Furgocasa Campervans",
-    de: "Location not found | Furgocasa Campervans",
-    nl: "Location not found | Furgocasa Campervans"
+  "Ubicación no encontrada | Eco Area Limonar Campervans": {
+    es: "Ubicación no encontrada | Eco Area Limonar Campervans",
+    en: "Location not found | Eco Area Limonar Campervans",
+    fr: "Location not found | Eco Area Limonar Campervans",
+    de: "Location not found | Eco Area Limonar Campervans",
+    nl: "Location not found | Eco Area Limonar Campervans"
   },
   "La ubicación solicitada no está disponible.": {
     es: "La ubicación solicitada no está disponible.",
@@ -7708,12 +7708,12 @@ export const staticTranslations = {
     de: "Motorhome Rental in",
     nl: "Motorhome Rental in"
   },
-  "| Furgocasa Campervans": {
-    es: "| Furgocasa Campervans",
-    en: "| Furgocasa Campervans",
-    fr: "| Furgocasa Campervans",
-    de: "| Furgocasa Campervans",
-    nl: "| Furgocasa Campervans"
+  "| Eco Area Limonar Campervans": {
+    es: "| Eco Area Limonar Campervans",
+    en: "| Eco Area Limonar Campervans",
+    fr: "| Eco Area Limonar Campervans",
+    de: "| Eco Area Limonar Campervans",
+    nl: "| Eco Area Limonar Campervans"
   },
   "Alquila tu autocaravana camper en": {
     es: "Alquila tu autocaravana camper en",
@@ -7722,12 +7722,12 @@ export const staticTranslations = {
     de: "Rent your campervan in",
     nl: "Rent your campervan in"
   },
-  "Las mejores campers de gran volumen. Reserva online con Furgocasa.": {
-    es: "Las mejores campers de gran volumen. Reserva online con Furgocasa.",
-    en: "The best large-volume campers. Book online with Furgocasa.",
-    fr: "The best large-volume campers. Book online with Furgocasa.",
-    de: "The best large-volume campers. Book online with Furgocasa.",
-    nl: "The best large-volume campers. Book online with Furgocasa."
+  "Las mejores campers de gran volumen. Reserva online con Eco Area Limonar.": {
+    es: "Las mejores campers de gran volumen. Reserva online con Eco Area Limonar.",
+    en: "The best large-volume campers. Book online with Eco Area Limonar.",
+    fr: "The best large-volume campers. Book online with Eco Area Limonar.",
+    de: "The best large-volume campers. Book online with Eco Area Limonar.",
+    nl: "The best large-volume campers. Book online with Eco Area Limonar."
   },
   "Venta de Autocaravanas en": {
     es: "Venta de Autocaravanas en",
@@ -7751,11 +7751,11 @@ export const staticTranslations = {
     nl: "Contact us and we will help you find the perfect camper"
   },
   "vehículos disponibles en": {
-    es: "vehículos disponibles en",
-    en: "vehicles available in",
-    fr: "véhicules disponibles à",
-    de: "Fahrzeuge verfügbar in",
-    nl: "vehicles available in"
+    es: "parcelas disponibles en",
+    en: "parcels available in",
+    fr: "parcelles disponibles à",
+    de: "Stellplätze verfügbar in",
+    nl: "parcels available in"
   },
   "Compra tu autocaravana o camper en": {
     es: "Compra tu autocaravana o camper en",
@@ -7765,18 +7765,18 @@ export const staticTranslations = {
     nl: "Buy your motorhome or camper in"
   },
   "Vehículos con garantía y financiación": {
-    es: "Vehículos con garantía y financiación",
-    en: "Vehicles with warranty and financing",
-    fr: "Véhicules avec garantie et financement",
-    de: "Fahrzeuge mit Garantie und Finanzierung",
-    nl: "Vehicles with warranty and financing"
+    es: "Parcelas con garantía y financiación",
+    en: "Parcels with warranty and financing",
+    fr: "Emplacements avec garantie et financement",
+    de: "Stellplätze mit Garantie und Finanzierung",
+    nl: "Percelen met garantie en financiering"
   },
-  "| Furgocasa": {
-    es: "| Furgocasa",
-    en: "| Furgocasa",
-    fr: "| Furgocasa",
-    de: "| Furgocasa",
-    nl: "| Furgocasa"
+  "| Eco Area Limonar": {
+    es: "| Eco Area Limonar",
+    en: "| Eco Area Limonar",
+    fr: "| Eco Area Limonar",
+    de: "| Eco Area Limonar",
+    nl: "| Eco Area Limonar"
   },
   "Compra tu autocaravana o camper en": {
     es: "Compra tu autocaravana o camper en",
@@ -7787,10 +7787,10 @@ export const staticTranslations = {
   },
   "Vehículos premium con garantía y financiación. Entrega cerca de ti.": {
     es: "Vehículos premium con garantía y financiación. Entrega cerca de ti.",
-    en: "Premium vehicles with warranty and financing. Delivery near you.",
-    fr: "Premium vehicles with warranty and financing. Delivery near you.",
-    de: "Premium vehicles with warranty and financing. Delivery near you.",
-    nl: "Premium vehicles with warranty and financing. Delivery near you."
+    en: "Premium parcels with warranty and financing. Delivery near you.",
+    fr: "Emplacements premium avec garantie et financement. Livraison près de chez vous.",
+    de: "Premium-Stellplätze mit Garantie und Finanzierung. Lieferung in Ihrer Nähe.",
+    nl: "Premium percelen met garantie en financiering. Levering bij u in de buurt."
   },
   "Compra tu autocaravana en": {
     es: "Compra tu autocaravana en",
@@ -7801,10 +7801,10 @@ export const staticTranslations = {
   },
   "Vehículos premium con garantía.": {
     es: "Vehículos premium con garantía.",
-    en: "Premium vehicles with warranty.",
-    fr: "Premium vehicles with warranty.",
-    de: "Premium vehicles with warranty.",
-    nl: "Premium vehicles with warranty."
+    en: "Premium parcels with warranty.",
+    fr: "Emplacements premium avec garantie.",
+    de: "Premium-Stellplätze mit Garantie.",
+    nl: "Premium percelen met garantie."
   },
   "Venta de autocaravanas y campers en": {
     es: "Venta de autocaravanas y campers en",
@@ -7813,12 +7813,12 @@ export const staticTranslations = {
     de: "Sale of motorhomes and campers in",
     nl: "Sale of motorhomes and campers in"
   },
-  "- Furgocasa": {
-    es: "- Furgocasa",
-    en: "- Furgocasa",
-    fr: "- Furgocasa",
-    de: "- Furgocasa",
-    nl: "- Furgocasa"
+  "- Eco Area Limonar": {
+    es: "- Eco Area Limonar",
+    en: "- Eco Area Limonar",
+    fr: "- Eco Area Limonar",
+    de: "- Eco Area Limonar",
+    nl: "- Eco Area Limonar"
   },
 
   // Regiones de España (para DestinationsGrid)
@@ -7880,13 +7880,13 @@ export const staticTranslations = {
     nl: "and its surroundings"
   },
   
-  // Por qué comprar con Furgocasa
-  "Por Qué Comprar tu Autocaravana con Furgocasa": {
-    es: "Por Qué Comprar tu Autocaravana con Furgocasa",
-    en: "Why Buy Your Motorhome with Furgocasa",
-    fr: "Why Buy Your Motorhome with Furgocasa",
-    de: "Why Buy Your Motorhome with Furgocasa",
-    nl: "Why Buy Your Motorhome with Furgocasa"
+  // Por qué comprar con Eco Area Limonar
+  "Por Qué Comprar tu Autocaravana con Eco Area Limonar": {
+    es: "Por Qué Comprar tu Autocaravana con Eco Area Limonar",
+    en: "Why Buy Your Motorhome with Eco Area Limonar",
+    fr: "Why Buy Your Motorhome with Eco Area Limonar",
+    de: "Why Buy Your Motorhome with Eco Area Limonar",
+    nl: "Why Buy Your Motorhome with Eco Area Limonar"
   },
   "Garantía Oficial": {
     es: "Garantía Oficial",
@@ -7897,10 +7897,10 @@ export const staticTranslations = {
   },
   "Todos nuestros vehículos cuentan con garantía oficial y revisión completa pre-entrega": {
     es: "Todos nuestros vehículos cuentan con garantía oficial y revisión completa pre-entrega",
-    en: "All our vehicles come with official warranty and complete pre-delivery inspection",
-    fr: "All our vehicles come with official warranty and complete pre-delivery inspection",
-    de: "All our vehicles come with official warranty and complete pre-delivery inspection",
-    nl: "All our vehicles come with official warranty and complete pre-delivery inspection"
+    en: "All our parcels come with official warranty and complete pre-delivery inspection",
+    fr: "Tous nos emplacements ont une garantie officielle et une inspection pré-livraison complète",
+    de: "Alle unsere Stellplätze haben offizielle Garantie und vollständige Vorabnahme",
+    nl: "Al onze percelen hebben officiële garantie en volledige voorafkeuring"
   },
   "Financiación Flexible": {
     es: "Financiación Flexible",
@@ -7969,10 +7969,10 @@ export const staticTranslations = {
   },
   "Sí, todos nuestros vehículos incluyen garantía oficial. Además, realizamos una revisión completa pre-entrega y te proporcionamos toda la documentación y certificados necesarios.": {
     es: "Sí, todos nuestros vehículos incluyen garantía oficial. Además, realizamos una revisión completa pre-entrega y te proporcionamos toda la documentación y certificados necesarios.",
-    en: "Yes, all our vehicles include official warranty. In addition, we perform a complete pre-delivery inspection and provide you with all the necessary documentation and certificates.",
-    fr: "Yes, all our vehicles include official warranty. In addition, we perform a complete pre-delivery inspection and provide you with all the necessary documentation and certificates.",
-    de: "Yes, all our vehicles include official warranty. In addition, we perform a complete pre-delivery inspection and provide you with all the necessary documentation and certificates.",
-    nl: "Yes, all our vehicles include official warranty. In addition, we perform a complete pre-delivery inspection and provide you with all the necessary documentation and certificates."
+    en: "Yes, all our parcels include official warranty. In addition, we perform a complete pre-delivery inspection and provide you with all the necessary documentation and certificates.",
+    fr: "Oui, tous nos emplacements ont une garantie officielle. Nous effectuons une inspection pré-livraison complète et vous fournissons toute la documentation et les certificats nécessaires.",
+    de: "Ja, alle unsere Stellplätze haben offizielle Garantie. Zusätzlich führen wir eine vollständige Vorabnahme durch und stellen Ihnen alle nötigen Unterlagen und Zertifikate zur Verfügung.",
+    nl: "Ja, al onze percelen hebben officiële garantie. Daarnaast voeren we een volledige voorafkeuring uit en voorzien we u van alle nodige documenten en certificaten."
   },
   "¿Puedo financiar la compra de una autocaravana?": {
     es: "¿Puedo financiar la compra de una autocaravana?",
@@ -8023,12 +8023,12 @@ export const staticTranslations = {
     de: "You can pick up your motorhome at our Murcia headquarters. We also offer customized delivery options near",
     nl: "You can pick up your motorhome at our Murcia headquarters. We also offer customized delivery options near"
   },
-  "¿Qué incluye la compra de una autocaravana con Furgocasa?": {
-    es: "¿Qué incluye la compra de una autocaravana con Furgocasa?",
-    en: "What is included when buying a motorhome with Furgocasa?",
-    fr: "What is included when buying a motorhome with Furgocasa?",
-    de: "What is included when buying a motorhome with Furgocasa?",
-    nl: "What is included when buying a motorhome with Furgocasa?"
+  "¿Qué incluye la compra de una autocaravana con Eco Area Limonar?": {
+    es: "¿Qué incluye la compra de una autocaravana con Eco Area Limonar?",
+    en: "What is included when buying a motorhome with Eco Area Limonar?",
+    fr: "What is included when buying a motorhome with Eco Area Limonar?",
+    de: "What is included when buying a motorhome with Eco Area Limonar?",
+    nl: "What is included when buying a motorhome with Eco Area Limonar?"
   },
   "La compra incluye: garantía oficial, revisión completa pre-entrega, transferencia de documentación, ITV en vigor, seguro temporal de traslado, y asesoramiento completo sobre uso y mantenimiento. Además, tienes acceso a nuestro servicio técnico post-venta.": {
     es: "La compra incluye: garantía oficial, revisión completa pre-entrega, transferencia de documentación, ITV en vigor, seguro temporal de traslado, y asesoramiento completo sobre uso y mantenimiento. Además, tienes acceso a nuestro servicio técnico post-venta.",
@@ -8184,11 +8184,11 @@ export const staticTranslations = {
     nl: "by camper"
   },
   "Flota de vehículos de máxima calidad": {
-    es: "Flota de vehículos de máxima calidad",
-    en: "Fleet of top quality vehicles",
-    fr: "Flotte de véhicules de qualité supérieure",
-    de: "Fuhrpark mit Fahrzeugen höchster Qualität",
-    nl: "Fleet of top quality vehicles"
+    es: "Parcelas de máxima calidad",
+    en: "Parcels of top quality",
+    fr: "Emplacements de qualité supérieure",
+    de: "Stellplätze höchster Qualität",
+    nl: "Percelen van topkwaliteit"
   },
   "Ver más campers": {
     es: "Ver más campers",
@@ -8253,12 +8253,12 @@ export const staticTranslations = {
     de: "bei Mietdauern von 1, 2 oder 3 Wochen",
     nl: "on rentals of 1, 2 or 3 weeks"
   },
-  "¿Por qué elegir Furgocasa para tu viaje desde": {
-    es: "¿Por qué elegir Furgocasa para tu viaje desde",
-    en: "Why choose Furgocasa for your trip from",
-    fr: "Pourquoi choisir Furgocasa pour votre voyage depuis",
-    de: "Warum Furgocasa für Ihre Reise von",
-    nl: "Why choose Furgocasa for your trip from"
+  "¿Por qué elegir Eco Area Limonar para tu viaje desde": {
+    es: "¿Por qué elegir Eco Area Limonar para tu viaje desde",
+    en: "Why choose Eco Area Limonar for your trip from",
+    fr: "Pourquoi choisir Eco Area Limonar pour votre voyage depuis",
+    de: "Warum Eco Area Limonar für Ihre Reise von",
+    nl: "Why choose Eco Area Limonar for your trip from"
   },
   "Kilómetros Ilimitados": {
     es: "Kilómetros Ilimitados",
@@ -8282,11 +8282,11 @@ export const staticTranslations = {
     nl: "Premium Fleet"
   },
   "Vehículos modernos y perfectamente equipados": {
-    es: "Vehículos modernos y perfectamente equipados",
-    en: "Modern and fully equipped vehicles",
-    fr: "Véhicules modernes et parfaitement équipés",
-    de: "Moderne und bestens ausgestattete Fahrzeuge",
-    nl: "Modern and fully equipped vehicles"
+    es: "Parcelas modernas y perfectamente equipadas",
+    en: "Modern and fully equipped parcels",
+    fr: "Emplacements modernes et parfaitement équipés",
+    de: "Moderne und bestens ausgestattete Stellplätze",
+    nl: "Moderne en volledig uitgeruste percelen"
   },
   "Todo Incluido": {
     es: "Todo Incluido",
@@ -8331,11 +8331,11 @@ export const staticTranslations = {
     nl: "Book your camper now and start planning your next unforgettable trip"
   },
   "Ver vehículos": {
-    es: "Ver vehículos",
-    en: "View vehicles",
-    fr: "Voir les véhicules",
-    de: "Fahrzeuge ansehen",
-    nl: "View vehicles"
+    es: "Ver parcelas",
+    en: "View parcels",
+    fr: "Voir les emplacements",
+    de: "Stellplätze ansehen",
+    nl: "Percelen bekijken"
   },
   "A": {
     es: "A",
@@ -8376,12 +8376,12 @@ export const staticTranslations = {
     de: "DIE BESTEN WOHNMOBILE ZUR MIETE",
     nl: "THE BEST CAMPER VANS FOR RENT"
   },
-  "FURGOCASA:": {
-    es: "FURGOCASA:",
-    en: "FURGOCASA:",
-    fr: "FURGOCASA :",
-    de: "FURGOCASA:",
-    nl: "FURGOCASA:"
+  "Eco Area Limonar:": {
+    es: "Eco Area Limonar:",
+    en: "Eco Area Limonar:",
+    fr: "Eco Area Limonar :",
+    de: "Eco Area Limonar:",
+    nl: "Eco Area Limonar:"
   },
   "estamos especializados en el alquiler de vehículos campers van de gran volumen.": {
     es: "estamos especializados en el alquiler de vehículos campers van de gran volumen.",
@@ -8495,12 +8495,12 @@ export const staticTranslations = {
     de: "Mehr Blogartikel ansehen",
     nl: "See more blog articles"
   },
-  "¿Por qué alquilar con Furgocasa?": {
-    es: "¿Por qué alquilar con Furgocasa?",
-    en: "Why rent with Furgocasa?",
-    fr: "Pourquoi louer avec Furgocasa ?",
-    de: "Warum bei Furgocasa mieten?",
-    nl: "Why rent with Furgocasa?"
+  "¿Por qué alquilar con Eco Area Limonar?": {
+    es: "¿Por qué alquilar con Eco Area Limonar?",
+    en: "Why rent with Eco Area Limonar?",
+    fr: "Pourquoi louer avec Eco Area Limonar ?",
+    de: "Warum bei Eco Area Limonar mieten?",
+    nl: "Why rent with Eco Area Limonar?"
   },
   "La tranquilidad de viajar con los mejores": {
     es: "La tranquilidad de viajar con los mejores",
@@ -8510,11 +8510,11 @@ export const staticTranslations = {
     nl: "The peace of mind of traveling with the best"
   },
   "Vehículos nuevos": {
-    es: "Vehículos nuevos",
-    en: "New vehicles",
-    fr: "Véhicules neufs",
-    de: "Neue Fahrzeuge",
-    nl: "New vehicles"
+    es: "Parcelas nuevas",
+    en: "New parcels",
+    fr: "Emplacements neufs",
+    de: "Neue Stellplätze",
+    nl: "Nieuwe percelen"
   },
   "Flota renovada constantemente": {
     es: "Flota renovada constantemente",
@@ -8716,12 +8716,12 @@ export const staticTranslations = {
     de: "Wohnmobilvermietung",
     nl: "Motorhome Rental"
   },
-  "Furgocasa - Alquiler de Autocaravanas": {
-    es: "Furgocasa - Alquiler de Autocaravanas",
-    en: "Furgocasa - Motorhome Rental",
-    fr: "Furgocasa - Location de Camping-cars",
-    de: "Furgocasa - Wohnmobilvermietung",
-    nl: "Furgocasa - Motorhome Rental"
+  "Eco Area Limonar - Alquiler de Autocaravanas": {
+    es: "Eco Area Limonar - Alquiler de Autocaravanas",
+    en: "Eco Area Limonar - Motorhome Rental",
+    fr: "Eco Area Limonar - Location de Camping-cars",
+    de: "Eco Area Limonar - Wohnmobilvermietung",
+    nl: "Eco Area Limonar - Motorhome Rental"
   },
   "Leer más": {
     es: "Leer más",
@@ -8759,11 +8759,11 @@ export const staticTranslations = {
     nl: "Trips completed"
   },
   "Vehículos Premium": {
-    es: "Vehículos Premium",
-    en: "Premium Vehicles",
-    fr: "Véhicules Premium",
-    de: "Premium-Fahrzeuge",
-    nl: "Premium Vehicles"
+    es: "Parcelas Premium",
+    en: "Premium Parcels",
+    fr: "Emplacements Premium",
+    de: "Premium-Stellplätze",
+    nl: "Premium Percelen"
   },
   "Valoración Media": {
     es: "Valoración Media",
@@ -8861,11 +8861,11 @@ export const staticTranslations = {
     nl: "Discover our fleet of campers and start your journey"
   },
   "Ver vehículos": {
-    es: "Ver vehículos",
-    en: "View vehicles",
-    fr: "Voir les véhicules",
-    de: "Fahrzeuge ansehen",
-    nl: "View vehicles"
+    es: "Ver parcelas",
+    en: "View parcels",
+    fr: "Voir les emplacements",
+    de: "Stellplätze ansehen",
+    nl: "Percelen bekijken"
   },
   "artículo": {
     es: "artículo",
@@ -8990,12 +8990,12 @@ export const staticTranslations = {
     de: "Wohnmobile",
     nl: "motor homes"
   },
-  "En Furgocasa, nos especializamos en el alquiler de estos vehículos de gran volumen, perfectos para familias y parejas que buscan la máxima comodidad.": {
-    es: "En Furgocasa, nos especializamos en el alquiler de estos vehículos de gran volumen, perfectos para familias y parejas que buscan la máxima comodidad.",
-    en: "At Furgocasa, we specialize in renting these large-volume vehicles, perfect for families and couples seeking maximum comfort.",
-    fr: "Chez Furgocasa, nous sommes spécialisés dans la location de ces véhicules grand volume, parfaits pour les familles et les couples recherchant un confort maximal.",
-    de: "Bei Furgocasa sind wir auf die Vermietung dieser großvolumigen Fahrzeuge spezialisiert, perfekt für Familien und Paare, die maximalen Komfort suchen.",
-    nl: "At Furgocasa, we specialize in renting these large-volume vehicles, perfect for families and couples seeking maximum comfort."
+  "En Eco Area Limonar, nos especializamos en el alquiler de estos vehículos de gran volumen, perfectos para familias y parejas que buscan la máxima comodidad.": {
+    es: "En Eco Area Limonar nos especializamos en el alquiler de estas parcelas de gran volumen, perfectas para familias y parejas que buscan la máxima comodidad.",
+    en: "At Eco Area Limonar, we specialize in renting these large-volume parcels, perfect for families and couples seeking maximum comfort.",
+    fr: "Chez Eco Area Limonar, nous proposons ces emplacements grand volume, parfaits pour les familles et les couples en quête de confort maximal.",
+    de: "Bei Eco Area Limonar vermieten wir diese Großraum-Stellplätze, ideal für Familien und Paare mit höchstem Komfort.",
+    nl: "Bij Eco Area Limonar specialiseren we ons in het verhuren van deze grote percelen, perfect voor gezinnen en koppels die maximaal comfort zoeken."
   },
   "Descuento Especial LATAM": {
     es: "Descuento Especial LATAM",
@@ -9040,11 +9040,11 @@ export const staticTranslations = {
     nl: "Large volume:"
   },
   "Vehículos espaciosos de hasta 6 metros": {
-    es: "Vehículos espaciosos de hasta 6 metros",
-    en: "Spacious vehicles up to 6 meters",
-    fr: "Véhicules spacieux jusqu'à 6 mètres",
-    de: "Geräumige Fahrzeuge bis zu 6 Metern",
-    nl: "Spacious vehicles up to 6 meters"
+    es: "Parcelas espaciosas de hasta 6 metros",
+    en: "Spacious parcels up to 6 meters",
+    fr: "Emplacements spacieux jusqu'à 6 mètres",
+    de: "Geräumige Stellplätze bis 6 Meter",
+    nl: "Ruime percelen tot 6 meter"
   },
   "Totalmente equipadas:": {
     es: "Totalmente equipadas:",
@@ -9151,12 +9151,12 @@ export const staticTranslations = {
     de: "Entdecken Sie Wanderwege, Naturparks und spektakuläre Landschaften in der Umgebung von",
     nl: "Discover hiking trails, natural parks and spectacular landscapes around"
   },
-  "Alquiler de autocaravanas con Furgocasa": {
-    es: "Alquiler de autocaravanas con Furgocasa",
-    en: "Motorhome rental with Furgocasa",
-    fr: "Location de camping-car avec Furgocasa",
-    de: "Wohnmobilvermietung mit Furgocasa",
-    nl: "Motorhome rental with Furgocasa"
+  "Alquiler de autocaravanas con Eco Area Limonar": {
+    es: "Alquiler de autocaravanas con Eco Area Limonar",
+    en: "Motorhome rental with Eco Area Limonar",
+    fr: "Location de camping-car avec Eco Area Limonar",
+    de: "Wohnmobilvermietung mit Eco Area Limonar",
+    nl: "Motorhome rental with Eco Area Limonar"
   },
   "Viajar en una": {
     es: "Viajar en una",
@@ -9172,12 +9172,12 @@ export const staticTranslations = {
     de: "gemieteten Wohnmobil",
     nl: "rental campervan"
   },
-  "con Furgocasa te brinda la libertad total de explorar": {
-    es: "con Furgocasa te brinda la libertad total de explorar",
-    en: "with Furgocasa gives you the total freedom to explore",
-    fr: "avec Furgocasa vous offre la liberté totale d'explorer",
-    de: "mit Furgocasa gibt Ihnen die völlige Freiheit zu erkunden",
-    nl: "with Furgocasa gives you the total freedom to explore"
+  "con Eco Area Limonar te brinda la libertad total de explorar": {
+    es: "con Eco Area Limonar te brinda la libertad total de explorar",
+    en: "with Eco Area Limonar gives you the total freedom to explore",
+    fr: "avec Eco Area Limonar vous offre la liberté totale d'explorer",
+    de: "mit Eco Area Limonar gibt Ihnen die völlige Freiheit zu erkunden",
+    nl: "with Eco Area Limonar gives you the total freedom to explore"
   },
   "y sus alrededores a tu propio ritmo. Nuestra flota de": {
     es: "y sus alrededores a tu propio ritmo. Nuestra flota de",
@@ -9266,11 +9266,11 @@ export const staticTranslations = {
     nl: "Campers and Motorhomes for Sale"
   },
   "Vehículos de nuestra flota de alquiler, revisados y garantizados. Conocemos su historial completo.": {
-    es: "Vehículos de nuestra flota de alquiler, revisados y garantizados. Conocemos su historial completo.",
-    en: "Vehicles from our rental fleet, inspected and guaranteed. We know their complete history.",
-    fr: "Véhicules de notre flotte de location, révisés et garantis. Nous connaissons leur historique complet.",
-    de: "Fahrzeuge aus unserer Mietflotte, geprüft und garantiert. Wir kennen ihre vollständige Geschichte.",
-    nl: "Vehicles from our rental fleet, inspected and guaranteed. We know their complete history."
+    es: "Parcelas de nuestra flota de alquiler, revisadas y garantizadas. Conocemos su historial completo.",
+    en: "Parcels from our rental fleet, inspected and guaranteed. We know their complete history.",
+    fr: "Emplacements de notre flotte de location, révisés et garantis. Nous connaissons leur historique complet.",
+    de: "Stellplätze aus unserer Mietflotte, geprüft und garantiert. Wir kennen ihre vollständige Geschichte.",
+    nl: "Percelen uit ons verhuurassortiment, geïnspecteerd en gegarandeerd. We kennen hun volledige geschiedenis."
   },
   "Historial conocido": {
     es: "Historial conocido",
@@ -9350,11 +9350,11 @@ export const staticTranslations = {
     nl: "Contact us if you're looking for something specific"
   },
   "vehículos disponibles": {
-    es: "vehículos disponibles",
-    en: "vehicles available",
-    fr: "véhicules disponibles",
-    de: "Fahrzeuge verfügbar",
-    nl: "vehicles available"
+    es: "parcelas disponibles",
+    en: "parcels available",
+    fr: "parcelles disponibles",
+    de: "Stellplätze verfügbar",
+    nl: "parcels available"
   },
   "Ordenar por: Más recientes": {
     es: "Ordenar por: Más recientes",
@@ -9441,11 +9441,11 @@ export const staticTranslations = {
     nl: "Complete history"
   },
   "Conocemos cada kilómetro de nuestros vehículos. Te entregamos el historial de mantenimientos completo.": {
-    es: "Conocemos cada kilómetro de nuestros vehículos. Te entregamos el historial de mantenimientos completo.",
-    en: "We know every kilometer of our vehicles. We provide you with the complete maintenance history.",
-    fr: "Nous connaissons chaque kilomètre de nos véhicules. Nous vous fournissons l'historique complet des entretiens.",
-    de: "Wir kennen jeden Kilometer unserer Fahrzeuge. Wir liefern Ihnen die vollständige Wartungshistorie.",
-    nl: "We know every kilometer of our vehicles. We provide you with the complete maintenance history."
+    es: "Conocemos cada detalle de nuestras parcelas. Te entregamos el historial de mantenimientos completo.",
+    en: "We know every detail of our parcels. We provide you with the complete maintenance history.",
+    fr: "Nous connaissons chaque détail de nos emplacements. Nous vous fournissons l'historique complet des entretiens.",
+    de: "Wir kennen jedes Detail unserer Stellplätze. Wir liefern Ihnen die vollständige Wartungshistorie.",
+    nl: "We kennen elk detail van onze percelen. We voorzien u van de volledige onderhoudsgeschiedenis."
   },
   "Financiación disponible": {
     es: "Financiación disponible",
@@ -9476,11 +9476,11 @@ export const staticTranslations = {
     nl: "Come see it and try it. We'll show it to you with no obligation at our facilities."
   },
   "No se encontraron vehículos": {
-    es: "No se encontraron vehículos",
-    en: "No vehicles found",
-    fr: "Aucun véhicule trouvé",
-    de: "Keine Fahrzeuge gefunden",
-    nl: "No vehicles found"
+    es: "No se encontraron parcelas",
+    en: "No parcels found",
+    fr: "Aucune parcelle trouvée",
+    de: "Keine Stellplätze gefunden",
+    nl: "No parcels found"
   },
   "Prueba con otros criterios de búsqueda": {
     es: "Prueba con otros criterios de búsqueda",
@@ -9490,11 +9490,11 @@ export const staticTranslations = {
     nl: "Try different search criteria"
   },
   "No hay vehículos en venta": {
-    es: "No hay vehículos en venta",
-    en: "No vehicles for sale",
-    fr: "Aucun véhicule à vendre",
-    de: "Keine Fahrzeuge zum Verkauf",
-    nl: "No vehicles for sale"
+    es: "No hay parcelas en venta",
+    en: "No parcels for sale",
+    fr: "Aucune parcelle à vendre",
+    de: "Keine Stellplätze zum Verkauf",
+    nl: "No parcels for sale"
   },
 
   // ===== DOCUMENTACIÓN ALQUILER =====
@@ -9729,12 +9729,12 @@ export const staticTranslations = {
     de: "Wann unterschreibe ich den Vertrag?",
     nl: "When do I sign the contract?"
   },
-  "El contrato debe firmarse antes del comienzo del alquiler y enviarse por email a Furgocasa. La confirmación de la cita de recogida se realizará una vez recibida la documentación firmada. Te recomendamos leerlo detenidamente y enviarlo con suficiente antelación.": {
-    es: "El contrato debe firmarse antes del comienzo del alquiler y enviarse por email a Furgocasa. La confirmación de la cita de recogida se realizará una vez recibida la documentación firmada. Te recomendamos leerlo detenidamente y enviarlo con suficiente antelación.",
-    en: "The contract must be signed before the rental begins and sent by email to Furgocasa. The pickup appointment will be confirmed once the signed documentation is received. We recommend reading it carefully and sending it well in advance.",
-    fr: "Le contrat doit être signé avant le début de la location et envoyé par email à Furgocasa. Le rendez-vous de prise en charge sera confirmé une fois la documentation signée reçue. Nous vous recommandons de le lire attentivement et de l'envoyer suffisamment à l'avance.",
-    de: "Der Vertrag muss vor Mietbeginn unterschrieben und per E-Mail an Furgocasa gesendet werden. Der Abholtermin wird bestätigt, sobald die unterschriebene Dokumentation eingegangen ist. Wir empfehlen, ihn sorgfältig zu lesen und rechtzeitig zu senden.",
-    nl: "The contract must be signed before the rental begins and sent by email to Furgocasa. The pickup appointment will be confirmed once the signed documentation is received. We recommend reading it carefully and sending it well in advance."
+  "El contrato debe firmarse antes del comienzo del alquiler y enviarse por email a Eco Area Limonar. La confirmación de la cita de recogida se realizará una vez recibida la documentación firmada. Te recomendamos leerlo detenidamente y enviarlo con suficiente antelación.": {
+    es: "El contrato debe firmarse antes del comienzo del alquiler y enviarse por email a Eco Area Limonar. La confirmación de la cita de recogida se realizará una vez recibida la documentación firmada. Te recomendamos leerlo detenidamente y enviarlo con suficiente antelación.",
+    en: "The contract must be signed before the rental begins and sent by email to Eco Area Limonar. The pickup appointment will be confirmed once the signed documentation is received. We recommend reading it carefully and sending it well in advance.",
+    fr: "Le contrat doit être signé avant le début de la location et envoyé par email à Eco Area Limonar. Le rendez-vous de prise en charge sera confirmé une fois la documentation signée reçue. Nous vous recommandons de le lire attentivement et de l'envoyer suffisamment à l'avance.",
+    de: "Der Vertrag muss vor Mietbeginn unterschrieben und per E-Mail an Eco Area Limonar gesendet werden. Der Abholtermin wird bestätigt, sobald die unterschriebene Dokumentation eingegangen ist. Wir empfehlen, ihn sorgfältig zu lesen und rechtzeitig zu senden.",
+    nl: "The contract must be signed before the rental begins and sent by email to Eco Area Limonar. The pickup appointment will be confirmed once the signed documentation is received. We recommend reading it carefully and sending it well in advance."
   },
   "¿Cómo se paga la fianza?": {
     es: "¿Cómo se paga la fianza?",
@@ -9817,12 +9817,12 @@ export const staticTranslations = {
     de: "Zwei Möglichkeiten bei Ihrer Miete zu sparen",
     nl: "Two ways to save on your rental"
   },
-  "En FURGOCASA queremos que todos puedan disfrutar de la aventura camper. Por eso ofrecemos dos tipos de ofertas:": {
-    es: "En FURGOCASA queremos que todos puedan disfrutar de la aventura camper. Por eso ofrecemos dos tipos de ofertas:",
-    en: "At FURGOCASA we want everyone to enjoy the camper adventure. That's why we offer two types of deals:",
-    fr: "Chez FURGOCASA nous voulons que tout le monde puisse profiter de l'aventure camping-car. C'est pourquoi nous proposons deux types d'offres:",
-    de: "Bei FURGOCASA möchten wir, dass jeder das Camper-Abenteuer genießen kann. Deshalb bieten wir zwei Arten von Angeboten:",
-    nl: "At FURGOCASA we want everyone to enjoy the camper adventure. That's why we offer two types of deals:"
+  "En Eco Area Limonar queremos que todos puedan disfrutar de la aventura camper. Por eso ofrecemos dos tipos de ofertas:": {
+    es: "En Eco Area Limonar queremos que todos puedan disfrutar de la aventura camper. Por eso ofrecemos dos tipos de ofertas:",
+    en: "At Eco Area Limonar we want everyone to enjoy the camper adventure. That's why we offer two types of deals:",
+    fr: "Chez Eco Area Limonar nous voulons que tout le monde puisse profiter de l'aventure camping-car. C'est pourquoi nous proposons deux types d'offres:",
+    de: "Bei Eco Area Limonar möchten wir, dass jeder das Camper-Abenteuer genießen kann. Deshalb bieten wir zwei Arten von Angeboten:",
+    nl: "At Eco Area Limonar we want everyone to enjoy the camper adventure. That's why we offer two types of deals:"
   },
   "Cupones de Temporada": {
     es: "Cupones de Temporada",
@@ -9936,12 +9936,12 @@ export const staticTranslations = {
     de: "IHR WINTERABENTEUER!",
     nl: "YOUR WINTER ADVENTURE!"
   },
-  "¡Descubre el invierno con FURGOCASA! Viaja con libertad en nuestras camper vans totalmente equipadas. Del norte nevado al sur más cálido, ¡tú decides el camino!": {
-    es: "¡Descubre el invierno con FURGOCASA! Viaja con libertad en nuestras camper vans totalmente equipadas. Del norte nevado al sur más cálido, ¡tú decides el camino!",
-    en: "Discover winter with FURGOCASA! Travel freely in our fully equipped camper vans. From the snowy north to the warmest south, you decide the way!",
-    fr: "Découvrez l'hiver avec FURGOCASA! Voyagez librement dans nos camping-cars entièrement équipés. Du nord enneigé au sud le plus chaud, vous décidez du chemin!",
-    de: "Entdecken Sie den Winter mit FURGOCASA! Reisen Sie frei in unseren voll ausgestatteten Campervans. Vom verschneiten Norden bis zum wärmsten Süden, Sie entscheiden den Weg!",
-    nl: "Discover winter with FURGOCASA! Travel freely in our fully equipped camper vans. From the snowy north to the warmest south, you decide the way!"
+  "¡Descubre el invierno con Eco Area Limonar! Viaja con libertad en nuestras camper vans totalmente equipadas. Del norte nevado al sur más cálido, ¡tú decides el camino!": {
+    es: "¡Descubre el invierno con Eco Area Limonar! Viaja con libertad en nuestras camper vans totalmente equipadas. Del norte nevado al sur más cálido, ¡tú decides el camino!",
+    en: "Discover winter with Eco Area Limonar! Travel freely in our fully equipped camper vans. From the snowy north to the warmest south, you decide the way!",
+    fr: "Découvrez l'hiver avec Eco Area Limonar! Voyagez librement dans nos camping-cars entièrement équipés. Du nord enneigé au sud le plus chaud, vous décidez du chemin!",
+    de: "Entdecken Sie den Winter mit Eco Area Limonar! Reisen Sie frei in unseren voll ausgestatteten Campervans. Vom verschneiten Norden bis zum wärmsten Süden, Sie entscheiden den Weg!",
+    nl: "Discover winter with Eco Area Limonar! Travel freely in our fully equipped camper vans. From the snowy north to the warmest south, you decide the way!"
   },
   "Descuento Invierno": {
     es: "Descuento Invierno",
@@ -10195,12 +10195,12 @@ export const staticTranslations = {
     de: "und wir fügen Sie zu unserer Benachrichtigungsliste hinzu.",
     nl: "and we will add you to our alerts list."
   },
-  "¿POR QUÉ ELEGIR FURGOCASA?": {
-    es: "¿POR QUÉ ELEGIR FURGOCASA?",
-    en: "WHY CHOOSE FURGOCASA?",
-    fr: "POURQUOI CHOISIR FURGOCASA?",
-    de: "WARUM FURGOCASA WÄHLEN?",
-    nl: "WHY CHOOSE FURGOCASA?"
+  "¿POR QUÉ ELEGIR Eco Area Limonar?": {
+    es: "¿POR QUÉ ELEGIR Eco Area Limonar?",
+    en: "WHY CHOOSE Eco Area Limonar?",
+    fr: "POURQUOI CHOISIR Eco Area Limonar?",
+    de: "WARUM Eco Area Limonar WÄHLEN?",
+    nl: "WHY CHOOSE Eco Area Limonar?"
   },
   "Flota Moderna": {
     es: "Flota Moderna",
@@ -10387,11 +10387,11 @@ export const staticTranslations = {
     nl: "Personalized and professional service"
   },
   "Vehículos nuevos y perfectamente mantenidos": {
-    es: "Vehículos nuevos y perfectamente mantenidos",
-    en: "New and perfectly maintained vehicles",
-    fr: "Véhicules neufs et parfaitement entretenus",
-    de: "Neue und perfekt gewartete Fahrzeuge",
-    nl: "New and perfectly maintained vehicles"
+    es: "Parcelas nuevas y perfectamente mantenidas",
+    en: "New and perfectly maintained parcels",
+    fr: "Emplacements neufs et parfaitement entretenus",
+    de: "Neue und perfekt gewartete Stellplätze",
+    nl: "Nieuwe en perfect onderhouden percelen"
   },
   "Flexibilidad en fechas y condiciones": {
     es: "Flexibilidad en fechas y condiciones",
@@ -10501,7 +10501,7 @@ export const staticTranslations = {
     nl: "Look for certified motorhome areas with full water and electricity service"
   },
   
-  // Banner Mapa Furgocasa App
+  // Banner Mapa Eco Area Limonar App
   "¿Dónde encontrar áreas de autocaravanas certificadas?": {
     es: "¿Dónde encontrar áreas de autocaravanas certificadas?",
     en: "Where to find certified motorhome areas?",
@@ -10523,12 +10523,12 @@ export const staticTranslations = {
     de: "Finden Sie validierte Bereiche mit Wasser-, Strom- und Entsorgungsdiensten. Echte Nutzerbewertungen. Routen, POIs und vieles mehr.",
     nl: "Find validated areas with water, electricity and waste disposal services. Real user reviews. Routes, POIs and much more."
   },
-  "Abrir Mapa Furgocasa": {
-    es: "Abrir Mapa Furgocasa",
-    en: "Open Mapa Furgocasa",
-    fr: "Ouvrir Mapa Furgocasa",
-    de: "Mapa Furgocasa öffnen",
-    nl: "Open Mapa Furgocasa"
+  "Abrir Mapa Eco Area Limonar": {
+    es: "Abrir Mapa Eco Area Limonar",
+    en: "Open Mapa Eco Area Limonar",
+    fr: "Ouvrir Mapa Eco Area Limonar",
+    de: "Mapa Eco Area Limonar öffnen",
+    nl: "Open Mapa Eco Area Limonar"
   },
   
   // Banner Ofertas Home
@@ -10705,11 +10705,11 @@ export const staticTranslations = {
     nl: "High"
   },
   "vehículos disponibles": {
-    es: "vehículos disponibles",
-    en: "vehicles available",
-    fr: "véhicules disponibles",
-    de: "Fahrzeuge verfügbar",
-    nl: "vehicles available"
+    es: "parcelas disponibles",
+    en: "parcels available",
+    fr: "parcelles disponibles",
+    de: "Stellplätze verfügbar",
+    nl: "parcels available"
   },
   "¡Amplia disponibilidad!": {
     es: "¡Amplia disponibilidad!",

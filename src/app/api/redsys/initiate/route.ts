@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
       .from("bookings")
       .select(`
         *,
-        vehicle:vehicles(name)
+        parcel:parcels(name)
       `)
       .eq("id", bookingId)
       .single();
@@ -123,14 +123,14 @@ export async function POST(request: NextRequest) {
       console.log("✅ [2/8] Reserva encontrada:", {
         bookingNumber: booking.booking_number,
         customerEmail: booking.customer_email,
-        vehicleName: booking.vehicle?.name,
+        parcelName: booking.parcel?.name,
         totalPrice: booking.total_price,
       });
     } else {
       // En producción: Solo loggear referencia (no datos sensibles)
       console.log("✅ [2/8] Reserva encontrada:", {
         bookingNumber: booking.booking_number,
-        vehicleName: booking.vehicle?.name,
+        parcelName: booking.parcel?.name,
         // NO loggear: customerEmail, totalPrice (información sensible)
       });
     }
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
     console.log("✅ [3/8] Número de pedido generado:", orderNumber);
 
     // Descripción del producto
-    const description = `Furgocasa - ${booking.vehicle?.name || "Alquiler"} (${booking.booking_number})`;
+    const description = `Eco Area Limonar - ${booking.parcel?.name || "Alquiler"} (${booking.booking_number})`;
     console.log("📝 [3/8] Descripción del producto:", description);
 
     // Configuración de Redsys

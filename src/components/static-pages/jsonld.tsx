@@ -2,20 +2,20 @@ export function AboutPageJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "Sobre Furgocasa - Quiénes Somos",
-    "description": "Furgocasa es una empresa familiar especializada en alquiler de autocaravanas y campers en Murcia desde 2012. Pasión por viajar, libertad para explorar.",
-    "url": "https://www.furgocasa.com/quienes-somos",
+    "name": "Sobre Eco Area Limonar - Quiénes Somos",
+    "description": "Eco Area Limonar es una empresa familiar especializada en alquiler de autocaravanas y campers en Murcia desde 2012. Pasión por viajar, libertad para explorar.",
+    "url": "https://www.limonar.com/quienes-somos",
     "mainEntity": {
       "@type": "Organization",
-      "name": "Furgocasa",
-      "legalName": "Furgocasa S.L.",
+      "name": "Eco Area Limonar",
+      "legalName": "Eco Area Limonar",
       "foundingDate": "2012",
-      "url": "https://www.furgocasa.com",
-      "logo": "https://www.furgocasa.com/logo.png",
+      "url": "https://www.limonar.com",
+      "logo": "https://www.limonar.com/logo.png",
       "description": "Empresa familiar especializada en alquiler de autocaravanas y campers de gran volumen en Murcia.",
       "slogan": "Tu hotel 5 estrellas sobre ruedas",
       "telephone": "+34868364161",
-      "email": "info@furgocasa.com",
+      "email": "info@limonar.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Avenida Puente Tocinos, 4",
@@ -68,14 +68,14 @@ export function ContactPageJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Contacto - Furgocasa",
-    "description": "Contacta con Furgocasa para alquilar tu autocaravana en Murcia. Teléfono: 868 36 41 61. Email: info@furgocasa.com",
-    "url": "https://www.furgocasa.com/contacto",
+    "name": "Contacto - Eco Area Limonar",
+    "description": "Contacta con Eco Area Limonar para alquilar tu autocaravana en Murcia. Teléfono: 868 36 41 61. Email: info@limonar.com",
+    "url": "https://www.limonar.com/contacto",
     "mainEntity": {
       "@type": "LocalBusiness",
-      "name": "Furgocasa",
+      "name": "Eco Area Limonar",
       "telephone": "+34868364161",
-      "email": "info@furgocasa.com",
+      "email": "info@limonar.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Avenida Puente Tocinos, 4",
@@ -107,7 +107,7 @@ export function ContactPageJsonLd() {
         },
         {
           "@type": "ContactPoint",
-          "email": "info@furgocasa.com",
+          "email": "info@limonar.com",
           "contactType": "customer service",
           "areaServed": "ES",
           "availableLanguage": ["Spanish", "English"]

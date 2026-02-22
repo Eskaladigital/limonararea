@@ -98,11 +98,11 @@ export function ExtrasSection({
           {/* Extras opcionales */}
           <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 border-2 border-blue-200 rounded-3xl p-6 lg:p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div className="flex items-center gap-3 mb-6 lg:mb-8">
-              <div className="bg-furgocasa-blue p-3 rounded-2xl shadow-lg">
+              <div className="bg-limonar-blue p-3 rounded-2xl shadow-lg">
                 <Euro className="h-7 w-7 lg:h-8 lg:w-8 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl lg:text-3xl font-heading font-bold text-furgocasa-blue">
+                <h3 className="text-2xl lg:text-3xl font-heading font-bold text-limonar-blue">
                   {t("Extras opcionales")}
                 </h3>
                 <p className="text-blue-700 text-sm lg:text-base font-medium">
@@ -117,7 +117,7 @@ export function ExtrasSection({
                   key={item.name} 
                   className={`flex items-center justify-between p-3 lg:p-4 rounded-xl shadow-sm hover:shadow-md transition-all ${
                     item.highlight 
-                      ? 'bg-gradient-to-r from-orange-50 to-furgocasa-orange/10 border-2 border-furgocasa-orange/30 hover:border-furgocasa-orange' 
+                      ? 'bg-gradient-to-r from-orange-50 to-limonar-orange/10 border-2 border-limonar-orange/30 hover:border-limonar-orange' 
                       : 'bg-white'
                   }`}
                 >
@@ -126,15 +126,15 @@ export function ExtrasSection({
                   }`}>
                     {t(item.name)}
                     {item.highlight && (
-                      <span className="ml-2 text-xs bg-furgocasa-orange text-white px-2 py-0.5 rounded-full font-bold uppercase">
+                      <span className="ml-2 text-xs bg-limonar-orange text-white px-2 py-0.5 rounded-full font-bold uppercase">
                         {t("Popular")}
                       </span>
                     )}
                   </span>
                   <span className={`px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg font-bold text-xs lg:text-sm whitespace-nowrap ${
                     item.highlight
-                      ? 'bg-furgocasa-orange text-white shadow-md'
-                      : 'bg-furgocasa-blue/10 text-furgocasa-blue'
+                      ? 'bg-limonar-orange text-white shadow-md'
+                      : 'bg-limonar-blue/10 text-limonar-blue'
                   }`}>
                     {item.price}{item.unit} / {t(item.per)}
                   </span>
@@ -146,10 +146,10 @@ export function ExtrasSection({
 
         {/* Información destacada */}
         <div className="mt-6 lg:mt-8 max-w-5xl mx-auto">
-          <div className="bg-gradient-to-r from-furgocasa-orange/10 via-yellow-50 to-furgocasa-orange/10 border-2 border-furgocasa-orange/30 rounded-2xl p-4 lg:p-6">
+          <div className="bg-gradient-to-r from-limonar-orange/10 via-yellow-50 to-limonar-orange/10 border-2 border-limonar-orange/30 rounded-2xl p-4 lg:p-6">
             <div className="flex items-start gap-3">
-              <div className="bg-furgocasa-orange/20 p-2 rounded-xl flex-shrink-0">
-                <CheckCircle className="h-5 w-5 text-furgocasa-orange" />
+              <div className="bg-limonar-orange/20 p-2 rounded-xl flex-shrink-0">
+                <CheckCircle className="h-5 w-5 text-limonar-orange" />
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-1 text-base lg:text-lg">
@@ -168,7 +168,7 @@ export function ExtrasSection({
           <div className="text-center mt-6 lg:mt-8">
             <LocalizedLink
               href="/tarifas"
-              className="inline-flex items-center gap-2 text-furgocasa-blue font-bold uppercase tracking-wider hover:text-furgocasa-blue-dark transition-colors text-base lg:text-lg group"
+              className="inline-flex items-center gap-2 text-limonar-blue font-bold uppercase tracking-wider hover:text-limonar-blue-dark transition-colors text-base lg:text-lg group"
             >
               {t("Ver información completa de tarifas y condiciones")} 
               <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>

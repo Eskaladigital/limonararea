@@ -143,11 +143,11 @@ export async function middleware(request: NextRequest) {
   if (blogCategoryMatch) {
     const [, urlLocale, category, slug] = blogCategoryMatch;
     const categoryToLocale: Record<string, string> = {
-      rutas: 'es', noticias: 'es', vehiculos: 'es', consejos: 'es', destinos: 'es', equipamiento: 'es',
-      routes: 'en', news: 'en', vehicles: 'en', tips: 'en', destinations: 'en', equipment: 'en',
-      itineraires: 'fr', actualites: 'fr', vehicules: 'fr', conseils: 'fr', equipement: 'fr',
-      routen: 'de', nachrichten: 'de', fahrzeuge: 'de', tipps: 'de', reiseziele: 'de', ausrustung: 'de',
-      nieuws: 'nl', voertuigen: 'nl', bestemmingen: 'nl', uitrusting: 'nl',
+      rutas: 'es', noticias: 'es', parcelas: 'es', consejos: 'es', destinos: 'es', equipamiento: 'es',
+      routes: 'en', news: 'en', parcels: 'en', vehicles: 'en', tips: 'en', destinations: 'en', equipment: 'en',
+      itineraires: 'fr', actualites: 'fr', emplacements: 'fr', vehicules: 'fr', conseils: 'fr', equipement: 'fr',
+      routen: 'de', nachrichten: 'de', stellplatze: 'de', fahrzeuge: 'de', tipps: 'de', reiseziele: 'de', ausrustung: 'de',
+      nieuws: 'nl', percelen: 'nl', voertuigen: 'nl', bestemmingen: 'nl', uitrusting: 'nl',
     };
     const correctLocale = categoryToLocale[category];
     if (correctLocale && correctLocale !== urlLocale) {

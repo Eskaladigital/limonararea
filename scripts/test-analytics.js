@@ -5,7 +5,7 @@
  * y que las páginas de administrador están excluidas del tracking.
  * 
  * EJECUCIÓN:
- * 1. Abre el navegador en https://www.furgocasa.com
+ * 1. Abre el navegador en https://www.limonar.com
  * 2. Abre la consola de desarrollo (F12)
  * 3. Copia y pega este script completo
  * 4. Presiona Enter
@@ -209,10 +209,10 @@
   console.log(`🌐 URL: ${window.location.href}`);
   console.log(`📍 Pathname: ${window.location.pathname}`);
   console.log(`🔐 ¿Es admin?: ${window.location.pathname.startsWith('/administrator')}`);
-  console.log(`🍪 Cookies aceptadas: ${localStorage.getItem('furgocasa_cookie_consent') || 'No'}`);
+  console.log(`🍪 Cookies aceptadas: ${localStorage.getItem('limonar_cookie_consent') || 'No'}`);
   
   try {
-    const prefs = JSON.parse(localStorage.getItem('furgocasa_cookie_preferences') || '{}');
+    const prefs = JSON.parse(localStorage.getItem('limonar_cookie_preferences') || '{}');
     console.log(`📊 Analytics permitido: ${prefs.analytics || false}`);
   } catch (e) {
     console.log('📊 Analytics permitido: No configurado');

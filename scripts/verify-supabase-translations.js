@@ -27,16 +27,10 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Definición de qué traducciones necesita la app (según get-translations y páginas)
 const CONFIG = {
-  // Home y listados usan getTranslatedRecords('vehicles', ..., ['name', 'short_description'])
-  // Los datos vienen de getFeaturedParcels → tabla parcels
-  vehicles: {
-    sourceTable: 'vehicles',
-    fields: ['name', 'short_description'],
-    idSource: 'parcels', // tabla de la que sacamos los IDs a comprobar
-  },
+  // Home y listados usan getTranslatedRecords('parcels', ..., ['name', 'short_description'])
   parcels: {
     sourceTable: 'parcels',
-    fields: ['name'],
+    fields: ['name', 'short_description'],
     idSource: 'parcels',
   },
   posts: {
@@ -123,28 +117,25 @@ CREATE INDEX IF NOT EXISTS idx_content_translations_lookup
   const missingByTable = {};
   const missingDetails = [];
 
-  // 2) Parcelas/Vehicles: IDs desde parcels, pero la app puede usar source_table 'vehicles' o 'parcels'
+  // 2) Parcelas: source_table 'parcels'
   const parcels = await fetchTableIds('parcels', 'id, name');
   if (parcels.length > 0) {
-    const tablesToCheck = ['vehicles', 'parcels'];
-    const fieldsByTable = { vehicles: ['name', 'short_description'], parcels: ['name'] };
-    for (const st of tablesToCheck) {
-      const fields = fieldsByTable[st];
-      for (const p of parcels) {
-        for (const field of fields) {
-          for (const locale of LOCALES) {
-            const key = buildKey(st, p.id, field, locale);
-            if (!existing.has(key)) {
-              totalMissing++;
-              missingByTable[st] = (missingByTable[st] || 0) + 1;
-              missingDetails.push({
-                table: st,
-                id: p.id,
-                name: p.name,
-                field,
-                locale,
-              });
-            }
+    const st = 'parcels';
+    const fields = ['name', 'short_description'];
+    for (const p of parcels) {
+      for (const field of fields) {
+        for (const locale of LOCALES) {
+          const key = buildKey(st, p.id, field, locale);
+          if (!existing.has(key)) {
+            totalMissing++;
+            missingByTable[st] = (missingByTable[st] || 0) + 1;
+            missingDetails.push({
+              table: st,
+              id: p.id,
+              name: p.name,
+              field,
+              locale,
+            });
           }
         }
       }
@@ -205,7 +196,7 @@ CREATE INDEX IF NOT EXISTS idx_content_translations_lookup
 
   // Resumen por tabla
   console.log('📋 RESUMEN POR TABLA Y TRADUCCIONES FALTANTES\n');
-  const tablesChecked = ['vehicles', 'parcels', 'posts', 'content_categories'];
+  const tablesChecked = ['parcels', 'posts', 'content_categories'];
   for (const t of tablesChecked) {
     const count = missingByTable[t] || 0;
     const icon = count === 0 ? '✅' : '⚠️';

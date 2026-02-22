@@ -216,7 +216,7 @@ export default async function VehiculosPage() {
     // ✅ NO incluir Header/Footer - ya están en layout.tsx
     <main className="min-h-screen bg-gray-50">
       {/* Hero section - puede empezar directamente */}
-      <section className="bg-gradient-to-br from-furgocasa-blue ...">
+      <section className="bg-gradient-to-br from-limonar-blue ...">
         <h1>{t("Nuestra Flota")}</h1>
       </section>
       

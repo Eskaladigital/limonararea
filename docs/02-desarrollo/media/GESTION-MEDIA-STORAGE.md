@@ -1,8 +1,8 @@
-# Gestión de Media Storage - Furgocasa
+# Gestión de Media Storage - Eco Area Limonar
 
 ## 📋 Resumen
 
-Sistema completo de gestión de archivos multimedia para el panel de administrador de Furgocasa, utilizando Supabase Storage con 4 buckets organizados por categorías.
+Sistema completo de gestión de archivos multimedia para el panel de administrador de Eco Area Limonar, utilizando Supabase Storage con 4 buckets organizados por categorías.
 
 ---
 
@@ -208,8 +208,8 @@ extras/
 ```
 media/
 ├── logos/
-│   ├── furgocasa-logo.png
-│   └── furgocasa-logo-blanco.png
+│   ├── limonar-logo.png
+│   └── limonar-logo-blanco.png
 ├── banners/
 │   └── promocion-verano-2026.jpg
 └── general/

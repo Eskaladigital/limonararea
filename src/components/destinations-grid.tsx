@@ -89,7 +89,7 @@ export function DestinationsGrid({
                   
                   {/* Texto en la parte inferior del polaroid */}
                   <div className="text-center px-2">
-                    <h3 className="font-bold text-gray-900 text-sm lg:text-base mb-0.5 group-hover:text-furgocasa-blue transition-colors">
+                    <h3 className="font-bold text-gray-900 text-sm lg:text-base mb-0.5 group-hover:text-limonar-blue transition-colors">
                       {destination.name}
                     </h3>
                     <p className="text-xs text-gray-600">{t(destination.region)}</p>

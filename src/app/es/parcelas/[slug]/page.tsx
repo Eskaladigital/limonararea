@@ -3,7 +3,7 @@ import { LocalizedLink } from"@/components/localized-link";
 import { notFound } from"next/navigation";
 import { headers } from"next/headers";
 import { ArrowLeft, Users, Bed, Ruler } from"lucide-react";
-import { getVehicleBySlug } from"@/lib/supabase/queries";
+import { getParcelBySlug } from"@/lib/supabase/queries";
 import { ParcelGallery } from "@/components/parcel/parcel-gallery";
 import { ParcelEquipmentDisplay } from "@/components/parcel/equipment-display";
 import { translateServer } from"@/lib/i18n/server-translation";
@@ -19,13 +19,13 @@ import { createClient } from"@supabase/supabase-js";
 //     process.env.NEXT_PUBLIC_SUPABASE_URL!,
 //     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 //   );
-//   const { data: vehicles } = await supabase
-//     .from('vehicles')
+//   const { data: parcels } = await supabase
+//     .from('parcels')
 //     .select('slug')
-//     .eq('is_active', true)
-//     .eq('is_for_rent', true);
-//   const params = vehicles?.map(v => ({ slug: v.slug })) || [];
-//   console.log(`[generateStaticParams] Pre-generando ${params.length} vehículos de alquiler`);
+//     .eq('is_for_rent', true)
+//     .neq('status', 'inactive');
+//   const params = parcels?.map(p => ({ slug: p.slug })) || [];
+//   console.log(`[generateStaticParams] Pre-generando ${params.length} parcelas de alquiler`);
 //   return params;
 // }
 
@@ -42,13 +42,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     locale = 'es';
   }
   
-  const { data: parcel } = await getVehicleBySlug(slug);
+  const { data: parcel } = await getParcelBySlug(slug);
 
   if (!parcel) {
     return {};
   }
 
-  // ⚠️ CRÍTICO: Usar SIEMPRE www.furgocasa.com como URL canónica base
+  // ⚠️ CRÍTICO: Usar SIEMPRE www.limonar.com como URL canónica base
   const path = `/parcelas/${slug}`;
   // ✅ Canonical autorreferenciado usando helper centralizado
   const alternates = buildCanonicalAlternates(path, locale);
@@ -56,9 +56,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const description = parcel.short_description
     || `Parcela ${parcel.name} en Eco Area Limonar. Con todos los servicios desde ${formatPrice(parcel.base_price_per_day)}/día.`;
 
-  const firstImage = (vehicle as any)?.images?.[0]?.image_url;
+  const firstImage = (parcel as any)?.images?.[0]?.image_url;
   const images = firstImage
-    ? [{ url: firstImage, alt: (vehicle as any)?.images?.[0]?.alt_text || parcel.name }]
+    ? [{ url: firstImage, alt: (parcel as any)?.images?.[0]?.alt_text || parcel.name }]
     : [];
 
   return {
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default async function VehicleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ParcelDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   // ✅ Obtener el idioma del header establecido por el middleware
   let locale: Locale = 'es';
   try {
@@ -99,9 +99,9 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
   const t = (key: string) => translateServer(key, locale);
   
   const { slug } = await params;
-  const { data: vehicle, error } = await getVehicleBySlug(slug);
-  
-  if (error || !vehicle) {
+const { data: parcel, error } = await getParcelBySlug(slug);
+
+  if (error || !parcel) {
     notFound();
   }
 

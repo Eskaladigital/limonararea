@@ -2,7 +2,7 @@
 
 ## ¿Qué hace esto?
 
-Recibe automáticamente **todas las entregas y recogidas** de Furgocasa en el calendario de tu móvil (iPhone o Android), igual que funciona Notion Calendar.
+Recibe automáticamente **todas las entregas y recogidas** de Eco Area Limonar en el calendario de tu móvil (iPhone o Android), igual que funciona Notion Calendar.
 
 ## ✨ Ventajas
 
@@ -16,19 +16,19 @@ Recibe automáticamente **todas las entregas y recogidas** de Furgocasa en el ca
 
 ### Para iPhone:
 
-1. Entra a **furgocasa.com/administrator/calendario**
+1. Entra a **ecoarealimonar.com/administrator/calendario**
 2. Click en el botón azul **"Sincronizar con mi Calendario"**
 3. Click en **copiar** la URL
 4. Abre la app **Calendario** de tu iPhone
 5. Toca **"Calendarios"** (abajo)
 6. Toca **"Añadir calendario"** → **"Añadir suscripción"**
 7. Pega la URL
-8. Dale el nombre **"Furgocasa - Entregas"**
+8. Dale el nombre **"Eco Area Limonar - Entregas"**
 9. **¡Listo!** Ya nunca más tienes que tocar nada
 
 ### Para Android:
 
-1. Entra a **furgocasa.com/administrator/calendario**
+1. Entra a **ecoarealimonar.com/administrator/calendario**
 2. Click en el botón azul **"Sincronizar con mi Calendario"**
 3. Click en **copiar** la URL
 4. Abre **Google Calendar** en el **navegador** (no la app)
@@ -70,7 +70,7 @@ Aparecerá automáticamente en tu móvil en las próximas horas.
 Desaparecerá automáticamente de tu móvil en las próximas horas.
 
 **¿Puedo modificar los eventos?**  
-No, son de solo lectura. Los cambios se hacen en la web de Furgocasa.
+No, son de solo lectura. Los cambios se hacen en la web de Eco Area Limonar.
 
 **¿Funciona sin internet?**  
 Los eventos ya descargados sí. Los nuevos necesitan conexión para sincronizar.
@@ -80,7 +80,7 @@ No, es el propio sistema operativo quien sincroniza (igual que tu email).
 
 ## 🚨 Importante
 
-- Esta URL es **solo para el equipo de Furgocasa**
+- Esta URL es **solo para el equipo de Eco Area Limonar**
 - **NO la compartas** con clientes ni fuera de la empresa
 - Contiene información privada de todos los clientes
 

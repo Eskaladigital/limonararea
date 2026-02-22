@@ -1,6 +1,126 @@
-# 📋 CHANGELOG - Furgocasa App
+# 📋 CHANGELOG - Eco Area Limonar
 
 Historial de cambios y versiones del proyecto.
+
+---
+
+## ⚡ [4.4.9] - 22 de Febrero 2026 - **Documentación actualizada + BD add-eco-area-tables**
+
+### 📚 Documentación
+
+- **supabase/README-ECO-AREA.md**: Añadido `add-eco-area-tables.sql` al orden de ejecución. Tabla `search_queries` en esquema.
+- **SUPABASE-SCHEMA-REAL.md**: Tablas `search_queries`, `last_minute_offers`. Queries actualizadas a parcels. Bookings con `parcel_id`.
+- **INDICE-DOCUMENTACION.md**: Fix legacy Eco Area Limonar. Referencias a add-eco-area-tables. Sección "Documentos Legacy".
+- **docs/README.md**: vehiculos → parcelas. Versión 4.4.8.
+- **README.md**: Dominio ecoarealimonar.com. Estado producción 22 Feb 2026.
+
+### ⚠️ Archivos obsoletos identificados
+
+- Docs en `05-historico/`, `06-archivos-temporales/` con referencias a ecoarealimonar.com: **legacy** (mantener para contexto).
+- FIX-ERROR-500-VEHICULOS.md: Aplica a Eco Area Limonar; Eco Area usa `/parcelas/[slug]`.
+
+---
+
+## ⚡ [4.4.8] - 22 de Febrero 2026 - **Migración vehicle→parcel completa + limpieza campos Eco Area Limonar**
+
+### 🔄 Migración last_minute_offers: vehicle_id → parcel_id
+
+- **Script SQL**: `supabase/migrate-last-minute-offers-vehicle-to-parcel.sql` — Renombra `vehicle_id` a `parcel_id` y actualiza FK a `parcels`.
+- **API check-availability**: Usa `parcel_id`, devuelve `parcel_name`, `parcel_internal_code` (eliminados `vehicle_*`).
+
+### 🧹 Eliminación de fallbacks y referencias obsoletas
+
+- **URLs**: Eliminado `searchParams.get('vehicle_id')` en todas las páginas de reserva (ES, EN, FR, DE, NL).
+- **Booking/confirmación/pago**: Eliminados fallbacks `?? (booking as any).vehicle?.name` y similares.
+- **Ofertas**: Eliminados `?? (offer as any).vehicle_id`, `?? (offer as any).vehicle` en páginas oferta.
+- **search-tracking API**: Eliminados `vehicle_id`, `vehicle_price`, `vehicle_selected` (solo `parcel_id`, `parcel_selected`).
+
+### 🗑️ Campos no aplicables a parcelas (brand, model, seats, beds)
+
+Las parcelas en Eco Area Limonar **no tienen** `brand`, `model`, `seats`, `beds` (herencia de Eco Area Limonar/vehículos). Eliminadas todas las referencias:
+
+- **Páginas oferta [offerId]**: Eliminados bloques de brand/model y seats/beds (ES, EN, FR, DE, NL).
+- **Páginas reserva nueva**: Eliminados brand/model/seats/beds del resumen de parcela.
+- **Páginas booking [id], confirmación, pago, éxito**: Eliminados brand/model.
+- **Admin reservas**: Sustituido brand/model por `internal_code`.
+- **ofertas-client.tsx**: Eliminados `parcel_seats`, `parcel_beds` de interfaz y render.
+- **Imports**: Eliminados `Users`, `Bed` no usados.
+
+### 📋 Uso correcto de "vehicle" en Eco Area Limonar
+
+La **única** referencia válida a "vehicle" es **vehicle_type** (tipo de vehículo del cliente: autocaravana, caravana, tienda, etc.) en `search-widget.tsx` y API: `getVehicleTypes()`, `guestVehicleType`, `vehicle_type` en query params. Indica qué tipo de vehículo ocupará la parcela.
+
+#### Archivos modificados
+
+- `supabase/migrate-last-minute-offers-vehicle-to-parcel.sql` — Nuevo.
+- `src/app/api/admin/last-minute-offers/check-availability/route.ts`
+- `src/app/api/search-tracking/route.ts`
+- Páginas reserva: `nueva`, `new`, `nouvelle`, `nieuw`, `neu` (ES, EN, FR, DE, NL)
+- Páginas parcela: `parcela`, `parcel`, `parcelle`, `perceel`, `stellplatz`
+- Páginas booking: `[id]`, `confirmacion`, `pago`, `payment`, `betaling`, `bevestiging`, `confirmation`, `paiement`, `zahlung`, `bestaetigung`
+- Páginas oferta: `oferta/[offerId]` (ES, EN, FR, DE, NL)
+- Páginas éxito de pago: `exito`, `succes` (ES, EN, FR, DE, NL)
+- `src/app/es/ofertas/ofertas-client.tsx`
+- `src/app/administrator/(protected)/ofertas-ultima-hora/page.tsx`
+- `src/app/administrator/(protected)/reservas/[id]/page.tsx`
+- `src/lib/calendar/ics-generator.ts`
+- `docs/04-referencia/sistemas/SISTEMA-OFERTAS-ULTIMA-HORA.md`
+
+---
+
+## ⚡ [4.4.7] - 21 de Febrero 2026 - **i18n: tarifas FR, búsqueda/recherche, API locale, calendario**
+
+### 🌐 Traducciones página Tarifas (FR/DE/NL)
+
+- **Claves añadidas** en `home.ts`: "¿Qué incluye tu parcela?", "hasta -10%", "hasta -20%", "hasta -30%", "Electricidad", "Cargando calendario...", "No hay meses disponibles...".
+- **tarifas-client.tsx**: Porcentajes de descuento con `t(discount.percentage)` para que se traduzcan.
+- **SeasonsCalendar**: Meses y días de la semana según idioma (date-fns locale: es, en, fr, de, nl). Nombres de temporada en los 5 idiomas.
+
+### 🌐 Traducciones página Búsqueda / Recherche
+
+- **Claves añadidas** en `home.ts`: "Buscando parcelas disponibles...", "Resultados de búsqueda", "Modificar", "parcela", "disponible", "Entrada", "Salida", "huéspedes", "adultos", "niños", "No hay parcelas disponibles", "Prueba con otras fechas", "Error al buscar disponibilidad", "Estándar", "cobra".
+- **SearchSummary**: Fechas formateadas según idioma (ej. FR: "sam. 28 févr." en lugar de "sáb, 28 de feb"). Uso de `LocalizedLink` para "Modificar".
+- **API availability**: Parámetro `?locale=fr` (o en, de, nl). Si se envía, la API devuelve `name` y `short_description` de parcelas (y `category.name`) traducidos desde `content_translations` (source_table `vehicles` y `content_categories`).
+- **BuscarClient**: Envía el idioma actual en la petición a `/api/availability` para recibir nombres de parcelas en el idioma correcto.
+
+### 📄 Contenido en BD para script de IA (pages-es.json)
+
+- **Nuevo archivo** `src/lib/i18n/data/pages-es.json` con claves de contacto, footer, normas, galería y header (textos en español).
+- **Script** `scripts/translate-all-content-openai.js` ampliado: además de `mar-menor-es.json`, procesa `pages-es.json` y vuelca traducciones en `content_translations` (source_table `i18n`).
+- Ejecutar `node scripts/translate-all-content-openai.js` para generar EN, FR, DE, NL de esas claves en Supabase.
+
+#### Archivos modificados
+
+- `src/lib/i18n/translations/home.ts` — Nuevas claves (tarifas, búsqueda, contacto, footer, normas, galería, calendario).
+- `src/app/es/tarifas/tarifas-client.tsx` — `t(discount.percentage)`.
+- `src/components/seasons-calendar.tsx` — Locales date-fns, weekdayLabels y seasonNames por idioma.
+- `src/components/booking/search-summary.tsx` — Formato de fecha por locale, `LocalizedLink` para Modificar.
+- `src/components/booking/parcel-card.tsx` — "cobra" con `t("cobra")`.
+- `src/app/api/availability/route.ts` — Parámetro `locale`, overlay de traducciones desde `content_translations`.
+- `src/app/es/buscar/buscar-client.tsx` — Pasa `language` a `fetchAvailability`, queryKey con `language`.
+- `src/lib/i18n/data/pages-es.json` — Nuevo.
+- `scripts/translate-all-content-openai.js` — Lectura de `pages-es.json` y volcado a BD.
+
+---
+
+## ⚡ [4.4.6] - 22 de Febrero 2026 - **Home: tarjetas parcelas horizontales + fix imagen galería**
+
+### 🎨 Tarjetas "Encuentra tu parcela perfecta" más horizontales
+
+- **Sección**: Home → "Encuentra tu parcela perfecta"
+- **Cambio**: Altura de tarjetas reducida a formato horizontal (`h-56 lg:h-64`), similar a referencias como Eco Area Limonar
+- **Archivos**: `src/app/{es,en,fr,de,nl}/page.tsx`
+
+### 🖼️ Fix imagen rota en galería "Imagina tus próximas vacaciones"
+
+- **Problema**: `AdobeStock_132830655.webp` no existía en `public/images/slides/`
+- **Solución**: Sustituida por `limonar_area_camper_mar_menor_3.webp`
+- **Archivos**: `src/app/{es,en,fr,de}/page.tsx`
+
+#### Commits
+
+- `6f93499` - style(home): reducir altura tarjetas parcelas a formato horizontal (h-56 lg:h-64)
+- `c859fba` - fix(home): reemplazar imagen inexistente AdobeStock_132830655 por limonar_area_camper_mar_menor_3
 
 ---
 
@@ -112,12 +232,12 @@ Sistema completo para marcar vehículos como vendidos de forma independiente (no
 #### Análisis Competitivo (Indie Campers)
 
 **Situación:**
-- **Furgocasa LCP técnico:** 0.83s ✅ (MEJOR que competencia)
+- **Eco Area Limonar LCP técnico:** 0.83s ✅ (MEJOR que competencia)
 - **Indie Campers LCP técnico:** ~1.1s (peor)
 - **Percepción:** Indie Campers se sentía más rápido ❌
 
 **Causa raíz:**
-- Furgocasa mostraba **pantalla en blanco durante 830ms**
+- Eco Area Limonar mostraba **pantalla en blanco durante 830ms**
 - Usuario no recibía feedback visual → Percepción: "La página es lenta"
 - Indie Campers mostraba **skeleton en 50ms** → Percepción: "Ya cargó"
 
@@ -344,25 +464,25 @@ import { GoogleAnalytics } from "@next/third-parties/google"
 Títulos descriptivos en todas las páginas del administrador:
 
 **Server Components (con `metadata`):**
-- Dashboard: "Admin - Dashboard | Furgocasa"
-- Informes: "Admin - Informes | Furgocasa"
+- Dashboard: "Admin - Dashboard | Eco Area Limonar"
+- Informes: "Admin - Informes | Eco Area Limonar"
 
 **Client Components (con `useEffect`):**
-- Reservas: "Admin - Reservas | Furgocasa"
-- Daños: "Admin - Daños | Furgocasa"
-- Clientes: "Admin - Clientes | Furgocasa"
-- Vehículos: "Admin - Vehículos | Furgocasa"
-- Calendario: "Admin - Calendario | Furgocasa"
-- Pagos: "Admin - Pagos | Furgocasa"
-- Blog: "Admin - Blog | Furgocasa"
-- Extras: "Admin - Extras | Furgocasa"
-- Configuración: "Admin - Configuración | Furgocasa"
-- Ubicaciones: "Admin - Ubicaciones | Furgocasa"
-- Temporadas: "Admin - Temporadas | Furgocasa"
-- Cupones: "Admin - Cupones | Furgocasa"
-- Media: "Admin - Media | Furgocasa"
-- Ofertas: "Admin - Ofertas | Furgocasa"
-- Equipamiento: "Admin - Equipamiento | Furgocasa"
+- Reservas: "Admin - Reservas | Eco Area Limonar"
+- Daños: "Admin - Daños | Eco Area Limonar"
+- Clientes: "Admin - Clientes | Eco Area Limonar"
+- Vehículos: "Admin - Vehículos | Eco Area Limonar"
+- Calendario: "Admin - Calendario | Eco Area Limonar"
+- Pagos: "Admin - Pagos | Eco Area Limonar"
+- Blog: "Admin - Blog | Eco Area Limonar"
+- Extras: "Admin - Extras | Eco Area Limonar"
+- Configuración: "Admin - Configuración | Eco Area Limonar"
+- Ubicaciones: "Admin - Ubicaciones | Eco Area Limonar"
+- Temporadas: "Admin - Temporadas | Eco Area Limonar"
+- Cupones: "Admin - Cupones | Eco Area Limonar"
+- Media: "Admin - Media | Eco Area Limonar"
+- Ofertas: "Admin - Ofertas | Eco Area Limonar"
+- Equipamiento: "Admin - Equipamiento | Eco Area Limonar"
 
 **Total: 17 páginas actualizadas**
 
@@ -1221,7 +1341,7 @@ d7a7a5a - feat(i18n): migrar 20 paginas adicionales a arquitectura [locale]
    - ✅ Comentarios explicativos en cada sección
 
 2. **Grupos de redirecciones optimizados**:
-   - **GRUPO 1**: Normalización dominio (furgocasa.com → www.furgocasa.com)
+   - **GRUPO 1**: Normalización dominio (ecoarealimonar.com → www.ecoarealimonar.com)
    - **GRUPO 2**: Corrección idioma cruzado (temporal, eliminar en Fase 3)
    - **GRUPO 3**: URLs legacy Joomla (permanente, hay backlinks)
    - **GRUPO 4**: Términos alternativos (casas rodantes, motorhome)
@@ -1351,7 +1471,7 @@ La auditoría SEO detectó:
   "description": "Servicio de alquiler de furgonetas campers de 4-6 plazas con baño, cocina y calefacción. Kilómetros ilimitados incluidos.",
   "provider": {
     "@type": "Organization",
-    "name": "Furgocasa"
+    "name": "Eco Area Limonar"
   }
 }
 ```
@@ -1455,7 +1575,7 @@ Puedes validar el schema manualmente en:
 - **Google Search Console**: https://search.google.com/search-console
 
 **Cómo probar**:
-1. Visitar una URL de producción (ej: `https://www.furgocasa.com/es/alquiler-autocaravanas-campervans-murcia`)
+1. Visitar una URL de producción (ej: `https://www.ecoarealimonar.com/es/alquiler-autocaravanas-campervans-murcia`)
 2. Ver código fuente → Buscar `<script type="application/ld+json">`
 3. Copiar JSON-LD completo
 4. Pegar en validador
@@ -1783,7 +1903,7 @@ Nueva sección `/administrator/cupones` con:
 | Mínimo días | 10 |
 | Válido | 5 enero - 20 marzo 2026 |
 
-**Visible en**: https://www.furgocasa.com/es/ofertas
+**Visible en**: https://www.ecoarealimonar.com/es/ofertas
 
 ---
 
@@ -2128,7 +2248,7 @@ Durante la **auditoría SEO de metatítulos** (commit `8fb822e`), se refactoriza
 />
 
 // ✅ AHORA (completo)
-<div className="bg-furgocasa-blue py-6 -mx-4 px-4 mb-8 rounded-xl">
+<div className="bg-limonar-blue py-6 -mx-4 px-4 mb-8 rounded-xl">
   <SearchSummary
     pickupDate={...}
     dropoffDate={...}
@@ -2140,7 +2260,7 @@ Durante la **auditoría SEO de metatítulos** (commit `8fb822e`), se refactoriza
 </div>
 ```
 
-- ✅ Fondo azul restaurado (`bg-furgocasa-blue`)
+- ✅ Fondo azul restaurado (`bg-limonar-blue`)
 - ✅ Cálculo de días funcionando (ya no muestra "NaN días")
 - ✅ Ubicación y horas visibles
 
@@ -2262,7 +2382,7 @@ return (
 - Documentación: `GESTION-IMAGENES-SUPABASE.md`, `IMAGENES-HERO-LOCALIZACIONES.md`
 
 #### 4. Actualización .gitignore (`f4cb816`)
-- `furgocasa_images/` excluida (imágenes en Supabase Storage)
+- `limonar_images/` excluida (imágenes en Supabase Storage)
 - Logs de migración excluidos
 - Archivos de conflicto de Dropbox excluidos
 
@@ -2418,7 +2538,7 @@ Páginas Administrador (/administrator, /es/administrator, etc.)
 - ❌ Eliminado: `VehicleImageSlider` component
 - ✅ Añadido: Renderizado directo con `<img>` tag
 - ✅ Copiada estructura EXACTA de páginas de localización
-- ✅ Añadidos textos descriptivos de Furgocasa
+- ✅ Añadidos textos descriptivos de Eco Area Limonar
 - ✅ Título, subtítulo y descripción coherentes
 
 **Antes**:
@@ -2769,7 +2889,7 @@ vehicles.find(v => v.id === id)
 - `7d2a8e4` - Fix calendario: Batch loading y validaciones
 - `2f1b6d9` - Fix Meta Pixel: Carga condicional
 
-**URL Producción**: https://webfurgocasa.vercel.app
+**URL Producción**: https://weblimonar.vercel.app
 
 **Verificación**:
 - ✅ Todas las secciones del admin cargan correctamente
@@ -3379,7 +3499,7 @@ useEffect(() => {
 - `07d0c61`: Fix loop infinito AbortError
 - `6253f77`: Pending no bloquea disponibilidad
 
-**URL Producción**: [https://webfurgocasa.vercel.app](https://webfurgocasa.vercel.app)
+**URL Producción**: [https://weblimonar.vercel.app](https://weblimonar.vercel.app)
 
 ---
 
@@ -3402,7 +3522,7 @@ useEffect(() => {
 
 // Título ahora es un Link
 <Link href={reservationUrl}>
-  <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-furgocasa-orange">
+  <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-limonar-orange">
     {vehicle.name}
   </h3>
 </Link>
@@ -3506,9 +3626,9 @@ const totalPrice = basePrice + extrasPrice;  // ✅ Ahora suma correctamente
   <div className="flex items-center justify-between mb-3">
     <div>
       <p className="text-xs text-gray-500">Total ({days} días)</p>
-      <p className="text-2xl font-bold text-furgocasa-orange">{formatPrice(totalPrice)}</p>
+      <p className="text-2xl font-bold text-limonar-orange">{formatPrice(totalPrice)}</p>
     </div>
-    <button onClick={handleContinue} className="bg-furgocasa-orange...">
+    <button onClick={handleContinue} className="bg-limonar-orange...">
       Continuar <ArrowRight />
     </button>
   </div>
@@ -3631,7 +3751,7 @@ if (existingCustomers && existingCustomers.length > 0) {
 
 ### ✅ Primer despliegue en producción
 
-**URL de producción**: https://webfurgocasa.vercel.app
+**URL de producción**: https://weblimonar.vercel.app
 
 ### 🚀 Características desplegadas
 

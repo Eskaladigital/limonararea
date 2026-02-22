@@ -6,7 +6,7 @@
  * Verifica que el endpoint de suscripción de calendario funcione correctamente
  */
 
-const token = process.env.CALENDAR_SUBSCRIPTION_TOKEN || 'furgocasa2026';
+const token = process.env.CALENDAR_SUBSCRIPTION_TOKEN || 'limonar2026';
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 const calendarUrl = `${baseUrl}/api/calendar/entregas?token=${token}`;
 

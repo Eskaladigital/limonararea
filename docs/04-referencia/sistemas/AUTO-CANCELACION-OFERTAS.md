@@ -1,4 +1,4 @@
-# 🤖 Cancelación Automática de Ofertas - Furgocasa
+# 🤖 Cancelación Automática de Ofertas - Eco Area Limonar
 
 **Versión**: 2.0  
 **Fecha**: 8 de Febrero, 2026

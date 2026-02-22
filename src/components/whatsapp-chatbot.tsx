@@ -80,7 +80,7 @@ export default function WhatsAppChatbot() {
               <MessageCircle className="w-6 h-6 text-[#25D366]" />
             </div>
             <div className="flex-1">
-              <h3 className="font-rubik font-semibold text-lg">Furgocasa</h3>
+              <h3 className="font-rubik font-semibold text-lg">Eco Area Limonar</h3>
               <p className="text-xs text-white/80">Normalmente responde en minutos</p>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function WhatsAppChatbot() {
             {/* Mensaje de bienvenida */}
             <div className="bg-white rounded-lg rounded-tl-none p-4 shadow-sm mb-4">
               <p className="text-gray-800 text-sm font-amiko">
-                ¡Hola! 👋 Soy el asistente de Furgocasa.
+                ¡Hola! 👋 Soy el asistente de Eco Area Limonar.
               </p>
               <p className="text-gray-800 text-sm font-amiko mt-2">
                 ¿En qué puedo ayudarte hoy?

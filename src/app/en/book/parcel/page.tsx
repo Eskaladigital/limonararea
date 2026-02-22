@@ -49,7 +49,7 @@ function ReservarParcelaContent() {
   const searchParams = useSearchParams();
   
   // Get params from URL
-  const parcelId = searchParams.get('parcel_id') || searchParams.get('vehicle_id');
+  const parcelId = searchParams.get('parcel_id');
   const pickupDate = searchParams.get('pickup_date');
   const dropoffDate = searchParams.get('dropoff_date');
   const pickupTime = searchParams.get('pickup_time');
@@ -291,7 +291,7 @@ function ReservarParcelaContent() {
       <>
 <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <Loader2 className="h-12 w-12 text-furgocasa-orange mx-auto mb-4 animate-spin" />
+            <Loader2 className="h-12 w-12 text-limonar-orange mx-auto mb-4 animate-spin" />
             <p className="text-gray-600">{t("Cargando parcela...")}</p>
           </div>
         </div>
@@ -309,7 +309,7 @@ function ReservarParcelaContent() {
             <p className="text-gray-600 mb-4">{error || t("Parcela no encontrada")}</p>
             <LocalizedLink 
               href="/reservar"
-              className="inline-block bg-furgocasa-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors"
+              className="inline-block bg-limonar-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors"
             >
               {t("Volver a buscar")}
             </LocalizedLink>
@@ -330,7 +330,7 @@ function ReservarParcelaContent() {
           <div className="mb-4">
             <LocalizedLink 
               href={`/buscar?${searchParams.toString()}`}
-              className="inline-flex items-center text-sm text-gray-600 hover:text-furgocasa-orange transition-colors group"
+              className="inline-flex items-center text-sm text-gray-600 hover:text-limonar-orange transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
               {t("Volver a la búsqueda")}
@@ -343,10 +343,10 @@ function ReservarParcelaContent() {
               {/* Gallery */}
               <ParcelGallery images={parcel.images || []} parcelName={parcel.name} />
 
-              {/* Vehicle Info */}
+              {/* Parcel Info */}
               <div className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-6">
                 {parcel.category && (
-                  <span className="px-2 md:px-3 py-1 bg-furgocasa-orange/10 text-furgocasa-orange rounded-full text-xs md:text-sm font-medium">
+                  <span className="px-2 md:px-3 py-1 bg-limonar-orange/10 text-limonar-orange rounded-full text-xs md:text-sm font-medium">
                     {parcel.category.name}
                   </span>
                 )}
@@ -457,14 +457,14 @@ function ReservarParcelaContent() {
                           return (
                             <div 
                               key={extra.id}
-                              className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-furgocasa-blue transition-colors"
+                              className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-limonar-blue transition-colors"
                             >
                               <div className="flex-1">
                                 <p className="font-semibold text-gray-900">{extra.name}</p>
                                 {extra.description && (
                                   <p className="text-sm text-gray-600 mt-1">{extra.description}</p>
                                 )}
-                                <p className="text-sm font-medium text-furgocasa-orange mt-2">
+                                <p className="text-sm font-medium text-limonar-orange mt-2">
                                   {priceDisplay}
                                   {extra.min_quantity && extra.price_type === 'per_day' && (
                                     <span className="text-xs text-gray-500 ml-2">
@@ -490,7 +490,7 @@ function ReservarParcelaContent() {
                                         className={`w-8 h-8 flex items-center justify-center rounded-full border-2 transition-colors ${
                                           quantity <= (extra.min_quantity ?? 0)
                                             ? 'border-gray-200 text-gray-300 cursor-not-allowed'
-                                            : 'border-gray-300 hover:border-furgocasa-orange hover:text-furgocasa-orange'
+                                            : 'border-gray-300 hover:border-limonar-orange hover:text-limonar-orange'
                                         }`}
                                       >
                                         <Minus className="h-4 w-4" />
@@ -504,7 +504,7 @@ function ReservarParcelaContent() {
                                         className={`w-8 h-8 flex items-center justify-center rounded-full border-2 transition-colors ${
                                           quantity >= maxQuantity
                                             ? 'border-gray-300 text-gray-300 cursor-not-allowed'
-                                            : 'border-furgocasa-orange bg-furgocasa-orange text-white hover:bg-orange-600'
+                                            : 'border-limonar-orange bg-limonar-orange text-white hover:bg-orange-600'
                                         }`}
                                       >
                                         <Plus className="h-4 w-4" />
@@ -513,7 +513,7 @@ function ReservarParcelaContent() {
                                   ) : (
                                     <button
                                       onClick={() => addExtra(extra)}
-                                      className="px-4 py-2 bg-furgocasa-blue text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                                      className="px-4 py-2 bg-limonar-blue text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
                                     >
                                       {t("Añadir")}
                                     </button>
@@ -524,8 +524,8 @@ function ReservarParcelaContent() {
                                     onClick={() => quantity > 0 ? removeExtra(extra.id) : addExtra(extra)}
                                     className={`px-4 py-2 text-sm font-semibold rounded-lg transition-colors ${
                                       quantity > 0
-                                        ? 'bg-furgocasa-orange text-white hover:bg-orange-600'
-                                        : 'bg-furgocasa-blue text-white hover:bg-blue-700'
+                                        ? 'bg-limonar-orange text-white hover:bg-orange-600'
+                                        : 'bg-limonar-blue text-white hover:bg-blue-700'
                                     }`}
                                   >
                                     {quantity > 0 ? t("Añadido") : t("Añadir")}
@@ -553,7 +553,7 @@ function ReservarParcelaContent() {
                 {/* Dates */}
                 <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">
                   <div className="flex items-start gap-3">
-                    <Calendar className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                    <Calendar className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                     <div className="text-sm">
                       <p className="text-gray-500">{t("Recogida")}</p>
                       <p className="font-semibold text-gray-900">
@@ -566,7 +566,7 @@ function ReservarParcelaContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Calendar className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                    <Calendar className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                     <div className="text-sm">
                       <p className="text-gray-500">{t("Devolución")}</p>
                       <p className="font-semibold text-gray-900">
@@ -579,7 +579,7 @@ function ReservarParcelaContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                    <MapPin className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                     <div className="text-sm">
                       <p className="text-gray-500">{t("Ubicación")}</p>
                       <p className="font-semibold text-gray-900 capitalize">{pickupLocation}</p>
@@ -645,14 +645,14 @@ function ReservarParcelaContent() {
                 <div className="mb-6">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700 font-medium">{t("Total")}</span>
-                    <span className="text-3xl font-bold text-furgocasa-orange">{formatPrice(totalPrice)}</span>
+                    <span className="text-3xl font-bold text-limonar-orange">{formatPrice(totalPrice)}</span>
                   </div>
                 </div>
 
                 {/* Continue Button */}
                 <button
                   onClick={handleContinue}
-                  className="w-full bg-furgocasa-orange text-white font-semibold py-4 px-6 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
+                  className="w-full bg-limonar-orange text-white font-semibold py-4 px-6 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
                 >
                   {t("Continuar con la reserva")}
                   <ArrowRight className="h-5 w-5" />
@@ -704,11 +704,11 @@ function ReservarParcelaContent() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-500">{t("Total")}</p>
-              <p className="text-2xl font-bold text-furgocasa-orange transition-all duration-300">{formatPrice(totalPrice)}</p>
+              <p className="text-2xl font-bold text-limonar-orange transition-all duration-300">{formatPrice(totalPrice)}</p>
             </div>
             <button
               onClick={handleContinue}
-              className="bg-furgocasa-orange text-white font-bold py-3 px-8 rounded-xl hover:bg-orange-600 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-orange-200"
+              className="bg-limonar-orange text-white font-bold py-3 px-8 rounded-xl hover:bg-orange-600 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-orange-200"
             >
               {t("Continuar")}
               <ArrowRight className="h-5 w-5" />

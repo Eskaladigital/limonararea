@@ -14,7 +14,7 @@ export async function GET() {
       .from('last_minute_offers')
       .select(`
         *,
-        vehicle:vehicles(name, internal_code, slug)
+        parcel:parcels(name, internal_code, slug)
       `)
       .order('detected_at', { ascending: false });
 

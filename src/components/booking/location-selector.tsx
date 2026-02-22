@@ -125,7 +125,7 @@ export function LocationSelector({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white hover:border-furgocasa-blue focus:outline-none focus:ring-1 focus:ring-furgocasa-blue focus:border-furgocasa-blue transition-colors text-left"
+        className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white hover:border-limonar-blue focus:outline-none focus:ring-1 focus:ring-limonar-blue focus:border-limonar-blue transition-colors text-left"
       >
         <div className="flex flex-col">
           <span className="text-gray-700 font-medium uppercase text-sm">
@@ -163,8 +163,8 @@ export function LocationSelector({
                   onChange(location.slug, location.min_days);
                   setIsOpen(false);
                 }}
-                className={`w-full px-4 py-3 hover:bg-furgocasa-blue hover:text-white transition-colors text-left ${
-                  value === location.slug ? "bg-furgocasa-blue text-white" : "text-gray-700"
+                className={`w-full px-4 py-3 hover:bg-limonar-blue hover:text-white transition-colors text-left ${
+                  value === location.slug ? "bg-limonar-blue text-white" : "text-gray-700"
                 }`}
               >
                 <div className="flex flex-col">

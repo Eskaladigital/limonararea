@@ -1,6 +1,6 @@
 # Supabase Client Configuration
 
-Esta carpeta contiene la configuración del cliente de Supabase para Furgocasa.
+Esta carpeta contiene la configuración del cliente de Supabase para Eco Area Limonar.
 
 ## 📁 Archivos
 

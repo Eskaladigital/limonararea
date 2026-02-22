@@ -27,10 +27,10 @@ async function main() {
     .from('information_schema' as any)
     .select('*');
 
-  // Alternativa: probar cada tabla conocida
+  // Tablas del esquema parcel (Eco Area Limonar)
   const knownTables = [
-    'admins', 'vehicles', 'vehicle_categories', 'vehicle_images', 'vehicle_equipment',
-    'equipment', 'extras', 'vehicle_available_extras', 'bookings', 'booking_extras',
+    'admins', 'parcels', 'parcel_categories', 'parcel_images', 'parcel_equipment',
+    'parcel_available_extras', 'equipment', 'extras', 'bookings', 'booking_extras',
     'customers', 'seasons', 'locations', 'payments', 'blocked_dates',
     'posts', 'content_categories', 'content_translations', 'coupons', 'coupon_usage'
   ];

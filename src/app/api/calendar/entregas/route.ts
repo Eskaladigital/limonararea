@@ -14,7 +14,7 @@ export const revalidate = 0;
  * - token: Token de autenticación (requerido)
  * 
  * Uso:
- * https://furgocasa.com/api/calendar/entregas?token=TU_TOKEN_SECRETO
+ * https://limonar.com/api/calendar/entregas?token=TU_TOKEN_SECRETO
  */
 export async function GET(request: NextRequest) {
   return handleCalendarRequest(request);

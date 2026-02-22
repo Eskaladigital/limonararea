@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { Eye, Edit, Trash2 } from "lucide-react";
 import supabase from "@/lib/supabase/client";
 
-interface VehicleActionsProps {
-  vehicleId: string;
-  vehicleSlug: string;
+interface ParcelActionsProps {
+  parcelId: string;
+  parcelSlug: string;
   isForSale?: boolean;
 }
 
-export default function VehicleActions({ vehicleId, vehicleSlug }: VehicleActionsProps) {
+export default function ParcelActions({ parcelId, parcelSlug }: ParcelActionsProps) {
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -21,7 +21,7 @@ export default function VehicleActions({ vehicleId, vehicleSlug }: VehicleAction
       const { data, error } = await supabase
         .from('parcels')
         .delete()
-        .eq('id', vehicleId)
+        .eq('id', parcelId)
         .select('id');
 
       if (error) throw error;
@@ -32,7 +32,7 @@ export default function VehicleActions({ vehicleId, vehicleSlug }: VehicleAction
       // Recargar la página para reflejar los cambios
       router.refresh();
     } catch (error) {
-      console.error('Error deleting vehicle:', error);
+      console.error('Error deleting parcel:', error);
       alert(error instanceof Error ? error.message : 'Error al eliminar la parcela');
     }
   };
@@ -40,14 +40,14 @@ export default function VehicleActions({ vehicleId, vehicleSlug }: VehicleAction
   return (
     <div className="flex items-center justify-end gap-2">
       <Link 
-        href={`/es/parcelas/${vehicleSlug}`} 
+        href={`/es/parcelas/${parcelSlug}`} 
         className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors" 
         title="Ver en web"
       >
         <Eye className="h-5 w-5" />
       </Link>
       <Link 
-        href={`/administrator/parcelas/${vehicleId}/editar`} 
+        href={`/administrator/parcelas/${parcelId}/editar`} 
         className="p-2 text-gray-400 hover:text-clay hover:bg-clay/10 rounded-lg transition-colors" 
         title="Editar"
       >
@@ -63,4 +63,3 @@ export default function VehicleActions({ vehicleId, vehicleSlug }: VehicleAction
     </div>
   );
 }
-

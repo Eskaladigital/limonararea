@@ -115,7 +115,7 @@ export default function robots(): MetadataRoute.Robots {
         crawlDelay: 0,
       },
     ],
-    sitemap: 'https://www.furgocasa.com/sitemap.xml',
-    host: 'https://www.furgocasa.com',
+    sitemap: 'https://www.limonar.com/sitemap.xml',
+    host: 'https://www.limonar.com',
   }
 }

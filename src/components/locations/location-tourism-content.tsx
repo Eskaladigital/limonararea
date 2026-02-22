@@ -202,16 +202,16 @@ export function LocationTourismContent({
               {/* ATRACCIONES - Diseño idéntico a producción (cards azules) */}
               {attractions && attractions.length > 0 && (
                 <div className="mt-12">
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-furgocasa-blue mb-6">
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-limonar-blue mb-6">
                     {replaceLocation(t.what_to_see)}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {attractions.map((attraction, index) => (
                       <div 
                         key={index}
-                        className="bg-blue-50 p-5 sm:p-6 rounded-xl border-l-4 border-furgocasa-blue overflow-hidden"
+                        className="bg-blue-50 p-5 sm:p-6 rounded-xl border-l-4 border-limonar-blue overflow-hidden"
                       >
-                        <h4 className="text-base sm:text-lg font-bold text-furgocasa-blue mb-3 break-words">
+                        <h4 className="text-base sm:text-lg font-bold text-limonar-blue mb-3 break-words">
                           {attraction.title}
                         </h4>
                         <div 
@@ -227,16 +227,16 @@ export function LocationTourismContent({
               {/* ÁREAS DE AUTOCARAVANAS - Diseño idéntico a producción (cards naranjas) */}
               {parking_areas && parking_areas.length > 0 && (
                 <div className="mt-12">
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-furgocasa-orange mb-6">
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-limonar-orange mb-6">
                     {replaceLocation(t.campervan_areas)}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {parking_areas.map((area, index) => (
                       <div 
                         key={index}
-                        className="bg-orange-50 p-5 sm:p-6 rounded-xl border-l-4 border-furgocasa-orange overflow-hidden"
+                        className="bg-orange-50 p-5 sm:p-6 rounded-xl border-l-4 border-limonar-orange overflow-hidden"
                       >
-                        <h4 className="text-base sm:text-lg font-bold text-furgocasa-orange mb-2 break-words">
+                        <h4 className="text-base sm:text-lg font-bold text-limonar-orange mb-2 break-words">
                           {area.name}
                         </h4>
                         {area.approximate_location && (
@@ -318,7 +318,7 @@ export function LocationTourismContent({
 
               {/* CONSEJOS PRÁCTICOS - Diseño idéntico a producción (card azul con gradiente) */}
               {practical_tips && (
-                <div className="mt-12 bg-gradient-to-r from-furgocasa-blue to-blue-600 text-white p-5 sm:p-8 rounded-2xl overflow-hidden">
+                <div className="mt-12 bg-gradient-to-r from-limonar-blue to-blue-600 text-white p-5 sm:p-8 rounded-2xl overflow-hidden">
                   <h3 className="text-xl sm:text-2xl font-heading font-bold mb-4">
                     💡 {t.practical_tips}
                   </h3>
@@ -365,8 +365,8 @@ export function LocationTourismContent({
                 <div key={index} className="mb-12">
                   <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 lg:p-10 shadow-lg border border-gray-100">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="bg-furgocasa-orange/10 p-3 rounded-xl">
-                        <Icon className="h-8 w-8 text-furgocasa-orange" />
+                      <div className="bg-limonar-orange/10 p-3 rounded-xl">
+                        <Icon className="h-8 w-8 text-limonar-orange" />
                       </div>
                       {section.title && (
                         <h3 className="text-2xl lg:text-3xl font-heading font-bold text-gray-900">

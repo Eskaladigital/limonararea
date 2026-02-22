@@ -1,4 +1,4 @@
-# 💳 Sistema de Pagos Furgocasa
+# 💳 Sistema de Pagos Eco Area Limonar
 
 **Versión:** 2.0  
 **Última actualización:** 24/01/2026
@@ -18,7 +18,7 @@
 
 ## Visión General
 
-El sistema de pagos de Furgocasa soporta múltiples métodos de pago con procesamiento automático y gestión manual:
+El sistema de pagos de Eco Area Limonar soporta múltiples métodos de pago con procesamiento automático y gestión manual:
 
 - ✅ **Redsys** - Pasarela bancaria española (recomendado, sin comisión)
 - ✅ **Stripe** - Pagos internacionales (+2% comisión)
@@ -178,8 +178,8 @@ Panel Admin → Pagos → Clic en ojo 👁️ → `/administrator/pagos/[id]`
 
 ### Configuración
 - **Proveedor:** Resend
-- **Desde:** `reservas@furgocasa.com`
-- **Para:** Cliente + CC a `reservas@furgocasa.com`
+- **Desde:** `reservas@ecoarealimonar.com`
+- **Para:** Cliente + CC a `reservas@ecoarealimonar.com`
 
 ### Tipos
 

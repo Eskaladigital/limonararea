@@ -1,10 +1,10 @@
-# ✅ Actualización de Iconos PWA con Logo Furgocasa
+# ✅ Actualización de Iconos PWA con Logo Eco Area Limonar
 
 ## 📅 Fecha
 22 de Enero, 2026
 
 ## 🎯 Objetivo
-Actualizar todos los iconos de la PWA (tanto para la app pública como para el panel de administrador) utilizando el logo oficial de Furgocasa con fondo azul.
+Actualizar todos los iconos de la PWA (tanto para la app pública como para el panel de administrador) utilizando el logo oficial de Eco Area Limonar con fondo azul.
 
 ## 🔄 Cambios Realizados
 
@@ -12,7 +12,7 @@ Actualizar todos los iconos de la PWA (tanto para la app pública como para el p
 Se creó el script `scripts/generate-pwa-icons.js` que utiliza `sharp` para generar automáticamente todos los tamaños de iconos necesarios desde la imagen fuente.
 
 **Imagen fuente utilizada:**
-- `images/furgocasa/Logo_fondo_azul.jpg`
+- `images/limonar/Logo_fondo_azul.jpg`
 
 **Iconos generados en `/public`:**
 
@@ -41,8 +41,8 @@ Los iconos ya estaban correctamente configurados. Se verificó que todos los tam
 
 ```json
 {
-  "name": "Furgocasa - Alquiler de Campers y Autocaravanas",
-  "short_name": "Furgocasa",
+  "name": "Eco Area Limonar - Alquiler de Campers y Autocaravanas",
+  "short_name": "Eco Area Limonar",
   "icons": [
     // 8 iconos en todos los tamaños estándar PWA
   ]
@@ -55,11 +55,11 @@ Actualizado completamente para usar los nuevos iconos:
 **Cambios principales:**
 - ✅ Actualizado array de `icons` con todos los 8 tamaños
 - ✅ Actualizado iconos en `shortcuts` (Reservas, Vehículos, Clientes)
-- ✅ Todos los iconos ahora usan el logo oficial de Furgocasa
+- ✅ Todos los iconos ahora usan el logo oficial de Eco Area Limonar
 
 ```json
 {
-  "name": "Furgocasa Admin",
+  "name": "Eco Area Limonar Admin",
   "icons": [
     // 8 tamaños desde 72x72 hasta 512x512
   ],
@@ -94,7 +94,7 @@ node scripts/generate-pwa-icons.js
 
 ### Colores de Tema
 Los manifests mantienen los colores de la marca:
-- **Theme Color:** `#1e40af` (Azul Furgocasa)
+- **Theme Color:** `#1e40af` (Azul Eco Area Limonar)
 - **Background Color:** 
   - Público: `#1e40af`
   - Admin: `#1e293b` (Gris oscuro)
@@ -165,7 +165,7 @@ Después del deploy, verificar:
 
 ## 🎯 Resultado Final
 
-Ahora todos los iconos de la PWA (tanto la app pública como el panel de administrador) utilizan el **logo oficial de Furgocasa con fondo azul**. Esto incluye:
+Ahora todos los iconos de la PWA (tanto la app pública como el panel de administrador) utilizan el **logo oficial de Eco Area Limonar con fondo azul**. Esto incluye:
 
 - 📱 Icono en la pantalla de inicio (iOS y Android)
 - 🔷 Favicon en el navegador
@@ -176,7 +176,7 @@ Ahora todos los iconos de la PWA (tanto la app pública como el panel de adminis
 ## 💡 Mantenimiento
 
 Si se necesita actualizar el logo en el futuro:
-1. Reemplazar `images/furgocasa/Logo_fondo_azul.jpg`
+1. Reemplazar `images/limonar/Logo_fondo_azul.jpg`
 2. Ejecutar `node scripts/generate-pwa-icons.js`
 3. Los iconos se regenerarán automáticamente
 

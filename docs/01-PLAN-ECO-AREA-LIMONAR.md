@@ -80,7 +80,7 @@ Ver detalle en `REVISION-PAGINAS-ES-AREA-AUTOCARAVANAS.md`.
 
 ### Infraestructura
 - [ ] Proyecto Supabase propio para Eco Area Limonar
-- [ ] Variables de entorno en .env.local (no las de Furgocasa)
+- [ ] Variables de entorno en .env.local (no las de Eco Area Limonar)
 - [ ] Datos iniciales: parcelas, temporadas, extras
 
 ### Deploy
@@ -89,7 +89,7 @@ Ver detalle en `REVISION-PAGINAS-ES-AREA-AUTOCARAVANAS.md`.
 - [ ] Variables de entorno en Vercel
 
 ### Pagos
-- [ ] Redsys: comercio Eco Area Limonar (no Furgocasa)
+- [ ] Redsys: comercio Eco Area Limonar (no Eco Area Limonar)
 - [ ] Stripe: cuenta si se usa
 - [ ] NO modificar `src/lib/redsys/crypto.ts`
 
@@ -102,13 +102,13 @@ Ver detalle en `REVISION-PAGINAS-ES-AREA-AUTOCARAVANAS.md`.
 ## Git y repositorios
 
 ### Historial eliminado
-- El historial de Furgocasa no aplica a este proyecto.
+- El historial de Eco Area Limonar no aplica a este proyecto.
 - Eliminar `.git`: cerrar Cursor y ejecutar `rmdir /s /q .git` en la carpeta.
 
 ### Cuando crees el repo en GitHub
 1. Crear repo nuevo (ej. `eco-area-limonar-app`).
 2. `git init` → `git add .` → `git commit` → `git remote add origin` → `git push`.
-3. Nunca conectar con el repositorio de Furgocasa.
+3. Nunca conectar con el repositorio de Eco Area Limonar.
 
 ---
 

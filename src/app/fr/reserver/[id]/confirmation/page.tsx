@@ -29,7 +29,7 @@ interface Booking {
     email: string;
     phone: string;
   } | null;
-  vehicle: {
+  parcel: {
     name: string;
     brand: string;
     model: string;
@@ -57,7 +57,7 @@ export default function ConfirmacionPage() {
     bankName: 'Banco Ejemplo',
     iban: 'ES00 0000 0000 0000 0000 0000',
     bic: 'ABCDESXX',
-    holder: 'FURGOCASA SL',
+    holder: 'Eco Area Limonar',
   };
 
   // Actualizar título del navegador
@@ -110,7 +110,7 @@ export default function ConfirmacionPage() {
       <>
 <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-furgocasa-orange mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-limonar-orange mx-auto mb-4"></div>
             <p className="text-gray-600">Cargando información de la reserva...</p>
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function ConfirmacionPage() {
             <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Error</h2>
             <p className="text-gray-600 mb-4">{error || 'Reserva no encontrada'}</p>
-            <Link href="/" className="text-furgocasa-orange hover:underline">
+            <Link href="/" className="text-limonar-orange hover:underline">
               Volver al inicio
             </Link>
           </div>
@@ -147,7 +147,7 @@ export default function ConfirmacionPage() {
                 {t("¡Reserva creada correctamente!")}
               </h1>
               <p className="text-gray-600 mb-4">
-                {t("Número de reserva")}: <span className="font-mono font-bold text-furgocasa-orange">{booking.booking_number}</span>
+                {t("Número de reserva")}: <span className="font-mono font-bold text-limonar-orange">{booking.booking_number}</span>
               </p>
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-50 text-yellow-800 rounded-lg">
                 <Building className="h-5 w-5" />
@@ -182,7 +182,7 @@ export default function ConfirmacionPage() {
                   <p className="text-sm text-gray-500 uppercase font-medium">IBAN</p>
                   <button
                     onClick={() => copyToClipboard(bankDetails.iban, 'iban')}
-                    className="text-sm text-furgocasa-blue hover:text-furgocasa-orange transition-colors flex items-center gap-1"
+                    className="text-sm text-limonar-blue hover:text-limonar-orange transition-colors flex items-center gap-1"
                   >
                     {copied === 'iban' ? (
                       <>
@@ -205,7 +205,7 @@ export default function ConfirmacionPage() {
                   <p className="text-sm text-gray-500 uppercase font-medium">BIC/SWIFT</p>
                   <button
                     onClick={() => copyToClipboard(bankDetails.bic, 'bic')}
-                    className="text-sm text-furgocasa-blue hover:text-furgocasa-orange transition-colors flex items-center gap-1"
+                    className="text-sm text-limonar-blue hover:text-limonar-orange transition-colors flex items-center gap-1"
                   >
                     {copied === 'bic' ? (
                       <>
@@ -236,7 +236,7 @@ export default function ConfirmacionPage() {
                   </p>
                   <button
                     onClick={() => copyToClipboard(`Reserva ${booking.booking_number}`, 'concept')}
-                    className="text-sm text-furgocasa-blue hover:text-furgocasa-orange transition-colors flex items-center gap-1"
+                    className="text-sm text-limonar-blue hover:text-limonar-orange transition-colors flex items-center gap-1"
                   >
                     {copied === 'concept' ? (
                       <>
@@ -253,7 +253,7 @@ export default function ConfirmacionPage() {
                 </div>
               </div>
 
-              <div className="p-6 bg-gradient-to-r from-furgocasa-orange to-orange-600 rounded-lg text-white">
+              <div className="p-6 bg-gradient-to-r from-limonar-orange to-orange-600 rounded-lg text-white">
                 <p className="text-sm opacity-90 mb-1">{t("Importe a transferir")}</p>
                 <p className="text-4xl font-bold">{formatPrice(booking.total_price)}</p>
               </div>
@@ -273,20 +273,19 @@ export default function ConfirmacionPage() {
             </h2>
 
             <div className="space-y-4">
-              {/* Vehicle */}
+              {/* Parcel */}
               <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                <Car className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                <Car className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Vehículo")}</p>
-                  <p className="font-semibold text-gray-900">{booking.vehicle.name}</p>
-                  <p className="text-sm text-gray-600">{booking.vehicle.brand} {booking.vehicle.model}</p>
+                  <p className="font-semibold text-gray-900">{booking.parcel?.name}</p>
                 </div>
               </div>
 
               {/* Dates */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                  <Calendar className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                  <Calendar className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Recogida")}</p>
                     <p className="font-semibold text-gray-900 text-sm">
@@ -301,7 +300,7 @@ export default function ConfirmacionPage() {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                  <Calendar className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                  <Calendar className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Devolución")}</p>
                     <p className="font-semibold text-gray-900 text-sm">
@@ -319,7 +318,7 @@ export default function ConfirmacionPage() {
               {/* Locations */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg">
-                  <MapPin className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                  <MapPin className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Recogida en")}</p>
                     <p className="font-semibold text-gray-900">{booking.pickup_location.name}</p>
@@ -327,7 +326,7 @@ export default function ConfirmacionPage() {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg">
-                  <MapPin className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                  <MapPin className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Devolución en")}</p>
                     <p className="font-semibold text-gray-900">{booking.dropoff_location.name}</p>
@@ -345,7 +344,7 @@ export default function ConfirmacionPage() {
             
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-8 h-8 bg-furgocasa-orange text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                <div className="w-8 h-8 bg-limonar-orange text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   1
                 </div>
                 <div>
@@ -355,7 +354,7 @@ export default function ConfirmacionPage() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-8 h-8 bg-furgocasa-orange text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                <div className="w-8 h-8 bg-limonar-orange text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   2
                 </div>
                 <div>
@@ -365,7 +364,7 @@ export default function ConfirmacionPage() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-8 h-8 bg-furgocasa-orange text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                <div className="w-8 h-8 bg-limonar-orange text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   3
                 </div>
                 <div>
@@ -381,7 +380,7 @@ export default function ConfirmacionPage() {
               </p>
               <Link 
                 href="/"
-                className="inline-block bg-furgocasa-blue text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-block bg-limonar-blue text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors"
               >
                 {t("Volver al inicio")}
               </Link>

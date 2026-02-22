@@ -34,12 +34,10 @@ interface Booking {
   notes: string;
   admin_notes: string;
   created_at: string;
-  vehicle: {
+  parcel: {
     id: string;
     name: string;
-    brand: string;
-    model: string;
-    internal_code: string;
+    internal_code: string | null;
   };
   customer: {
     id: string;
@@ -121,7 +119,7 @@ export default function ReservaDetalleAdminPage() {
         .from('bookings')
         .select(`
           *,
-          vehicle:vehicles(id, name, brand, model, internal_code),
+          parcel:parcels(id, name, internal_code),
           customer:customers(
             id, 
             name, 
@@ -618,7 +616,7 @@ Devolución en ${dropoffLocation}`;
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Info */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Vehicle */}
+          {/* Parcela */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Car className="h-6 w-6 text-earth" />
@@ -629,13 +627,15 @@ Devolución en ${dropoffLocation}`;
                 <Car className="h-8 w-8 text-gray-400" />
               </div>
               <div>
-                {booking.vehicle.internal_code && (
+                {booking.parcel.internal_code && (
                   <span className="inline-block px-2 py-1 text-xs font-mono font-bold bg-blue-100 text-blue-800 rounded mb-1">
-                    {booking.vehicle.internal_code}
+                    {booking.parcel.internal_code}
                   </span>
                 )}
-                <p className="font-semibold text-gray-900 text-lg">{booking.vehicle.name}</p>
-                <p className="text-sm text-gray-600">{booking.vehicle.brand} · {booking.vehicle.model}</p>
+                <p className="font-semibold text-gray-900 text-lg">{booking.parcel.name}</p>
+                {booking.parcel.internal_code ? (
+                  <p className="text-sm text-gray-600">{booking.parcel.internal_code}</p>
+                ) : null}
               </div>
             </div>
           </div>

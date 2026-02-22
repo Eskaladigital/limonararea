@@ -59,13 +59,13 @@ const TinyEditor = dynamic(
 - ✅ Código y pre-formateado
 - ✅ Plantillas predefinidas para CTAs y cajas de información
 - ✅ Idioma español
-- ✅ Estilos personalizados con los colores de Furgocasa
+- ✅ Estilos personalizados con los colores de Eco Area Limonar
 
 ## Personalización
 
 El editor está configurado con estilos personalizados en `content_style` que incluyen:
 - Tipografía Inter
-- Colores de marca (Furgocasa Orange: #FF6B35)
+- Colores de marca (Eco Area Limonar Orange: #FF6B35)
 - Estilos para títulos, párrafos, imágenes, citas, código, tablas
 
 ## Archivos de Idioma

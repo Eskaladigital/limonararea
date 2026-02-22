@@ -196,4 +196,4 @@ curl http://localhost:3000/api/occupancy-highlights
 
 **Creado**: Febrero 2026  
 **Versión**: 1.0  
-**Mantenedor**: Furgocasa Dev Team
+**Mantenedor**: Eco Area Limonar Dev Team

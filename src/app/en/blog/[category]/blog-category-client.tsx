@@ -45,7 +45,7 @@ interface Post {
 const categoryNames: Record<string, string> = {
   rutas: "Rutas",
   noticias: "Noticias",
-  vehiculos: "Vehículos",
+  parcelas: "Parcels",
   consejos: "Consejos",
   destinos: "Destinos",
   equipamiento: "Equipamiento",
@@ -55,7 +55,7 @@ const categoryNames: Record<string, string> = {
 const categoryDescriptions: Record<string, string> = {
   rutas: "Las mejores rutas en camper por España y Europa. Descubre destinos increíbles, consejos de viaje y experiencias únicas.",
   noticias: "Mantente al día con las últimas novedades del mundo camper, eventos, ferias y actualidad del sector.",
-  vehiculos: "Conoce los mejores vehículos para viajar, comparativas, análisis y recomendaciones de expertos.",
+  parcelas: "All about motorhome pitches: types, equipment and tips for your ideal plot.",
   consejos: "Guías prácticas y consejos para sacar el máximo partido a tu experiencia camper.",
   destinos: "Descubre los mejores destinos para viajar en camper, desde playas hasta montañas.",
   equipamiento: "Todo sobre accesorios, equipamiento y gadgets para tu camper.",
@@ -171,7 +171,7 @@ function BlogCategoryContent() {
   return (
     <main className="min-h-screen bg-gray-50 font-amiko">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-furgocasa-blue via-furgocasa-blue-dark to-gray-900 py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-limonar-blue via-limonar-blue-dark to-gray-900 py-20 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
@@ -220,7 +220,7 @@ function BlogCategoryContent() {
                   href={`/blog/${translatedSlug}`}
                   className={`px-5 py-2 rounded-full font-bold text-sm tracking-wide uppercase whitespace-nowrap transition-all ${
                     esCategorySlug === esSlug
-                      ? "bg-furgocasa-orange text-white shadow-md transform scale-105"
+                      ? "bg-limonar-orange text-white shadow-md transform scale-105"
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
@@ -241,7 +241,7 @@ function BlogCategoryContent() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t("Buscar en esta categoría...")}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border border-gray-200 focus:border-furgocasa-blue focus:ring-2 focus:ring-furgocasa-blue/20 transition-all text-base shadow-sm"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border border-gray-200 focus:border-limonar-blue focus:ring-2 focus:ring-limonar-blue/20 transition-all text-base shadow-sm"
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
           </div>
@@ -249,7 +249,7 @@ function BlogCategoryContent() {
 
         {loading ? (
           <div className="flex justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-furgocasa-blue"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-limonar-blue"></div>
           </div>
         ) : filteredPosts.length === 0 ? (
           <div className="text-center py-20">
@@ -264,7 +264,7 @@ function BlogCategoryContent() {
             </p>
             <LocalizedLink 
               href="/blog" 
-              className="inline-flex items-center gap-2 bg-furgocasa-blue text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-limonar-blue text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               {t("Ver todos los artículos")}
@@ -304,7 +304,7 @@ function BlogCategoryContent() {
                       ) : (
                         <BookOpen className="h-12 w-12 text-gray-300 group-hover:scale-110 transition-transform duration-500" />
                       )}
-                      <span className="absolute bottom-4 right-4 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-xs font-bold text-furgocasa-orange uppercase tracking-wide shadow-sm">
+                      <span className="absolute bottom-4 right-4 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-xs font-bold text-limonar-orange uppercase tracking-wide shadow-sm">
                         {categoryName}
                       </span>
                     </div>
@@ -324,7 +324,7 @@ function BlogCategoryContent() {
                           {post.reading_time || 5} min
                         </span>
                       </div>
-                      <h3 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-furgocasa-blue transition-colors line-clamp-2">
+                      <h3 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-limonar-blue transition-colors line-clamp-2">
                         {post.title}
                       </h3>
                       <p className="text-gray-600 text-sm line-clamp-3 mb-6 flex-1 leading-relaxed">
@@ -335,7 +335,7 @@ function BlogCategoryContent() {
                         <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
                           {t("Leer artículo")}
                         </span>
-                        <ArrowRight className="h-4 w-4 text-furgocasa-orange transform group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="h-4 w-4 text-limonar-orange transform group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
                   </Link>
@@ -364,7 +364,7 @@ function BlogCategoryContent() {
                       href={`/blog/${categorySlug}?page=${pageNum}`}
                       className={`w-12 h-12 rounded-xl font-bold flex items-center justify-center transition-colors ${
                         page === pageNum
-                          ? "bg-furgocasa-blue text-white shadow-lg transform scale-105"
+                          ? "bg-limonar-blue text-white shadow-lg transform scale-105"
                           : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 hover:border-gray-300"
                       }`}
                     >
@@ -387,7 +387,7 @@ function BlogCategoryContent() {
         )}
 
         {/* CTA Newsletter */}
-        <div className="mt-20 bg-gradient-to-br from-furgocasa-orange to-furgocasa-orange-dark rounded-3xl p-12 text-white text-center relative overflow-hidden">
+        <div className="mt-20 bg-gradient-to-br from-limonar-orange to-limonar-orange-dark rounded-3xl p-12 text-white text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10 max-w-2xl mx-auto">
             <Mail className="h-12 w-12 mx-auto mb-6 text-white/80" />
@@ -405,7 +405,7 @@ function BlogCategoryContent() {
               />
               <button 
                 type="submit" 
-                className="bg-white text-furgocasa-orange font-bold py-3 px-6 rounded-xl hover:bg-gray-50 transition-colors shadow-md uppercase tracking-wide"
+                className="bg-white text-limonar-orange font-bold py-3 px-6 rounded-xl hover:bg-gray-50 transition-colors shadow-md uppercase tracking-wide"
               >
                 {t("Suscribirse")}
               </button>

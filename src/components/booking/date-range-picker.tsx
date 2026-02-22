@@ -138,12 +138,12 @@ export function DateRangePicker({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white hover:border-furgocasa-blue focus:outline-none focus:ring-1 focus:ring-furgocasa-blue focus:border-furgocasa-blue transition-colors"
+        className="w-full flex items-center justify-between px-4 py-3 border border-gray-300 rounded-md bg-white hover:border-limonar-blue focus:outline-none focus:ring-1 focus:ring-limonar-blue focus:border-limonar-blue transition-colors"
       >
         <span className="text-gray-700 font-medium">{displayText()}</span>
         <div className="flex items-center gap-2">
           {numberOfDays() > 0 && (
-            <span className="text-xs bg-furgocasa-blue text-white px-2 py-1 rounded">
+            <span className="text-xs bg-limonar-blue text-white px-2 py-1 rounded">
               {numberOfDays()} {t("días")}
             </span>
           )}
@@ -239,15 +239,15 @@ export function DateRangePicker({
                 head_cell:
                   "text-gray-500 rounded-md flex-1 font-normal text-xs md:text-sm",
                 row: "flex w-full mt-1 md:mt-2",
-                cell: "text-center text-xs md:text-sm p-0 relative flex-1 [&:has([aria-selected])]:bg-furgocasa-blue/10 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                cell: "text-center text-xs md:text-sm p-0 relative flex-1 [&:has([aria-selected])]:bg-limonar-blue/10 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
                 day: "h-8 w-8 md:h-9 md:w-9 mx-auto p-0 font-normal aria-selected:opacity-100 hover:bg-gray-100 rounded-md transition-colors text-xs md:text-sm",
                 day_selected:
-                  "bg-furgocasa-blue text-white hover:bg-blue-700 focus:bg-furgocasa-blue",
+                  "bg-limonar-blue text-white hover:bg-blue-700 focus:bg-limonar-blue",
                 day_today: "bg-gray-100 text-gray-900 font-bold",
                 day_outside: "text-gray-300 opacity-50",
                 day_disabled: "text-gray-300 opacity-50 cursor-not-allowed",
                 day_range_middle:
-                  "aria-selected:bg-furgocasa-blue/10 aria-selected:text-gray-900",
+                  "aria-selected:bg-limonar-blue/10 aria-selected:text-gray-900",
                 day_hidden: "invisible",
               }}
             />
@@ -261,7 +261,7 @@ export function DateRangePicker({
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="w-full md:w-auto bg-furgocasa-blue text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                  className="w-full md:w-auto bg-limonar-blue text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                 >
                   {t("Confirmar")}
                 </button>

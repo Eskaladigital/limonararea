@@ -1,6 +1,6 @@
-# Configuración de Redsys para Furgocasa
+# Configuración de Redsys para Eco Area Limonar
 
-> ⚠️ **NOTA IMPORTANTE**: Furgocasa ahora utiliza un **sistema dual de pagos**:
+> ⚠️ **NOTA IMPORTANTE**: Eco Area Limonar ahora utiliza un **sistema dual de pagos**:
 > - **Redsys** (este documento): Método principal - Comisión 0.3%
 > - **Stripe**: Método alternativo - Comisión 1.4% + 0.25€
 > 
@@ -23,7 +23,7 @@ REDSYS_TERMINAL=001                    # Número de terminal - Normalmente "001"
 REDSYS_SECRET_KEY=XXXXXXXXXXXXXXXX     # Clave secreta (Base64) - Proporcionada por tu banco
 
 # URL pública de tu aplicación
-NEXT_PUBLIC_URL=https://furgocasa.com  # Sin barra final
+NEXT_PUBLIC_URL=https://ecoarealimonar.com  # Sin barra final
 
 # Cifrado de tokens (generar con: openssl rand -hex 32)
 ENCRYPTION_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -121,7 +121,7 @@ src/
 
 ## 💳 Política de Pago 50%-50%
 
-El sistema implementa la política de Furgocasa:
+El sistema implementa la política de Eco Area Limonar:
 
 1. **Primer pago (50%)**: Al realizar la reserva
 2. **Segundo pago (50%)**: Máximo 15 días antes de la recogida
@@ -322,7 +322,7 @@ const hmac = crypto.createHmac("sha256", derivedKeyBuffer); // ✅ Usar buffer
 
 **Posibles causas**:
 1. 🔴 El `merchantCode` (347036410) no está dado de alta correctamente en Redsys
-2. 🔴 La URL de callback (`https://www.furgocasa.com`) no está autorizada en Redsys
+2. 🔴 La URL de callback (`https://www.ecoarealimonar.com`) no está autorizada en Redsys
 3. 🔴 Falta alguna configuración en el panel de administración de Redsys
 4. 🔴 El terminal "001" no está configurado para este comercio
 5. 🔴 Las credenciales son de producción pero el comercio no está activado
@@ -339,8 +339,8 @@ const hmac = crypto.createHmac("sha256", derivedKeyBuffer); // ✅ Usar buffer
 - **Terminal**: 001
 - **Error**: SIS0042 y recursos 404 (CSS, JS, logo)
 - **URLs de callback**:
-  - Producción: https://www.furgocasa.com
-  - Pruebas: https://furgocasa.com (servidor antiguo)
+  - Producción: https://www.ecoarealimonar.com
+  - Pruebas: https://ecoarealimonar.com (servidor antiguo)
 - **Preguntas específicas**:
   1. ¿Está el comercio 347036410 dado de alta correctamente?
   2. ¿Está el terminal 001 activo?

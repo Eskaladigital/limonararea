@@ -25,13 +25,13 @@ const DEFAULT_STALE_TIMES: Record<string, number> = {
   bookings: 1000 * 60 * 2,
   // Clientes - moderado (15 minutos)
   customers: 1000 * 60 * 15,
-  // Vehículos - cambian poco (30 minutos)
-  vehicles: 1000 * 60 * 30,
+  // Parcelas - cambian poco (30 minutos)
+  parcels: 1000 * 60 * 30,
   // Extras y equipamiento - casi nunca cambian (1 hora)
   extras: 1000 * 60 * 60,
   equipment: 1000 * 60 * 60,
   // Categorías - muy estables (1 hora)
-  vehicle_categories: 1000 * 60 * 60,
+  parcel_categories: 1000 * 60 * 60,
   // Ubicaciones - estables (30 minutos)
   locations: 1000 * 60 * 30,
   // Temporadas - estables (30 minutos)

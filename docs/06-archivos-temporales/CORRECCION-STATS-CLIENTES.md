@@ -51,7 +51,7 @@ Tres triggers que mantienen las estadísticas sincronizadas:
 
 1. **Accede a tu proyecto Supabase**
    - Ve a [https://supabase.com/dashboard](https://supabase.com/dashboard)
-   - Selecciona tu proyecto Furgocasa
+   - Selecciona tu proyecto Eco Area Limonar
 
 2. **Abre el SQL Editor**
    - En el menú lateral, click en **SQL Editor**
@@ -76,7 +76,7 @@ Tres triggers que mantienen las estadísticas sincronizadas:
 ### Opción B: Desde CLI de Supabase
 
 ```bash
-cd "e:\Acttax Dropbox\Narciso Pardo\Eskala IA\W - NUEVA FURGOCASA\furgocasa-app"
+cd "ruta/al/proyecto/limonar-app"
 supabase db execute --file supabase/fix-customer-stats-complete.sql
 ```
 
@@ -114,7 +114,7 @@ supabase db execute --file supabase/fix-customer-stats-complete.sql
 
 1. **Accede al panel de administración**
    ```
-   https://www.furgocasa.com/administrator/clientes
+   https://www.ecoarealimonar.com/administrator/clientes
    ```
 
 2. **Verifica que las columnas ahora muestran datos:**

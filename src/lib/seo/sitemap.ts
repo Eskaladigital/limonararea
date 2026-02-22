@@ -16,7 +16,7 @@ type PostRow = {
   published_at?: string | null;
   category?: CategoryRow | CategoryRow[] | null;
 };
-type VehicleRow = { slug: string; updated_at?: string | null };
+type ParcelRow = { slug: string; updated_at?: string | null };
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
   || process.env.NEXT_PUBLIC_APP_URL
@@ -117,8 +117,7 @@ export async function getBaseSitemapEntries(): Promise<SitemapEntry[]> {
   const [
     { data: posts },
     { data: categories },
-    { data: vehiclesRent },
-    { data: vehiclesSale },
+    { data: parcelsRent },
   ] = await Promise.all([
     supabase
       .from('posts')
@@ -141,18 +140,11 @@ export async function getBaseSitemapEntries(): Promise<SitemapEntry[]> {
       .eq('is_for_rent', true)
       .neq('status', 'inactive')
       .order('internal_code', { ascending: true, nullsFirst: false }),
-    supabase
-      .from('parcels')
-      .select('slug, updated_at')
-      .eq('is_for_sale', true)
-      .eq('sale_status', 'available')
-      .order('internal_code', { ascending: true, nullsFirst: false }),
   ]);
 
   const postList = (posts || []) as PostRow[];
   const categoryList = (categories || []) as CategoryRow[];
-  const rentList = (vehiclesRent || []) as VehicleRow[];
-  const saleList = (vehiclesSale || []) as VehicleRow[];
+  const rentList = (parcelsRent || []) as ParcelRow[];
 
   const entries: SitemapEntry[] = [];
   const now = new Date();
@@ -161,14 +153,10 @@ export async function getBaseSitemapEntries(): Promise<SitemapEntry[]> {
     { path: '/', priority: 1.0, changeFrequency: 'daily' },
     { path: '/blog', priority: 0.9, changeFrequency: 'daily' },
     { path: '/parcelas', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/ventas', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/ventas/videos', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/tarifas', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/reservar', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/contacto', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/como-funciona', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/documentacion-alquiler', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/guia-camper', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/mapa-areas', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/ofertas', priority: 0.6, changeFrequency: 'weekly' },
     { path: '/publicaciones', priority: 0.5, changeFrequency: 'weekly' },
@@ -177,7 +165,6 @@ export async function getBaseSitemapEntries(): Promise<SitemapEntry[]> {
     { path: '/faqs', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/como-reservar-fin-semana', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/inteligencia-artificial', priority: 0.5, changeFrequency: 'monthly' },
-    { path: '/video-tutoriales', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/aviso-legal', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/privacidad', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/cookies', priority: 0.3, changeFrequency: 'yearly' },
@@ -236,21 +223,12 @@ export async function getBaseSitemapEntries(): Promise<SitemapEntry[]> {
     });
   });
 
-  rentList.forEach((vehicle) => {
+  rentList.forEach((parcel) => {
     entries.push({
-      path: `/parcelas/${vehicle.slug}`,
+      path: `/parcelas/${parcel.slug}`,
       priority: 0.7,
       changeFrequency: 'weekly',
-      lastModified: vehicle.updated_at || now,
-    });
-  });
-
-  saleList.forEach((vehicle) => {
-    entries.push({
-      path: `/ventas/${vehicle.slug}`,
-      priority: 0.7,
-      changeFrequency: 'weekly',
-      lastModified: vehicle.updated_at || now,
+      lastModified: parcel.updated_at || now,
     });
   });
 

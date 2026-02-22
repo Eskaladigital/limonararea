@@ -203,7 +203,7 @@ export function SaleLocationOwnerContent({
               {/* TALLERES Y SERVICIOS */}
               {workshops_and_services && workshops_and_services.length > 0 && (
                 <div className="mt-12">
-                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-furgocasa-blue mb-6">
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-limonar-blue mb-6">
                     {replaceLocation(t.workshopsTitle)}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -212,13 +212,13 @@ export function SaleLocationOwnerContent({
                       return (
                         <div
                           key={index}
-                          className="bg-blue-50 p-5 sm:p-6 rounded-xl border-l-4 border-furgocasa-blue overflow-hidden"
+                          className="bg-blue-50 p-5 sm:p-6 rounded-xl border-l-4 border-limonar-blue overflow-hidden"
                         >
                           <div className="flex items-start gap-3 mb-3 min-w-0">
-                            <div className="bg-furgocasa-blue/10 p-2 rounded-lg flex-shrink-0">
-                              <Icon className="h-5 w-5 text-furgocasa-blue" />
+                            <div className="bg-limonar-blue/10 p-2 rounded-lg flex-shrink-0">
+                              <Icon className="h-5 w-5 text-limonar-blue" />
                             </div>
-                            <h4 className="text-base sm:text-lg font-bold text-furgocasa-blue break-words min-w-0">
+                            <h4 className="text-base sm:text-lg font-bold text-limonar-blue break-words min-w-0">
                               {service.name}
                             </h4>
                           </div>
@@ -241,12 +241,12 @@ export function SaleLocationOwnerContent({
 
               {/* ITV Y NORMATIVA */}
               {itv_and_regulations && (
-                <div className="mt-12 bg-orange-50 p-5 sm:p-8 rounded-2xl border-l-4 border-furgocasa-orange overflow-hidden">
+                <div className="mt-12 bg-orange-50 p-5 sm:p-8 rounded-2xl border-l-4 border-limonar-orange overflow-hidden">
                   <div className="flex items-start gap-3 mb-4 min-w-0">
-                    <div className="bg-furgocasa-orange/10 p-2 rounded-lg flex-shrink-0">
-                      <FileCheck className="h-6 w-6 text-furgocasa-orange" />
+                    <div className="bg-limonar-orange/10 p-2 rounded-lg flex-shrink-0">
+                      <FileCheck className="h-6 w-6 text-limonar-orange" />
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-heading font-bold text-furgocasa-orange break-words min-w-0">
+                    <h3 className="text-xl sm:text-2xl font-heading font-bold text-limonar-orange break-words min-w-0">
                       {replaceLocation(t.itvTitle)}
                     </h3>
                   </div>

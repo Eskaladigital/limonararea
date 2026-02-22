@@ -88,10 +88,10 @@ Se ha implementado la estructura de sitemaps recomendada por Google para sitios 
 ```xml
 <!-- sitemap-es.xml -->
 <url>
-  <loc>https://www.furgocasa.com/es/blog/rutas</loc>
-  <xhtml:link rel="alternate" hreflang="es" href="https://www.furgocasa.com/es/blog/rutas" />
-  <xhtml:link rel="alternate" hreflang="en" href="https://www.furgocasa.com/en/blog/routes" />
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.furgocasa.com/es/blog/rutas" />
+  <loc>https://www.ecoarealimonar.com/es/blog/rutas</loc>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.ecoarealimonar.com/es/blog/rutas" />
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.ecoarealimonar.com/en/blog/routes" />
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ecoarealimonar.com/es/blog/rutas" />
 </url>
 ```
 
@@ -126,11 +126,11 @@ Se ha implementado la estructura de sitemaps recomendada por Google para sitios 
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://www.furgocasa.com/sitemap-es.xml</loc>
+    <loc>https://www.ecoarealimonar.com/sitemap-es.xml</loc>
     <lastmod>2026-01-21T...</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://www.furgocasa.com/sitemap-en.xml</loc>
+    <loc>https://www.ecoarealimonar.com/sitemap-en.xml</loc>
     <lastmod>2026-01-21T...</lastmod>
   </sitemap>
 </sitemapindex>
@@ -150,10 +150,10 @@ Se ha implementado la estructura de sitemaps recomendada por Google para sitios 
 **Verificación:**
 ```typescript
 // Sitemap genera:
-url: "https://www.furgocasa.com/es/blog/rutas"
+url: "https://www.ecoarealimonar.com/es/blog/rutas"
 
 // Metadata genera:
-canonical: "https://www.furgocasa.com/es/blog/rutas"
+canonical: "https://www.ecoarealimonar.com/es/blog/rutas"
 
 // ✅ Coinciden exactamente
 ```
@@ -172,12 +172,12 @@ canonical: "https://www.furgocasa.com/es/blog/rutas"
 **Ejemplo:**
 ```xml
 <url>
-  <loc>https://www.furgocasa.com/es/blog/rutas</loc>
-  <xhtml:link rel="alternate" hreflang="es" href="https://www.furgocasa.com/es/blog/rutas" />
-  <xhtml:link rel="alternate" hreflang="en" href="https://www.furgocasa.com/en/blog/routes" />
-  <xhtml:link rel="alternate" hreflang="fr" href="https://www.furgocasa.com/fr/blog/itineraires" />
-  <xhtml:link rel="alternate" hreflang="de" href="https://www.furgocasa.com/de/blog/routen" />
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.furgocasa.com/es/blog/rutas" />
+  <loc>https://www.ecoarealimonar.com/es/blog/rutas</loc>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.ecoarealimonar.com/es/blog/rutas" />
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.ecoarealimonar.com/en/blog/routes" />
+  <xhtml:link rel="alternate" hreflang="fr" href="https://www.ecoarealimonar.com/fr/blog/itineraires" />
+  <xhtml:link rel="alternate" hreflang="de" href="https://www.ecoarealimonar.com/de/blog/routen" />
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ecoarealimonar.com/es/blog/rutas" />
 </url>
 ```
 
@@ -197,7 +197,7 @@ canonical: "https://www.furgocasa.com/es/blog/rutas"
    - Incluye hreflang alternates
 
 3. **`src/app/robots.ts`** - Robots.txt
-   - Apunta al sitemap principal: `https://www.furgocasa.com/sitemap.xml`
+   - Apunta al sitemap principal: `https://www.ecoarealimonar.com/sitemap.xml`
 
 ---
 

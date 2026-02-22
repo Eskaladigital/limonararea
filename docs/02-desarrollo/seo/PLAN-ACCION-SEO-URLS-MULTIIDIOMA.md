@@ -285,7 +285,7 @@ Corregir la arquitectura de URLs multiidioma para eliminar señales contradictor
 ### 5.1. Pre-Deploy
 
 - [ ] **5.1.1. Crear entorno de staging**
-  - Deploy a staging.furgocasa.com
+  - Deploy a staging.ecoarealimonar.com
   - Probar exhaustivamente
   - Invitar equipo a probar
 

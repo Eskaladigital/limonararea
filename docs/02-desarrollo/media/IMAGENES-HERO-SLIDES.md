@@ -1,4 +1,4 @@
-# Imágenes Hero - Furgocasa
+# Imágenes Hero - Eco Area Limonar
 
 ## 📋 Resumen
 
@@ -27,24 +27,24 @@ Cada página de localización muestra una **imagen fija única** según la ciuda
 
 | Archivo WebP | Imagen Original | Usado en |
 |-------------|----------------|----------|
-| hero-01.webp | furgocasa_..._rent_ (1).jpg | Home slider |
-| hero-02.webp | furgocasa_..._rent_ (10).jpg | - |
-| hero-03.webp | furgocasa_..._rent_ (22).jpg | - |
-| hero-04.webp | furgocasa_..._rent_ (35).jpg | Albacete |
-| hero-05.webp | furgocasa_..._rent_ (46).jpg | Home slider |
-| hero-06.webp | furgocasa_..._rent_ (54).jpg | - |
-| hero-07.webp | furgocasa_..._rent_ (60).jpg | - |
-| hero-08.webp | furgocasa_..._rent_ (70).jpg | Almería |
-| hero-09.webp | furgocasa_..._rent_ (83).jpg | - |
-| hero-10.webp | furgocasa_..._rent_ (93).jpg | - |
-| hero-11.webp | furgocasa_..._murcia.jpg | Home slider + Murcia |
-| hero-12.webp | furgocasa_..._espana.jpg | Madrid |
-| hero-13.webp | furgocasa_..._pirineos.jpg | Home slider + Default |
-| hero-14.webp | furgocasa_..._a_coruna.jpg | Elche |
-| hero-15.webp | furgocasa_..._gandia.jpg | Home slider + Valencia |
-| hero-16.webp | furgocasa_..._altea.jpg | Alicante |
-| hero-17.webp | furgocasa_..._mazarron.jpg | Home slider + Cartagena |
-| hero-18.webp | furgocasa_..._lorca.jpg | Lorca |
+| hero-01.webp | limonar_..._rent_ (1).jpg | Home slider |
+| hero-02.webp | limonar_..._rent_ (10).jpg | - |
+| hero-03.webp | limonar_..._rent_ (22).jpg | - |
+| hero-04.webp | limonar_..._rent_ (35).jpg | Albacete |
+| hero-05.webp | limonar_..._rent_ (46).jpg | Home slider |
+| hero-06.webp | limonar_..._rent_ (54).jpg | - |
+| hero-07.webp | limonar_..._rent_ (60).jpg | - |
+| hero-08.webp | limonar_..._rent_ (70).jpg | Almería |
+| hero-09.webp | limonar_..._rent_ (83).jpg | - |
+| hero-10.webp | limonar_..._rent_ (93).jpg | - |
+| hero-11.webp | limonar_..._murcia.jpg | Home slider + Murcia |
+| hero-12.webp | limonar_..._espana.jpg | Madrid |
+| hero-13.webp | limonar_..._pirineos.jpg | Home slider + Default |
+| hero-14.webp | limonar_..._a_coruna.jpg | Elche |
+| hero-15.webp | limonar_..._gandia.jpg | Home slider + Valencia |
+| hero-16.webp | limonar_..._altea.jpg | Alicante |
+| hero-17.webp | limonar_..._mazarron.jpg | Home slider + Cartagena |
+| hero-18.webp | limonar_..._lorca.jpg | Lorca |
 
 ## 🔧 Script de Optimización
 

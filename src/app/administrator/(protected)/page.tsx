@@ -39,7 +39,7 @@ export default async function AdminDashboard() {
     id: booking.id,
     bookingNumber: booking.booking_number,
     customer: booking.customer?.name || 'Cliente sin nombre',
-    vehicle: booking.parcel?.name || 'Parcela no disponible',
+    parcel: booking.parcel?.name || 'Parcela no disponible',
     dates: `${new Date(booking.pickup_date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' })} - ${new Date(booking.dropoff_date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' })}`,
     status: booking.status,
     amount: formatPrice(booking.total_price || 0),
@@ -86,9 +86,9 @@ export default async function AdminDashboard() {
     },
     {
       name: "Parcelas disponibles",
-      value: `${stats.availableVehicles}/${stats.totalVehicles}`,
+      value: `${stats.availableParcels}/${stats.totalParcels}`,
       icon: Car,
-      description: `${stats.totalVehicles - stats.availableVehicles} en alquiler ahora`,
+      description: `${stats.totalParcels - stats.availableParcels} en alquiler ahora`,
       href: "/administrator/parcelas",
       bgColor: "bg-purple-50",
       iconColor: "text-purple-600"
@@ -117,12 +117,12 @@ export default async function AdminDashboard() {
     },
     {
       title: "Parcelas en mantenimiento",
-      value: stats.vehiclesInMaintenance,
+      value: stats.parcelsInMaintenance,
       description: "No disponibles",
       icon: Wrench,
       href: "/administrator/parcelas",
       color: "blue",
-      show: stats.vehiclesInMaintenance > 0
+      show: stats.parcelsInMaintenance > 0
     }
   ].filter(a => a.show);
 
@@ -234,7 +234,7 @@ export default async function AdminDashboard() {
       {/* Top Performers */}
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Vehículo más rentable */}
-        {stats.topVehicle && (
+        {stats.topParcel && (
           <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl shadow-sm border border-blue-100 p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 bg-blue-500 rounded-lg">
@@ -242,13 +242,13 @@ export default async function AdminDashboard() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Parcela más rentable</h3>
             </div>
-            <p className="text-2xl font-bold text-gray-900 mb-1">{stats.topVehicle.name}</p>
+            <p className="text-2xl font-bold text-gray-900 mb-1">{stats.topParcel.name}</p>
             <div className="flex items-center gap-4 text-sm">
               <span className="text-gray-600">
-                <span className="font-semibold text-blue-600">{formatPrice(stats.topVehicle.revenue)}</span> generados
+                <span className="font-semibold text-blue-600">{formatPrice(stats.topParcel.revenue)}</span> generados
               </span>
               <span className="text-gray-600">
-                <span className="font-semibold text-purple-600">{stats.topVehicle.bookings}</span> alquileres
+                <span className="font-semibold text-purple-600">{stats.topParcel.bookings}</span> alquileres
               </span>
             </div>
             <p className="text-xs text-gray-500 mt-2">Últimos 30 días</p>
@@ -344,7 +344,7 @@ export default async function AdminDashboard() {
                     </div>
                     <div className="flex-1">
                       <p className="font-medium text-gray-900">
-                        {action.type === "pickup" ? "Entrega" : "Recogida"}: {action.vehicle}
+                        {action.type === "pickup" ? "Entrega" : "Recogida"}: {action.parcel}
                       </p>
                       <p className="text-sm text-gray-500">{action.customer}</p>
                     </div>
@@ -393,7 +393,7 @@ export default async function AdminDashboard() {
                       <p className="font-medium text-gray-900">
                         {booking.customer}
                       </p>
-                      <p className="text-sm text-gray-500">{booking.vehicle}</p>
+                      <p className="text-sm text-gray-500">{booking.parcel}</p>
                     </div>
                     <span
                       className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${

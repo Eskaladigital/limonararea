@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
   
-  // ⚠️ CRÍTICO: Usar SIEMPRE www.furgocasa.com como URL canónica
+  // ⚠️ CRÍTICO: Usar SIEMPRE www.limonar.com como URL canónica
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   const now = new Date();
   
@@ -57,13 +57,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     published_at?: string | null;
     category?: CategoryRow | CategoryRow[] | null;
   };
-  type VehicleRow = { slug: string; updated_at?: string | null };
+  type ParcelRow = { slug: string; updated_at?: string | null };
   type LocationRow = { slug: string; updated_at?: string | null };
 
   const [
     { data: posts },
     { data: categories },
-    { data: vehiclesRent },
+    { data: parcelsRent },
     { data: locations },
   ] = await Promise.all([
     supabase
@@ -99,7 +99,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postList = (posts || []) as PostRow[];
   const categoryList = (categories || []) as CategoryRow[];
-  const rentList = (vehiclesRent || []) as VehicleRow[];
+  const rentList = (parcelsRent || []) as ParcelRow[];
   const locationList = (locations || []) as LocationRow[];
 
   const entries: MetadataRoute.Sitemap = [];
@@ -149,8 +149,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/alquiler-motorhome-marruecos-desde-espana', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/contacto', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/como-funciona', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/documentacion-alquiler', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/guia-camper', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/mapa-areas', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/aparcamiento-autocaravanas-campers-murcia', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/ofertas', priority: 0.6, changeFrequency: 'weekly' },
@@ -161,7 +159,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/faqs', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/como-reservar-fin-semana', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/inteligencia-artificial', priority: 0.5, changeFrequency: 'monthly' },
-    { path: '/video-tutoriales', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/sitemap-html', priority: 0.2, changeFrequency: 'monthly' },
     // NOTA: Páginas legales (/aviso-legal, /privacidad, /cookies) excluidas del sitemap - tienen noindex
   ];
@@ -234,12 +231,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   });
 
-  // Vehículos en alquiler
-  rentList.forEach((vehicle) => {
-    addEntry(`/parcelas/${vehicle.slug}`, {
+  // Parcelas en alquiler
+  rentList.forEach((parcel) => {
+    addEntry(`/parcelas/${parcel.slug}`, {
       priority: 0.7,
       changeFrequency: 'weekly',
-      lastModified: vehicle.updated_at || now,
+      lastModified: parcel.updated_at || now,
     });
   });
 

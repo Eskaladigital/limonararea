@@ -81,35 +81,35 @@ export const getNearbyDestinations = cache(async (locationId: string): Promise<N
   return [];
 });
 
-// Obtener vehículos disponibles
-export const getAvailableVehicles = cache(async (limit: number = 3) => {
+// Obtener parcelas disponibles
+export const getAvailableParcels = cache(async (limit: number = 3) => {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
   const { data } = await supabase
-    .from('vehicles')
+    .from('parcels')
     .select(`
       id,
       name,
       slug,
-      brand,
-      model,
-      passengers,
-      beds,
-      images:vehicle_images(image_url, is_primary)
+      internal_code,
+      images:parcel_images(image_url, is_primary)
     `)
     .eq('is_for_rent', true)
     .neq('status', 'inactive')
     .order('internal_code', { ascending: true })
     .limit(limit);
 
-  return (data || []).map(vehicle => ({
-    ...vehicle,
-    main_image: vehicle.images?.find((img: any) => img.is_primary)?.image_url || vehicle.images?.[0]?.image_url || null
+  return (data || []).map(parcel => ({
+    ...parcel,
+    main_image: parcel.images?.find((img: any) => img.is_primary)?.image_url || parcel.images?.[0]?.image_url || null
   }));
 });
+
+/** @deprecated Usar getAvailableParcels */
+export const getAvailableVehicles = getAvailableParcels;
 
 // Helpers para formateo
 export function formatDistanceInfo(location: LocationData): string {

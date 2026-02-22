@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS public.parcel_categories (
 );
 
 -- ===========================================
--- 2. PARCELS (solo columnas propias de parcela, sin datos de vehículo)
+-- 2. PARCELS (columnas propias de parcela)
 -- ===========================================
 CREATE TABLE IF NOT EXISTS public.parcels (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -304,18 +304,18 @@ CREATE TABLE IF NOT EXISTS public.blocked_dates (
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
-CREATE INDEX IF NOT EXISTS idx_blocked_dates_vehicle ON public.blocked_dates(vehicle_id);
+CREATE INDEX IF NOT EXISTS idx_blocked_dates_parcel ON public.blocked_dates(parcel_id);
 
 -- ===========================================
 -- 15. RLS (Row Level Security)
 -- ===========================================
-ALTER TABLE public.vehicle_categories ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.vehicles ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.vehicle_images ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.parcel_categories ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.parcels ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.parcel_images ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.equipment ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.vehicle_equipment ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.parcel_equipment ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.extras ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.vehicle_available_extras ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.parcel_available_extras ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.locations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.customers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.seasons ENABLE ROW LEVEL SECURITY;
@@ -324,14 +324,14 @@ ALTER TABLE public.booking_extras ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.payments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.blocked_dates ENABLE ROW LEVEL SECURITY;
 
--- Políticas: público lee vehicles, categories, images, equipment, extras, locations, seasons
+-- Políticas: público lee parcelas, categorías, imágenes, equipment, extras, locations, seasons
 -- Admin (via admins) tiene acceso total
-DROP POLICY IF EXISTS "public_read_vehicle_categories" ON public.vehicle_categories;
-CREATE POLICY "public_read_vehicle_categories" ON public.vehicle_categories FOR SELECT USING (true);
-DROP POLICY IF EXISTS "public_read_vehicles" ON public.vehicles;
-CREATE POLICY "public_read_vehicles" ON public.vehicles FOR SELECT USING (true);
-DROP POLICY IF EXISTS "public_read_vehicle_images" ON public.vehicle_images;
-CREATE POLICY "public_read_vehicle_images" ON public.vehicle_images FOR SELECT USING (true);
+DROP POLICY IF EXISTS "public_read_parcel_categories" ON public.parcel_categories;
+CREATE POLICY "public_read_parcel_categories" ON public.parcel_categories FOR SELECT USING (true);
+DROP POLICY IF EXISTS "public_read_parcels" ON public.parcels;
+CREATE POLICY "public_read_parcels" ON public.parcels FOR SELECT USING (true);
+DROP POLICY IF EXISTS "public_read_parcel_images" ON public.parcel_images;
+CREATE POLICY "public_read_parcel_images" ON public.parcel_images FOR SELECT USING (true);
 DROP POLICY IF EXISTS "public_read_equipment" ON public.equipment;
 CREATE POLICY "public_read_equipment" ON public.equipment FOR SELECT USING (true);
 DROP POLICY IF EXISTS "public_read_extras" ON public.extras;
@@ -342,26 +342,26 @@ DROP POLICY IF EXISTS "public_read_seasons" ON public.seasons;
 CREATE POLICY "public_read_seasons" ON public.seasons FOR SELECT USING (true);
 
 -- Admin full access (usando admins.user_id)
-DROP POLICY IF EXISTS "admin_all_vehicle_categories" ON public.vehicle_categories;
-CREATE POLICY "admin_all_vehicle_categories" ON public.vehicle_categories FOR ALL
+DROP POLICY IF EXISTS "admin_all_parcel_categories" ON public.parcel_categories;
+CREATE POLICY "admin_all_parcel_categories" ON public.parcel_categories FOR ALL
   USING ((SELECT 1 FROM public.admins WHERE user_id = auth.uid() AND is_active = true) = 1);
-DROP POLICY IF EXISTS "admin_all_vehicles" ON public.vehicles;
-CREATE POLICY "admin_all_vehicles" ON public.vehicles FOR ALL
+DROP POLICY IF EXISTS "admin_all_parcels" ON public.parcels;
+CREATE POLICY "admin_all_parcels" ON public.parcels FOR ALL
   USING ((SELECT 1 FROM public.admins WHERE user_id = auth.uid() AND is_active = true) = 1);
-DROP POLICY IF EXISTS "admin_all_vehicle_images" ON public.vehicle_images;
-CREATE POLICY "admin_all_vehicle_images" ON public.vehicle_images FOR ALL
+DROP POLICY IF EXISTS "admin_all_parcel_images" ON public.parcel_images;
+CREATE POLICY "admin_all_parcel_images" ON public.parcel_images FOR ALL
   USING ((SELECT 1 FROM public.admins WHERE user_id = auth.uid() AND is_active = true) = 1);
 DROP POLICY IF EXISTS "admin_all_equipment" ON public.equipment;
 CREATE POLICY "admin_all_equipment" ON public.equipment FOR ALL
   USING ((SELECT 1 FROM public.admins WHERE user_id = auth.uid() AND is_active = true) = 1);
-DROP POLICY IF EXISTS "admin_all_vehicle_equipment" ON public.vehicle_equipment;
-CREATE POLICY "admin_all_vehicle_equipment" ON public.vehicle_equipment FOR ALL
+DROP POLICY IF EXISTS "admin_all_parcel_equipment" ON public.parcel_equipment;
+CREATE POLICY "admin_all_parcel_equipment" ON public.parcel_equipment FOR ALL
   USING ((SELECT 1 FROM public.admins WHERE user_id = auth.uid() AND is_active = true) = 1);
 DROP POLICY IF EXISTS "admin_all_extras" ON public.extras;
 CREATE POLICY "admin_all_extras" ON public.extras FOR ALL
   USING ((SELECT 1 FROM public.admins WHERE user_id = auth.uid() AND is_active = true) = 1);
-DROP POLICY IF EXISTS "admin_all_vehicle_available_extras" ON public.vehicle_available_extras;
-CREATE POLICY "admin_all_vehicle_available_extras" ON public.vehicle_available_extras FOR ALL
+DROP POLICY IF EXISTS "admin_all_parcel_available_extras" ON public.parcel_available_extras;
+CREATE POLICY "admin_all_parcel_available_extras" ON public.parcel_available_extras FOR ALL
   USING ((SELECT 1 FROM public.admins WHERE user_id = auth.uid() AND is_active = true) = 1);
 DROP POLICY IF EXISTS "admin_all_locations" ON public.locations;
 CREATE POLICY "admin_all_locations" ON public.locations FOR ALL

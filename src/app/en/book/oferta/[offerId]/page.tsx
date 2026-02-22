@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 import { 
   Calendar, MapPin, User, Mail, Phone, 
-  CreditCard, AlertCircle, Loader2, FileText, Users, Bed, 
+  CreditCard, AlertCircle, Loader2, FileText, 
   Tag, CheckCircle, Clock, Percent, Lock, ArrowLeft, Plus, Minus
 } from "lucide-react";
 import { LocalizedLink } from "@/components/localized-link";
@@ -16,7 +16,7 @@ import { getTranslatedRoute } from "@/lib/route-translations";
 
 interface OfferData {
   id: string;
-  vehicle_id: string;
+  parcel_id: string;
   offer_start_date: string;
   offer_end_date: string;
   offer_days: number;
@@ -25,7 +25,7 @@ interface OfferData {
   final_price_per_day: number;
   pickup_location_id: string;
   dropoff_location_id: string;
-  vehicle: {
+  parcel: {
     id: string;
     name: string;
     slug: string;
@@ -127,7 +127,6 @@ export default function ReservarOfertaPage({
         setError(offerData.error);
         return;
       }
-      
       setOffer(offerData.offer);
 
       // Las ubicaciones vienen de la oferta (son fijas, no modificables)
@@ -242,7 +241,7 @@ export default function ReservarOfertaPage({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          vehicle_id: offer.vehicle_id,
+          parcel_id: offer.parcel_id,
           pickup_date: offer.offer_start_date,
           dropoff_date: offer.offer_end_date,
           pickup_time: pickupTime,
@@ -329,7 +328,7 @@ export default function ReservarOfertaPage({
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-furgocasa-blue mx-auto mb-4" />
+          <Loader2 className="w-12 h-12 animate-spin text-limonar-blue mx-auto mb-4" />
           <p className="text-gray-600">{t("Cargando oferta...")}</p>
         </div>
       </div>
@@ -349,7 +348,7 @@ export default function ReservarOfertaPage({
           </p>
           <LocalizedLink
             href="/ofertas"
-            className="inline-flex items-center gap-2 bg-furgocasa-blue text-white px-6 py-3 rounded-xl hover:bg-furgocasa-blue-dark transition-colors"
+            className="inline-flex items-center gap-2 bg-limonar-blue text-white px-6 py-3 rounded-xl hover:bg-limonar-blue-dark transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             {t("Ver otras ofertas")}
@@ -359,8 +358,9 @@ export default function ReservarOfertaPage({
     );
   }
 
-  const vehicleImage = offer.vehicle.images?.find(img => img.is_primary)?.image_url || 
-                       offer.vehicle.images?.[0]?.image_url;
+  const parcel = offer.parcel;
+  const parcelImage = parcel?.images?.find((img: any) => img.is_primary)?.image_url || 
+                      parcel?.images?.[0]?.image_url;
 
   return (
     <main className="min-h-screen bg-gray-50 py-8">
@@ -370,7 +370,7 @@ export default function ReservarOfertaPage({
         <div className="mb-8">
           <LocalizedLink 
             href="/ofertas"
-            className="inline-flex items-center gap-2 text-furgocasa-blue hover:underline mb-4"
+            className="inline-flex items-center gap-2 text-limonar-blue hover:underline mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("Volver a ofertas")}
@@ -386,22 +386,22 @@ export default function ReservarOfertaPage({
           <div className="lg:col-span-2 space-y-6">
             
             {/* Oferta seleccionada (no modificable) */}
-            <div className="bg-gradient-to-r from-furgocasa-orange/10 to-orange-50 rounded-2xl p-6 border-2 border-furgocasa-orange/30">
+            <div className="bg-gradient-to-r from-limonar-orange/10 to-orange-50 rounded-2xl p-6 border-2 border-limonar-orange/30">
               <div className="flex items-center gap-2 mb-4">
-                <Lock className="w-5 h-5 text-furgocasa-orange" />
+                <Lock className="w-5 h-5 text-limonar-orange" />
                 <h2 className="text-lg font-bold text-gray-900">{t("Oferta Seleccionada")}</h2>
-                <span className="ml-auto bg-furgocasa-orange text-white text-sm font-bold px-3 py-1 rounded-full">
+                <span className="ml-auto bg-limonar-orange text-white text-sm font-bold px-3 py-1 rounded-full">
                   -{offer.discount_percentage}%
                 </span>
               </div>
               
               <div className="flex flex-col md:flex-row gap-6">
-                {vehicleImage && (
+                {parcelImage && (
                   <div className="md:w-1/3">
                     <div className="aspect-[4/3] relative rounded-xl overflow-hidden">
                       <Image
-                        src={vehicleImage}
-                        alt={offer.vehicle.name}
+                        src={parcelImage}
+                        alt={parcel?.name ?? ''}
                         fill
                         className="object-cover"
                       />
@@ -409,19 +409,18 @@ export default function ReservarOfertaPage({
                   </div>
                 )}
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{offer.vehicle.name}</h3>
-                  <p className="text-gray-600 mb-4">{offer.vehicle.brand} {offer.vehicle.model}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{parcel?.name}</h3>
                   
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-furgocasa-blue" />
+                      <Calendar className="w-4 h-4 text-limonar-blue" />
                       <div>
                         <p className="text-gray-500">{t("Recogida")}</p>
                         <p className="font-medium">{formatDate(offer.offer_start_date)}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-furgocasa-blue" />
+                      <Calendar className="w-4 h-4 text-limonar-blue" />
                       <div>
                         <p className="text-gray-500">{t("Devolución")}</p>
                         <p className="font-medium">{formatDate(offer.offer_end_date)}</p>
@@ -430,15 +429,7 @@ export default function ReservarOfertaPage({
                   </div>
                   
                   <div className="mt-4 flex items-center gap-4">
-                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                      <Users className="w-4 h-4" />
-                      {offer.vehicle.seats} {t("plazas")}
-                    </div>
-                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                      <Bed className="w-4 h-4" />
-                      {offer.vehicle.beds} {t("camas")}
-                    </div>
-                    <div className="flex items-center gap-1 text-sm text-furgocasa-orange font-medium">
+                    <div className="flex items-center gap-1 text-sm text-limonar-orange font-medium">
                       <Clock className="w-4 h-4" />
                       {offer.offer_days} {t("días")}
                     </div>
@@ -450,7 +441,7 @@ export default function ReservarOfertaPage({
             {/* Ubicación y Horarios - Ubicación FIJA de la oferta */}
             <div className="bg-white rounded-2xl shadow-sm p-6">
               <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-furgocasa-blue" />
+                <MapPin className="w-5 h-5 text-limonar-blue" />
                 {t("Ubicación y Horarios")}
               </h2>
               
@@ -484,7 +475,7 @@ export default function ReservarOfertaPage({
                   <select
                     value={pickupTime}
                     onChange={(e) => setPickupTime(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   >
                     {Array.from({ length: 11 }, (_, i) => i + 9).map(hour => (
                       <option key={hour} value={`${hour}:00`}>{hour}:00</option>
@@ -498,7 +489,7 @@ export default function ReservarOfertaPage({
                   <select
                     value={dropoffTime}
                     onChange={(e) => setDropoffTime(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   >
                     {Array.from({ length: 11 }, (_, i) => i + 9).map(hour => (
                       <option key={hour} value={`${hour}:00`}>{hour}:00</option>
@@ -533,14 +524,14 @@ export default function ReservarOfertaPage({
                     return (
                       <div 
                         key={extra.id}
-                        className="flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:border-furgocasa-blue transition-colors"
+                        className="flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:border-limonar-blue transition-colors"
                       >
                         <div className="flex-1">
                           <p className="font-semibold text-gray-900">{extra.name}</p>
                           {extra.description && (
                             <p className="text-sm text-gray-600 mt-1">{extra.description}</p>
                           )}
-                          <p className="text-sm font-medium text-furgocasa-orange mt-2">
+                          <p className="text-sm font-medium text-limonar-orange mt-2">
                             {priceDisplay}
                             {maxQuantity > 1 && (
                               <span className="text-xs text-gray-500 ml-2">
@@ -558,7 +549,7 @@ export default function ReservarOfertaPage({
                                 <button
                                   type="button"
                                   onClick={() => removeExtra(extra.id)}
-                                  className="w-8 h-8 flex items-center justify-center rounded-full border-2 border-gray-300 hover:border-furgocasa-orange hover:text-furgocasa-orange transition-colors"
+                                  className="w-8 h-8 flex items-center justify-center rounded-full border-2 border-gray-300 hover:border-limonar-orange hover:text-limonar-orange transition-colors"
                                 >
                                   <Minus className="h-4 w-4" />
                                 </button>
@@ -572,7 +563,7 @@ export default function ReservarOfertaPage({
                                   className={`w-8 h-8 flex items-center justify-center rounded-full border-2 transition-colors ${
                                     quantity >= maxQuantity
                                       ? 'border-gray-300 text-gray-300 cursor-not-allowed'
-                                      : 'border-furgocasa-orange bg-furgocasa-orange text-white hover:bg-orange-600'
+                                      : 'border-limonar-orange bg-limonar-orange text-white hover:bg-orange-600'
                                   }`}
                                 >
                                   <Plus className="h-4 w-4" />
@@ -582,7 +573,7 @@ export default function ReservarOfertaPage({
                               <button
                                 type="button"
                                 onClick={() => addExtra(extra)}
-                                className="px-4 py-2 bg-furgocasa-blue text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                                className="px-4 py-2 bg-limonar-blue text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
                               >
                                 {t("Añadir")}
                               </button>
@@ -594,8 +585,8 @@ export default function ReservarOfertaPage({
                               onClick={() => quantity > 0 ? removeExtra(extra.id) : addExtra(extra)}
                               className={`px-4 py-2 text-sm font-semibold rounded-lg transition-colors ${
                                 quantity > 0
-                                  ? 'bg-furgocasa-orange text-white hover:bg-orange-600'
-                                  : 'bg-furgocasa-blue text-white hover:bg-blue-700'
+                                  ? 'bg-limonar-orange text-white hover:bg-orange-600'
+                                  : 'bg-limonar-blue text-white hover:bg-blue-700'
                               }`}
                             >
                               {quantity > 0 ? t("Añadido") : t("Añadir")}
@@ -612,7 +603,7 @@ export default function ReservarOfertaPage({
             {/* Datos del cliente */}
             <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm p-6">
               <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <User className="w-5 h-5 text-furgocasa-blue" />
+                <User className="w-5 h-5 text-limonar-blue" />
                 {t("Datos del conductor principal")}
               </h2>
               
@@ -626,7 +617,7 @@ export default function ReservarOfertaPage({
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -638,7 +629,7 @@ export default function ReservarOfertaPage({
                     value={customerDni}
                     onChange={(e) => setCustomerDni(e.target.value)}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -650,7 +641,7 @@ export default function ReservarOfertaPage({
                     value={customerEmail}
                     onChange={(e) => setCustomerEmail(e.target.value)}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -662,7 +653,7 @@ export default function ReservarOfertaPage({
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -673,7 +664,7 @@ export default function ReservarOfertaPage({
                     type="date"
                     value={customerDateOfBirth}
                     onChange={(e) => setCustomerDateOfBirth(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -684,7 +675,7 @@ export default function ReservarOfertaPage({
                     type="text"
                     value={customerCountry}
                     onChange={(e) => setCustomerCountry(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div className="md:col-span-2">
@@ -695,7 +686,7 @@ export default function ReservarOfertaPage({
                     type="text"
                     value={customerAddress}
                     onChange={(e) => setCustomerAddress(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -706,7 +697,7 @@ export default function ReservarOfertaPage({
                     type="text"
                     value={customerCity}
                     onChange={(e) => setCustomerCity(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -717,7 +708,7 @@ export default function ReservarOfertaPage({
                     type="text"
                     value={customerPostalCode}
                     onChange={(e) => setCustomerPostalCode(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 
@@ -732,7 +723,7 @@ export default function ReservarOfertaPage({
                     onChange={(e) => setCustomerDriverLicense(e.target.value)}
                     required
                     placeholder="123456789"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -745,7 +736,7 @@ export default function ReservarOfertaPage({
                     onChange={(e) => setCustomerDriverLicenseExpiry(e.target.value)}
                     required
                     min={new Date().toISOString().split('T')[0]}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
                 
@@ -757,7 +748,7 @@ export default function ReservarOfertaPage({
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     rows={3}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                   />
                 </div>
               </div>
@@ -769,15 +760,15 @@ export default function ReservarOfertaPage({
                   id="terms"
                   checked={acceptTerms}
                   onChange={(e) => setAcceptTerms(e.target.checked)}
-                  className="mt-1 w-5 h-5 rounded border-gray-300 text-furgocasa-blue focus:ring-furgocasa-blue"
+                  className="mt-1 w-5 h-5 rounded border-gray-300 text-limonar-blue focus:ring-limonar-blue"
                 />
                 <label htmlFor="terms" className="text-sm text-gray-600">
                   {t("He leído y acepto los")}{" "}
-                  <LocalizedLink href="/terminos-y-condiciones" className="text-furgocasa-blue hover:underline">
+                  <LocalizedLink href="/terminos-y-condiciones" className="text-limonar-blue hover:underline">
                     {t("términos y condiciones")}
                   </LocalizedLink>{" "}
                   {t("y la")}{" "}
-                  <LocalizedLink href="/politica-de-privacidad" className="text-furgocasa-blue hover:underline">
+                  <LocalizedLink href="/politica-de-privacidad" className="text-limonar-blue hover:underline">
                     {t("política de privacidad")}
                   </LocalizedLink>
                 </label>
@@ -793,7 +784,7 @@ export default function ReservarOfertaPage({
               <button
                 type="submit"
                 disabled={submitting || !acceptTerms}
-                className="mt-6 w-full bg-furgocasa-orange hover:bg-furgocasa-orange-dark text-white font-bold py-4 px-8 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="mt-6 w-full bg-limonar-orange hover:bg-limonar-orange-dark text-white font-bold py-4 px-8 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {submitting ? (
                   <>
@@ -829,7 +820,7 @@ export default function ReservarOfertaPage({
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">{t("Duración")}</span>
-                  <span className="font-medium text-furgocasa-orange">{offer.offer_days} {t("días")}</span>
+                  <span className="font-medium text-limonar-orange">{offer.offer_days} {t("días")}</span>
                 </div>
               </div>
 
@@ -875,7 +866,7 @@ export default function ReservarOfertaPage({
               <div className="pt-4">
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-bold text-gray-900">{t("Total")}</span>
-                  <span className="text-2xl font-bold text-furgocasa-blue">{formatPrice(totalPrice)}</span>
+                  <span className="text-2xl font-bold text-limonar-blue">{formatPrice(totalPrice)}</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1 text-right">
                   {t("IVA incluido")}
@@ -885,7 +876,7 @@ export default function ReservarOfertaPage({
               {/* Garantía */}
               <div className="mt-6 p-4 bg-blue-50 rounded-xl">
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                   <div className="text-sm">
                     <p className="font-medium text-gray-900">{t("Reserva segura")}</p>
                     <p className="text-gray-600">{t("Cancelación gratuita hasta 48h antes")}</p>

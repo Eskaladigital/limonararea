@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 // TODO: Cargar desde base de datos o CMS
 const faqs: Record<string, { question: string; answer: string; category: string; related: string[] }> = {"edad-minima-alquiler": {
     question:"¿A partir de qué edad puedo alquilar una camper?",
-    answer: `<p>La edad mínima para alquilar una camper en Furgocasa es de <strong>25 años</strong>.</p>
+    answer: `<p>La edad mínima para alquilar una camper en Eco Area Limonar es de <strong>25 años</strong>.</p>
     <p>Además de la edad, es necesario:</p>
     <ul><li>Tener el carnet de conducir B con al menos 2 años de antigüedad</li><li>Disponer de DNI o pasaporte en vigor</li><li>Tarjeta de crédito a nombre del conductor principal</li></ul>
     <p>Si tienes entre 21 y 25 años, contáctanos para estudiar tu caso particular.</p>`,
@@ -91,10 +91,7 @@ const faqs: Record<string, { question: string; answer: string; category: string;
     related: ["proceso-recogida","pago-fianza"]
   },"funcionamiento-camper": {
     question:"¿Cómo puedo adelantarme a la explicación de la entrega y preparándome sobre el funcionamiento de la camper?",
-    answer: `<p>Te recomendamos ver nuestros <strong>video tutoriales</strong> antes de tu viaje:</p>
-    <ul><li>Cómo funciona el techo elevable</li><li>Sistema de agua y vaciado de grises</li><li>Conexión eléctrica y baterías</li><li>Uso de la cocina y nevera</li><li>Calefacción estacionaria</li><li>Conducción y estacionamiento</li></ul>
-    <p><a href="/video-tutoriales">Ver todos los video tutoriales</a></p>
-    <p>Además, en la entrega te explicaremos todo detalladamente y resolveremos todas tus dudas.</p>`,
+    answer: `    <p>En la entrega te explicaremos todo detalladamente y resolveremos todas tus dudas.</p>`,
     category:"Durante el viaje",
     related: []
   },

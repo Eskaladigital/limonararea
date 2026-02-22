@@ -41,15 +41,15 @@ export default async function PrivacyPage() {
 
           <h2>1. Data controller</h2>
           <ul>
-            <li><strong>Identity:</strong> FURGOCASA S.L.</li>
+            <li><strong>Identity:</strong> Eco Area Limonar S.L.</li>
             <li><strong>CIF:</strong> B-XXXXXXXX</li>
             <li><strong>Address:</strong> Calle Ejemplo, 123 - 30001 Murcia</li>
-            <li><strong>Email:</strong> privacidad@furgocasa.com</li>
+            <li><strong>Email:</strong> privacidad@limonar.com</li>
             <li><strong>Phone:</strong> +34 968 000 000</li>
           </ul>
 
           <h2>2. Personal data we process</h2>
-          <p>FURGOCASA may process the following categories of personal data:</p>
+          <p>Eco Area Limonar may process the following categories of personal data:</p>
           <ul>
             <li><strong>Identification data:</strong> name, surname, ID/NIE/Passport</li>
             <li><strong>Contact data:</strong> postal address, email, phone</li>
@@ -79,7 +79,7 @@ export default async function PrivacyPage() {
 
           <h2>5. Data recipients</h2>
           <ul>
-            <li>Insurance companies (for vehicle insurance management)</li>
+            <li>Insurance companies (for insurance management)</li>
             <li>Banking entities (for payment processing)</li>
             <li>Public administrations (when legally required)</li>
             <li>Technology service providers (hosting, email, etc.)</li>
@@ -103,16 +103,16 @@ export default async function PrivacyPage() {
             <li><strong>Portability:</strong> receive your data in a structured format</li>
             <li><strong>Objection:</strong> object to the processing of your data</li>
           </ul>
-          <p>To exercise these rights, contact us at privacidad@furgocasa.com with a copy of your ID.</p>
+          <p>To exercise these rights, contact us at privacidad@limonar.com with a copy of your ID.</p>
 
           <h2>8. Cookies</h2>
           <p>This website uses own and third-party cookies. Please consult our cookie policy for more information.</p>
 
           <h2>9. Security</h2>
-          <p>FURGOCASA has adopted the necessary technical and organisational measures to guarantee the security of personal data.</p>
+          <p>Eco Area Limonar has adopted the necessary technical and organisational measures to guarantee the security of personal data.</p>
 
           <h2>10. Modifications</h2>
-          <p>FURGOCASA reserves the right to modify this privacy policy to adapt it to legislative or case law developments.</p>
+          <p>Eco Area Limonar reserves the right to modify this privacy policy to adapt it to legislative or case law developments.</p>
 
           <h2>11. Complaints</h2>
           <p>If you consider that the processing of your data does not comply with regulations, you may file a complaint with the Spanish Data Protection Agency (www.aepd.es).</p>

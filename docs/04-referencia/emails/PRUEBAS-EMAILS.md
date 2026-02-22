@@ -196,14 +196,14 @@ Cuando vayas a producción:
 
 1. **Actualizar variables:**
 ```env
-RESEND_FROM_EMAIL=noreply@furgocasa.com
-COMPANY_EMAIL=info@furgocasa.com
-NEXT_PUBLIC_APP_URL=https://furgocasa.com
+RESEND_FROM_EMAIL=noreply@ecoarealimonar.com
+COMPANY_EMAIL=info@ecoarealimonar.com
+NEXT_PUBLIC_APP_URL=https://ecoarealimonar.com
 REDSYS_ENVIRONMENT=production
 ```
 
 2. **Verificar dominio en Resend:**
-   - Añade `furgocasa.com` en el dashboard
+   - Añade `ecoarealimonar.com` en el dashboard
    - Configura los registros DNS SPF, DKIM, DMARC
    - Espera verificación (puede tardar hasta 72h)
 

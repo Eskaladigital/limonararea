@@ -46,7 +46,7 @@ interface Post {
 const categoryNames: Record<string, string> = {
   rutas: "Rutas",
   noticias: "Noticias",
-  vehiculos: "Vehículos",
+  parcelas: "Parcelas",
   consejos: "Consejos",
   destinos: "Destinos",
   equipamiento: "Equipamiento",
@@ -56,7 +56,7 @@ const categoryNames: Record<string, string> = {
 const categoryDescriptions: Record<string, string> = {
   rutas: "Las mejores rutas en camper por España y Europa. Descubre destinos increíbles, consejos de viaje y experiencias únicas.",
   noticias: "Mantente al día con las últimas novedades del mundo camper, eventos, ferias y actualidad del sector.",
-  vehiculos: "Conoce los mejores vehículos para viajar, comparativas, análisis y recomendaciones de expertos.",
+  parcelas: "Todo sobre parcelas para autocaravanas: tipos, equipamiento y consejos para tu emplazamiento.",
   consejos: "Guías prácticas y consejos para sacar el máximo partido a tu experiencia camper.",
   destinos: "Descubre los mejores destinos para viajar en camper, desde playas hasta montañas.",
   equipamiento: "Todo sobre accesorios, equipamiento y gadgets para tu camper.",

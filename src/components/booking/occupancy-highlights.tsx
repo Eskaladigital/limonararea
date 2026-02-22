@@ -20,7 +20,7 @@ interface OccupancyResponse {
   success: boolean;
   periods: OccupancyPeriod[];
   metadata: {
-    total_vehicles: number;
+    total_parcels: number;
     total_periods: number;
     generated_at: string;
   };
@@ -132,8 +132,8 @@ export function OccupancyHighlights() {
     <section className="bg-white rounded-2xl shadow-lg p-6 lg:p-8 border border-gray-100">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-furgocasa-blue/10 rounded-xl flex items-center justify-center">
-          <TrendingUp className="h-5 w-5 text-furgocasa-blue" />
+        <div className="w-10 h-10 bg-limonar-blue/10 rounded-xl flex items-center justify-center">
+          <TrendingUp className="h-5 w-5 text-limonar-blue" />
         </div>
         <div>
           <h2 className="text-xl lg:text-2xl font-heading font-bold text-gray-900">
@@ -249,7 +249,7 @@ export function OccupancyHighlights() {
             </span>
           </div>
           <span className="text-gray-400">
-            {data.metadata.total_vehicles} {t("vehículos disponibles")}
+            {data.metadata.total_parcels} {t("parcelas disponibles")}
           </span>
         </div>
       </div>

@@ -9,8 +9,8 @@ import { infoEmail } from "@/lib/app-config";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [furgocasaDropdownOpen, setFurgocasaDropdownOpen] = useState(false);
-  const [furgocasaMobileOpen, setFurgocasaMobileOpen] = useState(false);
+  const [limonarDropdownOpen, setLimonarDropdownOpen] = useState(false);
+  const [limonarMobileOpen, setLimonarMobileOpen] = useState(false);
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   
   const { language: currentLanguage, setLanguage, t } = useLanguage();
@@ -27,21 +27,18 @@ export function Header() {
     de: { name: 'Deutsch', flag: '🇩🇪' }
   };
 
-  const furgocasaDropdown = [
+  const limonarDropdown = [
     { name: t("¿Quiénes somos?"), href: "/quienes-somos" },
-    { name: t("Guía Camper"), href: "/guia-camper" },
     { name: t("Inteligencia Artificial"), href: "/inteligencia-artificial" },
     { name: t("Mapa áreas"), href: "/mapa-areas" },
     { name: t("Parking MURCIA"), href: "/aparcamiento-autocaravanas-campers-murcia" },
     { name: t("Preguntas Frecuentes"), href: "/faqs" },
-    { name: t("Video Tutoriales"), href: "/video-tutoriales" },
   ];
 
   const navigation = [
     { name: t("Ofertas"), href: "/ofertas" },
     { name: t("Parcelas"), href: "/parcelas" },
     { name: t("Tarifas"), href: "/tarifas" },
-    { name: t("Ventas"), href: "/ventas", highlight: true },
     { name: t("Blog"), href: "/blog" },
     { name: t("Contacto"), href: "/contacto" },
   ];
@@ -49,14 +46,14 @@ export function Header() {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       {/* Top bar - Diseño elegante */}
-      <div className="bg-gradient-to-r from-furgocasa-blue to-furgocasa-blue-dark text-white py-2.5">
+      <div className="bg-gradient-to-r from-limonar-blue to-limonar-blue-dark text-white py-2.5">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+34968000000" className="flex items-center gap-2 hover:text-furgocasa-orange transition-colors duration-200 font-medium">
+            <a href="tel:+34968000000" className="flex items-center gap-2 hover:text-limonar-orange transition-colors duration-200 font-medium">
               <Phone className="h-4 w-4" />
               <span className="hidden sm:inline">+34 968 000 000</span>
             </a>
-            <a href={`mailto:${infoEmail}`} className="hidden md:flex items-center gap-2 hover:text-furgocasa-orange transition-colors duration-200 font-medium">
+            <a href={`mailto:${infoEmail}`} className="hidden md:flex items-center gap-2 hover:text-limonar-orange transition-colors duration-200 font-medium">
               <Mail className="h-4 w-4" />
               {infoEmail}
             </a>
@@ -66,7 +63,7 @@ export function Header() {
             <div className="relative">
               <button
                 onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
-                className="flex items-center gap-2 hover:text-furgocasa-orange transition-colors duration-200 py-1 px-2 rounded hover:bg-white/10"
+                className="flex items-center gap-2 hover:text-limonar-orange transition-colors duration-200 py-1 px-2 rounded hover:bg-white/10"
               >
                 <Globe className="h-4 w-4" />
                 <span className="hidden sm:inline font-medium">{languages[currentLanguage].name}</span>
@@ -85,8 +82,8 @@ export function Header() {
                       onClick={() => handleLanguageChange('es')}
                       className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200 ${
                         currentLanguage === 'es' 
-                          ? 'bg-gradient-to-r from-furgocasa-blue to-furgocasa-blue-dark text-white' 
-                          : 'text-gray-700 hover:bg-furgocasa-blue/10'
+                          ? 'bg-gradient-to-r from-limonar-blue to-limonar-blue-dark text-white' 
+                          : 'text-gray-700 hover:bg-limonar-blue/10'
                       }`}
                     >
                       <span className="text-xl">{languages.es.flag}</span>
@@ -96,8 +93,8 @@ export function Header() {
                       onClick={() => handleLanguageChange('en')}
                       className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200 ${
                         currentLanguage === 'en' 
-                          ? 'bg-gradient-to-r from-furgocasa-blue to-furgocasa-blue-dark text-white' 
-                          : 'text-gray-700 hover:bg-furgocasa-blue/10'
+                          ? 'bg-gradient-to-r from-limonar-blue to-limonar-blue-dark text-white' 
+                          : 'text-gray-700 hover:bg-limonar-blue/10'
                       }`}
                     >
                       <span className="text-xl">{languages.en.flag}</span>
@@ -107,8 +104,8 @@ export function Header() {
                       onClick={() => handleLanguageChange('fr')}
                       className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200 ${
                         currentLanguage === 'fr' 
-                          ? 'bg-gradient-to-r from-furgocasa-blue to-furgocasa-blue-dark text-white' 
-                          : 'text-gray-700 hover:bg-furgocasa-blue/10'
+                          ? 'bg-gradient-to-r from-limonar-blue to-limonar-blue-dark text-white' 
+                          : 'text-gray-700 hover:bg-limonar-blue/10'
                       }`}
                     >
                       <span className="text-xl">{languages.fr.flag}</span>
@@ -118,8 +115,8 @@ export function Header() {
                       onClick={() => handleLanguageChange('de')}
                       className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-all duration-200 ${
                         currentLanguage === 'de' 
-                          ? 'bg-gradient-to-r from-furgocasa-blue to-furgocasa-blue-dark text-white' 
-                          : 'text-gray-700 hover:bg-furgocasa-blue/10'
+                          ? 'bg-gradient-to-r from-limonar-blue to-limonar-blue-dark text-white' 
+                          : 'text-gray-700 hover:bg-limonar-blue/10'
                       }`}
                     >
                       <span className="text-xl">{languages.de.flag}</span>
@@ -139,43 +136,43 @@ export function Header() {
           {/* Logo mejorado */}
           <Link href="/" className="flex items-center group">
             <div className="relative">
-              <span className="text-3xl font-heading font-bold text-furgocasa-blue group-hover:text-furgocasa-blue-dark transition-colors duration-200">
-                Furgo<span className="text-furgocasa-orange group-hover:text-furgocasa-orange-dark transition-colors duration-200">casa</span>
+              <span className="text-3xl font-heading font-bold text-limonar-blue group-hover:text-limonar-blue-dark transition-colors duration-200">
+                Eco Area <span className="text-limonar-orange group-hover:text-limonar-orange-dark transition-colors duration-200">Limonar</span>
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation - Mejorado */}
           <nav className="hidden lg:flex items-center gap-1">
-            {/* Furgocasa Dropdown - Diseño mejorado */}
+            {/* Eco Area Limonar Dropdown - Diseño mejorado */}
             <div 
               className="relative"
-              onMouseEnter={() => setFurgocasaDropdownOpen(true)}
-              onMouseLeave={() => setFurgocasaDropdownOpen(false)}
+              onMouseEnter={() => setLimonarDropdownOpen(true)}
+              onMouseLeave={() => setLimonarDropdownOpen(false)}
             >
               <div className="flex items-center gap-1 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                 <Link 
                   href="/"
-                  className="font-heading font-semibold text-gray-800 hover:text-furgocasa-blue transition-colors duration-200"
+                  className="font-heading font-semibold text-gray-800 hover:text-limonar-blue transition-colors duration-200"
                 >
-                  {t("Furgocasa")}
+                  {t("Eco Area Limonar")}
                 </Link>
                 <button 
                   className="p-1 hover:bg-gray-200 rounded transition-colors duration-200"
-                  onClick={() => setFurgocasaDropdownOpen(!furgocasaDropdownOpen)}
+                  onClick={() => setLimonarDropdownOpen(!limonarDropdownOpen)}
                 >
-                  <ChevronDown className={`h-4 w-4 text-gray-600 transition-transform duration-200 ${furgocasaDropdownOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-4 w-4 text-gray-600 transition-transform duration-200 ${limonarDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
               </div>
               
-              {furgocasaDropdownOpen && (
+              {limonarDropdownOpen && (
                 <div className="absolute left-0 top-full pt-2 z-50">
                   <div className="w-72 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 overflow-hidden">
-                    {furgocasaDropdown.map((item, index) => (
+                    {limonarDropdown.map((item, index) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gradient-to-r hover:from-furgocasa-blue/5 hover:to-furgocasa-blue/10 hover:text-furgocasa-blue transition-all duration-200 border-l-4 border-transparent hover:border-furgocasa-orange"
+                        className="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gradient-to-r hover:from-limonar-blue/5 hover:to-limonar-blue/10 hover:text-limonar-blue transition-all duration-200 border-l-4 border-transparent hover:border-limonar-orange"
                         style={{ animationDelay: `${index * 30}ms` }}
                       >
                         {item.name}
@@ -192,8 +189,8 @@ export function Header() {
                 href={item.href}
                 className={`px-3 py-2 rounded-lg font-heading font-semibold text-sm transition-all duration-200 ${
                   item.highlight 
-                    ? "text-furgocasa-orange hover:text-furgocasa-orange-dark hover:bg-furgocasa-orange/10" 
-                    : "text-gray-800 hover:text-furgocasa-blue hover:bg-gray-50"
+                    ? "text-limonar-orange hover:text-limonar-orange-dark hover:bg-limonar-orange/10" 
+                    : "text-gray-800 hover:text-limonar-blue hover:bg-gray-50"
                 }`}
               >
                 {item.name}
@@ -204,7 +201,7 @@ export function Header() {
           {/* CTA Button - Desktop */}
           <Link
             href="/reservar"
-            className="hidden lg:inline-flex items-center gap-2 bg-gradient-to-r from-furgocasa-orange to-furgocasa-orange-dark hover:from-furgocasa-orange-dark hover:to-furgocasa-orange text-white font-heading font-bold px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
+            className="hidden lg:inline-flex items-center gap-2 bg-gradient-to-r from-limonar-orange to-limonar-orange-dark hover:from-limonar-orange-dark hover:to-limonar-orange text-white font-heading font-bold px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
           >
             {t("Reservar ahora")}
           </Link>
@@ -212,7 +209,7 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-furgocasa-blue hover:bg-gray-100 rounded-lg transition-colors duration-200"
+            className="lg:hidden p-2 text-gray-600 hover:text-limonar-blue hover:bg-gray-100 rounded-lg transition-colors duration-200"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -223,22 +220,22 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-gray-100 bg-white shadow-xl">
           <div className="container mx-auto px-4 py-4 space-y-1">
-            {/* Furgocasa Dropdown Mobile */}
+            {/* Eco Area Limonar Dropdown Mobile */}
             <div>
               <button
-                onClick={() => setFurgocasaMobileOpen(!furgocasaMobileOpen)}
+                onClick={() => setLimonarMobileOpen(!limonarMobileOpen)}
                 className="w-full flex items-center justify-between px-4 py-3 text-gray-800 font-heading font-semibold hover:bg-gray-50 rounded-lg transition-colors duration-200"
               >
-                <span>{t("Furgocasa")}</span>
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${furgocasaMobileOpen ? 'rotate-180' : ''}`} />
+                <span>{t("Eco Area Limonar")}</span>
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${limonarMobileOpen ? 'rotate-180' : ''}`} />
               </button>
-              {furgocasaMobileOpen && (
-                <div className="ml-4 mt-1 space-y-1 border-l-2 border-furgocasa-blue/20 pl-4">
-                  {furgocasaDropdown.map((item) => (
+              {limonarMobileOpen && (
+                <div className="ml-4 mt-1 space-y-1 border-l-2 border-limonar-blue/20 pl-4">
+                  {limonarDropdown.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:text-furgocasa-blue hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:text-limonar-blue hover:bg-gray-50 rounded-lg transition-colors duration-200"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -254,8 +251,8 @@ export function Header() {
                 href={item.href}
                 className={`block px-4 py-3 rounded-lg font-heading font-semibold transition-colors duration-200 ${
                   item.highlight
-                    ? "text-furgocasa-orange hover:bg-furgocasa-orange/10"
-                    : "text-gray-800 hover:bg-gray-50 hover:text-furgocasa-blue"
+                    ? "text-limonar-orange hover:bg-limonar-orange/10"
+                    : "text-gray-800 hover:bg-gray-50 hover:text-limonar-blue"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -266,7 +263,7 @@ export function Header() {
             {/* CTA Button - Mobile */}
             <Link
               href="/reservar"
-              className="block w-full text-center bg-gradient-to-r from-furgocasa-orange to-furgocasa-orange-dark text-white font-heading font-bold px-6 py-3 rounded-lg shadow-md mt-4"
+              className="block w-full text-center bg-gradient-to-r from-limonar-orange to-limonar-orange-dark text-white font-heading font-bold px-6 py-3 rounded-lg shadow-md mt-4"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t("Reservar ahora")}

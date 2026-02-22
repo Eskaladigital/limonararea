@@ -1,7 +1,9 @@
 # 📊 SCHEMA REAL DE SUPABASE - ECO AREA LIMONAR
 
-**Actualizado:** 2026-02-20  
+**Actualizado:** 2026-02-22  
 **⚠️ USAR COMO REFERENCIA DEFINITIVA**
+
+> **Eco Area Limonar**: Tablas `parcels`, `parcel_images`, `parcel_equipment`. Bookings y `last_minute_offers` usan `parcel_id`. Las parcelas **NO tienen** `brand`, `model`, `seats`, `beds` (herencia Eco Area Limonar).
 
 ---
 
@@ -189,15 +191,13 @@ const { data } = await supabase
 
 ## 📋 TABLA: `bookings`
 
-**Tabla vacía actualmente**
-
-### Columnas esperadas (según schema.sql):
+**Columnas (Eco Area usa parcel_id):**
 ```
-id, customer_id, vehicle_id, pickup_date, dropoff_date,
+id, customer_id, parcel_id, pickup_date, dropoff_date,
 pickup_time, dropoff_time, pickup_location_id, dropoff_location_id,
 total_days, base_price, extras_price, location_fee,
 total_price, status, payment_status, payment_method,
-created_at, updated_at
+created_at, updated_at, vehicle_type, adults, children
 ```
 
 ---
@@ -290,18 +290,45 @@ const { data } = await supabase
 
 ---
 
+## 📋 TABLA: `search_queries`
+
+**Tracking de búsquedas y funnel de conversión (analytics):**
+```
+id, session_id, searched_at, pickup_date, dropoff_date,
+pickup_time, dropoff_time, rental_days, advance_days,
+pickup_location_id, dropoff_location_id, same_location,
+category_slug, parcels_available_count, season_applied,
+avg_price_shown, had_availability, parcel_selected,
+selected_parcel_id, selected_parcel_price, parcel_selected_at,
+booking_created, booking_id, funnel_stage, locale, user_agent_type
+```
+
+---
+
+## 📋 TABLA: `last_minute_offers`
+
+**Ofertas de última hora (huecos entre reservas):**
+```
+id, parcel_id, pickup_location_id, dropoff_location_id,
+detected_start_date, detected_end_date, offer_start_date, offer_end_date,
+original_price_per_day, discount_percentage, final_price_per_day,
+status (detected|published|reserved|expired|ignored),
+booking_id, admin_notes, created_at, updated_at
+```
+
+**RPC:** `get_active_last_minute_offers()` – Ofertas publicadas con datos de parcela.
+
+---
+
 ## 🔍 ERRORES COMUNES Y SOLUCIONES
 
 ### ❌ Error: "column extras.category does not exist"
 **Solución:** La tabla `extras` NO tiene columna `category`. Usar `sort_order` para ordenar.
 
-### ❌ Error: "Could not find a relationship between 'vehicles' and 'categories'"
-**Solución:** La tabla correcta es `vehicle_categories`, no `categories`.
-
-### ❌ Error: "column vehicle_images_1.url does not exist"
+### ❌ Error: "column parcel_images_1.url does not exist"
 **Solución:** El campo correcto es `image_url`, no `url`. Mejor usar `select('*')`.
 
-### ❌ Error: "column vehicles.is_available does not exist"
+### ❌ Error: "column parcels.is_available does not exist"
 **Solución:** Los campos correctos son `is_for_rent` y `status`.
 
 ---
@@ -311,32 +338,28 @@ const { data } = await supabase
 ### Página: `/buscar` (resultados de búsqueda)
 ```typescript
 // API: /api/availability
-const { data: vehicles } = await supabase
-  .from('vehicles')
+const { data: parcels } = await supabase
+  .from('parcels')
   .select(`
     *,
-    category:vehicle_categories(*),
-    images:vehicle_images(*)
+    category:parcel_categories(*),
+    images:parcel_images(*)
   `)
   .eq('is_for_rent', true)
   .eq('status', 'available')
 ```
 
-### Página: `/reservar/vehiculo` (detalles antes de reservar)
+### Página: `/reservar/parcela` (detalles antes de reservar)
 ```typescript
-const { data: vehicle } = await supabase
-  .from('vehicles')
+const { data: parcel } = await supabase
+  .from('parcels')
   .select(`
     *,
-    category:vehicle_categories(*),
-    images:vehicle_images(*),
-    vehicle_equipment(
-      id,
-      notes,
-      equipment(*)
-    )
+    category:parcel_categories(*),
+    images:parcel_images(*),
+    parcel_equipment(id, notes, equipment(*))
   `)
-  .eq('id', vehicleId)
+  .eq('id', parcelId)
   .eq('is_for_rent', true)
   .neq('status', 'inactive')
   .single()
@@ -348,41 +371,17 @@ const { data: extras } = await supabase
   .order('sort_order', { ascending: true })
 ```
 
-### Página: `/vehiculos/[slug]` (detalle de vehículo)
+### Página: `/parcelas/[slug]` (detalle de parcela)
 ```typescript
-const { data: vehicle } = await supabase
-  .from('vehicles')
+const { data: parcel } = await supabase
+  .from('parcels')
   .select(`
     *,
-    category:vehicle_categories(*),
-    images:vehicle_images(*),
-    vehicle_equipment(
-      id,
-      notes,
-      equipment(*)
-    )
+    category:parcel_categories(*),
+    images:parcel_images(*),
+    parcel_equipment(id, notes, equipment(*))
   `)
   .eq('slug', slug)
-  .single()
-```
-
-### Página: `/ventas/[slug]` (vehículo en venta)
-```typescript
-const { data: vehicle } = await supabase
-  .from('vehicles')
-  .select(`
-    *,
-    category:vehicle_categories(*),
-    images:vehicle_images(*),
-    vehicle_equipment(
-      id,
-      notes,
-      equipment(*)
-    )
-  `)
-  .eq('slug', slug)
-  .eq('is_for_sale', true)
-  .eq('sale_status', 'available')
   .single()
 ```
 
@@ -392,17 +391,17 @@ const { data: vehicle } = await supabase
 
 | Tabla | Campo Correcto | ❌ Error Común |
 |-------|---------------|----------------|
-| vehicles | `is_for_rent` | `is_available` |
-| vehicles | `status` | - |
-| vehicle_categories | `vehicle_categories` | `categories` |
-| vehicle_images | `image_url` | `url` |
-| vehicle_images | `alt_text` | `alt` |
-| vehicle_images | `is_primary` | `is_main` |
+| parcels | `is_for_rent` | `is_available` |
+| parcels | `status` | - |
+| parcel_categories | `parcel_categories` | `categories` |
+| parcel_images | `image_url` | `url` |
+| parcel_images | `alt_text` | `alt` |
+| parcel_images | `is_primary` | `is_main` |
 | extras | `is_active` | `is_available` |
 | extras | ❌ NO tiene `category` | `category` |
 | equipment | ✅ SÍ tiene `category` | - |
 
 ---
 
-**Última actualización:** 2026-01-08  
-**Fuente:** Consulta directa a Supabase desde `/api/debug/schema`
+**Última actualización:** 2026-02-22  
+**Fuente:** schema-eco-area-limonar.sql + add-eco-area-tables.sql

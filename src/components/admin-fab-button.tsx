@@ -59,7 +59,7 @@ export function AdminFABButton() {
   return (
     <Link
       href="/administrator"
-      className="fixed bottom-20 right-4 z-[100] bg-furgocasa-orange text-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 active:scale-95 group"
+      className="fixed bottom-20 right-4 z-[100] bg-limonar-orange text-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 active:scale-95 group"
       aria-label="Ir al panel de administración"
     >
       <div className="flex items-center gap-2 px-4 py-3">

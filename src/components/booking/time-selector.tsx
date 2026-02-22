@@ -46,7 +46,7 @@ export function TimeSelector({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         aria-label={label}
-        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white hover:border-furgocasa-blue focus:outline-none focus:ring-1 focus:ring-furgocasa-blue focus:border-furgocasa-blue transition-colors appearance-none cursor-pointer"
+        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white hover:border-limonar-blue focus:outline-none focus:ring-1 focus:ring-limonar-blue focus:border-limonar-blue transition-colors appearance-none cursor-pointer"
       >
         {availableSlots.map((time) => (
           <option key={time} value={time}>

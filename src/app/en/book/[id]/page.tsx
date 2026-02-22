@@ -81,11 +81,11 @@ interface Booking {
     driver_license: string | null;
     driver_license_expiry: string | null;
   } | null;
-  vehicle: {
+  parcel: {
     id: string;
     name: string;
-    brand: string;
-    model: string;
+    brand?: string;
+    model?: string;
     internal_code?: string;
     main_image?: string;
   };
@@ -129,7 +129,7 @@ const statusConfig: Record<string, { bg: string; text: string; label: string; ic
     text:"text-blue-800", 
     label:"En curso", 
     icon: Car,
-    description:"¡Disfruta tu viaje! El vehículo está actualmente en uso."
+    description:"¡Disfruta tu estancia! La parcela está actualmente en uso."
   },
   completed: { 
     bg:"bg-gray-100", 
@@ -191,13 +191,16 @@ export default function ReservaPage() {
         return;
       }
 
-      // Procesar la imagen principal del vehículo
-      if (data.vehicle && data.vehicle.images) {
-        const primaryImage = data.vehicle.images.find((img: any) => img.is_primary);
-        const firstImage = data.vehicle.images[0];
-        (data.vehicle as any).main_image = primaryImage?.image_url || firstImage?.image_url || null;
+      // Normalizar: API devuelve parcel (legacy vehicle)
+      const unit = (data as any).parcel;
+      if (unit) {
+        (data as any).parcel = { ...unit, main_image: null };
+        if (unit.images?.length) {
+          const primary = unit.images.find((img: any) => img.is_primary);
+          const first = unit.images[0];
+          (data as any).parcel.main_image = primary?.image_url || first?.image_url || null;
+        }
       }
-
       setBooking(data as any);
     } catch (error: any) {
       console.error('Error loading booking:', error);
@@ -212,7 +215,7 @@ export default function ReservaPage() {
       <>
 <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-furgocasa-orange mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-limonar-orange mx-auto mb-4"></div>
             <p className="text-gray-600">{t("Cargando información de la reserva...")}</p>
           </div>
         </div>
@@ -228,7 +231,7 @@ export default function ReservaPage() {
             <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">{t("Error")}</h2>
             <p className="text-gray-600 mb-4">{error || t("Reserva no encontrada")}</p>
-            <LocalizedLink href="/" className="text-furgocasa-orange hover:underline">
+            <LocalizedLink href="/" className="text-limonar-orange hover:underline">
               {t("Volver al inicio")}
             </LocalizedLink>
           </div>
@@ -267,7 +270,7 @@ export default function ReservaPage() {
           <div className="mb-8">
             <LocalizedLink 
               href="/"
-              className="inline-flex items-center text-sm text-gray-600 hover:text-furgocasa-orange transition-colors"
+              className="inline-flex items-center text-sm text-gray-600 hover:text-limonar-orange transition-colors"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               {t("Volver al inicio")}
@@ -314,7 +317,7 @@ export default function ReservaPage() {
                   <div className="bg-white rounded-lg p-4 mb-4">
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700 font-medium">{t("Pago inicial")} (50%):</span>
-                      <span className="text-2xl font-bold text-furgocasa-orange">{formatPrice(firstPayment)}</span>
+                      <span className="text-2xl font-bold text-limonar-orange">{formatPrice(firstPayment)}</span>
                     </div>
                     <p className="text-sm text-gray-500 mt-2">
                       {t("El segundo pago")} ({formatPrice(secondPayment)}) {t("se realizará máximo 15 días antes del inicio del alquiler")}.
@@ -322,7 +325,7 @@ export default function ReservaPage() {
                   </div>
                   <button
                     onClick={() => router.push(getTranslatedRoute(`/reservar/${bookingId}/pago?amount=${firstPayment.toFixed(2)}`, language))}
-                    className="bg-furgocasa-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors inline-flex items-center gap-2"
+                    className="bg-limonar-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors inline-flex items-center gap-2"
                   >
                     <CreditCard className="h-5 w-5" />
                     {t("Pagar")} {formatPrice(firstPayment)} {t("y confirmar")}
@@ -372,7 +375,7 @@ export default function ReservaPage() {
                       </div>
                       <div className="flex justify-between items-center pt-2 border-t">
                         <span className="text-gray-900 font-medium text-sm sm:text-base">{t("Pendiente")}:</span>
-                        <span className="text-lg sm:text-xl font-bold text-furgocasa-orange">{formatPrice(pendingAmount)}</span>
+                        <span className="text-lg sm:text-xl font-bold text-limonar-orange">{formatPrice(pendingAmount)}</span>
                       </div>
                     </div>
                   </div>
@@ -383,7 +386,7 @@ export default function ReservaPage() {
                     className={`w-full sm:w-auto font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors inline-flex items-center justify-center gap-2 text-sm sm:text-base ${
                       secondPaymentDue 
                         ? 'bg-red-600 text-white hover:bg-red-700' 
-                        : 'bg-furgocasa-orange text-white hover:bg-orange-600'
+                        : 'bg-limonar-orange text-white hover:bg-orange-600'
                     }`}
                   >
                     <CreditCard className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
@@ -430,18 +433,18 @@ export default function ReservaPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Main Content - Izquierda */}
             <div className="lg:col-span-2 space-y-6">
-              {/* Vehicle */}
+              {/* Parcel */}
               <div className="bg-white rounded-2xl shadow-sm p-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <Car className="h-6 w-6 text-furgocasa-blue" />
+                  <Car className="h-6 w-6 text-limonar-blue" />
                   {t("Tu vehículo")}
                 </h2>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    {booking.vehicle.main_image ? (
+                    {booking.parcel?.main_image ? (
                       <img 
-                        src={booking.vehicle.main_image} 
-                        alt={booking.vehicle.name}
+                        src={booking.parcel.main_image} 
+                        alt={booking.parcel.name}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -450,12 +453,11 @@ export default function ReservaPage() {
                   </div>
                   <div>
                     <p className="font-bold text-gray-900 text-xl">
-                      {booking.vehicle.internal_code && (
-                        <span className="text-furgocasa-orange">{booking.vehicle.internal_code} - </span>
+                      {booking.parcel?.internal_code && (
+                        <span className="text-limonar-orange">{booking.parcel.internal_code} - </span>
                       )}
-                      {booking.vehicle.name}
+                      {booking.parcel?.name}
                     </p>
-                    <p className="text-gray-600">{booking.vehicle.brand} · {booking.vehicle.model}</p>
                   </div>
                 </div>
               </div>
@@ -463,7 +465,7 @@ export default function ReservaPage() {
               {/* Tus datos */}
               <div className="bg-white rounded-2xl shadow-sm p-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <User className="h-6 w-6 text-furgocasa-blue" />
+                  <User className="h-6 w-6 text-limonar-blue" />
                   {t("Datos del conductor principal")}
                 </h2>
                 
@@ -559,7 +561,7 @@ export default function ReservaPage() {
                   {booking.customer?.phone && (
                     <div className="grid grid-cols-[200px_1fr] gap-4 py-2 border-b border-gray-100">
                       <p className="text-sm text-gray-600 font-medium">{t("Teléfono")}:</p>
-                      <a href={`tel:${booking.customer.phone}`} className="text-furgocasa-blue hover:text-furgocasa-orange flex items-center gap-2">
+                      <a href={`tel:${booking.customer.phone}`} className="text-limonar-blue hover:text-limonar-orange flex items-center gap-2">
                         <Phone className="h-4 w-4" />
                         {booking.customer.phone}
                       </a>
@@ -569,7 +571,7 @@ export default function ReservaPage() {
                   {/* e-Mail */}
                   <div className="grid grid-cols-[200px_1fr] gap-4 py-2 border-b border-gray-100">
                     <p className="text-sm text-gray-600 font-medium">{t("e-Mail")}:</p>
-                    <a href={`mailto:${booking.customer?.email || booking.customer_email}`} className="text-furgocasa-blue hover:text-furgocasa-orange flex items-center gap-2">
+                    <a href={`mailto:${booking.customer?.email || booking.customer_email}`} className="text-limonar-blue hover:text-limonar-orange flex items-center gap-2">
                       <Mail className="h-4 w-4" />
                       {booking.customer?.email || booking.customer_email}
                     </a>
@@ -588,7 +590,7 @@ export default function ReservaPage() {
               {/* Fechas */}
               <div className="bg-white rounded-2xl shadow-sm p-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <Calendar className="h-6 w-6 text-furgocasa-blue" />
+                  <Calendar className="h-6 w-6 text-limonar-blue" />
                   {t("Fechas")}
                 </h2>
                 
@@ -621,7 +623,7 @@ export default function ReservaPage() {
 
                   <div className="md:col-span-2 p-4 bg-blue-50 rounded-lg">
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Duración")}</p>
-                    <p className="font-bold text-furgocasa-blue text-xl">{booking.days} {booking.days === 1 ? t("día") : t("días")}</p>
+                    <p className="font-bold text-limonar-blue text-xl">{booking.days} {booking.days === 1 ? t("día") : t("días")}</p>
                   </div>
                 </div>
               </div>
@@ -629,13 +631,13 @@ export default function ReservaPage() {
               {/* Ubicación */}
               <div className="bg-white rounded-2xl shadow-sm p-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <MapPin className="h-6 w-6 text-furgocasa-blue" />
+                  <MapPin className="h-6 w-6 text-limonar-blue" />
                   {t("Ubicación")}
                 </h2>
                 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-                    <MapPin className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                    <MapPin className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Punto de recogida")}</p>
                       <p className="font-semibold text-gray-900">{booking.pickup_location.name}</p>
@@ -646,7 +648,7 @@ export default function ReservaPage() {
                   </div>
 
                   <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-                    <MapPin className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                    <MapPin className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Punto de devolución")}</p>
                       <p className="font-semibold text-gray-900">{booking.dropoff_location.name}</p>
@@ -662,7 +664,7 @@ export default function ReservaPage() {
               {booking.booking_extras && booking.booking_extras.length > 0 && (
                 <div className="bg-white rounded-2xl shadow-sm p-6">
                   <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <Package className="h-6 w-6 text-furgocasa-blue" />
+                    <Package className="h-6 w-6 text-limonar-blue" />
                     {t("Extras incluidos")}
                   </h2>
                   <div className="space-y-3">
@@ -677,7 +679,7 @@ export default function ReservaPage() {
                             {t("Cantidad")}: {item.quantity}
                           </p>
                         </div>
-                        <p className="font-bold text-furgocasa-orange text-lg ml-4">
+                        <p className="font-bold text-limonar-orange text-lg ml-4">
                           {formatPrice(item.total_price)}
                         </p>
                       </div>
@@ -690,7 +692,7 @@ export default function ReservaPage() {
             {/* Sidebar - Derecha */}
             <div className="space-y-6">
               {/* Price Summary */}
-              <div className="bg-gradient-to-br from-furgocasa-orange to-orange-600 text-white rounded-2xl shadow-lg p-6 sticky top-24">
+              <div className="bg-gradient-to-br from-limonar-orange to-orange-600 text-white rounded-2xl shadow-lg p-6 sticky top-24">
                 <h3 className="text-xl font-bold mb-4">{t("Resumen de pago")}</h3>
                 
                 <div className="space-y-3 mb-4 pb-4 border-b border-white/20">
@@ -799,11 +801,11 @@ export default function ReservaPage() {
                   {t("Si tienes alguna duda sobre tu reserva, no dudes en contactarnos.")}
                 </p>
                 <div className="space-y-2 text-xs sm:text-sm">
-                  <a href="tel:+34868364161" className="flex items-center gap-2 text-furgocasa-blue hover:text-furgocasa-orange">
+                  <a href="tel:+34868364161" className="flex items-center gap-2 text-limonar-blue hover:text-limonar-orange">
                     <Phone className="h-4 w-4 flex-shrink-0" />
                     <span>+34 868 364 161</span>
                   </a>
-                  <a href={`mailto:${infoEmail}`} className="flex items-center gap-2 text-furgocasa-blue hover:text-furgocasa-orange min-w-0">
+                  <a href={`mailto:${infoEmail}`} className="flex items-center gap-2 text-limonar-blue hover:text-limonar-orange min-w-0">
                     <Mail className="h-4 w-4 flex-shrink-0" />
                     <span className="break-all">{infoEmail}</span>
                   </a>
@@ -824,14 +826,14 @@ export default function ReservaPage() {
                 <div className="min-w-0">
                   <p className="text-xs sm:text-sm font-medium text-gray-700 mb-2">{t("Email")}</p>
                   <a href={`mailto:${infoEmail}?subject=Solicitud de modificación/cancelación - Reserva ${booking.booking_number}`}
-                     className="text-furgocasa-blue hover:text-furgocasa-orange flex items-center gap-2 min-w-0 text-sm sm:text-base">
+                     className="text-limonar-blue hover:text-limonar-orange flex items-center gap-2 min-w-0 text-sm sm:text-base">
                     <Mail className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                     <span className="break-all">{infoEmail}</span>
                   </a>
                 </div>
                 <div>
                   <p className="text-xs sm:text-sm font-medium text-gray-700 mb-2">{t("Teléfono")}</p>
-                  <a href="tel:+34868364161" className="text-furgocasa-blue hover:text-furgocasa-orange flex items-center gap-2 text-sm sm:text-base">
+                  <a href="tel:+34868364161" className="text-limonar-blue hover:text-limonar-orange flex items-center gap-2 text-sm sm:text-base">
                     <Phone className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                     <span>+34 868 364 161</span>
                   </a>
@@ -841,7 +843,7 @@ export default function ReservaPage() {
               <div className="pt-4 border-t border-gray-200">
                 <p className="text-xs text-gray-500">
                   {t("Asegúrate de incluir tu número de reserva")} ({booking.booking_number}) {t("en tu mensaje para que podamos ayudarte más rápidamente.")}<br/>
-                  {t("Consulta nuestra")} <LocalizedLink href="/tarifas" className="text-furgocasa-blue hover:underline">{t("política de cancelación")}</LocalizedLink> {t("para más información.")}
+                  {t("Consulta nuestra")} <LocalizedLink href="/tarifas" className="text-limonar-blue hover:underline">{t("política de cancelación")}</LocalizedLink> {t("para más información.")}
                 </p>
               </div>
             </div>

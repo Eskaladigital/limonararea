@@ -1,6 +1,6 @@
 # 🚀 Configurar Stripe en PRODUCCIÓN (Vercel)
 
-**Tu app está en**: https://www.furgocasa.com  
+**Tu app está en**: https://www.ecoarealimonar.com  
 **Estado**: Desplegada y funcionando  
 **Objetivo**: Añadir Stripe como método de pago en producción
 
@@ -32,7 +32,7 @@
 ### Paso 3: Configurar Variables de Entorno en Vercel (3 min)
 
 1. Ve a tu proyecto en Vercel: **https://vercel.com/dashboard**
-2. Selecciona tu proyecto: **furgocasa-app**
+2. Selecciona tu proyecto: **limonar-app**
 3. Ve a **Settings** → **Environment Variables**
 4. Añade estas **3 nuevas variables**:
 
@@ -73,7 +73,7 @@ El webhook permite que Stripe notifique a tu app cuando se completa un pago.
 
 **Endpoint URL**:
 ```
-https://www.furgocasa.com/api/stripe/webhook
+https://www.ecoarealimonar.com/api/stripe/webhook
 ```
 
 **Events to send** (selecciona estos 4):
@@ -104,7 +104,7 @@ https://www.furgocasa.com/api/stripe/webhook
 ### Paso 7: Actualizar Base de Datos en Supabase (2 min)
 
 1. Ve a tu proyecto en **Supabase**: https://app.supabase.com
-2. Selecciona tu proyecto de Furgocasa
+2. Selecciona tu proyecto de Eco Area Limonar
 3. Ve a **SQL Editor** (panel izquierdo)
 4. Haz clic en **New query**
 5. Copia y pega el contenido de: `supabase/add-stripe-support.sql`
@@ -120,7 +120,7 @@ Ahora puedes probar el flujo completo:
 
 ### 1. Crear una Reserva de Prueba
 
-1. Ve a: **https://www.furgocasa.com**
+1. Ve a: **https://www.ecoarealimonar.com**
 2. Crea una reserva (cualquier vehículo, fechas futuras)
 3. Completa el formulario de cliente
 4. Llegarás a la página de pago
@@ -192,7 +192,7 @@ Cuando quieras empezar a cobrar pagos reales:
 
 1. En Stripe Dashboard, verás un banner para "Activate your account"
 2. Completa la información:
-   - Datos de tu negocio (Furgocasa)
+   - Datos de tu negocio (Eco Area Limonar)
    - CIF/NIF
    - Cuenta bancaria donde recibirás los pagos
    - Información legal
@@ -218,7 +218,7 @@ STRIPE_WEBHOOK_SECRET = whsec_XXXXX (crear nuevo webhook)
 ### 4. Crear Nuevo Webhook de Producción
 
 1. En Stripe (modo producción), crea un nuevo webhook
-2. Misma URL: `https://www.furgocasa.com/api/stripe/webhook`
+2. Misma URL: `https://www.ecoarealimonar.com/api/stripe/webhook`
 3. Mismos eventos
 4. Copia el nuevo `whsec_...` de producción
 
@@ -279,7 +279,7 @@ Para ver si el webhook llegó a tu API:
 
 **Solución**:
 1. Ve a Stripe → Webhooks → Tu webhook
-2. Verifica que la URL es: `https://www.furgocasa.com/api/stripe/webhook` (sin espacios)
+2. Verifica que la URL es: `https://www.ecoarealimonar.com/api/stripe/webhook` (sin espacios)
 3. Verifica que el signing secret está en Vercel
 4. Revisa los logs de eventos en Stripe para ver el error
 

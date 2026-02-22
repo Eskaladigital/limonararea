@@ -2,7 +2,7 @@
 
 > ⚠️ **IMPORTANTE: NO CAMBIAR ESTA CONFIGURACIÓN** ⚠️
 > 
-> Este documento describe el modelo SEO multiidioma definitivo para Furgocasa.
+> Este documento describe el modelo SEO multiidioma definitivo para Eco Area Limonar.
 > Cualquier cambio debe ser consultado y documentado aquí.
 
 ## Resumen Ejecutivo
@@ -10,8 +10,8 @@
 **Todas las URLs deben llevar prefijo de idioma, incluyendo español (`/es/`).**
 
 ```
-✅ CORRECTO:  https://www.furgocasa.com/es/blog/rutas
-❌ INCORRECTO: https://www.furgocasa.com/blog/rutas
+✅ CORRECTO:  https://www.ecoarealimonar.com/es/blog/rutas
+❌ INCORRECTO: https://www.ecoarealimonar.com/blog/rutas
 ```
 
 ## ¿Por qué /es/ es obligatorio?
@@ -25,21 +25,21 @@
 
 | Idioma  | Prefijo | Ejemplo |
 |---------|---------|---------|
-| Español | `/es/`  | `https://www.furgocasa.com/es/blog/rutas` |
-| Inglés  | `/en/`  | `https://www.furgocasa.com/en/blog/routes` |
-| Francés | `/fr/`  | `https://www.furgocasa.com/fr/blog/itineraires` |
-| Alemán  | `/de/`  | `https://www.furgocasa.com/de/blog/routen` |
+| Español | `/es/`  | `https://www.ecoarealimonar.com/es/blog/rutas` |
+| Inglés  | `/en/`  | `https://www.ecoarealimonar.com/en/blog/routes` |
+| Francés | `/fr/`  | `https://www.ecoarealimonar.com/fr/blog/itineraires` |
+| Alemán  | `/de/`  | `https://www.ecoarealimonar.com/de/blog/routen` |
 
 ## Configuración de hreflang
 
 En cada página debe haber etiquetas hreflang que conecten todas las versiones:
 
 ```html
-<link rel="alternate" hreflang="es" href="https://www.furgocasa.com/es/blog/rutas" />
-<link rel="alternate" hreflang="en" href="https://www.furgocasa.com/en/blog/routes" />
-<link rel="alternate" hreflang="fr" href="https://www.furgocasa.com/fr/blog/itineraires" />
-<link rel="alternate" hreflang="de" href="https://www.furgocasa.com/de/blog/routen" />
-<link rel="alternate" hreflang="x-default" href="https://www.furgocasa.com/es/blog/rutas" />
+<link rel="alternate" hreflang="es" href="https://www.ecoarealimonar.com/es/blog/rutas" />
+<link rel="alternate" hreflang="en" href="https://www.ecoarealimonar.com/en/blog/routes" />
+<link rel="alternate" hreflang="fr" href="https://www.ecoarealimonar.com/fr/blog/itineraires" />
+<link rel="alternate" hreflang="de" href="https://www.ecoarealimonar.com/de/blog/routen" />
+<link rel="alternate" hreflang="x-default" href="https://www.ecoarealimonar.com/es/blog/rutas" />
 ```
 
 - `x-default` siempre apunta a la versión española (idioma principal)
@@ -66,13 +66,13 @@ Cada página debe tener:
 ```typescript
 export const metadata: Metadata = {
   alternates: {
-    canonical: "https://www.furgocasa.com/es/pagina",
+    canonical: "https://www.ecoarealimonar.com/es/pagina",
     languages: {
-      'es': 'https://www.furgocasa.com/es/pagina',
-      'en': 'https://www.furgocasa.com/en/page',
-      'fr': 'https://www.furgocasa.com/fr/page',
-      'de': 'https://www.furgocasa.com/de/seite',
-      'x-default': 'https://www.furgocasa.com/es/pagina',
+      'es': 'https://www.ecoarealimonar.com/es/pagina',
+      'en': 'https://www.ecoarealimonar.com/en/page',
+      'fr': 'https://www.ecoarealimonar.com/fr/page',
+      'de': 'https://www.ecoarealimonar.com/de/seite',
+      'x-default': 'https://www.ecoarealimonar.com/es/pagina',
     },
   },
 };

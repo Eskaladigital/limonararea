@@ -1,6 +1,8 @@
 # ⚠️ FLUJO DE RESERVAS CRÍTICO - NO MODIFICAR SIN DOCUMENTAR
 
-> **ÚLTIMA ACTUALIZACIÓN**: 8 de enero de 2026
+> **ÚLTIMA ACTUALIZACIÓN**: 22 de febrero de 2026
+> 
+> **ECO AREA LIMONAR**: En este proyecto las rutas usan **parcela** (no vehículo): `/reservar/parcela`, `/reservar/nueva` con `parcel_id` en query params. Las tablas son `parcels`, `parcel_images`, etc. La única referencia válida a "vehicle" es `vehicle_type` = tipo de vehículo del cliente (autocaravana, caravana, tienda).
 > 
 > **MOTIVO DE ESTE DOCUMENTO**: En enero de 2026 se perdieron dos páginas críticas del flujo de reservas (`/reservar/vehiculo` y `/reservar/nueva`), lo que rompió completamente el sistema de reservas. Este documento garantiza que esto NO vuelva a suceder.
 

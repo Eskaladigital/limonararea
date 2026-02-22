@@ -1,4 +1,4 @@
-# Jerarquía de Z-Index en Furgocasa
+# Jerarquía de Z-Index en Eco Area Limonar
 
 ## 📋 Reglas de oro
 1. **El header sticky SIEMPRE debe estar visible** pero los modales deben poder estar por encima de él.
@@ -19,7 +19,7 @@
 - **Header**: `z-[1000]` - Barra de navegación sticky
   - Dropdown de idiomas: `z-[1200]`
   - Backdrop idiomas: `z-[1100]`
-  - Dropdown Furgocasa: `z-[1200]`
+  - Dropdown Eco Area Limonar: `z-[1200]`
 - **Footer**: Sin z-index (siempre al final del documento)
 
 ### Nivel 100-200 (Dropdowns de contenido)

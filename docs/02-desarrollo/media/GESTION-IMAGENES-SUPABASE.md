@@ -155,7 +155,7 @@ node scripts/migrate-blog-images-to-supabase.js
 **Lógica del Script:**
 1. Lee artículos publicados de la tabla `posts`
 2. Extrae URLs de imágenes del campo `content` y `featured_image`
-3. Busca imágenes en `furgocasa_images/blog/YYYY.MM/` o `YYYY/MM/`
+3. Busca imágenes en `limonar_images/blog/YYYY.MM/` o `YYYY/MM/`
 4. Optimiza a WebP (90% calidad)
 5. Sube a `blog/YYYY/MM/`
 6. Actualiza URLs en la base de datos
@@ -227,15 +227,15 @@ Almacenar imágenes generales de la web que NO encajan en los otros buckets: im�
 ```
 media/
 ├── locations/                         # Imágenes de ciudades/destinos
-│   ├── furgocasa_alquiler_autocaravanas_campervan_murcia.webp
-│   ├── furgocasa_alquiler_autocaravanas_campervan_alicante.webp
-│   ├── furgocasa_alquiler_autocaravanas_campervan_valencia.webp
+│   ├── limonar_alquiler_autocaravanas_campervan_murcia.webp
+│   ├── limonar_alquiler_autocaravanas_campervan_alicante.webp
+│   ├── limonar_alquiler_autocaravanas_campervan_valencia.webp
 │   └── ...                           # 6 ciudades principales
 │
 └── slides/                           # Imágenes HERO para páginas de localización
-    ├── furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_murcia.webp
-    ├── furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_alicante.webp
-    ├── furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_cartagena.webp
+    ├── limonar_campervans_alquiler_autocaravanas_motorhome_rent_murcia.webp
+    ├── limonar_campervans_alquiler_autocaravanas_motorhome_rent_alicante.webp
+    ├── limonar_campervans_alquiler_autocaravanas_motorhome_rent_cartagena.webp
     └── ...                           # 31 ciudades
 ```
 
@@ -262,7 +262,7 @@ const FEATURED_DESTINATIONS: Destination[] = [
     name: "ALICANTE",
     region: "Comunidad Valenciana",
     slug: "alicante",
-    image: "https://uygxrqqtdebyzllvbuef.supabase.co/storage/v1/object/public/media/locations/furgocasa_alquiler_autocaravanas_campervan_alicante.webp"
+    image: "https://uygxrqqtdebyzllvbuef.supabase.co/storage/v1/object/public/media/locations/limonar_alquiler_autocaravanas_campervan_alicante.webp"
   },
   // ...
 ];
@@ -271,8 +271,8 @@ const FEATURED_DESTINATIONS: Destination[] = [
 **`src/app/[location]/page.tsx`:**
 ```typescript
 const LOCATION_HERO_IMAGES: Record<string, string> = {
-  "Murcia": "https://uygxrqqtdebyzllvbuef.supabase.co/storage/v1/object/public/media/slides/furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_murcia.webp",
-  "Alicante": "https://uygxrqqtdebyzllvbuef.supabase.co/storage/v1/object/public/media/slides/furgocasa_campervans_alquiler_autocaravanas_motorhome_rent_alicante.webp",
+  "Murcia": "https://uygxrqqtdebyzllvbuef.supabase.co/storage/v1/object/public/media/slides/limonar_campervans_alquiler_autocaravanas_motorhome_rent_murcia.webp",
+  "Alicante": "https://uygxrqqtdebyzllvbuef.supabase.co/storage/v1/object/public/media/slides/limonar_campervans_alquiler_autocaravanas_motorhome_rent_alicante.webp",
   // ... 31 ciudades
 };
 ```
@@ -309,7 +309,7 @@ node scripts/upload-hero-slides.js
 
 ### 📋 Panel de Administración
 
-**URL:** `https://www.furgocasa.com/administrator/media`
+**URL:** `https://www.ecoarealimonar.com/administrator/media`
 
 **Funcionalidades:**
 - ✅ Ver contenido de TODOS los buckets
@@ -334,9 +334,9 @@ Todos los scripts están en `scripts/` y usan:
 | Script | Propósito | Origen | Destino |
 |--------|-----------|--------|---------|
 | `optimize-hero-images.js` | Optimizar slides hero de la home | `images/slides web/` | `public/images/slides/` |
-| `upload-location-images.js` | Subir tarjetas de destinos | `furgocasa_images/fotos_lugares/` | `media/locations/` |
-| `upload-hero-slides.js` | Subir hero slides de localizaciones | `furgocasa_images/slides/` | `media/slides/` |
-| `migrate-blog-images-to-supabase.js` | Migrar imágenes de blog | `furgocasa_images/blog/` | `blog/YYYY/MM/` |
+| `upload-location-images.js` | Subir tarjetas de destinos | `limonar_images/fotos_lugares/` | `media/locations/` |
+| `upload-hero-slides.js` | Subir hero slides de localizaciones | `limonar_images/slides/` | `media/slides/` |
+| `migrate-blog-images-to-supabase.js` | Migrar imágenes de blog | `limonar_images/blog/` | `blog/YYYY/MM/` |
 
 ---
 

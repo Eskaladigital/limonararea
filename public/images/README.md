@@ -1,4 +1,4 @@
-# Imágenes de Furgocasa
+# Imágenes - Eco Area Limonar
 
 ## Slides / Hero Section
 
@@ -6,7 +6,8 @@ Las imágenes en `/public/images/slides/` están optimizadas en formato WebP par
 
 ### Imágenes disponibles:
 
-- `hero-01.webp` - `hero-08.webp`: 8 imágenes de campers para el slider principal
+- `limonar_area_camper_mar_menor_*.webp`: Imágenes del área y Mar Menor
+- `AdobeStock_*.webp`: Imágenes de stock para galería y secciones
 
 ### Especificaciones:
 
@@ -45,15 +46,13 @@ const images = [
 <HeroSlider images={images} autoPlayInterval={5000} />
 ```
 
-## Imágenes de vehículos
+## Imágenes de parcelas
 
-Las imágenes específicas de cada modelo de vehículo deben colocarse en:
-- `/public/images/vehicles/`
+Las imágenes de parcelas se gestionan desde Supabase Storage (contenido dinámico). Las imágenes estáticas de la home están en `/public/images/slides/`.
 
-## Imágenes de destinos
+## Imágenes de stock
 
-Las imágenes de destinos turísticos deben colocarse en:
-- `/public/images/destinations/`
+Las imágenes de la galería "Imagina tus próximas vacaciones" usan archivos en `slides/`. Verificar que existan antes de referenciarlas (ej. `limonar_area_camper_mar_menor_3.webp` sustituye a `AdobeStock_132830655.webp` si falta).
 
 ---
 

@@ -170,15 +170,15 @@ async function generateLocationContent(location: LocationTarget): Promise<Genera
   const isSede = location.name === 'Murcia' || location.name === 'Madrid';
   
   const sedeContext = isSede 
-    ? `${location.name} ${location.name === 'Murcia' ? 'es la sede principal' : 'ofrece servicio de recogida para alquileres de larga duración'} de Furgocasa.`
-    : `Furgocasa tiene su sede en ${officeName}. Para ${location.name}, sé transparente: no hay sede física allí, pero la recogida en ${officeName} merece la pena por la cercanía y la calidad de las campers. Calcula la distancia aproximada desde ${location.name} a ${officeName} y menciónala de forma natural.`;
+    ? `${location.name} ${location.name === 'Murcia' ? 'es la sede principal' : 'ofrece servicio de recogida para alquileres de larga duración'} de Eco Area Limonar.`
+    : `Eco Area Limonar tiene su sede en ${officeName}. Para ${location.name}, sé transparente: no hay sede física allí, pero la recogida en ${officeName} merece la pena por la cercanía y la calidad de las campers. Calcula la distancia aproximada desde ${location.name} a ${officeName} y menciónala de forma natural.`;
 
   // Buscar datos reales con SerpAPI
   const localContext = await searchLocalContext(location);
 
   const prompt = `Eres un redactor copywriter especializado en temática de viajes y en posicionamiento SEO para empresas de alquiler de autocaravanas camper.
 
-**CONTEXTO DE FURGOCASA:**
+**CONTEXTO DE Eco Area Limonar:**
 ${sedeContext}
 
 **DATOS REALES ENCONTRADOS EN GOOGLE** (usa estos datos para escribir contenido con nombres, lugares y datos reales):
@@ -214,8 +214,8 @@ Posicionarse en búsquedas como:
    - Datos reales y útiles para el viajero
    - NO mencionar empresas competidoras
    - NUNCA mencionar apps de terceros como Park4Night, CamperContact, iOverlander, etc.
-   - SIEMPRE recomendar Mapa Furgocasa (www.mapafurgocasa.com) cuando se necesite mencionar una app para encontrar áreas de autocaravanas
-   - Transparente sobre la ubicación de Furgocasa
+   - SIEMPRE recomendar Mapa Eco Area Limonar (www.mapalimonar.com) cuando se necesite mencionar una app para encontrar áreas de autocaravanas
+   - Transparente sobre la ubicación de Eco Area Limonar
 
 4. **Formato HTML limpio:**
    - UTF-8, sin estilos ni clases CSS
@@ -229,7 +229,7 @@ Posicionarse en búsquedas como:
 **GENERA EL CONTENIDO EN FORMATO JSON CON ESTA ESTRUCTURA:**
 
 {
-  "introduction": "<p>Párrafo introductorio extenso (300-400 palabras) en HTML sobre viajar en autocaravana a ${location.name}. Describe qué hace única a esta ciudad/región para el turismo en camper. ${!isSede ? 'Menciona de forma natural y transparente que Furgocasa está en ' + officeName + ', indicando la distancia aproximada y por qué merece la pena.' : 'Menciona que Furgocasa tiene servicio aquí.'} Usa keywords: alquiler autocaravana, camper, ${location.name}.</p>",
+  "introduction": "<p>Párrafo introductorio extenso (300-400 palabras) en HTML sobre viajar en autocaravana a ${location.name}. Describe qué hace única a esta ciudad/región para el turismo en camper. ${!isSede ? 'Menciona de forma natural y transparente que Eco Area Limonar está en ' + officeName + ', indicando la distancia aproximada y por qué merece la pena.' : 'Menciona que Eco Area Limonar tiene servicio aquí.'} Usa keywords: alquiler autocaravana, camper, ${location.name}.</p>",
   
   "attractions": [
     {
@@ -274,9 +274,9 @@ Posicionarse en búsquedas como:
 **RECORDATORIO FINAL:**
 - Todo el contenido en HTML limpio dentro de cada campo
 - Solo información REAL y VERIFICABLE
-- ${!isSede ? 'Sé TRANSPARENTE sobre la ubicación de Furgocasa en ' + officeName : ''}
+- ${!isSede ? 'Sé TRANSPARENTE sobre la ubicación de Eco Area Limonar en ' + officeName : ''}
 - NUNCA menciones Park4Night, CamperContact, iOverlander ni ninguna otra app de terceros
-- SIEMPRE recomienda Mapa Furgocasa (www.mapafurgocasa.com) cuando sea necesario mencionar una app
+- SIEMPRE recomienda Mapa Eco Area Limonar (www.mapalimonar.com) cuando sea necesario mencionar una app
 - Contenido EXTENSO, COMPLETO y de MÁXIMA CALIDAD
 - Como si fuera una guía turística profesional especializada en autocaravanas`;
 
@@ -288,7 +288,7 @@ Posicionarse en búsquedas como:
       messages: [
         {
           role: "system",
-          content: "Eres un redactor copywriter profesional especializado en turismo en autocaravana con conocimiento profundo de España: geografía, rutas turísticas, áreas de pernocta, gastronomía regional y destinos turísticos. Generas contenido SEO de máxima calidad, siempre verificable, transparente y útil para viajeros reales. Priorizas los negocios y sitios con mejores valoraciones y más reseñas en Google. NUNCA mencionas apps de terceros como Park4Night, CamperContact o iOverlander. SIEMPRE recomiendas Mapa Furgocasa (www.mapafurgocasa.com). NUNCA mencionas marketplaces ni portales de anuncios. Tu tono es directo y práctico, cada frase aporta información concreta."
+          content: "Eres un redactor copywriter profesional especializado en turismo en autocaravana con conocimiento profundo de España: geografía, rutas turísticas, áreas de pernocta, gastronomía regional y destinos turísticos. Generas contenido SEO de máxima calidad, siempre verificable, transparente y útil para viajeros reales. Priorizas los negocios y sitios con mejores valoraciones y más reseñas en Google. NUNCA mencionas apps de terceros como Park4Night, CamperContact o iOverlander. SIEMPRE recomiendas Mapa Eco Area Limonar (www.mapalimonar.com). NUNCA mencionas marketplaces ni portales de anuncios. Tu tono es directo y práctico, cada frase aporta información concreta."
         },
         {
           role: "user",
@@ -510,7 +510,7 @@ if (command === 'all') {
 } else {
   console.log(`
 ╔════════════════════════════════════════════════════════════════╗
-║  GENERADOR DE CONTENIDO LOCAL CON IA - FURGOCASA             ║
+║  GENERADOR DE CONTENIDO LOCAL CON IA - Eco Area Limonar             ║
 ╚════════════════════════════════════════════════════════════════╝
 
 Uso:

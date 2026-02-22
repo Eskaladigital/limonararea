@@ -30,9 +30,9 @@ import { supabase } from "@/lib/supabase/client";
 import { formatPrice } from "@/lib/utils";
 
 interface DetectedGap {
-  vehicle_id: string;
-  vehicle_name: string;
-  vehicle_internal_code: string;
+  parcel_id: string;
+  parcel_name: string;
+  parcel_internal_code: string;
   gap_start_date: string;
   gap_end_date: string;
   gap_days: number;
@@ -50,7 +50,7 @@ interface DetectedGap {
 
 interface LastMinuteOffer {
   id: string;
-  vehicle_id: string;
+  parcel_id: string;
   detected_start_date: string;
   detected_end_date: string;
   detected_days: number;
@@ -67,7 +67,7 @@ interface LastMinuteOffer {
   reserved_at: string | null;
   pickup_location_id?: string;
   dropoff_location_id?: string;
-  vehicle?: {
+  parcel?: {
     name: string;
     internal_code: string;
     slug: string;
@@ -125,7 +125,7 @@ export default function OfertasUltimaHoraPage() {
   const [deletingOfferId, setDeletingOfferId] = useState<string | null>(null);
 
   // Estado para ordenamiento de tabla
-  const [sortField, setSortField] = useState<'internal_code' | 'vehicle_name' | 'start_date' | 'end_date' | 'duration' | 'discount' | 'price'>('start_date');
+  const [sortField, setSortField] = useState<'internal_code' | 'parcel_name' | 'start_date' | 'end_date' | 'duration' | 'discount' | 'price'>('start_date');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
   useEffect(() => {
@@ -348,7 +348,7 @@ export default function OfertasUltimaHoraPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          vehicle_id: editingGap.gap.vehicle_id,
+          parcel_id: editingGap.gap.parcel_id,
           detected_start_date: editingGap.gap.gap_start_date,
           detected_end_date: editingGap.gap.gap_end_date,
           offer_start_date: editingGap.startDate,
@@ -372,7 +372,7 @@ export default function OfertasUltimaHoraPage() {
       showMessage('success', 'Oferta publicada correctamente');
       setEditingGap(null);
       setDetectedGaps(prev => prev.filter(g => 
-        g.vehicle_id !== editingGap.gap.vehicle_id || 
+        g.parcel_id !== editingGap.gap.parcel_id || 
         g.gap_start_date !== editingGap.gap.gap_start_date
       ));
       loadOffers();
@@ -384,7 +384,7 @@ export default function OfertasUltimaHoraPage() {
 
   const ignoreGap = (gap: DetectedGap) => {
     setDetectedGaps(prev => prev.filter(g => 
-      g.vehicle_id !== gap.vehicle_id || 
+      g.parcel_id !== gap.parcel_id || 
       g.gap_start_date !== gap.gap_start_date
     ));
   };
@@ -511,12 +511,12 @@ export default function OfertasUltimaHoraPage() {
 
     switch (sortField) {
       case 'internal_code':
-        aValue = a.vehicle?.internal_code || '';
-        bValue = b.vehicle?.internal_code || '';
+        aValue = a.parcel?.internal_code || '';
+        bValue = b.parcel?.internal_code || '';
         break;
-      case 'vehicle_name':
-        aValue = a.vehicle?.name || '';
-        bValue = b.vehicle?.name || '';
+      case 'parcel_name':
+        aValue = a.parcel?.name || '';
+        bValue = b.parcel?.name || '';
         break;
       case 'start_date':
         aValue = new Date(a.offer_start_date).getTime();
@@ -650,8 +650,8 @@ export default function OfertasUltimaHoraPage() {
                         <XCircle className="h-5 w-5 text-red-500" />
                       )}
                       <Truck className="h-5 w-5 text-earth" />
-                      <span className="font-medium text-gray-900">{result.vehicle_name}</span>
-                      <span className="text-xs text-gray-500">({result.vehicle_internal_code})</span>
+                      <span className="font-medium text-gray-900">{result.parcel_name}</span>
+                      <span className="text-xs text-gray-500">({result.parcel_internal_code})</span>
                       <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                         result.is_available 
                           ? 'bg-green-100 text-green-800' 
@@ -770,13 +770,13 @@ export default function OfertasUltimaHoraPage() {
           </div>
           <div className="divide-y divide-gray-100">
             {detectedGaps.map((gap, index) => (
-              <div key={`${gap.vehicle_id}-${gap.gap_start_date}`} className="p-4 hover:bg-gray-50">
+              <div key={`${gap.parcel_id}-${gap.gap_start_date}`} className="p-4 hover:bg-gray-50">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <Truck className="h-5 w-5 text-earth" />
-                      <span className="font-medium text-gray-900">{gap.vehicle_name}</span>
-                      <span className="text-xs text-gray-500">({gap.vehicle_internal_code})</span>
+                      <span className="font-medium text-gray-900">{gap.parcel_name}</span>
+                      <span className="text-xs text-gray-500">({gap.parcel_internal_code})</span>
                     </div>
                     <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                       <span className="flex items-center gap-1">
@@ -833,7 +833,7 @@ export default function OfertasUltimaHoraPage() {
               {/* Parcela */}
               <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-500">Parcela</p>
-                <p className="font-medium text-gray-900">{editingGap.gap.vehicle_name}</p>
+                <p className="font-medium text-gray-900">{editingGap.gap.parcel_name}</p>
               </div>
 
               {/* Hueco original */}
@@ -1038,12 +1038,12 @@ export default function OfertasUltimaHoraPage() {
                     </div>
                   </th>
                   <th 
-                    onClick={() => handleSort('vehicle_name')}
+                    onClick={() => handleSort('parcel_name')}
                     className="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors"
                   >
                     <div className="flex items-center gap-1">
                       Parcela
-                      {sortField === 'vehicle_name' && (
+                      {sortField === 'parcel_name' && (
                         sortDirection === 'asc' ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
                       )}
                     </div>
@@ -1116,14 +1116,14 @@ export default function OfertasUltimaHoraPage() {
                   <tr key={offer.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-4 py-3 whitespace-nowrap">
                       <span className="text-sm font-mono text-gray-900">
-                        {offer.vehicle?.internal_code || '-'}
+                        {offer.parcel?.internal_code ?? '-'}
                       </span>
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <Truck className="h-4 w-4 text-earth flex-shrink-0" />
                         <span className="text-sm font-medium text-gray-900">
-                          {offer.vehicle?.name || 'Parcela'}
+                          {offer.parcel?.name ?? 'Parcela'}
                         </span>
                       </div>
                       {offer.admin_notes && (
@@ -1232,7 +1232,7 @@ export default function OfertasUltimaHoraPage() {
               {/* Info del parcela */}
               <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-500">Parcela</p>
-                <p className="font-medium text-gray-900">{editingOffer.offer.vehicle?.name}</p>
+                <p className="font-medium text-gray-900">{editingOffer.offer.parcel?.name ?? '—'}</p>
               </div>
 
               {/* Fechas de oferta */}

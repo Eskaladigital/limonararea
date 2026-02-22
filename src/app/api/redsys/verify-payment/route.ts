@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
       console.log("🔍 [5/8] Obteniendo datos completos de la reserva...");
       const { data: fullBooking, error: fullBookingError } = await supabase
         .from("bookings")
-        .select("total_price, amount_paid, booking_number, vehicle_id, pickup_date, dropoff_date, status")
+        .select("total_price, amount_paid, booking_number, parcel_id, pickup_date, dropoff_date, status")
         .eq("id", payment.booking_id)
         .single();
       
@@ -161,13 +161,13 @@ export async function POST(request: NextRequest) {
       
       // Verificar disponibilidad solo si es primer pago (reserva en pending)
       if (fullBooking.status === 'pending') {
-        console.log("🔒 [5/8] Verificando disponibilidad del vehículo antes de confirmar...");
+        console.log("🔒 [5/8] Verificando disponibilidad de la parcela antes de confirmar...");
         
-        // Verificar BLOQUEOS del vehículo
+        // Verificar BLOQUEOS de la parcela
         const { data: blockedDates, error: blockedError } = await supabase
           .from("blocked_dates")
           .select("id, start_date, end_date, reason")
-          .eq("vehicle_id", fullBooking.vehicle_id)
+          .eq("parcel_id", fullBooking.parcel_id)
           .or(`and(start_date.lte.${fullBooking.dropoff_date},end_date.gte.${fullBooking.pickup_date})`);
         
         if (blockedError) {
@@ -175,7 +175,7 @@ export async function POST(request: NextRequest) {
         }
         
         if (blockedDates && blockedDates.length > 0) {
-          console.error("🚨 CONFLICTO DETECTADO: El vehículo está BLOQUEADO");
+          console.error("🚨 CONFLICTO DETECTADO: La parcela está BLOQUEADA");
           console.error({
             bloqueos: blockedDates.map(b => `${b.start_date} → ${b.end_date} (${b.reason || 'sin motivo'})`),
           });
@@ -183,12 +183,12 @@ export async function POST(request: NextRequest) {
           await supabase
             .from("payments")
             .update({
-              notes: `⚠️ CONFLICTO: Pago recibido pero vehículo BLOQUEADO del ${blockedDates[0].start_date} al ${blockedDates[0].end_date} (${blockedDates[0].reason || 'sin motivo'}). REQUIERE REEMBOLSO O CAMBIO DE VEHÍCULO.`,
+              notes: `⚠️ CONFLICTO: Pago recibido pero parcela BLOQUEADA del ${blockedDates[0].start_date} al ${blockedDates[0].end_date} (${blockedDates[0].reason || 'sin motivo'}). REQUIERE REEMBOLSO O CAMBIO DE VEHÍCULO.`,
             })
             .eq("id", payment.id);
           
           return NextResponse.json({ 
-            error: "Vehicle blocked for selected dates",
+            error: "Parcel blocked for selected dates",
             requiresAction: "REFUND_OR_REASSIGN"
           }, { status: 409 });
         }
@@ -197,7 +197,7 @@ export async function POST(request: NextRequest) {
         const { data: conflictingBookings, error: conflictError } = await supabase
           .from("bookings")
           .select("id, booking_number, customer_name, status, payment_status")
-          .eq("vehicle_id", fullBooking.vehicle_id)
+          .eq("parcel_id", fullBooking.parcel_id)
           .neq("id", payment.booking_id)
           .neq("status", "cancelled")
           .in("payment_status", ["partial", "paid"])
@@ -212,7 +212,7 @@ export async function POST(request: NextRequest) {
         }
         
         if (conflictingBookings && conflictingBookings.length > 0) {
-          console.error("🚨 CONFLICTO DETECTADO: El vehículo ya está reservado");
+          console.error("🚨 CONFLICTO DETECTADO: La parcela ya está reservada");
           console.error({
             bookingConflictiva: conflictingBookings[0].booking_number,
             clienteConflictivo: conflictingBookings[0].customer_name,
@@ -221,18 +221,18 @@ export async function POST(request: NextRequest) {
           await supabase
             .from("payments")
             .update({
-              notes: `⚠️ CONFLICTO: Pago recibido pero vehículo ya reservado. Reserva conflictiva: ${conflictingBookings[0].booking_number}. REQUIERE REEMBOLSO O CAMBIO DE VEHÍCULO.`,
+              notes: `⚠️ CONFLICTO: Pago recibido pero parcela ya reservada. Reserva conflictiva: ${conflictingBookings[0].booking_number}. REQUIERE REEMBOLSO O CAMBIO DE VEHÍCULO.`,
             })
             .eq("id", payment.id);
           
           return NextResponse.json({ 
-            error: "Vehicle no longer available",
+            error: "Parcel no longer available",
             conflictWith: conflictingBookings[0].booking_number,
             requiresAction: "REFUND_OR_REASSIGN"
           }, { status: 409 });
         }
         
-        console.log("✅ [5/8] Vehículo disponible (sin bloqueos ni conflictos) - se puede confirmar");
+        console.log("✅ [5/8] Parcela disponible (sin bloqueos ni conflictos) - se puede confirmar");
       } else {
         console.log("ℹ️ [5/8] Reserva ya confirmada (segundo pago) - saltando verificación");
       }
@@ -279,14 +279,14 @@ export async function POST(request: NextRequest) {
       } else {
         console.log("✅ [5/8] Reserva actualizada correctamente");
         
-        // 🔒 CANCELAR AUTOMÁTICAMENTE OTRAS RESERVAS PENDIENTES DEL MISMO VEHÍCULO Y FECHAS
+        // 🔒 CANCELAR AUTOMÁTICAMENTE OTRAS RESERVAS PENDIENTES DE LA MISMA PARCELA Y FECHAS
         if (fullBooking.status === 'pending') {
           console.log("🧹 [5/8] Buscando reservas pendientes conflictivas para cancelar...");
           
           const { data: pendingConflicts, error: pendingError } = await supabase
             .from("bookings")
             .select("id, booking_number, customer_name, customer_email")
-            .eq("vehicle_id", fullBooking.vehicle_id)
+            .eq("parcel_id", fullBooking.parcel_id)
             .neq("id", payment.booking_id)
             .eq("status", "pending")
             .eq("payment_status", "pending")
@@ -298,7 +298,7 @@ export async function POST(request: NextRequest) {
             console.log(`🧹 [5/8] Encontradas ${pendingConflicts.length} reserva(s) pendiente(s) conflictiva(s)`);
             
             // Cancelar todas las reservas pendientes conflictivas
-            const cancellationNote = `❌ CANCELADA AUTOMÁTICAMENTE: El vehículo fue reservado y pagado por otro cliente. Reserva confirmada: ${fullBooking.booking_number}. Si deseas estas fechas, contacta con nosotros para buscar alternativas. Fecha cancelación: ${new Date().toISOString()}`;
+            const cancellationNote = `❌ CANCELADA AUTOMÁTICAMENTE: La parcela fue reservada y pagada por otro cliente. Reserva confirmada: ${fullBooking.booking_number}. Si deseas estas fechas, contacta con nosotros para buscar alternativas. Fecha cancelación: ${new Date().toISOString()}`;
             
             const { data: cancelledBookings, error: cancelError } = await supabase
               .from("bookings")

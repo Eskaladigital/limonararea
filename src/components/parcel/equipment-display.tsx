@@ -219,9 +219,9 @@ export function EquipmentList({
           </span>
         )}
         {showIsofixBadge && hasIsofix && (
-          <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-furgocasa-orange/10 to-furgocasa-orange/5 border border-furgocasa-orange/30 px-2.5 py-1.5 rounded-lg">
-            <Baby className="h-4 w-4 text-furgocasa-orange" />
-            <span className="text-xs font-bold text-furgocasa-orange">
+          <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-limonar-orange/10 to-limonar-orange/5 border border-limonar-orange/30 px-2.5 py-1.5 rounded-lg">
+            <Baby className="h-4 w-4 text-limonar-orange" />
+            <span className="text-xs font-bold text-limonar-orange">
               Isofix
             </span>
           </div>

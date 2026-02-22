@@ -66,7 +66,7 @@ export async function handleCalendarRequest(request: NextRequest): Promise<NextR
         status: 200,
         headers: {
           'Content-Type': 'text/calendar; charset=utf-8',
-          'Content-Disposition': 'inline; filename="furgocasa-entregas.ics"',
+          'Content-Disposition': 'inline; filename="limonar-entregas.ics"',
           'Cache-Control': 'no-cache, must-revalidate',
         },
       });
@@ -102,7 +102,7 @@ export async function handleCalendarRequest(request: NextRequest): Promise<NextR
       dropoff_time: booking.dropoff_time,
       status: booking.status || 'pending',
       customer: booking.customer_id ? (customersMap.get(booking.customer_id) || null) : null,
-      vehicle: parcelsMap.get(booking.parcel_id) || null,
+      parcel: parcelsMap.get(booking.parcel_id) || null,
       pickup_location: locationsMap.get(booking.pickup_location_id) || null,
       dropoff_location: locationsMap.get(booking.dropoff_location_id) || null,
     }));
@@ -118,7 +118,7 @@ export async function handleCalendarRequest(request: NextRequest): Promise<NextR
       status: 200,
       headers: {
         'Content-Type': 'text/calendar; charset=utf-8',
-        'Content-Disposition': 'inline; filename="furgocasa-entregas.ics"',
+        'Content-Disposition': 'inline; filename="limonar-entregas.ics"',
         'Cache-Control': 'no-cache, must-revalidate',
         'X-Robots-Tag': 'noindex, nofollow', // No indexar en buscadores
       },

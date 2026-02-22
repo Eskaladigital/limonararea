@@ -1,8 +1,12 @@
-# Sistema de Generación de Contenido Local con IA
+# Sistema de Generación de Contenido con IA
 
-## 🎯 Objetivo
+> ⚠️ **NOTA PARA ECO AREA LIMONAR**: Este documento describe un sistema pensado para **múltiples landing pages por ciudad** (modelo anterior). Eco Area Limonar tiene **un solo sitio** en Los Nietos / Mar Menor. No hay `location_targets` ni páginas por ciudad. Si se usa IA para contenido, sería para: descripciones de parcelas, artículos de blog sobre Mar Menor, o secciones estáticas del home. La lógica de "35 ciudades" no aplica.
 
-Generar contenido **único, detallado y SEO-optimizado** para cada página de localización usando OpenAI, diferenciando nuestro sitio de la competencia con información real y específica de cada ciudad.
+---
+
+## 🎯 Objetivo (modelo multi-ubicación)
+
+Generar contenido **único, detallado y SEO-optimizado** para cada página de localización usando OpenAI (cuando existan múltiples ubicaciones).
 
 ---
 
@@ -22,7 +26,7 @@ ADD COLUMN content_word_count INTEGER;
 ### 2. 📦 Instalar dependencias
 
 ```bash
-cd "e:\Acttax Dropbox\Narciso Pardo\Acttax\W - NUEVA FURGOCASA\furgocasa-app"
+cd "ruta/al/proyecto/limonar-app"
 
 # Instalar OpenAI SDK y tsx
 npm install openai@latest

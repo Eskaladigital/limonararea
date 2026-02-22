@@ -1,4 +1,4 @@
-# ✅ CORRECCIÓN E IMPLEMENTACIÓN COMPLETA DE FAVICON - FURGOCASA
+# ✅ CORRECCIÓN E IMPLEMENTACIÓN COMPLETA DE FAVICON - Eco Area Limonar
 
 ## 📅 Fecha: 21 de enero de 2026
 
@@ -6,7 +6,7 @@
 
 ## 🎯 RESUMEN EJECUTIVO
 
-Se ha **corregido e implementado completamente** el sistema de favicons de Furgocasa para garantizar la **correcta indexación por Google** y compatibilidad total con PWA.
+Se ha **corregido e implementado completamente** el sistema de favicons de Eco Area Limonar para garantizar la **correcta indexación por Google** y compatibilidad total con PWA.
 
 ---
 
@@ -180,7 +180,7 @@ git push
 
 ### 2. Verificación en Producción (Después del Deploy)
 
-1. **Abrir el sitio en producción:** https://www.furgocasa.com
+1. **Abrir el sitio en producción:** https://www.ecoarealimonar.com
 2. **Verificar favicon en navegador:** Debe aparecer el logo en la pestaña
 3. **Abrir DevTools (F12) → Network:**
    - Recargar página (Ctrl+Shift+R)
@@ -198,33 +198,33 @@ git push
 ### 3. Google Search Console (24-48 HORAS DESPUÉS)
 
 1. **Ir a:** https://search.google.com/search-console
-2. **Seleccionar propiedad:** www.furgocasa.com
+2. **Seleccionar propiedad:** www.ecoarealimonar.com
 3. **Inspección de URLs:**
-   - Ingresar: `https://www.furgocasa.com`
+   - Ingresar: `https://www.ecoarealimonar.com`
    - Clic en **"Probar URL publicada"**
    - Ver **"Vista previa renderizada"** → El favicon debe aparecer
 4. **Solicitar indexación:**
    - Clic en **"Solicitar indexación"**
    - Esperar 24-48 horas
 5. **Verificar en resultados de búsqueda:**
-   - Buscar: `site:furgocasa.com`
+   - Buscar: `site:ecoarealimonar.com`
    - El favicon debe aparecer junto a los resultados
 
 ### 4. Herramientas de Validación Online
 
 **Favicon Checker:**
 - URL: https://realfavicongenerator.net/favicon_checker
-- Introducir: https://www.furgocasa.com
+- Introducir: https://www.ecoarealimonar.com
 - Verificar que todos los iconos se detectan correctamente
 
 **PWA Manifest Validator:**
 - URL: https://manifest-validator.appspot.com/
-- Introducir: https://www.furgocasa.com/manifest.json
+- Introducir: https://www.ecoarealimonar.com/manifest.json
 - Verificar que no hay errores
 
 **Google Rich Results Test:**
 - URL: https://search.google.com/test/rich-results
-- Introducir: https://www.furgocasa.com
+- Introducir: https://www.ecoarealimonar.com
 - Verificar que Google puede leer correctamente los metadatos
 
 **Lighthouse (PWA Audit):**
@@ -252,7 +252,7 @@ Con esta implementación, el favicon es **100% compatible** con:
 ## 🎨 DISEÑO DEL FAVICON
 
 El favicon actual muestra:
-- **Logo de Furgocasa** - Camper estilizada en blanco
+- **Logo de Eco Area Limonar** - Camper estilizada en blanco
 - **Fondo azul circular** - Color de marca (#1e40af)
 - **Alta legibilidad** - Simple y reconocible a tamaños pequeños
 - **Formato optimizado** - PNG con transparencia
@@ -322,7 +322,7 @@ El favicon actual muestra:
 - [ ] Verificar con Favicon Checker online
 - [ ] Verificar con PWA Manifest Validator
 - [ ] Probar instalación de PWA en móvil
-- [ ] Esperar 24-48h y verificar en resultados de Google (`site:furgocasa.com`)
+- [ ] Esperar 24-48h y verificar en resultados de Google (`site:ecoarealimonar.com`)
 
 ---
 
@@ -330,7 +330,7 @@ El favicon actual muestra:
 
 **ESTADO ACTUAL: ✅ IMPLEMENTACIÓN COMPLETA Y CORRECTA**
 
-El favicon de Furgocasa está ahora **correctamente implementado** siguiendo:
+El favicon de Eco Area Limonar está ahora **correctamente implementado** siguiendo:
 - ✅ Estándares de Google para indexación
 - ✅ Mejores prácticas de Next.js 13+
 - ✅ Especificaciones PWA completas
@@ -358,5 +358,5 @@ El favicon de Furgocasa está ahora **correctamente implementado** siguiendo:
 ---
 
 **Última actualización:** 21 de enero de 2026  
-**Proyecto:** Furgocasa (https://www.furgocasa.com)  
+**Proyecto:** Eco Area Limonar (https://www.ecoarealimonar.com)  
 **Estado:** ✅ Completado - Listo para deployment y indexación

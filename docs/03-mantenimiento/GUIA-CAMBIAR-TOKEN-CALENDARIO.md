@@ -1,7 +1,7 @@
 # 🔐 GUÍA PASO A PASO: Cambiar Token del Calendario
 
 **Fecha**: 5 de Febrero, 2026  
-**Objetivo**: Cambiar el token hardcodeado `furgocasa2026` por uno seguro
+**Objetivo**: Cambiar el token hardcodeado `limonar2026` por uno seguro
 
 ---
 
@@ -52,7 +52,7 @@ Ve a: https://www.random.org/strings/
 
 1. Ve a: https://vercel.com
 2. Inicia sesión con tu cuenta
-3. Selecciona el proyecto **furgocasa-app**
+3. Selecciona el proyecto **limonar-app**
 
 ### 2.2. Ir a Environment Variables
 
@@ -127,8 +127,8 @@ git push
 
 ### 5.1. Verificar en Producción
 
-1. Ve a: `https://www.furgocasa.com/administrator/calendario`
-2. Deberías ver la URL con el nuevo token (no `furgocasa2026`)
+1. Ve a: `https://www.ecoarealimonar.com/administrator/calendario`
+2. Deberías ver la URL con el nuevo token (no `limonar2026`)
 3. Copia la URL y pégala en el navegador
 4. Deberías ver el archivo `.ics` del calendario
 
@@ -136,7 +136,7 @@ git push
 
 Abre en el navegador:
 ```
-https://www.furgocasa.com/api/calendar/entregas?token=[TU_NUEVO_TOKEN]
+https://www.ecoarealimonar.com/api/calendar/entregas?token=[TU_NUEVO_TOKEN]
 ```
 
 **Deberías ver:**
@@ -158,7 +158,7 @@ Hemos cambiado el token de seguridad del calendario de entregas.
 
 Si tienes el calendario suscrito en tu móvil, necesitas actualizarlo:
 
-1. Ve a: https://www.furgocasa.com/administrator/calendario
+1. Ve a: https://www.ecoarealimonar.com/administrator/calendario
 2. Copia la nueva URL de suscripción
 3. Elimina la suscripción antigua en tu calendario
 4. Añade la nueva suscripción con la nueva URL
@@ -180,7 +180,7 @@ Si tienes problemas, avísame.
 2. Verifica que el deploy se completó
 3. Espera 2-3 minutos (puede haber caché)
 
-### Problema 2: La URL sigue mostrando `furgocasa2026`
+### Problema 2: La URL sigue mostrando `limonar2026`
 
 **Causa**: La variable `NEXT_PUBLIC_CALENDAR_TOKEN` no está configurada  
 **Solución**:

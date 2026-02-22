@@ -72,7 +72,7 @@ export function ParcelListClient({ initialParcels }: ParcelListClientProps) {
           {/* Botón filtros mobile */}
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="lg:hidden flex items-center justify-center gap-2 px-4 py-2 bg-furgocasa-blue text-white rounded-lg font-medium"
+            className="lg:hidden flex items-center justify-center gap-2 px-4 py-2 bg-limonar-blue text-white rounded-lg font-medium"
           >
             <Filter className="h-5 w-5" />
             {t("Filtros")}
@@ -89,7 +89,7 @@ export function ParcelListClient({ initialParcels }: ParcelListClientProps) {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
             >
               <option value="recommended">{t("Recomendado")}</option>
               <option value="price_asc">{t("Precio: menor a mayor")}</option>
@@ -105,7 +105,7 @@ export function ParcelListClient({ initialParcels }: ParcelListClientProps) {
         {t("Mostrando")} <strong>{filteredParcels.length}</strong> {t("parcelas")}
       </div>
 
-      {/* Grid de vehículos */}
+      {/* Grid de parcelas */}
       {filteredParcels.length === 0 ? (
         <div className="text-center py-16">
           <LayoutGrid className="h-16 w-16 text-gray-300 mx-auto mb-4" />
@@ -117,7 +117,7 @@ export function ParcelListClient({ initialParcels }: ParcelListClientProps) {
           </p>
           <button
             onClick={() => setSortBy("recommended")}
-            className="text-furgocasa-blue font-semibold hover:underline"
+            className="text-limonar-blue font-semibold hover:underline"
           >
             {t("Limpiar todos los filtros")}
           </button>
@@ -144,7 +144,7 @@ export function ParcelListClient({ initialParcels }: ParcelListClientProps) {
               {/* Contenido */}
               <div className="p-6">
                 <LocalizedLink href={`/parcelas/${parcel.slug}`}>
-                  <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2 group-hover:text-furgocasa-blue transition-colors">
+                  <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2 group-hover:text-limonar-blue transition-colors">
                     {parcel.name}
                   </h3>
                   {parcel.category?.name && (
@@ -194,14 +194,14 @@ export function ParcelListClient({ initialParcels }: ParcelListClientProps) {
                   <div className="flex items-center justify-between mb-3">
                     <div>
                       <p className="text-sm text-gray-600">{t("Desde")}</p>
-                      <p className="text-2xl font-heading font-bold text-furgocasa-blue">
+                      <p className="text-2xl font-heading font-bold text-limonar-blue">
                         {formatPrice(parcel.base_price_per_day)}
                         <span className="text-sm text-gray-600 font-normal">/{t("día")}</span>
                       </p>
                     </div>
                     <LocalizedLink
                       href={`/parcelas/${parcel.slug}`}
-                      className="flex items-center gap-2 bg-furgocasa-orange hover:bg-furgocasa-orange-dark text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                      className="flex items-center gap-2 bg-limonar-orange hover:bg-limonar-orange-dark text-white font-bold py-3 px-6 rounded-lg transition-colors"
                     >
                       {t("Ver detalles")}
                       <ArrowRight className="h-5 w-5" />

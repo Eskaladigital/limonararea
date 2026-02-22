@@ -103,15 +103,15 @@ function PagoErrorContent() {
                 
                 <ul className="space-y-3 text-gray-600">
                   <li className="flex items-start gap-3">
-                    <RefreshCw className="h-5 w-5 text-furgocasa-blue mt-0.5 flex-shrink-0" />
+                    <RefreshCw className="h-5 w-5 text-limonar-blue mt-0.5 flex-shrink-0" />
                     <span>{t("Intentar de nuevo con la misma u otra tarjeta")}</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <HelpCircle className="h-5 w-5 text-furgocasa-blue mt-0.5 flex-shrink-0" />
+                    <HelpCircle className="h-5 w-5 text-limonar-blue mt-0.5 flex-shrink-0" />
                     <span>{t("Verificar que los datos de la tarjeta son correctos")}</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Phone className="h-5 w-5 text-furgocasa-blue mt-0.5 flex-shrink-0" />
+                    <Phone className="h-5 w-5 text-limonar-blue mt-0.5 flex-shrink-0" />
                     <span>{t("Contactar con tu banco si el problema persiste")}</span>
                   </li>
                 </ul>
@@ -121,7 +121,7 @@ function PagoErrorContent() {
               <div className="space-y-3">
                 <button
                   onClick={() => window.history.back()}
-                  className="w-full bg-furgocasa-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
+                  className="w-full bg-limonar-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
                 >
                   <RefreshCw className="h-5 w-5" />
                   {t("Volver a intentar")}
@@ -143,17 +143,17 @@ function PagoErrorContent() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="tel:+34XXX"
-                    className="flex items-center justify-center gap-2 text-furgocasa-blue hover:text-blue-700"
+                    className="flex items-center justify-center gap-2 text-limonar-blue hover:text-blue-700"
                   >
                     <Phone className="h-5 w-5" />
                     <span>+34 XXX XXX XXX</span>
                   </a>
                   <a
-                    href="mailto:info@furgocasa.com"
-                    className="flex items-center justify-center gap-2 text-furgocasa-blue hover:text-blue-700"
+                    href="mailto:info@limonar.com"
+                    className="flex items-center justify-center gap-2 text-limonar-blue hover:text-blue-700"
                   >
                     <Mail className="h-5 w-5" />
-                    <span>info@furgocasa.com</span>
+                    <span>info@limonar.com</span>
                   </a>
                 </div>
               </div>

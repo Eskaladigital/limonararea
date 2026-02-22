@@ -5,19 +5,21 @@ export const dynamic = "force-dynamic";
 
 /**
  * POST /api/search-tracking
- * 
- * Actualiza el estado de tracking de búsquedas (selección de vehículo)
- * 
+ *
+ * Actualiza el estado de tracking de búsquedas (selección de parcela)
+ *
  * Body:
  * - search_query_id: ID de la búsqueda
- * - action: 'vehicle_selected'
- * - vehicle_id: ID del vehículo seleccionado
- * - vehicle_price: Precio del vehículo seleccionado
+ * - action: 'parcel_selected'
+ * - parcel_id: ID de la parcela seleccionada
+ * - parcel_price: Precio mostrado
  */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { search_query_id, action, vehicle_id, vehicle_price } = body;
+    const { search_query_id, action, parcel_id, parcel_price } = body;
+    const selectedParcelId = parcel_id;
+    const selectedPrice = parcel_price;
 
     if (!search_query_id || !action) {
       return NextResponse.json(
@@ -28,10 +30,10 @@ export async function POST(request: NextRequest) {
 
     const supabase = await createClient();
 
-    if (action === "vehicle_selected") {
-      if (!vehicle_id) {
+    if (action === "parcel_selected") {
+      if (!selectedParcelId) {
         return NextResponse.json(
-          { error: "vehicle_id es requerido para vehicle_selected" },
+          { error: "parcel_id es requerido para parcel_selected" },
           { status: 400 }
         );
       }
@@ -39,11 +41,11 @@ export async function POST(request: NextRequest) {
       const { error } = await supabase
         .from("search_queries")
         .update({
-          vehicle_selected: true,
-          selected_vehicle_id: vehicle_id,
-          selected_vehicle_price: vehicle_price || null,
-          vehicle_selected_at: new Date().toISOString(),
-          funnel_stage: "vehicle_selected",
+          parcel_selected: true,
+          selected_parcel_id: selectedParcelId,
+          selected_parcel_price: selectedPrice || null,
+          parcel_selected_at: new Date().toISOString(),
+          funnel_stage: "parcel_selected",
         })
         .eq("id", search_query_id);
 

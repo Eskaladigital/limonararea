@@ -243,7 +243,7 @@ export default function NuevoVehiculoPage() {
         router.push('/administrator/parcelas');
       }, 1500);
     } catch (error: any) {
-      console.error('Error creating vehicle:', error);
+      console.error('Error creating parcel:', error);
       setMessage({ type: 'error', text: error.message || 'Error al crear la parcela' });
     } finally {
       setLoading(false);

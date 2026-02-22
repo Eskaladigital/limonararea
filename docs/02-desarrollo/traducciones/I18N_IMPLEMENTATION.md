@@ -6,7 +6,7 @@
 
 ## 📋 Resumen
 
-El sitio web de Furgocasa utiliza una arquitectura de **carpetas físicas por idioma**. Cada idioma tiene su propia carpeta con sus propias páginas, lo que garantiza SEO óptimo y contenido genuino en cada idioma.
+El sitio web de Eco Area Limonar utiliza una arquitectura de **carpetas físicas por idioma**. Cada idioma tiene su propia carpeta con sus propias páginas, lo que garantiza SEO óptimo y contenido genuino en cada idioma.
 
 ---
 
@@ -278,11 +278,11 @@ export async function generateMetadata(): Promise<Metadata> {
 ### Resultado generado
 
 ```html
-<link rel="canonical" href="https://www.furgocasa.com/es/alquiler-autocaravanas-campervans/murcia" />
-<link rel="alternate" hreflang="es" href="https://www.furgocasa.com/es/alquiler-autocaravanas-campervans/murcia" />
-<link rel="alternate" hreflang="en" href="https://www.furgocasa.com/en/rent-campervan-motorhome/murcia" />
-<link rel="alternate" hreflang="fr" href="https://www.furgocasa.com/fr/location-camping-car/murcia" />
-<link rel="alternate" hreflang="de" href="https://www.furgocasa.com/de/wohnmobil-mieten/murcia" />
+<link rel="canonical" href="https://www.ecoarealimonar.com/es/alquiler-autocaravanas-campervans/murcia" />
+<link rel="alternate" hreflang="es" href="https://www.ecoarealimonar.com/es/alquiler-autocaravanas-campervans/murcia" />
+<link rel="alternate" hreflang="en" href="https://www.ecoarealimonar.com/en/rent-campervan-motorhome/murcia" />
+<link rel="alternate" hreflang="fr" href="https://www.ecoarealimonar.com/fr/location-camping-car/murcia" />
+<link rel="alternate" hreflang="de" href="https://www.ecoarealimonar.com/de/wohnmobil-mieten/murcia" />
 ```
 
 ---
@@ -488,6 +488,6 @@ const { t } = useLanguage();
 
 **✅ Sistema i18n con carpetas fijas por idioma - Producción estable**
 
-Desarrollado para: Furgocasa  
+Desarrollado para: Eco Area Limonar  
 Versión: 4.2.0  
 Fecha: 24 Enero 2026

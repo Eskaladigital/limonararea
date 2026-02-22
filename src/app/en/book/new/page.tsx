@@ -15,7 +15,7 @@ function LoadingState() {
 import { supabase } from "@/lib/supabase/client";
 import { 
   Calendar, MapPin, User, Mail, Phone, 
-  CreditCard, AlertCircle, Loader2, FileText, Users, Bed, Tag, CheckCircle, X
+  CreditCard, AlertCircle, Loader2, FileText, Tag, CheckCircle, X
 } from "lucide-react";
 import { LocalizedLink } from "@/components/localized-link";
 import Image from "next/image";
@@ -23,7 +23,7 @@ import { formatPrice } from "@/lib/utils";
 import { useSeasonalPricing } from "@/hooks/use-seasonal-pricing";
 import { getTranslatedRoute } from "@/lib/route-translations";
 
-interface VehicleData {
+interface ParcelData {
   id: string;
   name: string;
   brand: string;
@@ -67,8 +67,7 @@ function NuevaReservaContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  // Get params from URL
-  const vehicleId = searchParams.get('parcel_id') || searchParams.get('vehicle_id');
+  const parcelId = searchParams.get('parcel_id');
   const pickupDate = searchParams.get('pickup_date');
   const dropoffDate = searchParams.get('dropoff_date');
   const pickupTime = searchParams.get('pickup_time');
@@ -76,7 +75,7 @@ function NuevaReservaContent() {
   const pickupLocationSlug = searchParams.get('pickup_location');
   const dropoffLocationSlug = searchParams.get('dropoff_location');
 
-  const [vehicle, setVehicle] = useState<VehicleData | null>(null);
+  const [parcel, setParcel] = useState<ParcelData | null>(null);
   const [pickupLocation, setPickupLocation] = useState<LocationData | null>(null);
   const [dropoffLocation, setDropoffLocation] = useState<LocationData | null>(null);
   const [selectedExtras, setSelectedExtras] = useState<SelectedExtra[]>([]);
@@ -133,14 +132,14 @@ function NuevaReservaContent() {
   const totalPrice = subtotalBeforeCoupon - couponDiscount;
 
   useEffect(() => {
-    if (!vehicleId || !pickupDate || !dropoffDate) {
+    if (!parcelId || !pickupDate || !dropoffDate) {
       setError('Faltan parámetros de reserva');
       setLoading(false);
       return;
     }
     
     loadData();
-  }, [vehicleId, pickupLocationSlug, dropoffLocationSlug]);
+  }, [parcelId, pickupLocationSlug, dropoffLocationSlug]);
 
   const loadData = async () => {
     try {
@@ -153,11 +152,11 @@ function NuevaReservaContent() {
           *,
           images:parcel_images(*)
         `)
-        .eq('id', vehicleId)
+        .eq('id', parcelId)
         .single();
 
       if (parcelError) throw parcelError;
-      setVehicle(parcelData as any);
+      setParcel(parcelData as any);
 
       // Load locations
       if (pickupLocationSlug) {
@@ -266,7 +265,7 @@ function NuevaReservaContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!vehicle || !pickupLocation || !dropoffLocation) {
+    if (!parcel || !pickupLocation || !dropoffLocation) {
       setError('Faltan datos necesarios para crear la reserva');
       return;
     }
@@ -371,7 +370,7 @@ function NuevaReservaContent() {
         body: JSON.stringify({
           booking: {
             booking_number: bookingNumber,
-            parcel_id: vehicle.id,
+            parcel_id: parcel.id,
             customer_id: customerId,
             pickup_date: pickupDate,
             dropoff_date: dropoffDate,
@@ -438,14 +437,14 @@ function NuevaReservaContent() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-furgocasa-orange mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-limonar-orange mx-auto mb-4"></div>
           <p className="text-gray-600">{t("Cargando información...")}</p>
         </div>
       </div>
     );
   }
 
-  if (error && !vehicle) {
+  if (error && !parcel) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
@@ -454,7 +453,7 @@ function NuevaReservaContent() {
           <p className="text-gray-600 mb-4">{error}</p>
           <button 
             onClick={() => router.back()}
-            className="inline-block bg-furgocasa-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors"
+            className="inline-block bg-limonar-orange text-white font-semibold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors"
           >
             {t("Volver atrás")}
           </button>
@@ -463,7 +462,7 @@ function NuevaReservaContent() {
     );
   }
 
-  const mainImage = vehicle?.images?.find(img => img.is_primary) || vehicle?.images?.[0];
+  const mainImage = parcel?.images?.find(img => img.is_primary) || parcel?.images?.[0];
 
   return (
     <>      
@@ -484,7 +483,7 @@ function NuevaReservaContent() {
             <div className="lg:col-span-2">
               <form id="reservation-form" onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <User className="h-6 w-6 text-furgocasa-blue" />
+                  <User className="h-6 w-6 text-limonar-blue" />
                   {t("Tus datos")}
                 </h2>
 
@@ -507,7 +506,7 @@ function NuevaReservaContent() {
                       required
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                       placeholder={t("First and last(s) name")}
                     />
                   </div>
@@ -523,7 +522,7 @@ function NuevaReservaContent() {
                       required
                       value={customerEmail}
                       onChange={(e) => setCustomerEmail(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                       placeholder="tu@email.com"
                     />
                   </div>
@@ -539,7 +538,7 @@ function NuevaReservaContent() {
                       required
                       value={customerPhone}
                       onChange={(e) => setCustomerPhone(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                       placeholder="+34 600 000 000"
                     />
                   </div>
@@ -556,7 +555,7 @@ function NuevaReservaContent() {
                         required
                         value={customerDni}
                         onChange={(e) => setCustomerDni(e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                         placeholder="12345678A"
                       />
                     </div>
@@ -572,7 +571,7 @@ function NuevaReservaContent() {
                         required
                         value={customerDateOfBirth}
                         onChange={(e) => setCustomerDateOfBirth(e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent min-w-0 max-w-full box-border"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent min-w-0 max-w-full box-border"
                         max={new Date().toISOString().split('T')[0]}
                       />
                     </div>
@@ -589,7 +588,7 @@ function NuevaReservaContent() {
                       required
                       value={customerAddress}
                       onChange={(e) => setCustomerAddress(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                       placeholder={t("Calle, número, piso...")}
                     />
                   </div>
@@ -606,7 +605,7 @@ function NuevaReservaContent() {
                         required
                         value={customerCity}
                         onChange={(e) => setCustomerCity(e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                         placeholder={t("Tu ciudad")}
                       />
                     </div>
@@ -622,7 +621,7 @@ function NuevaReservaContent() {
                         required
                         value={customerPostalCode}
                         onChange={(e) => setCustomerPostalCode(e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                         placeholder="30001"
                       />
                     </div>
@@ -637,7 +636,7 @@ function NuevaReservaContent() {
                         required
                         value={customerCountry}
                         onChange={(e) => setCustomerCountry(e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent bg-white"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent bg-white"
                       >
                         <option value="España">España</option>
                         <option value="Argentina">Argentina</option>
@@ -666,7 +665,7 @@ function NuevaReservaContent() {
                   {/* Driver License Section */}
                   <div className="pt-4 border-t border-gray-200">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <FileText className="h-5 w-5 text-furgocasa-blue" />
+                      <FileText className="h-5 w-5 text-limonar-blue" />
                       {t("Datos del carnet de conducir")}
                     </h3>
                     
@@ -682,7 +681,7 @@ function NuevaReservaContent() {
                           required
                           value={customerDriverLicense}
                           onChange={(e) => setCustomerDriverLicense(e.target.value)}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent"
                           placeholder="123456789"
                         />
                       </div>
@@ -698,7 +697,7 @@ function NuevaReservaContent() {
                           required
                           value={customerDriverLicenseExpiry}
                           onChange={(e) => setCustomerDriverLicenseExpiry(e.target.value)}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent min-w-0 max-w-full box-border"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent min-w-0 max-w-full box-border"
                           min={new Date().toISOString().split('T')[0]}
                         />
                       </div>
@@ -715,7 +714,7 @@ function NuevaReservaContent() {
                       rows={4}
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent resize-none"
                       placeholder={t("¿Algo que debamos saber?")}
                     />
                   </div>
@@ -723,7 +722,7 @@ function NuevaReservaContent() {
                   {/* Coupon Section */}
                   <div className="pt-4 border-t border-gray-200">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                      <Tag className="h-5 w-5 text-furgocasa-blue" />
+                      <Tag className="h-5 w-5 text-limonar-blue" />
                       {t("¿Tienes un cupón de descuento?")}
                     </h3>
                     
@@ -768,14 +767,14 @@ function NuevaReservaContent() {
                               setCouponError(null);
                             }}
                             placeholder={t("Introduce tu código")}
-                            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-furgocasa-blue focus:border-transparent uppercase"
+                            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-limonar-blue focus:border-transparent uppercase"
                             disabled={couponLoading}
                           />
                           <button
                             type="button"
                             onClick={handleApplyCoupon}
                             disabled={couponLoading || !couponCode.trim()}
-                            className="px-6 py-3 bg-furgocasa-blue text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            className="px-6 py-3 bg-limonar-blue text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                           >
                             {couponLoading ? (
                               <Loader2 className="h-5 w-5 animate-spin" />
@@ -800,7 +799,7 @@ function NuevaReservaContent() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full bg-furgocasa-orange text-white font-semibold py-4 px-6 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-limonar-orange text-white font-semibold py-4 px-6 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {submitting ? (
                       <>
@@ -820,19 +819,19 @@ function NuevaReservaContent() {
 
             {/* Sidebar - Booking Summary */}
             <div className="space-y-6">
-              {/* Vehicle Summary */}
-              {vehicle && (
+              {/* Parcel Summary */}
+              {parcel && (
                 <div className="bg-white rounded-2xl shadow-sm p-6 sticky top-24">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
                     {t("Resumen")}
                   </h3>
 
-                  {/* Vehicle Image & Info */}
+                  {/* Parcel Image & Info */}
                   {mainImage && (
                     <div className="relative h-40 bg-gray-200 rounded-lg overflow-hidden mb-4">
                       <Image
                         src={mainImage.image_url}
-                        alt={vehicle.name}
+                        alt={parcel.name}
                         fill
                         className="object-cover"
                       />
@@ -840,25 +839,15 @@ function NuevaReservaContent() {
                   )}
 
                   <div className="mb-4">
-                    <h4 className="font-bold text-gray-900 text-lg">{vehicle.name}</h4>
-                    <p className="text-sm text-gray-600">{vehicle.brand} {vehicle.model}</p>
+                    <h4 className="font-bold text-gray-900 text-lg">{parcel.name}</h4>
+                    {parcel.internal_code && <p className="text-sm text-gray-600">{parcel.internal_code}</p>}
                   </div>
 
-                  <div className="flex gap-4 mb-6 pb-6 border-b border-gray-200">
-                    <span className="flex items-center gap-1 text-sm text-gray-600">
-                      <Users className="h-4 w-4" />
-                      {vehicle.seats} {t("plazas")}
-                    </span>
-                    <span className="flex items-center gap-1 text-sm text-gray-600">
-                      <Bed className="h-4 w-4" />
-                      {vehicle.beds} {t("camas")}
-                    </span>
-                  </div>
 
                   {/* Dates */}
                   <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">
                     <div className="flex items-start gap-3">
-                      <Calendar className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                      <Calendar className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                       <div className="text-sm">
                         <p className="text-gray-500">{t("Recogida")}</p>
                         <p className="font-semibold text-gray-900">
@@ -873,7 +862,7 @@ function NuevaReservaContent() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <Calendar className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                      <Calendar className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                       <div className="text-sm">
                         <p className="text-gray-500">{t("Devolución")}</p>
                         <p className="font-semibold text-gray-900">
@@ -892,7 +881,7 @@ function NuevaReservaContent() {
                   {pickupLocation && (
                     <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">
                       <div className="flex items-start gap-3">
-                        <MapPin className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                        <MapPin className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                         <div className="text-sm">
                           <p className="text-gray-500">{t("Recogida en")}</p>
                           <p className="font-semibold text-gray-900">{pickupLocation.name}</p>
@@ -901,7 +890,7 @@ function NuevaReservaContent() {
 
                       {dropoffLocation && dropoffLocation.id !== pickupLocation.id && (
                         <div className="flex items-start gap-3">
-                          <MapPin className="h-5 w-5 text-furgocasa-blue flex-shrink-0 mt-0.5" />
+                          <MapPin className="h-5 w-5 text-limonar-blue flex-shrink-0 mt-0.5" />
                           <div className="text-sm">
                             <p className="text-gray-500">{t("Devolución en")}</p>
                             <p className="font-semibold text-gray-900">{dropoffLocation.name}</p>
@@ -960,7 +949,7 @@ function NuevaReservaContent() {
                         {appliedCoupon && (
                           <p className="text-sm text-gray-400 line-through">{formatPrice(subtotalBeforeCoupon)}</p>
                         )}
-                        <span className="text-3xl font-bold text-furgocasa-orange">{formatPrice(totalPrice)}</span>
+                        <span className="text-3xl font-bold text-limonar-orange">{formatPrice(totalPrice)}</span>
                       </div>
                     </div>
                   </div>
@@ -1003,13 +992,13 @@ function NuevaReservaContent() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-500">{t("Total")}</p>
-              <p className="text-2xl font-bold text-furgocasa-orange transition-all duration-300">{formatPrice(totalPrice)}</p>
+              <p className="text-2xl font-bold text-limonar-orange transition-all duration-300">{formatPrice(totalPrice)}</p>
             </div>
             <button
               type="submit"
               form="reservation-form"
               disabled={submitting}
-              className="bg-furgocasa-orange text-white font-bold py-3 px-6 rounded-xl hover:bg-orange-600 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-orange-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-limonar-orange text-white font-bold py-3 px-6 rounded-xl hover:bg-orange-600 active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-orange-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {submitting ? (
                 <>

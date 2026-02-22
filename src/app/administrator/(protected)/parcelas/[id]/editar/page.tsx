@@ -44,7 +44,7 @@ interface Category {
   slug: string;
 }
 
-export default function EditarVehiculoPage() {
+export default function EditarParcelaPage() {
   const router = useRouter();
   const params = useParams();
   const parcelId = params.id as string;
@@ -130,10 +130,10 @@ export default function EditarVehiculoPage() {
     };
 
     loadInitialData();
-    loadVehicleData();
+    loadParcelData();
   }, [parcelId]);
 
-  const loadVehicleData = async () => {
+  const loadParcelData = async () => {
     try {
       setLoadingData(true);
       const { data, error } = await supabase
@@ -320,7 +320,7 @@ export default function EditarVehiculoPage() {
         }
       }
 
-      // Actualizar equipamientos del vehículo
+      // Actualizar equipamientos de la parcela
       // Primero eliminar todos los equipamientos actuales
       const { error: deleteEquipmentError } = await supabase
         .from('parcel_equipment')

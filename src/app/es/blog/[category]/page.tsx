@@ -13,9 +13,9 @@ const categoryMeta: Record<string, { name: string; description: string }> = {
     name: "Noticias Camper",
     description: "Mantente al día con las últimas novedades del mundo camper. Eventos, ferias, actualidad del sector y tendencias del caravaning.",
   },
-  vehiculos: {
-    name: "Vehículos y Comparativas",
-    description: "Conoce los mejores vehículos para viajar en camper. Comparativas, análisis detallados y recomendaciones de expertos.",
+  parcelas: {
+    name: "Parcelas y Emplazamientos",
+    description: "Todo sobre parcelas para autocaravanas: tipos, equipamiento, consejos para elegir tu emplazamiento ideal.",
   },
   consejos: {
     name: "Consejos para Viajeros",

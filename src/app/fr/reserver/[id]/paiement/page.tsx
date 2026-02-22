@@ -26,7 +26,7 @@ interface Booking {
   customer_name: string;
   customer_email: string;
   customer_phone: string;
-  vehicle: {
+  parcel: {
     name: string;
     brand: string;
     model: string;
@@ -331,7 +331,7 @@ export default function PagoPage() {
       <>
 <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-furgocasa-orange mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-limonar-orange mx-auto mb-4"></div>
             <p className="text-gray-600">Cargando información de la reserva...</p>
           </div>
         </div>
@@ -347,7 +347,7 @@ export default function PagoPage() {
             <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Error</h2>
             <p className="text-gray-600 mb-4">{error || 'Reserva no encontrada'}</p>
-            <Link href="/" className="text-furgocasa-orange hover:underline">
+            <Link href="/" className="text-limonar-orange hover:underline">
               Volver al inicio
             </Link>
           </div>
@@ -368,7 +368,7 @@ export default function PagoPage() {
                 {t("¡Reserva creada correctamente!")}
               </h1>
               <p className="text-gray-600 mb-4">
-                {t("Número de reserva")}: <span className="font-mono font-bold text-furgocasa-orange">{booking.booking_number}</span>
+                {t("Número de reserva")}: <span className="font-mono font-bold text-limonar-orange">{booking.booking_number}</span>
               </p>
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-50 text-yellow-800 rounded-lg">
                 <Clock className="h-5 w-5" />
@@ -384,20 +384,19 @@ export default function PagoPage() {
             </h2>
 
             <div className="space-y-6">
-              {/* Vehicle */}
+              {/* Parcel */}
               <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                <Car className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                <Car className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Vehículo")}</p>
-                  <p className="font-semibold text-gray-900 text-lg">{booking.vehicle.name}</p>
-                  <p className="text-sm text-gray-600">{booking.vehicle.brand} {booking.vehicle.model}</p>
+                  <p className="font-semibold text-gray-900 text-lg">{booking.parcel?.name}</p>
                 </div>
               </div>
 
               {/* Dates */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                  <Calendar className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                  <Calendar className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Recogida")}</p>
                     <p className="font-semibold text-gray-900">
@@ -413,7 +412,7 @@ export default function PagoPage() {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                  <Calendar className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                  <Calendar className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Devolución")}</p>
                     <p className="font-semibold text-gray-900">
@@ -432,7 +431,7 @@ export default function PagoPage() {
               {/* Locations */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg">
-                  <MapPin className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                  <MapPin className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Recogida en")}</p>
                     <p className="font-semibold text-gray-900">{booking.pickup_location.name}</p>
@@ -440,7 +439,7 @@ export default function PagoPage() {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg">
-                  <MapPin className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                  <MapPin className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                   <div>
                     <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Devolución en")}</p>
                     <p className="font-semibold text-gray-900">{booking.dropoff_location.name}</p>
@@ -450,7 +449,7 @@ export default function PagoPage() {
 
               {/* Customer */}
               <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                <User className="h-6 w-6 text-furgocasa-blue flex-shrink-0 mt-1" />
+                <User className="h-6 w-6 text-limonar-blue flex-shrink-0 mt-1" />
                 <div className="flex-1">
                   <p className="text-sm text-gray-500 uppercase font-medium mb-1">{t("Cliente")}</p>
                   <p className="font-semibold text-gray-900">{booking.customer_name}</p>
@@ -468,7 +467,7 @@ export default function PagoPage() {
               </div>
 
               {/* Price Summary */}
-              <div className="p-6 bg-gradient-to-r from-furgocasa-blue to-blue-700 rounded-lg text-white">
+              <div className="p-6 bg-gradient-to-r from-limonar-blue to-blue-700 rounded-lg text-white">
                 <div className="flex items-center justify-between mb-4">
                   <p className="text-sm opacity-90">{t("Total reserva")}</p>
                   <p className="text-2xl font-bold">{formatPrice(booking.total_price)}</p>
@@ -508,7 +507,7 @@ export default function PagoPage() {
                   onClick={() => setPaymentMethod('redsys')}
                   className={`p-4 border-2 rounded-lg transition-all relative ${
                     paymentMethod === 'redsys'
-                      ? 'border-furgocasa-orange bg-orange-50'
+                      ? 'border-limonar-orange bg-orange-50'
                       : 'border-gray-200 bg-white hover:border-gray-300'
                   }`}
                 >
@@ -517,10 +516,10 @@ export default function PagoPage() {
                   </span>
                   <div className="flex items-center gap-3">
                     <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                      paymentMethod === 'redsys' ? 'border-furgocasa-orange' : 'border-gray-300'
+                      paymentMethod === 'redsys' ? 'border-limonar-orange' : 'border-gray-300'
                     }`}>
                       {paymentMethod === 'redsys' && (
-                        <div className="w-3 h-3 rounded-full bg-furgocasa-orange"></div>
+                        <div className="w-3 h-3 rounded-full bg-limonar-orange"></div>
                       )}
                     </div>
                     <div className="text-left flex-1">
@@ -541,16 +540,16 @@ export default function PagoPage() {
                   onClick={() => setPaymentMethod('stripe')}
                   className={`p-4 border-2 rounded-lg transition-all ${
                     paymentMethod === 'stripe'
-                      ? 'border-furgocasa-orange bg-orange-50'
+                      ? 'border-limonar-orange bg-orange-50'
                       : 'border-gray-200 bg-white hover:border-gray-300'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                      paymentMethod === 'stripe' ? 'border-furgocasa-orange' : 'border-gray-300'
+                      paymentMethod === 'stripe' ? 'border-limonar-orange' : 'border-gray-300'
                     }`}>
                       {paymentMethod === 'stripe' && (
-                        <div className="w-3 h-3 rounded-full bg-furgocasa-orange"></div>
+                        <div className="w-3 h-3 rounded-full bg-limonar-orange"></div>
                       )}
                     </div>
                     <div className="text-left flex-1">
@@ -623,7 +622,7 @@ export default function PagoPage() {
                   }
                 }}
                 disabled={processing}
-                className="w-full bg-furgocasa-orange text-white font-semibold py-4 px-6 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-limonar-orange text-white font-semibold py-4 px-6 rounded-lg hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {processing ? (
                   <>
@@ -660,7 +659,7 @@ export default function PagoPage() {
                     }
                   }}
                   disabled={processing}
-                  className="w-full bg-white text-furgocasa-blue border-2 border-furgocasa-blue font-semibold py-4 px-6 rounded-lg hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-white text-limonar-blue border-2 border-limonar-blue font-semibold py-4 px-6 rounded-lg hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <CreditCard className="h-5 w-5" />
                   {t("Pagar total ahora")} - {formatPrice(paymentMethod === 'stripe' ? fullAmountWithStripeFee : fullAmount)}
@@ -696,7 +695,7 @@ export default function PagoPage() {
             <div className="mt-4 text-center">
               <Link 
                 href="/"
-                className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-furgocasa-orange transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-limonar-orange transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />
                 {t("Volver al inicio")}

@@ -2,8 +2,8 @@
 
 **Proyecto**: Eco Area Limonar - Área de autocaravanas  
 **Dominio objetivo**: ecoarealimonar.com  
-**Origen**: Adaptado desde Furgocasa (alquiler campers)  
-**Última actualización**: Febrero 2026
+**Proyecto**: Eco Area Limonar - Área de autocaravanas  
+**Última actualización**: 22 Febrero 2026
 
 Este documento es tu punto de partida para encontrar documentación del proyecto.
 
@@ -17,11 +17,32 @@ Este documento es tu punto de partida para encontrar documentación del proyecto
 | **[01-PLAN-ECO-AREA-LIMONAR.md](./01-PLAN-ECO-AREA-LIMONAR.md)** | Plan de trabajo por fases |
 | **[REVISION-PAGINAS-ES-AREA-AUTOCARAVANAS.md](./04-referencia/REVISION-PAGINAS-ES-AREA-AUTOCARAVANAS.md)** | Revisión página a página de /es |
 
-### 🔧 Fix reciente (21 Feb 2026): Hidratación Header
+### 🔧 Fix reciente (22 Feb 2026): Migración vehicle→parcel + BD Eco Area
+
+- **last_minute_offers**: `vehicle_id` → `parcel_id` (script `supabase/migrate-last-minute-offers-vehicle-to-parcel.sql`).
+- **API**: check-availability y search-tracking usan solo `parcel_id`, `parcel_selected`.
+- **Frontend**: Eliminados fallbacks `vehicle`, `vehicle_id` en URLs, booking, ofertas, confirmación, pago.
+- **Campos no aplicables**: Eliminadas referencias a `brand`, `model`, `seats`, `beds` (parcelas no los tienen).
+- **BD**: `add-eco-area-tables.sql` añade `search_queries`, `last_minute_offers` y RPC `get_active_last_minute_offers`.
+- **Detalle**: [CHANGELOG.md](../CHANGELOG.md) → v4.4.8
+
+### 🔧 Fix anterior (21 Feb 2026): i18n Tarifas + Búsqueda (FR/DE/NL)
+
+- **Tarifas**: Porcentajes, "¿Qué incluye tu parcela?", "Electricidad", calendario con meses y días en idioma correcto (date-fns locale).
+- **Búsqueda / recherche**: Textos traducidos ("Buscando parcelas...", "Modificar", fechas por idioma); API `/api/availability?locale=` devuelve nombres y descripciones de parcelas traducidos desde `content_translations`.
+- **Contenido BD**: `pages-es.json` procesado por el script de IA → traducciones en `content_translations` (source_table `i18n`).
+- **Detalle**: [CHANGELOG.md](../CHANGELOG.md) → v4.4.7 | [README.md](../README.md) → Última actualización 21 Feb 2026
+
+### 🔧 Fix anterior (22 Feb 2026): Home - Tarjetas parcelas + imagen galería
+
+- **Tarjetas horizontales**: Sección "Encuentra tu parcela perfecta" con tarjetas más compactas (h-56 lg:h-64).
+- **Imagen galería**: Sustituida `AdobeStock_132830655.webp` por `limonar_area_camper_mar_menor_3.webp`. [CHANGELOG.md](../CHANGELOG.md) → v4.4.6
+
+### 🔧 Fix anterior (21 Feb 2026): Hidratación Header
 
 - **Problema**: "Hydration failed" en rutas con Header (p. ej. `/es/faqs`) por diferencia servidor/cliente en el logo (Next.js `Image` vs placeholder).
 - **Solución**: Logo del Header en `src/components/layout/header.tsx` pasó a `<img>` nativo; mismo markup en SSR y cliente.
-- **Detalle**: [CHANGELOG.md](../CHANGELOG.md) → v4.4.4 | [README.md](../README.md) → Última actualización 21 Feb 2026
+- **Detalle**: [CHANGELOG.md](../CHANGELOG.md) → v4.4.4
 
 ### 📦 Repositorio GitHub (21 Feb 2026)
 
@@ -94,15 +115,7 @@ Ver **[SISTEMA-CUPONES.md](./04-referencia/sistemas/SISTEMA-CUPONES.md)** para d
 
 ---
 
-## 🔴 VERSIÓN 1.0.11 - FIX CRÍTICO ERROR 500 VEHÍCULOS
-
-**✅ ESTADO: TOTALMENTE FUNCIONAL** - Páginas de detalle de vehículos restauradas.
-
-**PROBLEMA RESUELTO**: Las páginas `/vehiculos/[slug]` y `/ventas/[slug]` devolvían error 500. Múltiples causas: cliente Supabase incorrecto, problemas de ISR/caché, headers() fallando.
-
-**SOLUCIÓN**: Renderizado 100% dinámico + cliente Supabase universal.
-
-Ver **[FIX-ERROR-500-VEHICULOS.md](./03-mantenimiento/fixes/FIX-ERROR-500-VEHICULOS.md)** para detalles completos.
+## 🔴 VERSIÓN 1.0.11 - Fix error 500 páginas detalle
 
 ### 🎯 Highlights v1.0.11:
 - ✅ **Cliente Supabase universal**: `@supabase/supabase-js` en lugar de `createBrowserClient`
@@ -169,11 +182,10 @@ Al refactorizar código para SEO (separar client/server), **copiar exactamente**
 | **[CHANGELOG.md](./CHANGELOG.md)** | Historial versiones, **v1.0.11 FIX ERROR 500** | Al debuggear o deployar |
 | **[AUDITORIA-SEGURIDAD-2026.md](./03-mantenimiento/AUDITORIA-SEGURIDAD-2026.md)** | 🔒 **NUEVO** - Auditoría completa de seguridad | Antes de deployar cambios críticos |
 | **[ATAQUES-EXTERNOS-AMENAZAS.md](./03-mantenimiento/ATAQUES-EXTERNOS-AMENAZAS.md)** | 🔒 **NUEVO** - Análisis de amenazas externas | Para entender riesgos de seguridad |
-| **[FIX-ERROR-500-VEHICULOS.md](./FIX-ERROR-500-VEHICULOS.md)** | 🔴 **FIX CRÍTICO** - Error 500 páginas vehículos | Si falla `/vehiculos/[slug]` o `/ventas/[slug]` |
 | **[REGLAS-ARQUITECTURA-NEXTJS.md](./REGLAS-ARQUITECTURA-NEXTJS.md)** | ⚠️ **INCLUYE REGLAS DE SUPABASE CLIENT** | Antes de tocar CUALQUIER código |
 | **[REGLAS-SUPABASE-OBLIGATORIAS.md](./REGLAS-SUPABASE-OBLIGATORIAS.md)** | ⚠️ **REGLAS OBLIGATORIAS** - Queries a Supabase | ANTES de hacer ANY query |
 | **[SUPABASE-SCHEMA-REAL.md](./SUPABASE-SCHEMA-REAL.md)** | Schema real con campos exactos | Al consultar tablas |
-| **[GUIA-QUERIES-VEHICULOS.md](./04-referencia/vehiculos/GUIA-QUERIES-VEHICULOS.md)** | Queries parcelas (tabla vehicles) | Antes de tocar `/parcelas/**` o `/reservar/vehiculo` |
+| **[GUIA-QUERIES-VEHICULOS.md](./04-referencia/vehiculos/GUIA-QUERIES-VEHICULOS.md)** | Queries parcelas (tabla parcels) | Antes de tocar `/parcelas/**` o `/reservar/parcela` |
 | **[GESTION-CLIENTES-OBLIGATORIO.md](./GESTION-CLIENTES-OBLIGATORIO.md)** | ⚠️ Gestión de clientes | Antes de tocar `/reservar/nueva` o formularios de cliente |
 | **[FLUJO-RESERVAS-CRITICO.md](./FLUJO-RESERVAS-CRITICO.md)** | ⚠️ **CORE DEL NEGOCIO** - Flujo de reservas | Antes de tocar /reservar/** |
 | **[SISTEMA-CUPONES.md](./SISTEMA-CUPONES.md)** | 🎟️ Sistema de cupones de descuento | Antes de tocar cupones o `/reservar/nueva` |
@@ -292,21 +304,14 @@ Al refactorizar código para SEO (separar client/server), **copiar exactamente**
 ⚠️ **DOCUMENTOS CRÍTICOS:**
 - **[REGLAS-SUPABASE-OBLIGATORIAS.md](./REGLAS-SUPABASE-OBLIGATORIAS.md)** - ⚠️ LEER ANTES DE QUERIES
 - **[SUPABASE-SCHEMA-REAL.md](./SUPABASE-SCHEMA-REAL.md)** - Schema real con campos exactos
-- **[GUIA-QUERIES-VEHICULOS.md](./04-referencia/vehiculos/GUIA-QUERIES-VEHICULOS.md)** - Queries parcelas (tabla vehicles)
+- **[GUIA-QUERIES-VEHICULOS.md](./04-referencia/vehiculos/GUIA-QUERIES-VEHICULOS.md)** - Queries parcelas (tabla parcels)
 - **[GESTION-CLIENTES-OBLIGATORIO.md](./GESTION-CLIENTES-OBLIGATORIO.md)** - ⚠️ **NUEVO** - Gestión de clientes
 
 Ver carpeta `supabase/`:
-- **[supabase/README.md](./supabase/README.md)** - Documentación Supabase
-- **[supabase/SETUP.md](./supabase/SETUP.md)** - Configuración paso a paso
-- **[supabase/schema.sql](./supabase/schema.sql)** - Esquema completo (⚠️ puede no coincidir con la realidad)
-- **[supabase/create-first-admin.sql](./supabase/create-first-admin.sql)** - Crear admin
-
-### 🔄 Migración de Datos Antiguos
-
-⚠️ **DOCUMENTOS PARA MIGRACIÓN DESDE BASE DATOS ANTIGUA:**
-- **[OLD_FURGOCASA_DATOS/README-MIGRACION.md](./OLD_FURGOCASA_DATOS/README-MIGRACION.md)** - Guía principal de migración
-- **[OLD_FURGOCASA_DATOS/PROBLEMA-VINCULACION-CLIENTES.md](./OLD_FURGOCASA_DATOS/PROBLEMA-VINCULACION-CLIENTES.md)** - ⚠️ Problema y solución: reservas sin vincular
-- **[OLD_FURGOCASA_DATOS/GUIA-SCRIPTS-VINCULACION.md](./OLD_FURGOCASA_DATOS/GUIA-SCRIPTS-VINCULACION.md)** - ⚠️ Guía completa de scripts de vinculación
+- **[supabase/README-ECO-AREA.md](../supabase/README-ECO-AREA.md)** - Orden de ejecución Eco Area
+- **[supabase/schema-eco-area-limonar.sql](../supabase/schema-eco-area-limonar.sql)** - Esquema completo
+- **[supabase/add-eco-area-tables.sql](../supabase/add-eco-area-tables.sql)** - search_queries, last_minute_offers + RPC
+- **[supabase/create-first-admin.sql](../supabase/create-first-admin.sql)** - Crear admin
 
 Ver carpeta `scripts/`:
 - **`migrate-old-data.ts`** - Script principal de migración (mejorado)
@@ -454,7 +459,6 @@ Ver carpeta `scripts/`:
 - **Emails**: `SISTEMA-EMAILS.md`, `PRUEBAS-EMAILS.md`
 - **Blog**: `SOLUCION-BLOG-FRONTEND.md` ⚠️ Si no cargan artículos
 - **Base de datos**: `supabase/README.md`, `supabase/schema.sql`
-- **Migración datos**: `OLD_FURGOCASA_DATOS/README-MIGRACION.md` ⚠️ **NUEVO**, `OLD_FURGOCASA_DATOS/GUIA-SCRIPTS-VINCULACION.md` ⚠️ **NUEVO**
 
 ### Por Pregunta
 
@@ -484,9 +488,6 @@ Ver carpeta `scripts/`:
 | ¿Cómo organizo imágenes por buckets? | `GESTION-MEDIA-STORAGE.md`, `FAQ-MEDIA-STORAGE.md` ⚠️ **NUEVO** |
 | ¿Cómo funcionan las temporadas? | `SISTEMA_TEMPORADAS.md` |
 | ¿Por qué no cargan los artículos del blog? | `SOLUCION-BLOG-FRONTEND.md` |
-| ¿Cómo migro datos desde MySQL/VikRentCar? | `OLD_FURGOCASA_DATOS/README-MIGRACION.md` ⚠️ **NUEVO** |
-| ¿Por qué hay reservas sin cliente vinculado? | `OLD_FURGOCASA_DATOS/PROBLEMA-VINCULACION-CLIENTES.md` ⚠️ **NUEVO** |
-| ¿Cómo vincular reservas a clientes? | `OLD_FURGOCASA_DATOS/GUIA-SCRIPTS-VINCULACION.md` ⚠️ **NUEVO** |
 | ¿Cómo se calculan los días de alquiler? | `REGLA-CALCULO-DIAS-ALQUILER.md` ⚠️ **CRÍTICO** |
 | ¿Por qué cobran día completo si excedo 1 minuto? | `REGLA-CALCULO-DIAS-ALQUILER.md` ⚠️ **CRÍTICO** |
 | ¿Cómo instalar el panel de admin como PWA? | `PWA-ADMIN-GUIA.md` ⚠️ **NUEVO** |
@@ -553,4 +554,4 @@ Estos documentos ya NO existen (fueron eliminados):
 ---
 
 **Proyecto**: Eco Area Limonar - Área de autocaravanas  
-**Última auditoría MDs**: Febrero 2026 (eliminados obsoletos Furgocasa)
+**Última auditoría MDs**: Febrero 2026

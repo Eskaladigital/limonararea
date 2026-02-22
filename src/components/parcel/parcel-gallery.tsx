@@ -98,7 +98,7 @@ export function ParcelGallery({ images, parcelName }: ParcelGalleryProps) {
 
           {/* Badge de imagen principal */}
           {currentImage.is_primary && (
-            <div className="absolute top-2 md:top-4 left-2 md:left-4 px-2 md:px-3 py-1 bg-furgocasa-orange text-white text-xs md:text-sm font-semibold rounded-lg shadow-lg">
+            <div className="absolute top-2 md:top-4 left-2 md:left-4 px-2 md:px-3 py-1 bg-limonar-orange text-white text-xs md:text-sm font-semibold rounded-lg shadow-lg">
               ⭐ Imagen Principal
             </div>
           )}
@@ -115,8 +115,8 @@ export function ParcelGallery({ images, parcelName }: ParcelGalleryProps) {
                     onClick={() => setCurrentIndex(index)}
                     className={`flex-shrink-0 w-16 sm:w-20 md:w-24 aspect-video rounded-lg overflow-hidden border-2 transition-all ${
                       index === currentIndex
-                        ? "border-furgocasa-orange ring-2 md:ring-4 ring-furgocasa-orange/30 scale-105"
-                        : "border-gray-300 hover:border-furgocasa-orange/50 hover:scale-105"
+                        ? "border-limonar-orange ring-2 md:ring-4 ring-limonar-orange/30 scale-105"
+                        : "border-gray-300 hover:border-limonar-orange/50 hover:scale-105"
                     }`}
                   >
                     <img

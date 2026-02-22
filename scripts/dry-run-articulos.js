@@ -128,7 +128,7 @@ async function dryRun() {
   try {
     // Leer CSV
     console.log('📄 Leyendo CSV...');
-    const csvPath = resolve(__dirname, '../post airtable furgocasa.csv');
+    const csvPath = resolve(__dirname, '../post airtable limonar.csv');
     const csvContent = readFileSync(csvPath, 'utf-8');
     const records = parse(csvContent, {
       columns: true,

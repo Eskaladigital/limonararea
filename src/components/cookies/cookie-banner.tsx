@@ -22,14 +22,14 @@ export function CookieBanner() {
           {/* Icono y texto */}
           <div className="flex-1">
             <div className="flex items-start gap-3">
-              <Cookie className="h-8 w-8 text-furgocasa-orange flex-shrink-0 mt-1" aria-hidden="true" />
+              <Cookie className="h-8 w-8 text-limonar-orange flex-shrink-0 mt-1" aria-hidden="true" />
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-1">
                   {t("Utilizamos cookies")}
                 </h3>
                 <p className="text-gray-600 text-sm">
                   {t("Usamos cookies propias y de terceros para mejorar tu experiencia, analizar el tráfico y mostrarte contenido personalizado. Puedes aceptar todas o configurar tus preferencias.")}{" "}
-                  <Link href={`/${language}/cookies`} className="text-furgocasa-orange hover:underline">
+                  <Link href={`/${language}/cookies`} className="text-limonar-orange hover:underline">
                     {t("Política de cookies")}
                   </Link>
                 </p>
@@ -47,7 +47,7 @@ export function CookieBanner() {
             </button>
             <button
               onClick={acceptAll}
-              className="px-4 py-2 bg-furgocasa-orange text-white rounded-lg font-medium hover:bg-furgocasa-orange-dark transition-colors text-sm"
+              className="px-4 py-2 bg-limonar-orange text-white rounded-lg font-medium hover:bg-limonar-orange-dark transition-colors text-sm"
             >
               {t("Aceptar todas")}
             </button>
@@ -118,7 +118,7 @@ export function CookieSettingsModal() {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <Cookie className="h-8 w-8 text-furgocasa-orange" aria-hidden="true" />
+            <Cookie className="h-8 w-8 text-limonar-orange" aria-hidden="true" />
             <h2 id="cookie-settings-title" className="text-xl font-bold text-gray-900">{t("Configuración de cookies")}</h2>
           </div>
           <button
@@ -142,14 +142,14 @@ export function CookieSettingsModal() {
                 key={cookie.id}
                 className={`p-4 rounded-xl border-2 transition-colors ${
                   cookie.enabled
-                    ? "border-furgocasa-orange bg-furgocasa-orange/5"
+                    ? "border-limonar-orange bg-limonar-orange/5"
                     : "border-gray-200 bg-gray-50"
                 }`}
               >
                 <div className="flex items-start gap-4">
                   <div
                     className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                      cookie.enabled ? "bg-furgocasa-orange text-white" : "bg-gray-200 text-gray-500"
+                      cookie.enabled ? "bg-limonar-orange text-white" : "bg-gray-200 text-gray-500"
                     }`}
                     aria-hidden="true"
                   >
@@ -174,7 +174,7 @@ export function CookieSettingsModal() {
                             aria-labelledby={`cookie-${cookie.id}-label`}
                             aria-describedby={`cookie-${cookie.id}-desc`}
                           />
-                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-furgocasa-orange/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-furgocasa-orange"></div>
+                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-limonar-orange/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-limonar-orange"></div>
                         </label>
                       )}
                     </div>
@@ -188,7 +188,7 @@ export function CookieSettingsModal() {
           {/* Más info */}
           <p className="text-sm text-gray-500 mt-6">
             {t("Para más información sobre cómo utilizamos las cookies, consulta nuestra")}{" "}
-            <Link href={`/${language}/cookies`} className="text-furgocasa-orange hover:underline" onClick={closeSettings}>
+            <Link href={`/${language}/cookies`} className="text-limonar-orange hover:underline" onClick={closeSettings}>
               {t("Política de Cookies")}
             </Link>
             .
@@ -211,7 +211,7 @@ export function CookieSettingsModal() {
           </button>
           <button
             onClick={acceptAll}
-            className="flex-1 px-4 py-2.5 bg-furgocasa-orange text-white rounded-lg font-medium hover:bg-furgocasa-orange-dark transition-colors"
+            className="flex-1 px-4 py-2.5 bg-limonar-orange text-white rounded-lg font-medium hover:bg-limonar-orange-dark transition-colors"
           >
             {t("Aceptar todas")}
           </button>

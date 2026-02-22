@@ -120,11 +120,11 @@ export interface BookingEmailData {
   bookingId: string;
   createdAt?: string;
   
-  // Vehículo
-  vehicleName: string;
-  vehicleBrand?: string;
-  vehicleModel?: string;
-  vehicleInternalCode?: string;
+  // Parcela (claves vehicle* por compatibilidad con plantillas; datos vienen de booking.parcel)
+  vehicleName: string;        // = parcel.name
+  vehicleBrand?: string;     // No aplica a parcelas (legacy Eco Area Limonar)
+  vehicleModel?: string;     // No aplica a parcelas (legacy Eco Area Limonar)
+  vehicleInternalCode?: string;  // = parcel.internal_code
   
   // Fechas
   pickupDate: string;
@@ -391,8 +391,7 @@ function alertBox(title: string, content: string, bgColor: string = '#fef3c7', b
  * EMAIL 1: Reserva creada (pendiente de pago)
  */
 export function getBookingCreatedTemplate(data: BookingEmailData): string {
-  const vehicleInfo = data.vehicleInternalCode ? `${data.vehicleInternalCode} - ${data.vehicleName}` : data.vehicleName;
-  const modelInfo = data.vehicleBrand && data.vehicleModel ? `${data.vehicleBrand} ${data.vehicleModel}` : '';
+  const parcelInfo = data.vehicleInternalCode ? `${data.vehicleInternalCode} - ${data.vehicleName}` : data.vehicleName;
   
   const content = `
     <!-- Contenido principal -->
@@ -420,10 +419,9 @@ export function getBookingCreatedTemplate(data: BookingEmailData): string {
     
     ${alertBox('⏳ Pendiente de pago', 'Para confirmar tu reserva, realiza el pago. Puedes pagar el 50% ahora y el resto máximo 15 días antes.')}
     
-    ${sectionTitle('🚐 Vehículo')}
+    ${sectionTitle('📍 Parcela')}
     ${detailsTable(`
-      ${tableRow('Vehículo', vehicleInfo)}
-      ${modelInfo ? tableRow('Marca / Modelo', modelInfo) : ''}
+      ${tableRow('Parcela', parcelInfo)}
     `)}
     
     ${sectionTitle('👤 Conductor principal')}
@@ -466,7 +464,7 @@ export function getBookingCreatedTemplate(data: BookingEmailData): string {
     </tr>
   `;
   
-  const preheader = `Reserva ${data.bookingNumber} pendiente de pago. ${data.vehicleName} del ${formatDate(data.pickupDate)} al ${formatDate(data.dropoffDate)}.`;
+  const preheader = `Reserva ${data.bookingNumber} pendiente de pago. Parcela ${data.vehicleName} del ${formatDate(data.pickupDate)} al ${formatDate(data.dropoffDate)}.`;
   return getEmailBaseTemplate(content, preheader);
 }
 
@@ -476,8 +474,7 @@ export function getBookingCreatedTemplate(data: BookingEmailData): string {
 export function getFirstPaymentConfirmedTemplate(data: BookingEmailData): string {
   const isPaidInFull = (data.amountPaid || 0) >= data.totalPrice;
   const pendingAmount = data.totalPrice - (data.amountPaid || 0);
-  const vehicleInfo = data.vehicleInternalCode ? `${data.vehicleInternalCode} - ${data.vehicleName}` : data.vehicleName;
-  const modelInfo = data.vehicleBrand && data.vehicleModel ? `${data.vehicleBrand} ${data.vehicleModel}` : '';
+  const parcelInfo = data.vehicleInternalCode ? `${data.vehicleInternalCode} - ${data.vehicleName}` : data.vehicleName;
   
   const content = `
     <!-- Contenido principal -->
@@ -505,10 +502,9 @@ export function getFirstPaymentConfirmedTemplate(data: BookingEmailData): string
     
     ${alertBox('✅ Reserva confirmada', isPaidInFull ? '¡Has completado el pago total!' : 'Has pagado el 50% inicial.', '#d1fae5', '#10b981')}
     
-    ${sectionTitle('🚐 Vehículo')}
+    ${sectionTitle('📍 Parcela')}
     ${detailsTable(`
-      ${tableRow('Vehículo', vehicleInfo)}
-      ${modelInfo ? tableRow('Marca / Modelo', modelInfo) : ''}
+      ${tableRow('Parcela', parcelInfo)}
     `)}
     
     ${sectionTitle('👤 Conductor principal')}
@@ -574,7 +570,7 @@ export function getFirstPaymentConfirmedTemplate(data: BookingEmailData): string
     </tr>
   `;
   
-  const preheader = `¡Reserva ${data.bookingNumber} confirmada! Pago recibido. ${data.vehicleName} del ${formatDate(data.pickupDate)} al ${formatDate(data.dropoffDate)}.`;
+  const preheader = `¡Reserva ${data.bookingNumber} confirmada! Pago recibido. Parcela ${data.vehicleName} del ${formatDate(data.pickupDate)} al ${formatDate(data.dropoffDate)}.`;
   return getEmailBaseTemplate(content, preheader);
 }
 
@@ -582,8 +578,7 @@ export function getFirstPaymentConfirmedTemplate(data: BookingEmailData): string
  * EMAIL 3: Segundo pago confirmado
  */
 export function getSecondPaymentConfirmedTemplate(data: BookingEmailData): string {
-  const vehicleInfo = data.vehicleInternalCode ? `${data.vehicleInternalCode} - ${data.vehicleName}` : data.vehicleName;
-  const modelInfo = data.vehicleBrand && data.vehicleModel ? `${data.vehicleBrand} ${data.vehicleModel}` : '';
+  const parcelInfo = data.vehicleInternalCode ? `${data.vehicleInternalCode} - ${data.vehicleName}` : data.vehicleName;
   
   const content = `
     <!-- Contenido principal -->
@@ -626,10 +621,9 @@ export function getSecondPaymentConfirmedTemplate(data: BookingEmailData): strin
       </td>
     </tr>
     
-    ${sectionTitle('🚐 Vehículo')}
+    ${sectionTitle('📍 Parcela')}
     ${detailsTable(`
-      ${tableRow('Vehículo', vehicleInfo)}
-      ${modelInfo ? tableRow('Marca / Modelo', modelInfo) : ''}
+      ${tableRow('Parcela', parcelInfo)}
     `)}
     
     ${sectionTitle('👤 Conductor principal')}
@@ -682,7 +676,7 @@ export function getSecondPaymentConfirmedTemplate(data: BookingEmailData): strin
     </tr>
   `;
   
-  const preheader = `¡Pago completo! Reserva ${data.bookingNumber} lista. ${data.vehicleName} del ${formatDate(data.pickupDate)} al ${formatDate(data.dropoffDate)}.`;
+  const preheader = `¡Pago completo! Reserva ${data.bookingNumber} lista. Parcela ${data.vehicleName} del ${formatDate(data.pickupDate)} al ${formatDate(data.dropoffDate)}.`;
   return getEmailBaseTemplate(content, preheader);
 }
 

@@ -1,4 +1,4 @@
-# PWA del Panel de Administrador - Furgocasa
+# PWA del Panel de Administrador - Eco Area Limonar
 
 ## 📱 Descripción
 
@@ -34,7 +34,7 @@ Desde la pantalla de inicio, el administrador puede acceder directamente a:
 public/admin-manifest.json
 ```
 Define la configuración de la PWA:
-- Nombre: "Furgocasa Admin"
+- Nombre: "Eco Area Limonar Admin"
 - Colores del tema
 - Iconos
 - Accesos directos

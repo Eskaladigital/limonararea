@@ -53,13 +53,11 @@ export async function GET(
           total_bookings,
           total_spent
         ),
-        vehicle:vehicles(
+        parcel:parcels(
           id, 
           name, 
-          brand, 
-          model,
           internal_code,
-          images:vehicle_images(image_url, is_primary, sort_order)
+          images:parcel_images(image_url, is_primary, sort_order)
         ),
         pickup_location:locations!pickup_location_id(name, address),
         dropoff_location:locations!dropoff_location_id(name, address),

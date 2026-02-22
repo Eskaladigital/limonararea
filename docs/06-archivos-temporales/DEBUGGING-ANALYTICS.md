@@ -19,10 +19,10 @@ Por defecto, Google Analytics está configurado en modo GDPR compliant con conse
 **Verificar en consola del navegador:**
 ```javascript
 // Verifica el estado de consentimiento
-localStorage.getItem('furgocasa_cookie_consent')
+localStorage.getItem('limonar_cookie_consent')
 // Debe devolver: "true"
 
-localStorage.getItem('furgocasa_cookie_preferences')
+localStorage.getItem('limonar_cookie_preferences')
 // Debe devolver algo como: {"necessary":true,"analytics":true,...}
 
 // Si devuelve null o analytics es false, debes aceptar las cookies
@@ -30,8 +30,8 @@ localStorage.getItem('furgocasa_cookie_preferences')
 
 **Aceptar cookies manualmente (para testing):**
 ```javascript
-localStorage.setItem('furgocasa_cookie_consent', 'true');
-localStorage.setItem('furgocasa_cookie_preferences', JSON.stringify({
+localStorage.setItem('limonar_cookie_consent', 'true');
+localStorage.setItem('limonar_cookie_preferences', JSON.stringify({
   necessary: true,
   analytics: true,
   functional: true,
@@ -138,8 +138,8 @@ console.log('1. Pathname:', window.location.pathname);
 console.log('2. ¿Es admin?:', window.location.pathname.startsWith('/administrator'));
 console.log('3. gtag cargado:', !!window.gtag);
 console.log('4. dataLayer:', window.dataLayer?.length || 0, 'eventos');
-console.log('5. Cookie consent:', localStorage.getItem('furgocasa_cookie_consent'));
-console.log('6. Cookie prefs:', localStorage.getItem('furgocasa_cookie_preferences'));
+console.log('5. Cookie consent:', localStorage.getItem('limonar_cookie_consent'));
+console.log('6. Cookie prefs:', localStorage.getItem('limonar_cookie_preferences'));
 
 // Ver todo el dataLayer
 console.log('7. dataLayer completo:');
@@ -168,8 +168,8 @@ Si necesitas verificar que Analytics funciona **AHORA MISMO** sin esperar a que 
 
 ```javascript
 // 1. Ejecuta esto en la consola
-localStorage.setItem('furgocasa_cookie_consent', 'true');
-localStorage.setItem('furgocasa_cookie_preferences', JSON.stringify({
+localStorage.setItem('limonar_cookie_consent', 'true');
+localStorage.setItem('limonar_cookie_preferences', JSON.stringify({
   necessary: true,
   analytics: true,
   functional: true,
@@ -229,7 +229,7 @@ Si después de todo esto no funciona:
 1. Captura de pantalla de:
    - La consola del navegador (con logs de Analytics)
    - Network tab (mostrando peticiones a Google)
-   - LocalStorage (furgocasa_cookie_consent y furgocasa_cookie_preferences)
+   - LocalStorage (limonar_cookie_consent y limonar_cookie_preferences)
    
 2. Verifica en Google Analytics → Admin → Información de la propiedad:
    - ID de medición correcto

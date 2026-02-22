@@ -21,7 +21,7 @@ Se han implementado todas las mejores prácticas de canonical URLs según las re
 ```typescript
 // ✅ CORRECTO - Cada página apunta a sí misma
 const alternates = buildCanonicalAlternates('/blog/rutas', locale);
-// Genera: canonical: "https://www.furgocasa.com/es/blog/rutas"
+// Genera: canonical: "https://www.ecoarealimonar.com/es/blog/rutas"
 ```
 
 ---
@@ -31,14 +31,14 @@ const alternates = buildCanonicalAlternates('/blog/rutas', locale);
 **Regla:** Google prefiere URLs absolutas completas.
 
 **Implementación:**
-- ✅ Todas las URLs canónicas usan `https://www.furgocasa.com` (absoluto)
+- ✅ Todas las URLs canónicas usan `https://www.ecoarealimonar.com` (absoluto)
 - ✅ Nunca se usan rutas relativas como `/es/blog/rutas`
 - ✅ Base URL centralizada en `buildCanonicalAlternates()`
 
 **Ejemplo:**
 ```typescript
 // ✅ CORRECTO
-canonical: "https://www.furgocasa.com/es/blog/rutas"
+canonical: "https://www.ecoarealimonar.com/es/blog/rutas"
 
 // ❌ INCORRECTO (no implementado)
 canonical: "/es/blog/rutas"
@@ -60,10 +60,10 @@ canonical: "/es/blog/rutas"
 **Ejemplo:**
 ```typescript
 // ✅ CORRECTO - Paginación canonicaliza a base
-/blog?page=2 → canonical: "https://www.furgocasa.com/es/blog"
+/blog?page=2 → canonical: "https://www.ecoarealimonar.com/es/blog"
 
 // ✅ CORRECTO - Filtros canonicalizan a base
-/blog?category=rutas → canonical: "https://www.furgocasa.com/es/blog/rutas"
+/blog?category=rutas → canonical: "https://www.ecoarealimonar.com/es/blog/rutas"
 ```
 
 ---
@@ -80,13 +80,13 @@ canonical: "/es/blog/rutas"
 **Estructura correcta:**
 ```typescript
 alternates: {
-  canonical: "https://www.furgocasa.com/es/blog/rutas", // ✅ Autorreferenciado
+  canonical: "https://www.ecoarealimonar.com/es/blog/rutas", // ✅ Autorreferenciado
   languages: {
-    'es': 'https://www.furgocasa.com/es/blog/rutas',
-    'en': 'https://www.furgocasa.com/en/blog/routes',
-    'fr': 'https://www.furgocasa.com/fr/blog/itineraires',
-    'de': 'https://www.furgocasa.com/de/blog/routen',
-    'x-default': 'https://www.furgocasa.com/es/blog/rutas', // ✅ Español por defecto
+    'es': 'https://www.ecoarealimonar.com/es/blog/rutas',
+    'en': 'https://www.ecoarealimonar.com/en/blog/routes',
+    'fr': 'https://www.ecoarealimonar.com/fr/blog/itineraires',
+    'de': 'https://www.ecoarealimonar.com/de/blog/routen',
+    'x-default': 'https://www.ecoarealimonar.com/es/blog/rutas', // ✅ Español por defecto
   },
 }
 ```
@@ -124,10 +124,10 @@ alternates: {
 **Verificación:**
 ```typescript
 // Sitemap genera:
-url: "https://www.furgocasa.com/es/blog/rutas"
+url: "https://www.ecoarealimonar.com/es/blog/rutas"
 
 // Metadata genera:
-canonical: "https://www.furgocasa.com/es/blog/rutas"
+canonical: "https://www.ecoarealimonar.com/es/blog/rutas"
 
 // ✅ Coinciden exactamente
 ```
@@ -148,7 +148,7 @@ canonical: "https://www.furgocasa.com/es/blog/rutas"
 ```typescript
 // ✅ CORRECTO - Paginación canonicaliza a base
 const alternates = buildCanonicalAlternates('/blog?page=2', locale);
-// Genera: canonical: "https://www.furgocasa.com/es/blog" (sin ?page=2)
+// Genera: canonical: "https://www.ecoarealimonar.com/es/blog" (sin ?page=2)
 ```
 
 ---
@@ -177,21 +177,21 @@ export function buildCanonicalAlternates(path: string, currentLang: Locale) {
 **Regla:** Definir una sola versión y ser consistente.
 
 **Implementación:**
-- ✅ URL canónica base: `https://www.furgocasa.com` (siempre con www)
-- ✅ Redirecciones en `next.config.js` aseguran que `furgocasa.com` → `www.furgocasa.com`
+- ✅ URL canónica base: `https://www.ecoarealimonar.com` (siempre con www)
+- ✅ Redirecciones en `next.config.js` aseguran que `ecoarealimonar.com` → `www.ecoarealimonar.com`
 - ✅ Todas las URLs canónicas usan HTTPS
 - ✅ Consistente con sitemap, redirecciones e URLs internas
 
 **Configuración:**
 ```typescript
 // ✅ Base URL consistente
-const baseUrl = 'https://www.furgocasa.com';
+const baseUrl = 'https://www.ecoarealimonar.com';
 
 // ✅ Redirecciones en next.config.js
 {
   source: '/:path*',
-  has: [{ type: 'host', value: 'furgocasa.com' }],
-  destination: 'https://www.furgocasa.com/:path*',
+  has: [{ type: 'host', value: 'ecoarealimonar.com' }],
+  destination: 'https://www.ecoarealimonar.com/:path*',
   permanent: true,
 }
 ```
@@ -207,7 +207,7 @@ const baseUrl = 'https://www.furgocasa.com';
 **Función principal:**
 ```typescript
 export function buildCanonicalAlternates(path: string, currentLang: Locale) {
-  const baseUrl = 'https://www.furgocasa.com';
+  const baseUrl = 'https://www.ecoarealimonar.com';
   
   // Remover parámetros de query y hash
   const cleanPath = path.split('?')[0].split('#')[0];
@@ -270,7 +270,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 - [x] ✅ Hreflang alternates incluidos
 
 ### Redirecciones
-- [x] ✅ `furgocasa.com` → `www.furgocasa.com` (301)
+- [x] ✅ `ecoarealimonar.com` → `www.ecoarealimonar.com` (301)
 - [x] ✅ URLs sin prefijo de idioma → añadir prefijo (301)
 - [x] ✅ Redirecciones separadas de canonical
 
@@ -305,7 +305,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 1. **`src/lib/seo/multilingual-metadata.ts`**
    - ✅ Helper `buildCanonicalAlternates()` mejorado
    - ✅ Remoción automática de parámetros de query
-   - ✅ Base URL centralizada: `https://www.furgocasa.com`
+   - ✅ Base URL centralizada: `https://www.ecoarealimonar.com`
    - ✅ Documentación de mejores prácticas añadida
 
 2. **Páginas actualizadas para usar helper:**

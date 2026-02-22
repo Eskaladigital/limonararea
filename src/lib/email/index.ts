@@ -162,7 +162,7 @@ export async function getBookingDataForEmail(
       .from('bookings')
       .select(`
         *,
-        vehicle:vehicles(id, name, brand, model, internal_code),
+        parcel:parcels(id, name, internal_code),
         pickup_location:locations!pickup_location_id(name, address),
         dropoff_location:locations!dropoff_location_id(name, address),
         customer:customers(
@@ -230,11 +230,11 @@ export async function getBookingDataForEmail(
       bookingId: booking.id,
       createdAt: booking.created_at,
       
-      // Vehículo
-      vehicleName: booking.vehicle?.name || '',
-      vehicleBrand: booking.vehicle?.brand,
-      vehicleModel: booking.vehicle?.model,
-      vehicleInternalCode: booking.vehicle?.internal_code,
+      // Parcela (BookingEmailData mantiene claves vehicle* por compatibilidad con plantillas)
+      vehicleName: booking.parcel?.name || '',
+      vehicleBrand: undefined,
+      vehicleModel: undefined,
+      vehicleInternalCode: booking.parcel?.internal_code,
       
       // Fechas
       pickupDate: booking.pickup_date,

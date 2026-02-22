@@ -49,32 +49,32 @@ export async function NearbyOfficeNotice({
               {t("No estamos en")} {locationName}, {t("pero estamos muy cerca")}
             </h2>
             <p className="text-lg lg:text-xl text-gray-600">
-              {t("Tenemos sede de entrega en")} <span className="font-bold text-furgocasa-blue">{nearestLocationCity}</span>
+              {t("Tenemos sede de entrega en")} <span className="font-bold text-limonar-blue">{nearestLocationCity}</span>
             </p>
           </div>
 
           {/* Tarjeta principal con información de distancia */}
-          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-furgocasa-blue/20">
+          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-limonar-blue/20">
             {/* Información de distancia y tiempo */}
-            <div className="bg-gradient-to-r from-furgocasa-blue to-furgocasa-blue-dark text-white p-6 lg:p-8">
+            <div className="bg-gradient-to-r from-limonar-blue to-limonar-blue-dark text-white p-6 lg:p-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 {/* Ubicación */}
                 <div className="flex flex-col items-center">
-                  <MapPin className="h-10 w-10 mb-3 text-furgocasa-orange" />
+                  <MapPin className="h-10 w-10 mb-3 text-limonar-orange" />
                   <div className="text-sm lg:text-base opacity-90 mb-1">{t("Sede más cercana")}</div>
                   <div className="text-xl lg:text-2xl font-bold">{nearestLocationCity}</div>
                 </div>
 
                 {/* Distancia */}
                 <div className="flex flex-col items-center">
-                  <Navigation className="h-10 w-10 mb-3 text-furgocasa-orange" />
+                  <Navigation className="h-10 w-10 mb-3 text-limonar-orange" />
                   <div className="text-sm lg:text-base opacity-90 mb-1">{t("Distancia")}</div>
                   <div className="text-xl lg:text-2xl font-bold">{distanceKm} km</div>
                 </div>
 
                 {/* Tiempo */}
                 <div className="flex flex-col items-center">
-                  <Clock className="h-10 w-10 mb-3 text-furgocasa-orange" />
+                  <Clock className="h-10 w-10 mb-3 text-limonar-orange" />
                   <div className="text-sm lg:text-base opacity-90 mb-1">{t("Tiempo en coche")}</div>
                   <div className="text-xl lg:text-2xl font-bold">
                     {travelHours === 1 ? t("1 hora") : `${travelHours} ${t("horas")}`}
@@ -106,9 +106,9 @@ export async function NearbyOfficeNotice({
               </div>
 
               {/* Mensaje de confianza */}
-              <div className="bg-furgocasa-orange/10 border-2 border-furgocasa-orange/30 rounded-xl p-6 mb-6">
+              <div className="bg-limonar-orange/10 border-2 border-limonar-orange/30 rounded-xl p-6 mb-6">
                 <p className="text-base lg:text-lg text-gray-800 text-center leading-relaxed">
-                  <strong className="text-furgocasa-orange">{t("Miles de clientes")}</strong> {t("de")} {locationName} {t("y ciudades cercanas ya han confiado en nosotros.")} 
+                  <strong className="text-limonar-orange">{t("Miles de clientes")}</strong> {t("de")} {locationName} {t("y ciudades cercanas ya han confiado en nosotros.")} 
                   {" "}<strong>{t("El desplazamiento vale la pena:")}</strong> {t("nuestras campers son las mejores del mercado y nuestro servicio, excepcional.")}
                 </p>
               </div>
@@ -117,13 +117,13 @@ export async function NearbyOfficeNotice({
               <div className="flex flex-wrap gap-4 justify-center">
                 <LocalizedLink
                   href="/reservar"
-                  className="inline-flex items-center gap-2 bg-furgocasa-orange text-white font-bold px-8 py-4 rounded-xl hover:bg-furgocasa-orange-dark transition-all shadow-lg text-base lg:text-lg"
+                  className="inline-flex items-center gap-2 bg-limonar-orange text-white font-bold px-8 py-4 rounded-xl hover:bg-limonar-orange-dark transition-all shadow-lg text-base lg:text-lg"
                 >
                   {t("Reservar ahora")}
                 </LocalizedLink>
                 <LocalizedLink
                   href="/contacto"
-                  className="inline-flex items-center gap-2 bg-white text-furgocasa-blue border-2 border-furgocasa-blue font-bold px-8 py-4 rounded-xl hover:bg-furgocasa-blue hover:text-white transition-all text-base lg:text-lg"
+                  className="inline-flex items-center gap-2 bg-white text-limonar-blue border-2 border-limonar-blue font-bold px-8 py-4 rounded-xl hover:bg-limonar-blue hover:text-white transition-all text-base lg:text-lg"
                 >
                   {t("Contactar")}
                 </LocalizedLink>

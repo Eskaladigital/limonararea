@@ -8,7 +8,7 @@ Fecha: 20 de enero de 2026
 ### 1. DOCUMENTACIÓN ACTUALIZADA (9 archivos)
 
 ✅ **README.md**
-   - URL de producción: www.furgocasa.com
+   - URL de producción: www.ecoarealimonar.com
    - Badges actualizados
    - Enlaces corregidos
 
@@ -16,15 +16,15 @@ Fecha: 20 de enero de 2026
    - URL de producción actualizada
 
 ✅ **STRIPE-VERCEL-PRODUCCION.md**
-   - Webhook URL: www.furgocasa.com/api/stripe/webhook
+   - Webhook URL: www.ecoarealimonar.com/api/stripe/webhook
    - URLs de prueba actualizadas
    - Comandos de verificación corregidos
 
 ✅ **PWA-INICIO-RAPIDO.md**
-   - URLs de instalación: www.furgocasa.com/administrator
+   - URLs de instalación: www.ecoarealimonar.com/administrator
 
 ✅ **REDSYS-CONFIGURACION.md**
-   - URLs de callback: www.furgocasa.com
+   - URLs de callback: www.ecoarealimonar.com
    - Documentación de errores actualizada
 
 ✅ **CORRECCION-STATS-CLIENTES.md**
@@ -50,24 +50,24 @@ Fecha: 20 de enero de 2026
 
 ✅ **next.config.js**
    - Redirección 308 permanente configurada
-   - webfurgocasa.vercel.app → www.furgocasa.com
+   - weblimonar.vercel.app → www.ecoarealimonar.com
 
 ✅ **Metadata SEO**
-   - URLs canónicas apuntan a www.furgocasa.com
+   - URLs canónicas apuntan a www.ecoarealimonar.com
    - Open Graph con URLs correctas
    - JSON-LD schemas actualizados
 
 ✅ **Sitemap y Robots**
-   - Generación dinámica con www.furgocasa.com
+   - Generación dinámica con www.ecoarealimonar.com
    - robots.txt apunta al sitemap correcto
 
 ### 3. DNS CONFIGURADO (completado antes)
 
 ✅ **Dominio raíz**
-   - furgocasa.com A → 216.198.79.1 (Vercel)
+   - ecoarealimonar.com A → 216.198.79.1 (Vercel)
 
 ✅ **Subdominio www**
-   - www.furgocasa.com CNAME → Vercel
+   - www.ecoarealimonar.com CNAME → Vercel
 
 ✅ **Email intacto**
    - Todos los registros MX, DKIM, SPF sin cambios
@@ -76,7 +76,7 @@ Fecha: 20 de enero de 2026
 ### 4. COMMITS REALIZADOS
 
 ```
-96838bc - docs: actualizar todas las URLs a www.furgocasa.com post-migración
+96838bc - docs: actualizar todas las URLs a www.ecoarealimonar.com post-migración
 968eef0 - fix: ajustar espaciado hero section para mejor responsive móvil
 266998a - config: redirigir URL de Vercel a dominio personalizado
 ```
@@ -91,8 +91,8 @@ Fecha: 20 de enero de 2026
    ```
    Dashboard: https://dashboard.stripe.com/webhooks
    Acción: Editar webhook existente
-   URL antigua: https://webfurgocasa.vercel.app/api/stripe/webhook
-   URL nueva: https://www.furgocasa.com/api/stripe/webhook
+   URL antigua: https://weblimonar.vercel.app/api/stripe/webhook
+   URL nueva: https://www.ecoarealimonar.com/api/stripe/webhook
    ```
    
    ⚠️ **CRÍTICO**: Si no se actualiza, los pagos quedarán en "pending"
@@ -108,15 +108,15 @@ Fecha: 20 de enero de 2026
 2. **Google Search Console - Añadir Propiedad**
    ```
    URL: https://search.google.com/search-console
-   Acción: Añadir nueva propiedad www.furgocasa.com
+   Acción: Añadir nueva propiedad www.ecoarealimonar.com
    Verificación: DNS TXT (ya está configurado)
-   Sitemap: https://www.furgocasa.com/sitemap.xml
+   Sitemap: https://www.ecoarealimonar.com/sitemap.xml
    ```
    
    Pasos:
    a. Login en Search Console
    b. Añadir propiedad → URL prefix
-   c. Ingresar: https://www.furgocasa.com
+   c. Ingresar: https://www.ecoarealimonar.com
    d. Verificar con DNS TXT (automático)
    e. Enviar sitemap
 
@@ -138,13 +138,13 @@ Fecha: 20 de enero de 2026
    Terminal: 001
    
    URLs nuevas:
-   - URL OK (éxito): https://www.furgocasa.com/pago/exito
-   - URL KO (error): https://www.furgocasa.com/pago/error
-   - URL de notificación: https://www.furgocasa.com/api/redsys/notification
+   - URL OK (éxito): https://www.ecoarealimonar.com/pago/exito
+   - URL KO (error): https://www.ecoarealimonar.com/pago/error
+   - URL de notificación: https://www.ecoarealimonar.com/api/redsys/notification
    
    También aprovecho para preguntar sobre el error SIS0042 que 
    estamos experimentando. ¿Necesita alguna configuración adicional 
-   el dominio www.furgocasa.com?
+   el dominio www.ecoarealimonar.com?
    
    Gracias,
    [Tu nombre]
@@ -154,7 +154,7 @@ Fecha: 20 de enero de 2026
    ```
    URL: https://business.facebook.com/
    Ubicación: Settings → Domains
-   Acción: Verificar que www.furgocasa.com aparece
+   Acción: Verificar que www.ecoarealimonar.com aparece
    ```
    
    El TXT de verificación ya está en DNS, solo verifica que aparezca
@@ -166,35 +166,35 @@ Fecha: 20 de enero de 2026
 
 ### Redirección 308 (Ya funciona):
 ```bash
-curl -I https://webfurgocasa.vercel.app/
+curl -I https://weblimonar.vercel.app/
 # Respuesta: HTTP/2 308
-# Location: https://www.furgocasa.com/
+# Location: https://www.ecoarealimonar.com/
 ```
 
 ### SSL Activo (Ya funciona):
 ```bash
-curl -I https://www.furgocasa.com/
+curl -I https://www.ecoarealimonar.com/
 # Respuesta: HTTP/2 200
 # Certificado: Valid
 ```
 
 ### Sitemap (Ya funciona):
 ```bash
-curl https://www.furgocasa.com/sitemap.xml
-# Muestra XML con URLs de www.furgocasa.com
+curl https://www.ecoarealimonar.com/sitemap.xml
+# Muestra XML con URLs de www.ecoarealimonar.com
 ```
 
 ### Canonical URLs (Ya funciona):
-- Todas las páginas tienen: `<link rel="canonical" href="https://www.furgocasa.com/...">`
+- Todas las páginas tienen: `<link rel="canonical" href="https://www.ecoarealimonar.com/...">`
 
 ### JSON-LD Schemas (Ya funciona):
-- Organization: ✅ www.furgocasa.com
-- LocalBusiness: ✅ www.furgocasa.com  
-- Product: ✅ www.furgocasa.com
-- BlogPosting: ✅ www.furgocasa.com
+- Organization: ✅ www.ecoarealimonar.com
+- LocalBusiness: ✅ www.ecoarealimonar.com  
+- Product: ✅ www.ecoarealimonar.com
+- BlogPosting: ✅ www.ecoarealimonar.com
 
 ### Open Graph (Ya funciona):
-- og:url: ✅ www.furgocasa.com
+- og:url: ✅ www.ecoarealimonar.com
 - og:image: ✅ URLs completas
 - Twitter cards: ✅ Configuradas
 
@@ -213,7 +213,7 @@ curl https://www.furgocasa.com/sitemap.xml
 ☐ Probar un pago de prueba completo
 
 ### Google Search Console (después de 24-48h)
-☐ Verificar indexación de www.furgocasa.com
+☐ Verificar indexación de www.ecoarealimonar.com
 ☐ Revisar errores de rastreo (no debería haber)
 ☐ Monitorear Core Web Vitals
 
@@ -231,7 +231,7 @@ La home no muestra vehículos en "Los mejores modelos en alquiler"
 porque la tabla `vehicles` en Supabase está vacía.
 
 ### Datos disponibles:
-14 vehículos en `OLD_FURGOCASA_DATOS/vehicles.json`:
+14 vehículos en `datos de parcelas`:
 - FU0006 - Dreamer Fun D55
 - FU0010 - Knaus Boxstar Street
 - FU0011 - Weinsberg Caratour MQ
@@ -242,7 +242,7 @@ porque la tabla `vehicles` en Supabase está vacía.
 Ver documento completo: `PROBLEMA-VEHICULOS-HOME.md`
 
 **Opción 1**: Añadir manualmente desde admin (15-20 min/vehículo)
-- URL: https://www.furgocasa.com/administrator/vehiculos
+- URL: https://www.ecoarealimonar.com/administrator/vehiculos
 - Crítico: Marcar `is_for_rent = true` y `status = available`
 
 **Opción 2**: Crear script de migración automática

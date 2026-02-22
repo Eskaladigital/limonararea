@@ -91,16 +91,16 @@ const config: Config = {
         // Dorado atardecer
         gold: { DEFAULT: "#E8B531", soft: "#F5D36E" },
 
-        // Aliases legacy: redirigen a nueva paleta para no romper componentes
-        "furgocasa-blue": "#064A6E",
-        "furgocasa-blue-dark": "#043752",
-        "furgocasa-blue-light": "#0C6E9C",
-        "furgocasa-orange": "#F5A623",
-        "furgocasa-orange-dark": "#D4900E",
-        "furgocasa-orange-bright": "#FFD166",
-        "furgocasa-green": "#2D9B4E",
-        "furgocasa-yellow": "#E8B531",
-        furgocasa: {
+        // Paleta Eco Area Limonar (aliases)
+        "limonar-blue": "#064A6E",
+        "limonar-blue-dark": "#043752",
+        "limonar-blue-light": "#0C6E9C",
+        "limonar-orange": "#F5A623",
+        "limonar-orange-dark": "#D4900E",
+        "limonar-orange-bright": "#FFD166",
+        "limonar-green": "#2D9B4E",
+        "limonar-yellow": "#E8B531",
+        limonar: {
           blue: {
             DEFAULT: "#064A6E",
             dark: "#043752",

@@ -17,7 +17,7 @@ Actualmente está activado **únicamente el Vercel Firewall** con:
 - ✅ Bot Protection: ON
 - ✅ AI Bots: ON
 
-**Ubicación**: https://vercel.com/furgocasa/webfurgocasa/firewall/rules#bot-management
+**Ubicación**: https://vercel.com/limonar/weblimonar/firewall/rules#bot-management
 
 ### ¿Por qué solo Vercel?
 
@@ -190,7 +190,7 @@ try {
 ## 🧪 Cómo Verificar que Vercel Está Funcionando
 
 ### Método 1: Logs de Vercel
-1. Ve a: https://vercel.com/furgocasa/webfurgocasa/logs
+1. Ve a: https://vercel.com/limonar/weblimonar/logs
 2. Busca líneas con: `[Firewall]` o `bot`
 3. Deberías ver bloqueos de bots
 
@@ -275,7 +275,7 @@ LIMIT 10;
 ## 🔐 Configuración de Vercel Firewall
 
 ### Ubicación
-https://vercel.com/furgocasa/webfurgocasa/firewall/rules#bot-management
+https://vercel.com/limonar/weblimonar/firewall/rules#bot-management
 
 ### Configuración actual:
 ```
@@ -312,7 +312,7 @@ Attack Mode:     OFF
 **Analytics**: Registra todas las búsquedas
 **Próximo review**: 1-2 semanas
 
-**URL canónica**: https://www.furgocasa.com ⚠️ SIEMPRE usar con www
+**URL canónica**: https://www.ecoarealimonar.com ⚠️ SIEMPRE usar con www
 
 ---
 

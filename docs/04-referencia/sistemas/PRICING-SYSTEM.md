@@ -1,4 +1,4 @@
-# Sistema de Precios de Furgocasa
+# Sistema de Precios de Eco Area Limonar
 
 ## 📊 Estructura de Precios
 

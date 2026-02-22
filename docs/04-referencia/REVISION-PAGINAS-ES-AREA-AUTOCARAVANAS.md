@@ -1,7 +1,7 @@
 # Revisión de páginas /es para Eco Area Limonar (área de autocaravanas)
 
 **Fecha:** Febrero 2025  
-**Objetivo:** Valorar cada página en español según su utilidad para un área de autocaravanas (parcelas, Los Nietos, Mar Menor) vs. el proyecto original FURGOCASA (alquiler de campers).
+**Objetivo:** Valorar cada página en español según su utilidad para un área de autocaravanas (parcelas, Los Nietos, Mar Menor) para el área de autocaravanas.
 
 ---
 
@@ -24,7 +24,7 @@
 - **Acción:** Reescribir textos, cambiar imágenes, sección "vehículos destacados" → "nuestras parcelas" o "servicios".
 
 ### `/es/contacto`
-- **Contenido actual:** Furgocasa, Casillas Murcia, teléfono, email.
+- **Contenido actual:** Eco Area Limonar, Casillas Murcia, teléfono, email.
 - **Para área:** Eco Area Limonar, Los Nietos, datos de contacto reales.
 - **Acción:** Actualizar dirección, teléfono, email, mapa.
 
@@ -54,17 +54,17 @@
 - **Acción:** Adaptar textos; lógica similar (ofertas en BD).
 
 ### `/es/aviso-legal`
-- **Contenido actual:** Furgocasa S.L., términos uso.
+- **Contenido actual:** Eco Area Limonar, términos uso.
 - **Para área:** Eco Area Limonar, datos empresa.
 - **Acción:** Actualizar razón social, datos legales.
 
 ### `/es/privacidad`
-- **Contenido actual:** Política privacidad Furgocasa.
+- **Contenido actual:** Política privacidad Eco Area Limonar.
 - **Para área:** Misma estructura, nuevo responsable.
 - **Acción:** Actualizar responsable del tratamiento.
 
 ### `/es/cookies`
-- **Contenido actual:** Política cookies furgocasa.com.
+- **Contenido actual:** Política cookies ecoarealimonar.com.
 - **Para área:** ecoarealimonar.com.
 - **Acción:** Actualizar dominio y textos.
 
@@ -89,7 +89,7 @@
 - **Opciones:** (A) Eliminar. (B) Adaptar a "Guía del área" (servicios, normas, consejos).
 
 ### `/es/clientes-vip`
-- **Contenido actual:** Programa fidelización Furgocasa (10% descuento, prioridad, extras).
+- **Contenido actual:** Programa fidelización Eco Area Limonar (10% descuento, prioridad, extras).
 - **Para área:** Podría adaptarse a "Clientes frecuentes" o "Programa fidelidad" del área.
 - **Opciones:** (A) Eliminar si no hay programa. (B) Adaptar si se quiere fidelizar visitantes.
 
@@ -221,9 +221,9 @@
 ## 7. Referencias de marca a sustituir
 
 En todas las páginas revisar y sustituir:
-- **Furgocasa** → Eco Area Limonar
-- **furgocasa.com** → ecoarealimonar.com
-- **info@furgocasa.com** → info@ecoarealimonar.com
+- **Eco Area Limonar** → Eco Area Limonar
+- **ecoarealimonar.com** → ecoarealimonar.com
+- **info@ecoarealimonar.com** → info@ecoarealimonar.com
 - **Alquiler de campers/autocaravanas** → Reserva de parcelas / Área de autocaravanas
 - **Vehículos, flota, camper** → Parcelas, servicios, estancia
 - **Recogida, devolución** → Entrada, salida

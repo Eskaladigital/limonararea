@@ -1,4 +1,4 @@
-# ✅ CHECKLIST PRE-COMMIT - Furgocasa
+# ✅ CHECKLIST PRE-COMMIT - Eco Area Limonar
 
 **Usa este checklist ANTES de hacer commit de cambios en páginas públicas**
 

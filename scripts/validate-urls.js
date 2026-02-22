@@ -17,8 +17,8 @@ const http = require('http');
 // Configuración
 const BASE_URLS = {
   local: 'http://localhost:3000',
-  staging: 'https://staging.furgocasa.com',
-  production: 'https://www.furgocasa.com'
+  staging: 'https://staging.limonar.com',
+  production: 'https://www.limonar.com'
 };
 
 // Obtener entorno desde argumentos
@@ -136,7 +136,7 @@ function makeRequest(url, followRedirects = false) {
       path: urlObj.pathname + urlObj.search,
       method: 'GET',
       headers: {
-        'User-Agent': 'Furgocasa-URL-Validator/1.0',
+        'User-Agent': 'Eco Area Limonar-URL-Validator/1.0',
       },
       // No seguir redirecciones por defecto
       followRedirects: false,

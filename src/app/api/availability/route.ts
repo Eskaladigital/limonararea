@@ -20,7 +20,7 @@ export const fetchCache = "force-no-store";
 /**
  * GET /api/availability
  * 
- * Busca vehículos disponibles para las fechas indicadas
+ * Busca parcelas disponibles para las fechas indicadas
  * 
  * Query params:
  * - pickup_date: Fecha de recogida (YYYY-MM-DD)
@@ -60,9 +60,8 @@ export async function GET(request: NextRequest) {
 
     const supabase = await createClient();
 
-    // 1. Obtener todos los vehículos activos para alquiler
-    // Parcelas: no tiene sale_status (eso era de vehículos en venta)
-    let vehiclesQuery = supabase
+    // 1. Obtener todas las parcelas activas para alquiler
+    let parcelsQuery = supabase
       .from("parcels")
       .select(`
         *,
@@ -79,21 +78,21 @@ export async function GET(request: NextRequest) {
 
     // Filtrar por categoría si se especifica
     if (category) {
-      vehiclesQuery = vehiclesQuery.eq("category.slug", category);
+      parcelsQuery = parcelsQuery.eq("category.slug", category);
     }
 
-    const { data: vehicles, error: vehiclesError } = await vehiclesQuery;
+    const { data: parcels, error: parcelsError } = await parcelsQuery;
 
-    if (vehiclesError) {
-      console.error("Error obteniendo vehículos:", vehiclesError);
+    if (parcelsError) {
+      console.error("Error obteniendo parcelas:", parcelsError);
       return NextResponse.json(
-        { error: "Error al buscar vehículos" },
+        { error: "Error al buscar parcelas" },
         { status: 500 }
       );
     }
 
     // 2. Obtener reservas que se solapan con las fechas solicitadas
-    // Bloquean vehículos SOLO si ya tienen al menos el primer pago,
+    // Bloquean parcelas SOLO si ya tienen al menos el primer pago,
     // independientemente del estado operativo de la reserva
     const { data: conflictingBookings, error: bookingsError } = await supabase
       .from("bookings")
@@ -120,31 +119,31 @@ export async function GET(request: NextRequest) {
       console.error("Error obteniendo bloqueos:", blockedError);
     }
 
-    // IDs de vehículos no disponibles
-    const unavailableVehicleIds = new Set([
+    // IDs de parcelas no disponibles
+    const unavailableParcelIds = new Set([
       ...(conflictingBookings?.map((b) => b.parcel_id) || []),
       ...(blockedDates?.map((b) => b.parcel_id) || []),
     ]);
 
-    // 4. Filtrar vehículos disponibles (por bloqueos, capacidad y tipo de vehículo)
-    let availableVehicles = vehicles?.filter(
-      (v) => !unavailableVehicleIds.has(v.id)
+    // 4. Filtrar parcelas disponibles (por bloqueos, capacidad y tipo por longitud)
+    let availableParcels = parcels?.filter(
+      (v) => !unavailableParcelIds.has(v.id)
     );
 
-    // Filtrar por tipo de vehículo: parcelas con length_m >= longitud mínima del vehículo
-    if (availableVehicles && vehicleTypeSlug) {
-      const vehicleType = getVehicleTypeBySlug(vehicleTypeSlug);
-      if (vehicleType) {
-        availableVehicles = availableVehicles.filter((v: { length_m?: number | null }) => {
-          if (v.length_m == null) return true; // sin restricción de tamaño
-          return v.length_m >= vehicleType.length_m;
+    // Filtrar por tipo (longitud mínima)
+    if (availableParcels && vehicleTypeSlug) {
+      const parcelType = getVehicleTypeBySlug(vehicleTypeSlug);
+      if (parcelType) {
+        availableParcels = availableParcels.filter((v: { length_m?: number | null }) => {
+          if (v.length_m == null) return true;
+          return v.length_m >= parcelType.length_m;
         });
       }
     }
 
     // Filtrar por capacidad de ocupación si la parcela tiene límites definidos
-    if (availableVehicles && (adults > 0 || children > 0)) {
-      availableVehicles = availableVehicles.filter((v: any) => {
+    if (availableParcels && (adults > 0 || children > 0)) {
+      availableParcels = availableParcels.filter((v: any) => {
         const maxAdults = v.max_adults ?? null;
         const maxChildren = v.max_children ?? null;
         if (maxAdults !== null && adults > maxAdults) return false;
@@ -153,7 +152,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // 5. Calcular precios para cada vehículo
+    // 5. Calcular precios para cada parcela
     // IMPORTANTE: Usar calculateRentalDays que considera las horas (períodos completos de 24h)
     const days = calculateRentalDays(pickupDate, pickupTime, dropoffDate, dropoffTime);
     
@@ -198,7 +197,7 @@ export async function GET(request: NextRequest) {
     console.log(`[LOCATION_FEE] Pickup: ${pickupLocation} (${pickupLoc?.extra_fee || 0}€), Dropoff: ${dropoffLocation} (${dropoffLoc?.extra_fee || 0}€), Total: ${locationFee}€`);
 
     // Calcular precios
-    const vehiclesWithPrices = availableVehicles?.map((vehicle) => {
+    const parcelsWithPrices = availableParcels?.map((parcel) => {
       // Calcular precio total incluyendo location_fee
       const baseTotal = priceResult.total; // Precio con descuento por duración
       const originalTotal = durationDiscountInfo.originalTotal; // Precio sin descuento por duración
@@ -218,7 +217,7 @@ export async function GET(request: NextRequest) {
         : 0;
       
       return {
-        ...vehicle,
+        ...parcel,
         pricing: {
           days, // Días reales del alquiler
           pricingDays, // Días usados para calcular el precio
@@ -239,11 +238,11 @@ export async function GET(request: NextRequest) {
     });
 
     // Traducir nombre y descripción de parcelas (y categoría) si locale no es español
-    if (locale && locale !== "es" && vehiclesWithPrices && vehiclesWithPrices.length > 0) {
-      for (const v of vehiclesWithPrices) {
+    if (locale && locale !== "es" && parcelsWithPrices && parcelsWithPrices.length > 0) {
+      for (const v of parcelsWithPrices) {
         const [nameTranslated, shortDescTranslated] = await Promise.all([
-          getTranslatedField("vehicles", v.id, "name", locale, v.name),
-          getTranslatedField("vehicles", v.id, "short_description", locale, v.short_description ?? null),
+          getTranslatedField("parcels", v.id, "name", locale, v.name),
+          getTranslatedField("parcels", v.id, "short_description", locale, v.short_description ?? null),
         ]);
         if (nameTranslated != null) v.name = nameTranslated;
         if (shortDescTranslated != null) v.short_description = shortDescTranslated;
@@ -280,7 +279,7 @@ export async function GET(request: NextRequest) {
     console.log("🔍 [TRACKING] ========================================");
     
     let searchQueryId: string | null = null;
-    let sessionId: string = request.cookies.get('furgocasa_session_id')?.value || crypto.randomUUID();
+    let sessionId: string = request.cookies.get('limonar_session_id')?.value || crypto.randomUUID();
     
     console.log("🔍 [TRACKING] Session ID:", sessionId.substring(0, 20) + "...");
     console.log("🔍 [TRACKING] Pickup Date:", pickupDate);
@@ -355,10 +354,10 @@ export async function GET(request: NextRequest) {
         dropoff_location_id: dropoffLocationId,
         same_location: pickupLocation === dropoffLocation,
         category_slug: category,
-        parcels_available_count: vehiclesWithPrices?.length || 0,
+        parcels_available_count: parcelsWithPrices?.length || 0,
         season_applied: priceResult.dominantSeason,
         avg_price_shown: finalPricePerDay,
-        had_availability: (vehiclesWithPrices?.length || 0) > 0,
+        had_availability: (parcelsWithPrices?.length || 0) > 0,
         funnel_stage: "search_only",
         locale: detectedLocale,
         user_agent_type: detectDeviceType(request.headers.get("user-agent")),
@@ -374,7 +373,7 @@ export async function GET(request: NextRequest) {
         dropoff_date: dropoffDate,
         pickup_location: pickupLocation,
         dropoff_location: dropoffLocation,
-        vehicles_count: vehiclesWithPrices?.length || 0,
+        parcels_count: parcelsWithPrices?.length || 0,
         locale: detectedLocale,
         user_agent_type: detectDeviceType(request.headers.get("user-agent")),
         funnel_stage: "search_only"
@@ -429,7 +428,7 @@ export async function GET(request: NextRequest) {
     console.log("🔍 [TRACKING] ========================================");
     console.log("🔍 [TRACKING] PREPARANDO RESPUESTA");
     console.log("🔍 [TRACKING] SearchQueryId en respuesta:", searchQueryId);
-    console.log("🔍 [TRACKING] Vehículos encontrados:", vehiclesWithPrices?.length || 0);
+    console.log("🔍 [TRACKING] Parcelas encontradas:", parcelsWithPrices?.length || 0);
     console.log("🔍 [TRACKING] ========================================");
     
     const response = NextResponse.json({
@@ -455,13 +454,13 @@ export async function GET(request: NextRequest) {
         breakdown: seasonsInfo,
       },
       locationFee,
-      parcels: vehiclesWithPrices || [],
-      totalResults: vehiclesWithPrices?.length || 0,
+      parcels: parcelsWithPrices || [],
+      totalResults: parcelsWithPrices?.length || 0,
     });
     
     // Establecer cookie de sesión con el sessionId ya generado
-    if (!request.cookies.get('furgocasa_session_id')) {
-      response.cookies.set('furgocasa_session_id', sessionId, {
+    if (!request.cookies.get('limonar_session_id')) {
+      response.cookies.set('limonar_session_id', sessionId, {
         maxAge: 60 * 60 * 24 * 30, // 30 días
         path: '/',
         sameSite: 'lax',

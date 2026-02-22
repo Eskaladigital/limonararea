@@ -561,14 +561,14 @@ const nextConfig = {
       // ============================================
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'furgocasa.com' }],
-        destination: 'https://www.furgocasa.com/:path*',
+        has: [{ type: 'host', value: 'ecoarealimonar.com' }],
+        destination: 'https://www.ecoarealimonar.com/:path*',
         permanent: true,
       },
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'webfurgocasa.vercel.app' }],
-        destination: 'https://www.furgocasa.com/:path*',
+        has: [{ type: 'host', value: 'limonar.vercel.app' }],
+        destination: 'https://www.ecoarealimonar.com/:path*',
         permanent: true,
       },
 

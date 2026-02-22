@@ -1,5 +1,5 @@
 /**
- * Script para generar iconos PWA desde el logo de Furgocasa
+ * Script para generar iconos PWA desde el logo de Eco Area Limonar
  * 
  * Genera todos los tamaños necesarios para iOS, Android y la PWA
  */
@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Rutas
-const sourceImage = path.join(__dirname, '../images/furgocasa/Logo_fondo_azul.jpg');
+const sourceImage = path.join(__dirname, '../images/limonar/Logo_fondo_azul.jpg');
 const outputDir = path.join(__dirname, '../public');
 
 // Tamaños de iconos para PWA
@@ -32,7 +32,7 @@ const specialIcons = [
 ];
 
 async function generateIcons() {
-  console.log('🎨 Generando iconos PWA desde el logo de Furgocasa...\n');
+  console.log('🎨 Generando iconos PWA desde el logo de Eco Area Limonar...\n');
 
   // Verificar que existe la imagen fuente
   if (!fs.existsSync(sourceImage)) {

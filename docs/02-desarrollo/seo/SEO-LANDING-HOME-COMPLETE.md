@@ -1,84 +1,50 @@
-# 🚀 OPTIMIZACIONES SEO IMPLEMENTADAS - LANDING PAGES Y HOME
+# 🚀 OPTIMIZACIONES SEO - ECO AREA LIMONAR (UN SOLO SITIO)
 
 ## ✅ RESUMEN EJECUTIVO
 
-Se han implementado todas las **mejores prácticas de SEO recomendadas por Google** para:
-- ✅ **Landing Pages de Localización** (Prioridad Máxima ⭐⭐⭐⭐⭐)
-- ✅ **Home Page** (Prioridad Alta ⭐⭐⭐⭐⭐)
+**Eco Area Limonar** tiene **una única ubicación**: Los Nietos, Cartagena, Mar Menor. No hay múltiples landing pages por ciudad.
+
+| Página | Prioridad | Estrategia |
+|--------|-----------|------------|
+| **Home** | ⭐⭐⭐⭐⭐ | Server Component, Schema Campground |
+| **Parcelas** | ⭐⭐⭐⭐⭐ | Una página por parcela, SEO dinámico |
+| **Tarifas, Reservar, FAQs** | ⭐⭐⭐⭐ | Server Components, metadatos |
+| **Blog** | ⭐⭐⭐ | Contenido por artículo |
 
 ---
 
-## 🎯 1. LANDING PAGES DE LOCALIZACIÓN
+## 🎯 1. PÁGINAS DE PARCELAS (NO LANDINGS POR CIUDAD)
 
-### 📊 Estrategia Implementada: SSG + ISR (24 horas)
+### 📊 Estrategia: SSG + ISR
 
-#### ✅ Arquitectura
+Cada parcela tiene su propia página con SEO dinámico:
 
 ```typescript
-// ⚡ Revalidación cada 24 horas
 export const revalidate = 86400;
 
-// 🚀 Pre-generación de TODAS las localizaciones en build-time
 export async function generateStaticParams() {
-  const locations = await getAllLocations();
-  return locations; // Genera todas las páginas estáticas
+  const parcels = await getAllParcels();
+  return parcels.map(p => ({ slug: p.slug }));
 }
-```
 
-#### ✅ SEO Dinámico con `generateMetadata`
-
-Cada landing page genera metadata específica y optimizada:
-
-```typescript
 export async function generateMetadata({ params }): Promise<Metadata> {
-  const location = await getLocationBySlug(params.location);
+  const parcel = await getParcelBySlug(params.slug);
   
   return {
-    title: `Alquiler de Campers en ${location.name} | Desde 95€/día`,
-    description: `Alquiler cerca de ${location.name}. ${distanceInfo}. Flota premium...`,
-    keywords: `alquiler camper ${location.name}, autocaravana ${location.province}...`,
-    openGraph: { /* Rich snippets */ },
-    twitter: { /* Twitter cards */ },
+    title: `${parcel.name} - Parcelas Autocaravanas Mar Menor | Eco Area Limonar`,
+    description: `Parcela ${parcel.name} en Los Nietos. ${parcel.length_m}m x ${parcel.width_m}m. Electricidad y servicios. Reserva tu estancia.`,
+    openGraph: { /* ... */ },
     alternates: { canonical: url },
-    robots: { index: true, follow: true },
-    other: {
-      'geo.region': `ES-${location.region}`,
-      'geo.placename': location.name,
-    }
   };
 }
 ```
 
-#### ✅ Schema.org Estructurado (JSON-LD)
+### ✅ Schema y características
 
-Se implementan **3 tipos de structured data** por página:
-
-1. **LocalBusiness**: Información de la empresa para búsquedas locales
-2. **BreadcrumbList**: Jerarquía de navegación
-3. **FAQPage**: Preguntas frecuentes específicas de cada ciudad
-
-```typescript
-<LocalBusinessJsonLd location={location} />
-```
-
-#### ✅ Archivos Creados
-
-| Archivo | Propósito |
-|---------|-----------|
-| `src/lib/locations/server-actions.ts` | Funciones server-side con `React.cache` |
-| `src/components/locations/local-business-jsonld.tsx` | Schema.org para SEO local |
-| `src/app/alquiler-autocaravanas-campervans-[location]/page.tsx` | Landing page como Server Component |
-
-#### ✅ Características SEO Avanzadas
-
-- ✅ **URL Canónica**: Prevención de contenido duplicado
-- ✅ **Open Graph**: Rich snippets para redes sociales
-- ✅ **Twitter Cards**: Preview optimizado en Twitter
-- ✅ **Geo Tags**: `geo.region` y `geo.placename` para búsquedas locales
-- ✅ **Structured Data**: LocalBusiness + BreadcrumbList + FAQPage
-- ✅ **Image Optimization**: Next.js Image con `priority` y `loading`
-- ✅ **Semantic HTML**: Headers jerárquicos (h1, h2, h3)
-- ✅ **Internal Linking**: Enlaces a vehículos y páginas relacionadas
+- **Campground** (schema único para el área) en layout/home
+- **BreadcrumbList** en páginas de parcela
+- **Página por parcela**: `/es/parcelas/[slug]`, `/en/parcels/[slug]`, etc.
+- **Internal linking**: Home → parcelas → reservar
 
 ---
 
@@ -110,25 +76,23 @@ export default async function HomePage() {
 }
 ```
 
-#### ✅ SEO Estático Optimizado
+#### ✅ SEO Home Optimizado
 
 ```typescript
 export const metadata: Metadata = {
-  title: "Alquiler de Campers y Autocaravanas en Murcia | Desde 95€/día | Furgocasa",
-  description: "Alquiler de autocaravanas y campers de gran volumen...",
-  keywords: "alquiler camper murcia, autocaravana murcia...",
+  title: "Eco Area Limonar | Área de Autocaravanas Mar Menor - Parcelas Los Nietos",
+  description: "Área de autocaravanas en Los Nietos, Cartagena. Parcelas con electricidad y servicios. Reserva tu parcela en el Mar Menor.",
+  keywords: "área autocaravanas Mar Menor, parcelas Los Nietos, camping Cartagena, área camper",
   openGraph: { /* Rich content */ },
-  twitter: { /* Twitter cards */ },
-  // ⚠️ IMPORTANTE: Siempre usar www y prefijo /es/
-  // Ver SEO-MULTIIDIOMA-MODELO.md para documentación completa
   alternates: { 
-    canonical: "https://www.furgocasa.com/es",
+    canonical: "https://www.ecoarealimonar.com/es",
     languages: {
-      'es': 'https://www.furgocasa.com/es',
-      'en': 'https://www.furgocasa.com/en',
-      'fr': 'https://www.furgocasa.com/fr',
-      'de': 'https://www.furgocasa.com/de',
-      'x-default': 'https://www.furgocasa.com/es',
+      'es': 'https://www.ecoarealimonar.com/es',
+      'en': 'https://www.ecoarealimonar.com/en',
+      'fr': 'https://www.ecoarealimonar.com/fr',
+      'de': 'https://www.ecoarealimonar.com/de',
+      'nl': 'https://www.ecoarealimonar.com/nl',
+      'x-default': 'https://www.ecoarealimonar.com/es',
     }
   },
   robots: { index: true, follow: true },
@@ -136,65 +100,42 @@ export const metadata: Metadata = {
 };
 ```
 
-#### ✅ Schema.org Estructurado (JSON-LD)
+#### ✅ Schema.org (Campground, no LocalBusiness multi-ubicación)
 
-Se implementan **3 tipos de structured data**:
-
-1. **Organization**: Información completa de la empresa
-2. **Product**: Cada vehículo como producto estructurado
-3. **WebSite**: SearchAction para búsquedas internas
-
-```typescript
-<OrganizationJsonLd />
-<ProductJsonLd vehicles={featuredVehicles} />
-<WebsiteJsonLd />
-```
-
-#### ✅ Archivos Creados/Modificados
-
-| Archivo | Cambio | Propósito |
-|---------|--------|-----------|
-| `src/lib/home/server-actions.ts` | **NUEVO** | Funciones server-side con `React.cache` |
-| `src/components/home/organization-jsonld.tsx` | **NUEVO** | Schema.org para Organization + Product + Website |
-| `src/app/page.tsx` | **REFACTOR COMPLETO** | Convertido a Server Component con ISR |
+1. **Campground**: Información del área (una sola ubicación)
+2. **WebSite**: SearchAction para búsquedas internas
+3. **BreadcrumbList**: Jerarquía de navegación
 
 #### ✅ Características SEO Avanzadas
 
-- ✅ **Pre-rendering**: Todo el contenido renderizado en servidor
-- ✅ **ISR**: Contenido actualizado automáticamente cada hora
-- ✅ **Organization Schema**: Información completa de la empresa
-- ✅ **Product Schema**: Cada vehículo con ofertas estructuradas
-- ✅ **SearchAction**: Integración con buscador interno
-- ✅ **AggregateRating**: Valoraciones de usuarios
+- ✅ **Pre-rendering**: Contenido renderizado en servidor
+- ✅ **ISR**: Contenido actualizado automáticamente
+- ✅ **Campground Schema**: Schema correcto para área de autocaravanas
 - ✅ **Image Optimization**: Next.js Image con prioridades correctas
-- ✅ **Semantic Time Tags**: `<time dateTime="...">` para fechas
-- ✅ **Performance**: Eliminación de waterfalls y fetch client-side
+- ✅ **Semantic HTML**: Headers jerárquicos (h1, h2, h3)
+- ✅ **Internal linking**: Home → parcelas → reservar → tarifas
 
 ---
 
-## 📈 3. COMPARACIÓN: ANTES vs DESPUÉS
+## 📈 3. OBJETIVOS DE MÉTRICAS
 
-### LANDING PAGES DE LOCALIZACIÓN
+### PÁGINAS DE PARCELAS
 
-| Métrica | ❌ ANTES (Client Component) | ✅ DESPUÉS (SSG + ISR) | Mejora |
-|---------|---------------------------|---------------------|--------|
-| **First Contentful Paint** | ~2.5s | ~0.8s | **68% más rápido** |
-| **SEO Score** | 45/100 | **95/100** | +111% |
-| **Indexación Google** | Contenido dinámico (no visible) | Contenido estático (visible) | ✅ 100% indexable |
-| **Rich Snippets** | ❌ No disponible | ✅ LocalBusiness + FAQ | +Rich results |
-| **Load JS** | 220 KB | **167 KB** | -24% |
-| **Revalidación** | ❌ Nunca | ✅ Cada 24h | Automática |
+| Métrica | Objetivo |
+|---------|----------|
+| **First Contentful Paint** | < 2.5s |
+| **SEO Score** | > 90 |
+| **Indexación** | 100% indexable (Server Components) |
+| **Structured Data** | Campground + BreadcrumbList |
 
 ### HOME PAGE
 
-| Métrica | ❌ ANTES (Client Component) | ✅ DESPUÉS (ISR) | Mejora |
-|---------|---------------------------|------------------|--------|
-| **First Contentful Paint** | ~2.8s | ~0.9s | **68% más rápido** |
-| **Time to Interactive** | ~4.2s | ~1.5s | **64% más rápido** |
-| **SEO Score** | 42/100 | **98/100** | +133% |
-| **Indexación** | Parcial (solo HTML vacío) | ✅ Completa | 100% |
-| **Structured Data** | ❌ Ninguno | ✅ 3 tipos | +Rich results |
-| **Load JS** | 245 KB | **197 KB** | -20% |
+| Métrica | Objetivo |
+|---------|----------|
+| **First Contentful Paint** | < 2.5s |
+| **SEO Score** | > 90 |
+| **Indexación** | Completa |
+| **Structured Data** | Campground + WebSite |
 
 ---
 
@@ -203,11 +144,11 @@ Se implementan **3 tipos de structured data**:
 ### Revalidación (ISR)
 
 ```typescript
-// Landing Pages de Localización
-export const revalidate = 86400; // 24 horas (contenido bastante estático)
+// Páginas de parcelas
+export const revalidate = 86400; // 24 horas
 
 // Home Page
-export const revalidate = 3600; // 1 hora (contenido más dinámico)
+export const revalidate = 3600; // 1 hora
 ```
 
 ### Data Fetching con React.cache
@@ -215,20 +156,18 @@ export const revalidate = 3600; // 1 hora (contenido más dinámico)
 ```typescript
 import { cache } from 'react';
 
-export const getLocationBySlug = cache(async (slug: string) => {
-  // Deduplicación automática de requests
+export const getParcelBySlug = cache(async (slug: string) => {
   const supabase = createClient(...);
-  return await supabase.from('location_targets').select('*');
+  return await supabase.from('parcels').select('*').eq('slug', slug).single();
 });
 ```
 
-### generateStaticParams para Build-time
+### generateStaticParams para parcelas
 
 ```typescript
 export async function generateStaticParams() {
-  const locations = await getAllLocations();
-  // Pre-genera TODAS las páginas en build time
-  return locations.map(loc => ({ location: loc.slug }));
+  const parcels = await getAllParcels();
+  return parcels.map(p => ({ slug: p.slug }));
 }
 ```
 
@@ -240,7 +179,7 @@ export async function generateStaticParams() {
 
 1. **Google Search Console**
    - Añadir verificación en metadata (ya preparado)
-   - Enviar sitemap.xml: `https://furgocasa.com/sitemap.xml`
+   - Enviar sitemap.xml: `https://ecoarealimonar.com/sitemap.xml`
    - Solicitar indexación de nuevas URLs
 
 2. **Testing**
@@ -262,8 +201,8 @@ export async function generateStaticParams() {
 ### Medio Plazo (Próximas Semanas)
 
 5. **Content Enhancement**
-   - Añadir más FAQs específicas por localización
-   - Crear contenido único para cada ciudad
+   - Añadir más FAQs sobre el área y reservas
+   - Crear contenido único para Mar Menor / Los Nietos
    - Añadir testimonios de clientes
 
 6. **Performance**
@@ -314,27 +253,23 @@ npm run dev
 
 ## ✅ 8. CHECKLIST DE VERIFICACIÓN
 
-### Landing Pages
-- [x] Convertidas a Server Components
-- [x] generateStaticParams implementado
-- [x] generateMetadata dinámico
-- [x] Schema.org LocalBusiness
-- [x] Schema.org BreadcrumbList
-- [x] Schema.org FAQPage
-- [x] ISR configurado (24h)
-- [x] Imágenes optimizadas con Next/Image
-- [x] Canonical URLs
-- [x] Open Graph tags
-- [x] Twitter Cards
-- [x] Geo tags
+### Páginas de parcelas
+- [ ] Server Components
+- [ ] generateStaticParams implementado
+- [ ] generateMetadata dinámico
+- [ ] Schema Campground (en layout o home)
+- [ ] Schema BreadcrumbList
+- [ ] ISR configurado (24h)
+- [ ] Imágenes optimizadas con Next/Image
+- [ ] Canonical URLs
+- [ ] Open Graph tags
 
 ### Home Page
-- [x] Convertida a Server Component
-- [x] ISR configurado (1h)
-- [x] Metadata estática optimizada
-- [x] Schema.org Organization
-- [x] Schema.org Product (múltiples)
-- [x] Schema.org WebSite + SearchAction
+- [ ] Server Component
+- [ ] ISR configurado (1h)
+- [ ] Metadata optimizada para Mar Menor / Los Nietos
+- [ ] Schema Campground
+- [ ] Schema WebSite + SearchAction
 - [x] Imágenes optimizadas
 - [x] Semantic HTML
 - [x] Internal linking
@@ -359,6 +294,6 @@ Si necesitas ayuda o ajustes adicionales:
 
 ---
 
-**Última actualización**: 2026-01-21  
-**Modelo SEO Multiidioma**: Ver [SEO-MULTIIDIOMA-MODELO.md](./SEO-MULTIIDIOMA-MODELO.md)  
-**Próxima revisión**: Después del despliegue a producción
+**Última actualización**: Febrero 2026  
+**Modelo**: Un solo sitio (Los Nietos, Mar Menor). No landing pages por ciudad.  
+**Modelo SEO Multiidioma**: Ver [SEO-MULTIIDIOMA-MODELO.md](./SEO-MULTIIDIOMA-MODELO.md)

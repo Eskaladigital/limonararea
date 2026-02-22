@@ -9,8 +9,8 @@ interface PageProps {}
 
 const PRIVACIDAD_METADATA: Metadata = {
   title: "Política de Privacidad",
-  description: "Política de privacidad y protección de datos de Furgocasa S.L. Información sobre cómo tratamos y protegemos tus datos personales según RGPD.",
-  keywords: "politica privacidad furgocasa, proteccion datos, rgpd, lopd, privacidad datos personales",
+  description: "Política de privacidad y protección de datos de Eco Area Limonar Información sobre cómo tratamos y protegemos tus datos personales según RGPD.",
+  keywords: "politica privacidad limonar, proteccion datos, rgpd, lopd, privacidad datos personales",
   robots: {
     index: false,
     follow: false,
@@ -48,15 +48,15 @@ export default async function LocalePrivacidadPage({ params }: PageProps) {
 
               <h2>1. Responsable del tratamiento</h2>
               <ul>
-                <li><strong>Identidad:</strong> FURGOCASA S.L.</li>
+                <li><strong>Identidad:</strong> Eco Area Limonar S.L.</li>
                 <li><strong>CIF:</strong> B-XXXXXXXX</li>
                 <li><strong>Dirección:</strong> Calle Ejemplo, 123 - 30001 Murcia</li>
-                <li><strong>Correo electrónico:</strong> privacidad@furgocasa.com</li>
+                <li><strong>Correo electrónico:</strong> privacidad@limonar.com</li>
                 <li><strong>Teléfono:</strong> +34 968 000 000</li>
               </ul>
 
               <h2>2. Datos personales que tratamos</h2>
-              <p>FURGOCASA puede tratar las siguientes categorías de datos personales:</p>
+              <p>Eco Area Limonar puede tratar las siguientes categorías de datos personales:</p>
               <ul>
                 <li><strong>Datos identificativos:</strong> nombre, apellidos, DNI/NIE/Pasaporte</li>
                 <li><strong>Datos de contacto:</strong> dirección postal, correo electrónico, teléfono</li>
@@ -113,16 +113,16 @@ export default async function LocalePrivacidadPage({ params }: PageProps) {
                 <li><strong>Portabilidad:</strong> recibir sus datos en formato estructurado</li>
                 <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos</li>
               </ul>
-              <p>Para ejercer estos derechos, puede contactar con nosotros en privacidad@furgocasa.com adjuntando copia de su DNI.</p>
+              <p>Para ejercer estos derechos, puede contactar con nosotros en privacidad@limonar.com adjuntando copia de su DNI.</p>
 
               <h2>8. Cookies</h2>
               <p>Este sitio web utiliza cookies propias y de terceros. Puede consultar nuestra política de cookies para más información.</p>
 
               <h2>9. Seguridad</h2>
-              <p>FURGOCASA ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado.</p>
+              <p>Eco Area Limonar ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado.</p>
 
               <h2>10. Modificaciones</h2>
-              <p>FURGOCASA se reserva el derecho de modificar la presente política de privacidad para adaptarla a novedades legislativas o jurisprudenciales.</p>
+              <p>Eco Area Limonar se reserva el derecho de modificar la presente política de privacidad para adaptarla a novedades legislativas o jurisprudenciales.</p>
 
               <h2>11. Reclamaciones</h2>
               <p>Si considera que el tratamiento de sus datos no se ajusta a la normativa, puede presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).</p>

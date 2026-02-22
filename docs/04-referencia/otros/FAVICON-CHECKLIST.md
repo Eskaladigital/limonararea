@@ -1,4 +1,4 @@
-# ✅ CHECKLIST RÁPIDO - VERIFICACIÓN FAVICON FURGOCASA
+# ✅ CHECKLIST RÁPIDO - VERIFICACIÓN FAVICON Eco Area Limonar
 
 ## 📦 Archivos Generados (12 archivos)
 
@@ -47,7 +47,7 @@ git push
 ## 🔍 Verificación Post-Deploy
 
 ### En el Navegador:
-1. ✅ Abrir https://www.furgocasa.com
+1. ✅ Abrir https://www.ecoarealimonar.com
 2. ✅ El favicon debe aparecer en la pestaña del navegador
 3. ✅ Abrir DevTools (F12) → Network → Recargar (Ctrl+Shift+R)
 4. ✅ Buscar `favicon.ico` → Debe retornar **200** (no 404)
@@ -56,10 +56,10 @@ git push
 
 ### En Google Search Console (24-48h después):
 1. ✅ Ir a: https://search.google.com/search-console
-2. ✅ Inspección de URLs → `https://www.furgocasa.com`
+2. ✅ Inspección de URLs → `https://www.ecoarealimonar.com`
 3. ✅ "Probar URL publicada" → Ver favicon en vista previa
 4. ✅ "Solicitar indexación"
-5. ✅ Esperar 24-48h y buscar: `site:furgocasa.com`
+5. ✅ Esperar 24-48h y buscar: `site:ecoarealimonar.com`
 
 ## 🎯 Estado: LISTO PARA DEPLOY
 

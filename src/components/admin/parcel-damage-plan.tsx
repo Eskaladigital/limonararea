@@ -12,7 +12,7 @@ interface DamageMark {
   status: string | null;
 }
 
-interface VehicleDamagePlanProps {
+interface ParcelDamagePlanProps {
   viewType: 'front' | 'back' | 'left' | 'right' | 'top' | 'interior';
   damages: DamageMark[];
   onAddDamage?: (x: number, y: number) => void;
@@ -43,19 +43,19 @@ const statusColors: Record<string, { fill: string; stroke: string }> = {
   repaired: { fill: '#f0fdf4', stroke: '#22c55e' },
 };
 
-// Imágenes del vehículo para cada vista
-const vehicleImages: Record<string, string> = {
-  front: '/vehicle-views/front.png',
-  back: '/vehicle-views/back.png',
-  left: '/vehicle-views/left.png',
-  right: '/vehicle-views/right.png',
-  top: '/vehicle-views/top.png',
-  interior: '/vehicle-views/interior.png',
+// Imágenes de vistas para el plano de daños (assets en /parcel-views/)
+const parcelImages: Record<string, string> = {
+  front: '/parcel-views/front.png',
+  back: '/parcel-views/back.png',
+  left: '/parcel-views/left.png',
+  right: '/parcel-views/right.png',
+  top: '/parcel-views/top.png',
+  interior: '/parcel-views/interior.png',
 };
 
-// Componente de imagen del vehículo para cada vista
-function VehicleView({ viewType }: { viewType: string }) {
-  const imageSrc = vehicleImages[viewType];
+// Componente de imagen por vista
+function ParcelView({ viewType }: { viewType: string }) {
+  const imageSrc = parcelImages[viewType];
   
   if (!imageSrc) return null;
 
@@ -71,7 +71,7 @@ function VehicleView({ viewType }: { viewType: string }) {
   );
 }
 
-export function VehicleDamagePlan({
+export function ParcelDamagePlan({
   viewType,
   damages,
   onAddDamage,
@@ -79,7 +79,7 @@ export function VehicleDamagePlan({
   selectedDamageId,
   isEditing = false,
   className = '',
-}: VehicleDamagePlanProps) {
+}: ParcelDamagePlanProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoverPosition, setHoverPosition] = useState<{ x: number; y: number } | null>(null);
 
@@ -128,8 +128,8 @@ export function VehicleDamagePlan({
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Vehicle image/SVG */}
-        <VehicleView viewType={viewType} />
+        {/* Parcel image/SVG */}
+        <ParcelView viewType={viewType} />
 
         {/* Damage markers */}
         {damages.map((damage) => {
@@ -193,4 +193,4 @@ export function VehicleDamagePlan({
 }
 
 // Exportar tipos
-export type { DamageMark, VehicleDamagePlanProps };
+export type { DamageMark, ParcelDamagePlanProps };

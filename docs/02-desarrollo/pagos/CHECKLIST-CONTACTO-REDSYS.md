@@ -79,17 +79,17 @@ https://canales.redsys.es/admincanales-web/index.jsp#/loginCaixa
 
 Dependiendo de tu entorno actual:
 
-#### Para PRODUCCIÓN (www.furgocasa.com):
+#### Para PRODUCCIÓN (www.ecoarealimonar.com):
 
 ```
 URL de Notificación:
-https://www.furgocasa.com/api/redsys/notification
+https://www.ecoarealimonar.com/api/redsys/notification
 
 URL OK (Éxito):
-https://www.furgocasa.com/pago/exito
+https://www.ecoarealimonar.com/pago/exito
 
 URL KO (Error):
-https://www.furgocasa.com/pago/error
+https://www.ecoarealimonar.com/pago/error
 ```
 
 #### Para PRUEBAS (localhost o desarrollo):
@@ -124,7 +124,7 @@ En el panel de Redsys, verifica/configura:
 - [ ] **URL de notificación**: La URL de tu API
 - [ ] **URLs OK/KO**: Las URLs de tu aplicación
 - [ ] **Enviar parámetros en URLs**: ACTIVADO (para recibir `Ds_Order` en redirección)
-- [ ] **Dominios permitidos**: Añadir `www.furgocasa.com` (o tu dominio)
+- [ ] **Dominios permitidos**: Añadir `www.ecoarealimonar.com` (o tu dominio)
 
 ---
 
@@ -143,7 +143,7 @@ Asunto: Solicitud de Ayuda - Error SIS0042 en Comercio 347036410
 
 Estimado equipo de Redsys,
 
-Soy [TU NOMBRE], del comercio [NOMBRE DE TU EMPRESA - Furgocasa].
+Soy [TU NOMBRE], del comercio [NOMBRE DE TU EMPRESA - Eco Area Limonar].
 
 Estamos integrando vuestra pasarela de pago en nuestra plataforma web y nos encontramos 
 con un problema que necesitamos resolver urgentemente.
@@ -152,7 +152,7 @@ INFORMACIÓN DEL COMERCIO:
 - Código de Comercio (FUC): 347036410
 - Terminal: 001
 - Entorno: [PRUEBAS / PRODUCCIÓN - especificar]
-- Dominio: https://www.furgocasa.com
+- Dominio: https://www.ecoarealimonar.com
 
 PROBLEMA ENCONTRADO:
 Al intentar procesar un pago, recibimos el error SIS0042 ("Error en datos enviados").
@@ -176,9 +176,9 @@ PREGUNTAS:
 5. ¿Podéis proporcionarnos acceso al panel de Canales si no lo tenemos?
 
 URLs QUE NECESITAMOS CONFIGURAR:
-- URL de notificación: https://www.furgocasa.com/api/redsys/notification
-- URL OK: https://www.furgocasa.com/pago/exito
-- URL KO: https://www.furgocasa.com/pago/error
+- URL de notificación: https://www.ecoarealimonar.com/api/redsys/notification
+- URL OK: https://www.ecoarealimonar.com/pago/exito
+- URL KO: https://www.ecoarealimonar.com/pago/error
 
 INFORMACIÓN ADICIONAL:
 - Método de integración: Redirección (POST a vuestro servidor)
@@ -214,7 +214,7 @@ REDSYS_SECRET_KEY=tu_clave_secreta_en_base64
 REDSYS_ENVIRONMENT=production  # o "test" según corresponda
 
 # URL pública
-NEXT_PUBLIC_URL=https://www.furgocasa.com
+NEXT_PUBLIC_URL=https://www.ecoarealimonar.com
 ```
 
 **Importante**: La `REDSYS_SECRET_KEY` debe ser:
@@ -233,7 +233,7 @@ El endpoint `/api/redsys/notification` DEBE:
 
 ```bash
 # Desde terminal (fuera de tu red local si es posible)
-curl -X POST https://www.furgocasa.com/api/redsys/notification \
+curl -X POST https://www.ecoarealimonar.com/api/redsys/notification \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "Ds_SignatureVersion=HMAC_SHA256_V1&Ds_MerchantParameters=test&Ds_Signature=test"
 ```
@@ -313,9 +313,9 @@ Si te preguntan detalles técnicos, estos son tus datos:
   "DS_MERCHANT_CURRENCY": "978",          // Euro
   "DS_MERCHANT_TRANSACTIONTYPE": "0",     // Autorización
   "DS_MERCHANT_TERMINAL": "001",
-  "DS_MERCHANT_MERCHANTURL": "https://www.furgocasa.com/api/redsys/notification",
-  "DS_MERCHANT_URLOK": "https://www.furgocasa.com/pago/exito",
-  "DS_MERCHANT_URLKO": "https://www.furgocasa.com/pago/error"
+  "DS_MERCHANT_MERCHANTURL": "https://www.ecoarealimonar.com/api/redsys/notification",
+  "DS_MERCHANT_URLOK": "https://www.ecoarealimonar.com/pago/exito",
+  "DS_MERCHANT_URLKO": "https://www.ecoarealimonar.com/pago/error"
 }
 ```
 

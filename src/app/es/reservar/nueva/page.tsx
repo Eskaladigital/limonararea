@@ -15,7 +15,7 @@ function LoadingState() {
 import { supabase } from "@/lib/supabase/client";
 import { 
   Calendar, MapPin, User, Mail, Phone, 
-  CreditCard, AlertCircle, Loader2, FileText, Users, Bed, Tag, CheckCircle, X
+  CreditCard, AlertCircle, Loader2, FileText, Tag, CheckCircle, X
 } from "lucide-react";
 import { LocalizedLink } from "@/components/localized-link";
 import Image from "next/image";
@@ -23,7 +23,7 @@ import { formatPrice } from "@/lib/utils";
 import { useSeasonalPricing } from "@/hooks/use-seasonal-pricing";
 import { getTranslatedRoute } from "@/lib/route-translations";
 
-interface VehicleData {
+interface ParcelData {
   id: string;
   name: string;
   brand: string;
@@ -67,8 +67,7 @@ function NuevaReservaContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  // Get params from URL (parcel_id para flujo parcelas, vehicle_id para ofertas)
-  const parcelId = searchParams.get('parcel_id') || searchParams.get('vehicle_id');
+  const parcelId = searchParams.get('parcel_id');
   const pickupDate = searchParams.get('pickup_date');
   const dropoffDate = searchParams.get('dropoff_date');
   const pickupTime = searchParams.get('pickup_time');
@@ -78,7 +77,7 @@ function NuevaReservaContent() {
   const adults = parseInt(searchParams.get('adults') || '2', 10);
   const children = parseInt(searchParams.get('children') || '0', 10);
 
-  const [vehicle, setVehicle] = useState<VehicleData | null>(null);
+  const [parcel, setParcel] = useState<ParcelData | null>(null);
   const [pickupLocation, setPickupLocation] = useState<LocationData | null>(null);
   const [dropoffLocation, setDropoffLocation] = useState<LocationData | null>(null);
   const [selectedExtras, setSelectedExtras] = useState<SelectedExtra[]>([]);
@@ -148,10 +147,7 @@ function NuevaReservaContent() {
     try {
       setLoading(true);
       
-      // Load parcel (o vehicle para ofertas - intentar parcels primero)
-      let vehicleData: any = null;
-      let loadError: any = null;
-
+      // Cargar parcela
       const { data: parcelData, error: parcelError } = await supabase
         .from('parcels')
         .select(`
@@ -162,7 +158,7 @@ function NuevaReservaContent() {
         .single();
 
       if (!parcelData) throw parcelError || new Error('Parcela no encontrada');
-      setVehicle({ ...parcelData, images: parcelData.images || [] } as any);
+      setParcel({ ...parcelData, images: parcelData.images || [] } as any);
 
       // Load locations
       if (pickupLocationSlug) {
@@ -271,7 +267,7 @@ function NuevaReservaContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!vehicle || !pickupLocation || !dropoffLocation) {
+    if (!parcel || !pickupLocation || !dropoffLocation) {
       setError('Faltan datos necesarios para crear la reserva');
       return;
     }
@@ -376,7 +372,7 @@ function NuevaReservaContent() {
         body: JSON.stringify({
           booking: {
             booking_number: bookingNumber,
-            parcel_id: vehicle.id,
+            parcel_id: parcel.id,
             customer_id: customerId,
             pickup_date: pickupDate,
             dropoff_date: dropoffDate,
@@ -437,7 +433,7 @@ function NuevaReservaContent() {
     );
   }
 
-  if (error && !vehicle) {
+  if (error && !parcel) {
     return (
       <div className="min-h-screen bg-sand-lt flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
@@ -455,7 +451,7 @@ function NuevaReservaContent() {
     );
   }
 
-  const mainImage = vehicle?.images?.find(img => img.is_primary) || vehicle?.images?.[0];
+  const mainImage = parcel?.images?.find(img => img.is_primary) || parcel?.images?.[0];
 
   return (
     <>      
@@ -812,19 +808,19 @@ function NuevaReservaContent() {
 
             {/* Sidebar - Booking Summary */}
             <div className="space-y-6">
-              {/* Vehicle Summary */}
-              {vehicle && (
+              {/* Resumen parcela */}
+              {parcel && (
                 <div className="bg-white rounded-2xl shadow-sm p-6 sticky top-24">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
                     {t("Resumen")}
                   </h3>
 
-                  {/* Vehicle Image & Info */}
+                  {/* Parcel Image & Info */}
                   {mainImage && (
                     <div className="relative h-40 bg-gray-200 rounded-lg overflow-hidden mb-4">
                       <Image
                         src={mainImage.image_url}
-                        alt={vehicle.name}
+                        alt={parcel.name}
                         fill
                         className="object-cover"
                       />
@@ -832,20 +828,12 @@ function NuevaReservaContent() {
                   )}
 
                   <div className="mb-4">
-                    <h4 className="font-bold text-gray-900 text-lg">{vehicle.name}</h4>
-                    <p className="text-sm text-gray-600">{vehicle.brand} {vehicle.model}</p>
+                    <h4 className="font-bold text-gray-900 text-lg">{parcel.name}</h4>
+                    {parcel.internal_code && (
+                      <p className="text-sm text-gray-600">{parcel.internal_code}</p>
+                    )}
                   </div>
 
-                  <div className="flex gap-4 mb-6 pb-6 border-b border-gray-200">
-                    <span className="flex items-center gap-1 text-sm text-gray-600">
-                      <Users className="h-4 w-4" />
-                      {vehicle.seats} {t("plazas")}
-                    </span>
-                    <span className="flex items-center gap-1 text-sm text-gray-600">
-                      <Bed className="h-4 w-4" />
-                      {vehicle.beds} {t("camas")}
-                    </span>
-                  </div>
 
                   {/* Dates */}
                   <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">

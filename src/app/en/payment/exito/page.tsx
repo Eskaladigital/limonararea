@@ -32,14 +32,14 @@ function PaymentSuccessGeneric({ bookingId }: { bookingId?: string | null }) {
       <div className="space-y-3">
         {bookingId && (
           <LocalizedLink href={`/book/${bookingId}`}
-            className="block w-full bg-furgocasa-blue text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors"
+            className="block w-full bg-limonar-blue text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors"
           >
             {t("Ver mi reserva")}
           </LocalizedLink>
         )}
         <LocalizedLink
           href="/"
-          className={`block w-full ${bookingId ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' : 'bg-furgocasa-orange text-white hover:bg-orange-600'} font-semibold py-3 px-8 rounded-lg transition-colors`}
+          className={`block w-full ${bookingId ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' : 'bg-limonar-orange text-white hover:bg-orange-600'} font-semibold py-3 px-8 rounded-lg transition-colors`}
         >
           {t("Volver al inicio")}
         </LocalizedLink>
@@ -64,10 +64,10 @@ interface Payment {
     amount_paid: number;
     customer_name: string;
     customer_email: string;
-    vehicle: {
+    parcel?: {
       name: string;
-      brand: string;
-      model: string;
+      slug?: string;
+      internal_code?: string | null;
     };
     pickup_location: {
       name: string;
@@ -155,7 +155,7 @@ function PagoExitoContent() {
             *,
             booking:bookings(
               *,
-              vehicle:vehicles(name, brand, model),
+              parcel:parcels(name, slug, internal_code),
               pickup_location:locations!pickup_location_id(name),
               dropoff_location:locations!dropoff_location_id(name)
             )
@@ -300,7 +300,7 @@ function PagoExitoContent() {
                     *,
                     booking:bookings(
                       *,
-                      vehicle:vehicles(name, brand, model),
+                      parcel:parcels(name, slug, internal_code),
                       pickup_location:locations!pickup_location_id(name),
                       dropoff_location:locations!dropoff_location_id(name)
                     )
@@ -338,7 +338,7 @@ function PagoExitoContent() {
       <>
 <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-furgocasa-orange mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-limonar-orange mx-auto mb-4"></div>
             <p className="text-gray-600">Verificando pago...</p>
           </div>
         </div>
@@ -400,18 +400,15 @@ function PagoExitoContent() {
                   {/* Resumen de la reserva */}
                   <div className="space-y-4 mb-6">
                     <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                      <Car className="h-6 w-6 text-furgocasa-blue" />
+                      <Car className="h-6 w-6 text-limonar-blue" />
                       <div>
-                        <p className="font-semibold text-gray-900">{payment.booking.vehicle.name}</p>
-                        <p className="text-sm text-gray-600">
-                          {payment.booking.vehicle.brand} {payment.booking.vehicle.model}
-                        </p>
+                        <p className="font-semibold text-gray-900">{payment.booking.parcel?.name}</p>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-                        <Calendar className="h-5 w-5 text-furgocasa-blue mt-0.5" />
+                        <Calendar className="h-5 w-5 text-limonar-blue mt-0.5" />
                         <div>
                           <p className="text-xs text-gray-500 uppercase font-medium">{t("Recogida")}</p>
                           <p className="font-medium text-gray-900">
@@ -426,7 +423,7 @@ function PagoExitoContent() {
                       </div>
 
                       <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-                        <Calendar className="h-5 w-5 text-furgocasa-blue mt-0.5" />
+                        <Calendar className="h-5 w-5 text-limonar-blue mt-0.5" />
                         <div>
                           <p className="text-xs text-gray-500 uppercase font-medium">{t("Devolución")}</p>
                           <p className="font-medium text-gray-900">
@@ -442,7 +439,7 @@ function PagoExitoContent() {
                     </div>
 
                     <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                      <MapPin className="h-5 w-5 text-furgocasa-blue" />
+                      <MapPin className="h-5 w-5 text-limonar-blue" />
                       <div>
                         <p className="text-xs text-gray-500 uppercase font-medium">{t("Recogida en")}</p>
                         <p className="font-medium text-gray-900">{payment.booking.pickup_location.name}</p>
@@ -450,7 +447,7 @@ function PagoExitoContent() {
                     </div>
 
                     <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                      <MapPin className="h-5 w-5 text-furgocasa-blue" />
+                      <MapPin className="h-5 w-5 text-limonar-blue" />
                       <div>
                         <p className="text-xs text-gray-500 uppercase font-medium">{t("Devolución en")}</p>
                         <p className="font-medium text-gray-900">{payment.booking.dropoff_location.name}</p>
@@ -477,7 +474,7 @@ function PagoExitoContent() {
                     </div>
 
                     <LocalizedLink href={`/book/${payment.booking.id}`}
-                      className="block w-full bg-furgocasa-blue text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors text-center"
+                      className="block w-full bg-limonar-blue text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors text-center"
                     >
                       {t("Ver mi reserva")}
                     </LocalizedLink>

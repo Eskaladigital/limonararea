@@ -179,5 +179,5 @@ El sistema está ajustado según el feedback del cliente y listo para deploy.
 ---
 
 **Fecha del ajuste**: 9 de febrero de 2026  
-**Solicitado por**: Narciso Pardo (Furgocasa)  
+**Solicitado por**: Narciso Pardo (Eco Area Limonar)  
 **Implementado por**: Sistema IA Cursor

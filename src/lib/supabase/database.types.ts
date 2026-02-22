@@ -1,3 +1,26 @@
+/**
+ * Tipos generados para el cliente Supabase.
+ *
+ * ⚠️ POR QUÉ HAY TANTAS REFERENCIAS A "vehicle":
+ * Este archivo se genera automáticamente desde la base de datos con:
+ *   npx supabase gen types typescript --project-id <PROJECT_REF> > src/lib/supabase/database.types.ts
+ * Si la última vez que se ejecutó la BD aún tenía el esquema antiguo (vehicles, vehicle_id,
+ * vehicle_images, vehicle_categories, etc.), los tipos siguen mostrando eso. El resto del código
+ * ya usa parcelas (parcels, parcel_id); por eso los tipos pueden no coincidir con el uso real.
+ *
+ * CÓMO DEJAR LOS TIPOS ALINEADOS CON PARCELAS:
+ * 1. Asegúrate de que en Supabase el esquema use parcel_id en bookings y blocked_dates,
+ *    y tablas parcels, parcel_categories, parcel_images, parcel_equipment, parcel_available_extras.
+ * 2. Regenera los tipos:
+ *    npx supabase gen types typescript --project-id <PROJECT_REF> > src/lib/supabase/database.types.ts
+ *    (PROJECT_REF en Dashboard > Project Settings > General, o en .env como NEXT_PUBLIC_SUPABASE_URL.)
+ * 3. Tras regenerar, las referencias a "vehicle" en este archivo desaparecerán y verás parcel_id,
+ *    parcels, etc., en coherencia con schema-eco-area-limonar.sql.
+ *
+ * Mientras no se regenere, el código sigue usando parcels/parcel_id; TypeScript puede marcar
+ * diferencias con estos tipos legacy. Es seguro ignorarlas o regenerar cuando el esquema esté listo.
+ */
+
 export type Json =
   | string
   | number

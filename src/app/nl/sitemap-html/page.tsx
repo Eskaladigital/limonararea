@@ -27,7 +27,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_APP_
 
 type CategoryRow = { slug: string; name?: string | null };
 type PostRow = { slug: string; title?: string | null; category?: CategoryRow | CategoryRow[] | null };
-type VehicleRow = { slug: string; name?: string | null };
+type ParcelRow = { slug: string; name?: string | null };
 
 const staticPages: Array<{ path: string; label: string }> = [
   { path: "/", label: "Home" },
@@ -37,13 +37,11 @@ const staticPages: Array<{ path: string; label: string }> = [
   { path: "/reservar", label: "Boeken" },
   { path: "/buscar", label: "Zoeken" },
   { path: "/contacto", label: "Contact" },
-  { path: "/guia-camper", label: "Campergids" },
   { path: "/ofertas", label: "Aanbiedingen" },
   { path: "/publicaciones", label: "Publicaties" },
   { path: "/quienes-somos", label: "Over ons" },
   { path: "/mar-menor", label: "De Mar Menor" },
   { path: "/faqs", label: "Veelgestelde vragen" },
-  { path: "/video-tutoriales", label: "Video-handleidingen" },
   { path: "/aviso-legal", label: "Juridische mededeling" },
   { path: "/privacidad", label: "Privacy" },
   { path: "/cookies", label: "Cookies" },
@@ -88,7 +86,7 @@ export default async function SitemapHtmlPage() {
   const [
     { data: posts },
     { data: categories },
-    { data: vehiclesRent },
+    { data: parcelsRent },
   ] = await Promise.all([
     supabase
       .from("posts")
@@ -110,7 +108,7 @@ export default async function SitemapHtmlPage() {
 
   const postList = (posts || []) as PostRow[];
   const categoryList = (categories || []) as CategoryRow[];
-  const rentList = (vehiclesRent || []) as VehicleRow[];
+  const rentList = (parcelsRent || []) as ParcelRow[];
 
   return (
     <main className="min-h-screen bg-white">
@@ -203,19 +201,19 @@ export default async function SitemapHtmlPage() {
               Standplaatsen te huur
             </h2>
             <ul className="space-y-2">
-              {rentList.map((vehicle) => {
-                const path = `/parcelas/${vehicle.slug}`;
+              {rentList.map((parcel) => {
+                const path = `/parcelas/${parcel.slug}`;
                 return (
-                  <li key={vehicle.slug}>
+                  <li key={parcel.slug}>
                     <LocalizedLink
                       href={path}
                       className="text-earth hover:text-clay transition-colors"
                     >
                       {buildLabel(path, locale)}
                     </LocalizedLink>
-                    {vehicle.name && (
+                    {parcel.name && (
                       <span className="text-gray-400 text-sm ml-2">
-                        {vehicle.name}
+                        {parcel.name}
                       </span>
                     )}
                   </li>

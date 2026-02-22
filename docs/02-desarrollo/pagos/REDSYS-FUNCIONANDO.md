@@ -28,9 +28,9 @@ El sistema de pagos con Redsys está **completamente operativo** con múltiples 
 - **Clave Secreta:** Almacenada en `REDSYS_SECRET_KEY` (variable de entorno)
 
 ### URLs Configuradas
-- **URLOK:** `https://www.furgocasa.com/pago/exito`
-- **URLKO:** `https://www.furgocasa.com/pago/error`
-- **MERCHANTURL:** `https://www.furgocasa.com/api/redsys/notification`
+- **URLOK:** `https://www.ecoarealimonar.com/pago/exito`
+- **URLKO:** `https://www.ecoarealimonar.com/pago/error`
+- **MERCHANTURL:** `https://www.ecoarealimonar.com/api/redsys/notification`
 
 ### Archivos Críticos - ⛔ NO TOCAR SIN AUTORIZACIÓN
 1. **`src/lib/redsys/crypto.ts`** - Firma HMAC-SHA256 (núcleo del sistema)
@@ -119,7 +119,7 @@ El sistema de pagos con Redsys está **completamente operativo** con múltiples 
 ## 🛠️ Gestión Manual de Pagos
 
 ### Acceso
-`https://www.furgocasa.com/administrator/pagos/[id]`
+`https://www.ecoarealimonar.com/administrator/pagos/[id]`
 
 ### Funcionalidades
 ✅ Ver detalle completo del pago y reserva  
@@ -166,8 +166,8 @@ Ejemplos:
 
 ### Configuración
 - **Proveedor:** Resend
-- **Desde:** `reservas@furgocasa.com`
-- **Para:** Cliente + `reservas@furgocasa.com` (copia)
+- **Desde:** `reservas@ecoarealimonar.com`
+- **Para:** Cliente + `reservas@ecoarealimonar.com` (copia)
 
 ### Tipos de Email
 
@@ -201,7 +201,7 @@ Ejemplos:
 - [ ] Payment pasa de "pending" → "completed"
 - [ ] Booking pasa a "confirmed"
 - [ ] Email llega al cliente
-- [ ] Email llega a reservas@furgocasa.com
+- [ ] Email llega a reservas@ecoarealimonar.com
 - [ ] Fallback funciona si notificación falla
 - [ ] Admin puede editar pagos manualmente
 - [ ] Stripe funciona con comisión 2%
@@ -248,7 +248,7 @@ Ejemplos:
 ## 🔍 Herramientas de Diagnóstico
 
 ### Página de Test
-**URL:** `https://www.furgocasa.com/pago/test`  
+**URL:** `https://www.ecoarealimonar.com/pago/test`  
 **Uso:** Captura TODOS los datos que Redsys envía  
 **Instrucciones:**
 1. Cambiar temporalmente URLOK a `/pago/test` en `params.ts`
@@ -257,7 +257,7 @@ Ejemplos:
 4. Restaurar URLOK a `/pago/exito`
 
 ### API de Test
-**URL:** `https://www.furgocasa.com/api/redsys/test-urls`  
+**URL:** `https://www.ecoarealimonar.com/api/redsys/test-urls`  
 **Uso:** Ver URLs configuradas e instrucciones
 
 ---

@@ -154,7 +154,7 @@ Sistema de logging estructurado con **7 fases**:
 #### Opción 1: Dashboard de Vercel
 
 1. Ve a https://vercel.com
-2. Selecciona tu proyecto `furgocasa-app`
+2. Selecciona tu proyecto `limonar-app`
 3. Ve a **Functions** en el menú lateral
 4. Busca la función que ejecutaste (por ejemplo: `api/redsys/initiate`)
 5. Haz clic en **Logs**
@@ -221,9 +221,9 @@ Busca en los logs del backend:
   terminal: '001',                // ✅ Debe ser tu terminal
   hasSecretKey: true,             // ✅ Debe ser true
   secretKeyLength: 24,            // ✅ Debe ser > 0
-  urlOk: 'https://www.furgocasa.com/pago/exito',  // ✅ URLs correctas
-  urlKo: 'https://www.furgocasa.com/pago/error',
-  notificationUrl: 'https://www.furgocasa.com/api/redsys/notification',
+  urlOk: 'https://www.ecoarealimonar.com/pago/exito',  // ✅ URLs correctas
+  urlKo: 'https://www.ecoarealimonar.com/pago/error',
+  notificationUrl: 'https://www.ecoarealimonar.com/api/redsys/notification',
   environment: 'production'       // ✅ o 'test' si estás en pruebas
 }
 ```

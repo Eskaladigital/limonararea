@@ -2,7 +2,7 @@
 
 ## 🎉 Resumen de Implementación
 
-Se ha implementado exitosamente una **Progressive Web App (PWA)** exclusiva para el panel de administrador de Furgocasa.
+Se ha implementado exitosamente una **Progressive Web App (PWA)** exclusiva para el panel de administrador de Eco Area Limonar.
 
 ## 📦 Componentes Instalados
 
@@ -65,7 +65,7 @@ next-pwa@5.6.0
 ### Manifest
 ```json
 {
-  "name": "Furgocasa Admin",
+  "name": "Eco Area Limonar Admin",
   "scope": "/administrator/",
   "start_url": "/administrator?source=pwa",
   "display": "standalone",
@@ -226,7 +226,7 @@ La PWA del administrador está completamente implementada y lista para usar. Los
 ## 📝 Actualizaciones
 
 ### 22/01/2026 - Actualización de Iconos
-- ✅ Generados todos los iconos PWA desde el logo oficial de Furgocasa
+- ✅ Generados todos los iconos PWA desde el logo oficial de Eco Area Limonar
 - ✅ Actualizado `admin-manifest.json` con nuevos iconos
 - ✅ Script automatizado `scripts/generate-pwa-icons.js` creado
 - ✅ 12 archivos de iconos generados (72×72 hasta 512×512)

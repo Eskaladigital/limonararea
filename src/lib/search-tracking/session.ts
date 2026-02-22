@@ -2,8 +2,8 @@
  * Utilidades para gestión de sesión de búsqueda
  */
 
-const SESSION_KEY = 'furgocasa_search_session';
-const QUERY_ID_KEY = 'furgocasa_search_query_id';
+const SESSION_KEY = 'limonar_search_session';
+const QUERY_ID_KEY = 'limonar_search_query_id';
 
 /**
  * Genera o recupera un ID de sesión único

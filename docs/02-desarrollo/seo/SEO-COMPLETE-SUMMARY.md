@@ -2,7 +2,7 @@
 
 ## 📋 DOCUMENTACIÓN COMPLETA POR ÁREA
 
-Este documento sirve como índice para navegar por todas las optimizaciones SEO implementadas en el sitio web de Furgocasa.
+Este documento sirve como índice para navegar por todas las optimizaciones SEO implementadas en el sitio web de Eco Area Limonar.
 
 ---
 
@@ -83,7 +83,7 @@ Este documento sirve como índice para navegar por todas las optimizaciones SEO 
 - ✅ Múltiples imágenes (hasta 3) de 1200x630px
 - ✅ Alt text y type especificados
 - ✅ Locale, country, siteName optimizados
-- ✅ Twitter Cards con @furgocasa
+- ✅ Twitter Cards con @limonar
 
 **Resultado:** Previews perfectos en Facebook, Twitter, LinkedIn, WhatsApp
 
@@ -165,7 +165,7 @@ Este documento sirve como índice para navegar por todas las optimizaciones SEO 
 ✅ keywords: Relevantes y específicos
 ✅ openGraph: Completo (title, description, images)
 ✅ twitter: Cards optimizadas
-✅ canonical: URLs correctas (www.furgocasa.com/es/...)
+✅ canonical: URLs correctas (www.ecoarealimonar.com/es/...)
 ✅ robots: Directivas apropiadas
 ✅ geo: Tags para SEO local
 ```
@@ -273,6 +273,6 @@ Se ha implementado una **estrategia SEO completa de nivel enterprise** siguiendo
 ---
 
 **Última actualización:** 2026-01-21  
-**URL Canónica:** https://www.furgocasa.com/es  
+**URL Canónica:** https://www.ecoarealimonar.com/es  
 **Modelo SEO Multiidioma:** Ver [SEO-MULTIIDIOMA-MODELO.md](./SEO-MULTIIDIOMA-MODELO.md)  
 **Todas las URLs deben usar prefijo `/es/` para español** ✅

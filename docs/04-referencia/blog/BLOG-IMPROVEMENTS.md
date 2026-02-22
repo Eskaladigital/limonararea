@@ -1,4 +1,4 @@
-# Mejoras del Blog - Furgocasa
+# Mejoras del Blog - Eco Area Limonar
 
 ## ✅ Cambios Implementados
 

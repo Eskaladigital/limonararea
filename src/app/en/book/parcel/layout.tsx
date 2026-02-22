@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 
-// Vehicle selection page - DO NOT index (booking process)
+// Parcel selection page - DO NOT index (booking process)
 export const metadata: Metadata = {
-  title: "Select Vehicle",
-  description: "Choose your campervan or motorhome to book",
+  title: "Select Parcel",
+  description: "Choose your parcel to book",
   robots: {
     index: false,
     follow: false,
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function VehicleBookingLayout({
+export default function ParcelBookingLayout({
   children,
 }: {
   children: React.ReactNode

@@ -206,7 +206,7 @@ export async function POST(request: Request) {
       // Intentar obtener el search_query_id desde cookie o header
       const sessionId = request.headers.get('cookie')
         ?.split(';')
-        .find(c => c.trim().startsWith('furgocasa_session_id='))
+        .find(c => c.trim().startsWith('limonar_session_id='))
         ?.split('=')[1];
       
       if (sessionId) {

@@ -14,7 +14,7 @@ Se ha implementado un sistema automático de tracking para todas las páginas 40
 ### Método 1: Informes en Tiempo Real (Para Ver Ahora Mismo)
 
 1. **Accede a Google Analytics 4**
-   - Ve a tu propiedad de Furgocasa
+   - Ve a tu propiedad de Eco Area Limonar
 
 2. **Ve a "Tiempo Real"**
    - En el menú lateral izquierdo → **Informes** → **Tiempo real**
@@ -196,7 +196,7 @@ Cada vez que ocurre un 404, se envía esta información:
 | Parámetro | Descripción | Ejemplo |
 |-----------|-------------|---------|
 | `page_path` | Ruta de la URL que no existe | `/es/vehiculos/no-existe` |
-| `page_location` | URL completa | `https://furgocasa.es/es/vehiculos/no-existe` |
+| `page_location` | URL completa | `https://limonar.es/es/vehiculos/no-existe` |
 | `page_search` | Parámetros de consulta | `?id=123` |
 | `page_referrer` | De dónde viene el visitante | `https://google.com` |
 | `event_category` | Categoría (siempre "Error") | `Error` |
