@@ -356,7 +356,7 @@ export default async function LocaleHomePage() {
               { img: "/images/gallery/svc-wifi.webp", title: t("WiFi fibra óptica"), tall: true },
               { img: "/images/gallery/svc-seguridad.webp", title: t("Seguridad 24h"), tall: false },
               { img: "/images/gallery/svc-duchas.webp", title: t("Sanitarios"), tall: false },
-              { img: "/images/gallery/svc-vaciado.webp", title: t("Vaciado de aguas"), tall: true },
+              { img: "/images/gallery/svc-vaciado-new.webp", title: t("Vaciado de aguas"), tall: true },
               { img: "/images/gallery/svc-lavanderia.webp", title: t("Lavandería"), tall: false },
               { img: "/images/gallery/svc-bbq.webp", title: t("Zona barbacoa"), tall: true },
               { img: "/images/gallery/svc-mascotas.webp", title: t("Pet-friendly"), tall: true },

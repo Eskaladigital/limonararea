@@ -19,7 +19,7 @@ const serviceImages = [
   { src: "/images/gallery/svc-wifi.webp", label: "WiFi fibra" },
   { src: "/images/gallery/svc-seguridad.webp", label: "Seguridad 24h" },
   { src: "/images/gallery/svc-duchas.webp", label: "Sanitarios" },
-  { src: "/images/gallery/svc-vaciado.webp", label: "Vaciado" },
+  { src: "/images/gallery/svc-vaciado-new.webp", label: "Vaciado" },
   { src: "/images/gallery/svc-lavanderia.webp", label: "Lavandería" },
   { src: "/images/gallery/svc-bbq.webp", label: "Zona BBQ" },
   { src: "/images/gallery/svc-mascotas.webp", label: "Pet-friendly" },
