@@ -136,7 +136,7 @@ export function Header() {
           {/* Logo mejorado */}
           <Link href="/" className="flex items-center group">
             <Image
-              src="/main_logo.png"
+              src="/images/brand/main_logo.png"
               alt="El Limonar Caravaning"
               width={240}
               height={80}

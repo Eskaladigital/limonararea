@@ -20,7 +20,7 @@ export function BlogPostJsonLd({ post, url }: BlogPostJsonLdProps) {
       "url": "https://www.limonar.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.ecoarealimonar.com/main_logo.png"
+        "url": "https://www.ecoarealimonar.com/images/brand/main_logo.png"
       }
     },
     "publisher": {
@@ -29,7 +29,7 @@ export function BlogPostJsonLd({ post, url }: BlogPostJsonLdProps) {
       "url": "https://www.limonar.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.ecoarealimonar.com/main_logo.png"
+        "url": "https://www.ecoarealimonar.com/images/brand/main_logo.png"
       }
     },
     "mainEntityOfPage": {

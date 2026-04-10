@@ -31,7 +31,7 @@ export function Footer() {
           <div className="space-y-6">
             <LocalizedLink href="/" className="inline-block group">
               <Image
-                src="/main_logo.png"
+                src="/images/brand/main_logo.png"
                 alt="El Limonar Caravaning"
                 width={260}
                 height={88}

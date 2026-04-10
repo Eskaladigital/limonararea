@@ -210,7 +210,7 @@ export function Header() {
           <LocalizedLink href="/" className="flex items-center group">
             {/* img nativo para evitar hydration mismatch con Next/Image en header */}
             <img
-              src="/main_logo.png"
+              src="/images/brand/main_logo.png"
               alt="El Limonar Caravaning"
               width={240}
               height={80}

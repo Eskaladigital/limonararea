@@ -84,9 +84,9 @@ export function SaleLocationJsonLd({ location }: SaleLocationJsonLdProps) {
     },
     "image": [
       location.hero_image || `${baseUrl}/images/slides/hero-01.webp`,
-      `${baseUrl}/main_logo.png`
+      `${baseUrl}/images/brand/main_logo.png`
     ],
-    "logo": `${baseUrl}/main_logo.png`,
+    "logo": `${baseUrl}/images/brand/main_logo.png`,
     "sameAs": [
       "https://www.facebook.com/limonar",
       "https://www.instagram.com/limonar"

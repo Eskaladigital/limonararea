@@ -46,7 +46,7 @@ export function getEmailBaseTemplate(content: string, preheader: string = ''): s
           <tr>
             <td align="center" style="background-color: #ffffff; padding: 25px 20px; border-bottom: 4px solid #063971;">
               <a href="${APP_URL}" style="text-decoration: none;">
-                <img src="${APP_URL}/main_logo.png" alt="El Limonar Caravaning" width="260" style="display: block; max-width: 260px; height: auto;" />
+                <img src="${APP_URL}/images/brand/main_logo.png" alt="El Limonar Caravaning" width="260" style="display: block; max-width: 260px; height: auto;" />
               </a>
             </td>
           </tr>

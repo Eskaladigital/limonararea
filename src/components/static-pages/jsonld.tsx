@@ -11,7 +11,7 @@ export function AboutPageJsonLd() {
       "legalName": "Eco Area Limonar",
       "foundingDate": "2012",
       "url": "https://www.limonar.com",
-      "logo": "https://www.ecoarealimonar.com/main_logo.png",
+      "logo": "https://www.ecoarealimonar.com/images/brand/main_logo.png",
       "description": "Empresa familiar especializada en alquiler de autocaravanas y campers de gran volumen en Murcia.",
       "slogan": "Tu hotel 5 estrellas sobre ruedas",
       "telephone": "+34868364161",

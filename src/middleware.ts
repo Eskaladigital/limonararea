@@ -223,11 +223,10 @@ export async function middleware(request: NextRequest) {
     '/socket.io',
     '/__nextjs_original-stack-frame',
     '/webpack-hmr',
-    '/main_logo.png',
   ];
 
-  // Archivos estáticos en la raíz de /public (ej. /main_logo.png, /archivo.pdf)
-  // Sin esto el middleware redirige a /es/main_logo.png y la imagen devuelve 404.
+  // Archivos estáticos en la raíz de /public (ej. /archivo.pdf)
+  // Sin esto el middleware redirige a /es/archivo.pdf y devuelve 404 si el archivo no existe.
   const isRootStaticAsset =
     /^\/[^/]+\.(?:png|jpe?g|gif|webp|svg|ico|txt|xml|json|woff2?|pdf|map)$/i.test(pathname);
 

@@ -166,7 +166,7 @@ function AdminSidebarComponent({ admin, isOpen = true, onClose }: AdminSidebarPr
         >
           <div className="flex flex-col items-center gap-2">
             <Image
-              src="/main_logo.png"
+              src="/images/brand/main_logo.png"
               alt="El Limonar Caravaning"
               width={220}
               height={74}

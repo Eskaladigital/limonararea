@@ -5,7 +5,7 @@ export function OrganizationJsonLd() {
     "name": "Eco Area Limonar",
     "legalName": "Eco Area Limonar",
     "url": "https://www.limonar.com",
-    "logo": "https://www.ecoarealimonar.com/main_logo.png",
+    "logo": "https://www.ecoarealimonar.com/images/brand/main_logo.png",
     "description": "Empresa especializada en alquiler de autocaravanas y campers de gran volumen en Murcia. Flota premium con kilómetros ilimitados.",
     "foundingDate": "2012",
     "telephone": "+34868364161",
