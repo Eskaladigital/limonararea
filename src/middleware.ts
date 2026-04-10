@@ -223,10 +223,18 @@ export async function middleware(request: NextRequest) {
     '/socket.io',
     '/__nextjs_original-stack-frame',
     '/webpack-hmr',
+    '/main_logo.png',
   ];
 
+  // Archivos estáticos en la raíz de /public (ej. /main_logo.png, /archivo.pdf)
+  // Sin esto el middleware redirige a /es/main_logo.png y la imagen devuelve 404.
+  const isRootStaticAsset =
+    /^\/[^/]+\.(?:png|jpe?g|gif|webp|svg|ico|txt|xml|json|woff2?|pdf|map)$/i.test(pathname);
+
   // ⚠️ CRÍTICO: Admin NO debe tener i18n
-  const shouldSkip = skipLocaleFor.some(path => pathname.startsWith(path)) ||
+  const shouldSkip =
+    isRootStaticAsset ||
+    skipLocaleFor.some(path => pathname.startsWith(path)) ||
                      pathname === '/administrator' || pathname.startsWith('/administrator/') ||
                      pathname === '/admin' || pathname.startsWith('/admin/');
   
