@@ -207,21 +207,18 @@ export function Header() {
         <div className={`container mx-auto px-4 ${showTransparent ? "py-4" : "py-2"}`}>
         <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo - Limón + nombre */}
-          <LocalizedLink href="/" className="flex items-center gap-2 group">
+          <LocalizedLink href="/" className="flex items-center group">
             {/* img nativo para evitar hydration mismatch con Next/Image en header */}
             <img
-              src="/images/brand/limon.png"
-              alt="Eco Area Limonar"
-              width={40}
-              height={40}
-              className="h-8 w-8 lg:h-10 lg:w-10 object-contain group-hover:scale-110 transition-transform duration-200 drop-shadow-sm"
+              src="/main_logo.png"
+              alt="El Limonar Caravaning"
+              width={240}
+              height={80}
+              className={`h-9 w-auto max-w-[min(100%,220px)] sm:max-w-[260px] lg:h-11 object-contain object-left group-hover:opacity-95 transition-opacity duration-200 ${
+                showTransparent ? "drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]" : "drop-shadow-sm"
+              }`}
               fetchPriority="high"
             />
-            <span className={`font-heading font-bold text-base lg:text-lg tracking-tight transition-colors duration-200 ${
-              showTransparent ? "text-white" : "text-gray-900"
-            }`}>
-              Eco Area Limonar
-            </span>
           </LocalizedLink>
 
           {/* Desktop Navigation - Mejorado */}

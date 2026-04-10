@@ -135,11 +135,14 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo mejorado */}
           <Link href="/" className="flex items-center group">
-            <div className="relative">
-              <span className="text-3xl font-heading font-bold text-limonar-blue group-hover:text-limonar-blue-dark transition-colors duration-200">
-                Eco Area <span className="text-limonar-orange group-hover:text-limonar-orange-dark transition-colors duration-200">Limonar</span>
-              </span>
-            </div>
+            <Image
+              src="/main_logo.png"
+              alt="El Limonar Caravaning"
+              width={240}
+              height={80}
+              className="h-10 sm:h-11 w-auto max-w-[min(100%,240px)] object-contain object-left"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation - Mejorado */}

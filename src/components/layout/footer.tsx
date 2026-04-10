@@ -29,17 +29,14 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-14">
           {/* Company Info */}
           <div className="space-y-6">
-            <LocalizedLink href="/" className="flex items-center gap-3 group">
+            <LocalizedLink href="/" className="inline-block group">
               <Image
-                src="/images/brand/limon.png"
-                alt="Eco Area Limonar"
-                width={56}
-                height={56}
-                className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-200 drop-shadow-sm"
+                src="/main_logo.png"
+                alt="El Limonar Caravaning"
+                width={260}
+                height={88}
+                className="h-16 w-auto max-w-full object-contain object-left group-hover:opacity-90 transition-opacity duration-200"
               />
-              <span className="font-heading font-bold text-xl text-white tracking-tight">
-                Eco Area Limonar
-              </span>
             </LocalizedLink>
             <p className="text-white/60 leading-relaxed text-base">
               {t("Área de autocaravanas en Los Nietos, Mar Menor. Parcelas equipadas para tu estancia.")}

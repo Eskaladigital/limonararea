@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import supabase from "@/lib/supabase/client";
 import { Eye, EyeOff, Loader2, Lock, Mail, AlertCircle } from "lucide-react";
 
@@ -79,10 +80,15 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white">
-            Eco Area Limonar
-          </h1>
-          <p className="text-white/60 mt-2">Panel de Administración</p>
+          <Image
+            src="/main_logo.png"
+            alt="El Limonar Caravaning"
+            width={260}
+            height={88}
+            priority
+            className="mx-auto h-16 sm:h-20 w-auto max-w-full object-contain drop-shadow-lg"
+          />
+          <p className="text-white/60 mt-4">Panel de Administración</p>
         </div>
 
         {/* Form Card */}

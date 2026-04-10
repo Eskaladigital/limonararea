@@ -164,16 +164,15 @@ function AdminSidebarComponent({ admin, isOpen = true, onClose }: AdminSidebarPr
           className="flex flex-col items-center gap-2"
           prefetch={false}
         >
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col items-center gap-2">
             <Image
-              src="/images/brand/limon.png"
-              alt="Eco Area Limonar"
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain"
+              src="/main_logo.png"
+              alt="El Limonar Caravaning"
+              width={220}
+              height={74}
+              className="h-12 w-auto max-w-full object-contain"
               priority
             />
-            <span className="font-heading font-bold text-white text-lg">Eco Area Limonar</span>
           </div>
           <p className="text-sm text-white/60 text-center">Panel de Administración</p>
         </Link>

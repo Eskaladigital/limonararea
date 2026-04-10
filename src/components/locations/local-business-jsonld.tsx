@@ -103,9 +103,9 @@ export function LocalBusinessJsonLd({ location }: LocalBusinessJsonLdProps) {
     },
     "image": [
       location.hero_image || "https://www.limonar.com/images/slides/hero-01.webp",
-      "https://www.limonar.com/logo.png"
+      "https://www.ecoarealimonar.com/main_logo.png"
     ],
-    "logo": "https://www.limonar.com/logo.png",
+    "logo": "https://www.ecoarealimonar.com/main_logo.png",
     "sameAs": [
       "https://www.facebook.com/limonar",
       "https://www.instagram.com/limonar"
