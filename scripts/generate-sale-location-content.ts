@@ -255,21 +255,20 @@ REGLAS FINALES:
 - NUNCA escribas algo que podrías copiar-pegar en otra ciudad cambiando solo el nombre.`;
 
   try {
-    console.log(`   📝 Generando contenido de propietario con GPT-5.2...`);
+    console.log(`   📝 Generando contenido de propietario con GPT-5.6 Terra...`);
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-5.2",
+      model: "gpt-5.6-terra",
       messages: [
         {
           role: "system",
           content: "Eres un redactor de contenido web especializado en autocaravanas en España. Tienes amplio conocimiento geográfico de España: clima por zonas, carreteras principales, distancias entre ciudades, parques naturales, zonas costeras, zonas de montaña, polígonos industriales de ciudades grandes, y cultura camper. Usas tu conocimiento para escribir contenido útil y diferenciado por ciudad. Cuando no conoces un nombre concreto (de un taller, ITV, etc.), describes la zona o tipo de servicio de forma que sea útil sin inventar nombres. Tu tono es directo y práctico, como alguien que conoce bien la zona."
         },
         {
-          role: "user",
+          role: 'user',
           content: prompt
         }
       ],
-      temperature: 0.7,
       max_completion_tokens: 12000,
       response_format: { type: "json_object" }
     });

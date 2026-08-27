@@ -281,10 +281,10 @@ Posicionarse en búsquedas como:
 - Como si fuera una guía turística profesional especializada en autocaravanas`;
 
   try {
-    console.log(`   📝 Generando contenido con GPT-5.2...`);
+    console.log(`   📝 Generando contenido con GPT-5.6 Terra...`);
     
     const completion = await openai.chat.completions.create({
-      model: "gpt-5.2",  // Modelo más reciente
+      model: "gpt-5.6-terra",
       messages: [
         {
           role: "system",
@@ -295,7 +295,6 @@ Posicionarse en búsquedas como:
           content: prompt
         }
       ],
-      temperature: 0.7,
       max_completion_tokens: 16000,
       response_format: { type: "json_object" }
     });
