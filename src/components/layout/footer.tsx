@@ -164,15 +164,27 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-base">
-          <p className="font-medium text-white/60">
-            © {new Date().getFullYear()} Eco Area Limonar. {t("Todos los derechos reservados.")}
-          </p>
-          <div className="flex items-center gap-8">
-            <LocalizedLink href="/aviso-legal" className="hover:text-white transition-colors duration-200">{t("Aviso legal")}</LocalizedLink>
-            <LocalizedLink href="/privacidad" className="hover:text-white transition-colors duration-200">{t("Privacidad")}</LocalizedLink>
-            <LocalizedLink href="/cookies" className="hover:text-white transition-colors duration-200">{t("Cookies")}</LocalizedLink>
+        <div className="border-t border-white/10 mt-14 pt-8 space-y-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-base">
+            <p className="font-medium text-white/60">
+              © {new Date().getFullYear()} Eco Area Limonar. {t("Todos los derechos reservados.")}
+            </p>
+            <div className="flex items-center gap-8">
+              <LocalizedLink href="/aviso-legal" className="hover:text-white transition-colors duration-200">{t("Aviso legal")}</LocalizedLink>
+              <LocalizedLink href="/privacidad" className="hover:text-white transition-colors duration-200">{t("Privacidad")}</LocalizedLink>
+              <LocalizedLink href="/cookies" className="hover:text-white transition-colors duration-200">{t("Cookies")}</LocalizedLink>
+            </div>
           </div>
+          <p className="text-center text-sm text-white/50 leading-relaxed">
+            <span className="block sm:inline">Hecho con <span className="text-red-400 inline-block animate-pulse">❤️</span> en Murcia</span>
+            <span className="hidden sm:inline"> · </span>
+            <span className="block sm:inline mt-1 sm:mt-0">
+              Web desarrollada por{' '}
+              <a href="https://www.eskaladigital.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white font-medium whitespace-nowrap">
+                ESKALA Agencia de Marketing Digital
+              </a>
+            </span>
+          </p>
         </div>
       </div>
     </footer>
